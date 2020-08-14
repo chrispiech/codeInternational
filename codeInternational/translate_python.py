@@ -36,12 +36,11 @@ def tokenize_python(code):
     tokens = []
     last = None
     for token in raw_tokens:
-        type_num = token.type
-        if type_num == 62: continue
+        if token.type == 62: continue # this is an encoding token. Skip it.
         if last:
             # the python tokenizer doesn't always include whitespace
-            # so when we detect whitespace is missing, we put it back in
-            # uses the "last" token and checks for space between the end
+            # so when we detect whitespace is missing, we put it back in.
+            # Uses the "last" token and checks for space between the end
             # and the start of the current token
             same_line = last.end[0] == token.start[0]
             same_pos = last.end[1] == token.start[1]
