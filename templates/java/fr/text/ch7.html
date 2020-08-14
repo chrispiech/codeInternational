@@ -1,0 +1,96 @@
+<h1>Chapitre 7: Les déclarations if</h1>
+<hr/>
+<p> La dernière structure de flux de contrôle de programmation à apprendre est des instructions conditionnelles ( <code>if</code>  et <code>if/else</code> ).
+</p>
+<h3>Conditions de base</h3>
+<p>
+Un <code>if/else</code>  Cette instruction exécute un "si" code-block si et seulement si le<i class="demoText">tester</i> est vrai pour l'état du monde au moment où le programme atteint la déclaration. Sinon, le programme exécute le bloc de code "else".
+</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">tester</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">sinon code-block</i><br/>
+ <code>}</code> 
+</p>
+<p>Pour avoir une idée de l'endroit où les instructions conditionnelles peuvent jetons utiles, écrivons un programme dans lequel Karel inversera une ligne de jetons . Si un carré avait précédemment un jeton , Karel devrait le ramasser. Si un carré n'a pas jeton , Karel devrait en poser un.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p> Notez qu'un <code>if</code>  déclaration n'a pas besoin d'avoir un <code>else</code>  bloquer - auquel cas la déclaration opère comme un <code>while</code>  boucle qui n’exécute qu’une fois:
+</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">tester</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+ <code>} </code> 
+</p>
+<h3>Conditions</h3>
+<p>
+Ce dernier exemple utilisait une nouvelle condition. Voici une liste de toutes les conditions connues de Karel:
+</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Tester</th><th>Contraire</th><th>Qu'est-ce qu'il vérifie</th></tr>
+<tr>
+<td> <code>devantDegage()</code> </td>
+<td> <code>devantBloque()</code> </td>
+<td>Y a-t-il un mur devant Karel?</td>
+</tr>
+<tr>
+<td> <code>jetonsPresents()</code> </td>
+<td> <code>jetonsAbsents()</code> </td>
+<td>Y a-t-il jetons sur ce coin?</td>
+</tr>
+<tr>
+<td> <code>gaucheDegagee()</code> </td>
+<td> <code>gaucheBloquee()</code> </td>
+<td>Y a-t-il un mur à gauche de Karel?</td>
+</tr>
+<tr>
+<td> <code>droiteDegagee()</code> </td>
+<td> <code>droiteBloquee()</code> </td>
+<td>Y a-t-il un mur à la droite de Karel?</td>
+</tr>
+<tr>
+<td> <code>jetonsEnPoche()</code> </td>
+<td> <code>sansJetonsEnPoche()</code> </td>
+<td>Y jetons il jetons dans le sac de Karel?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>faceAuNord()</code> </td>
+<td> <code>pasFaceAuNord()</code> </td>
+<td>Karel fait-il face au nord?</td>
+</tr>
+<tr>
+<td> <code>faceAuSud()</code> </td>
+<td> <code>pasFaceAuSud()</code> </td>
+<td>Karel fait-il face au sud?</td>
+</tr>
+<tr>
+<td> <code>faceAlEst()</code> </td>
+<td> <code>pasFaceAlEst()</code> </td>
+<td>Karel fait-il face à l'est?</td>
+</tr>
+<tr>
+<td> <code>faceAlOuest()</code> </td>
+<td> <code>pasFaceAlOuest()</code> </td>
+<td>Karel fait-il face à l'ouest?</td>
+</tr>
+</table>
+</p>
+<h3>Mettre tous ensemble</h3>
+<p>Félicitations! Vous connaissez maintenant tous les blocs principaux de flux de contrôle de programmation. Pendant que vous les avez apprises avec Karel, les boucle while , boucle while s, boucle for s, if / else fonctionnent de la même manière dans la plupart des langages principaux, y compris Java.</p>
+<p>
+Maintenant que vous avez les éléments de base, vous pouvez les assembler pour trouver des solutions à des problèmes de plus en plus complexes.
+Dans une large mesure, la programmation est la science de la résolution de problèmes par ordinateur. Parce que les problèmes sont souvent difficiles, les solutions - et les programmes qui les implémentent - peuvent l'être également. Afin de faciliter le développement de ces solutions, vous devez adopter une méthodologie et une discipline qui réduisent le niveau de cette complexité à une échelle raisonnable.
+</p>

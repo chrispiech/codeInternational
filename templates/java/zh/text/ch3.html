@@ -1,0 +1,46 @@
+<h1>第3章：定义新方法</h1>
+<hr/>
+<p>在上一章中，我们编写了一个程序来帮助Karel爬上一个简单的壁架：</p>
+<h3>示例：第一个卡雷尔</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>即便如此 <code>第一个卡雷尔</code> 上面的程序表明可以执行 <code>turnRight</code> 仅使用Karel的内置命令进行操作，结果程序在概念上并不是特别清晰。在你的程序的心理设计中，卡雷尔在到达壁架顶部时向右转。您必须使用三个转左命令才能这样做的事实令人讨厌。如果你能简单地说，那会简单得多 <code>turnRight()</code> 让卡雷尔明白这个命令。生成的程序不仅更短，更容易编写，而且更容易阅读。</p>
+<h3>定义新命令</h3>
+<p>幸运的是，Karel编程语言可以简单地通过包含新的方法定义来定义新命令。每当你有一系列执行某些有用任务的Karel命令时 - 例如向右转 - 你可以定义一个执行该命令序列的新方法。定义新Karel方法的格式与定义的格式大致相同 <code>run</code> 在前面的例子中，这本身就是一个方法定义。典型的方法定义如下所示：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">名称</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">组成方法主体的命令</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>在此模式中，name表示您为新方法选择的名称。要完成定义，您所要做的就是在花括号之间的行中提供命令序列。例如，您可以定义 <code>turnRight</code> 如下：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>同样，您可以定义一个新的 <code>turnAround</code> 像这样的方法：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>您可以像使用Karel的任何内置命令一样使用新方法的名称。例如，一旦定义了 <code>turnRight</code> ，你可以替换中的三个转左命令 <code>加强卡雷尔</code> 程序只需一次调用即可 <code>turnRight</code> 方法。这是使用的程序的修订实现 <code>turnRight</code> ：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>当然，在定义之间存在一个明显的区别 <code>run</code> 和 <code>turnRight</code> 上述程序中的方法： <code>run</code> 方法标记为 <code>public</code> 相比之下 <code>turnRight</code> ，标记为 <code>private</code> 。这两个名称之间的区别在于公共方法可以从程序外部调用，而私有方法则不能。 run方法需要公开，因为Karel环境需要能够发出run命令才能完成任务。通常，良好的编程习惯是尽可能保持定义私有。</p>
+<h3>方法代码块</h3>
+<p>两个大括号之间的一组命令 <code translate="no">{ }</code> 被称为 <b>代码块</b> 。程序的主体是一个代码块，也是方法的主体。请注意代码块的内容是如何缩进一个选项卡的。这在风格上很重要，因为它使人们很容易知道给定块中的代码行。</p>
+<p>您可以根据需要定义任意数量的方法。它们都应该在程序代码块中一个接一个地写入。您无法在另一个方法中定义方法。</p>

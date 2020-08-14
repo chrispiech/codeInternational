@@ -1,0 +1,42 @@
+<h1>Capítulo 3: Definición de nuevas funciones</h1>
+<hr/>
+<p>En el último capítulo escribimos un programa para ayudar a Karel escalar una repisa simple:</p>
+<h3>Ejemplo: primer Karel</h3>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>A pesar de <code>PrimeroKarel</code> programa anterior demuestra que es posible realizar la <code>girar_derecha()</code> operación usando sólo los Karel incorporados de Karel , el programa resultante no es particularmente claro conceptualmente. En su diseño mental del programa, Karel gira a la derecha cuando llega a la parte superior de la repisa. El hecho de que tengas que usar tres <code>girar_izquierda()</code> comandos para hacerlo es molesto. Sería mucho más simple si pudiera simplemente decir <code>girar_derecha()</code> y hacer que Karel comprenda este comando. El programa resultante no solo sería más corto y más fácil de escribir, sino también significativamente más fácil de leer.</p>
+<h3>Definiendo nuevos comandos</h3>
+<p>Afortunadamente, el Karel programación Karel hace posible definir nuevos comandos simplemente al incluir nuevas definiciones de funciones. Siempre que tenga una secuencia de Karel comandos que realice alguna tarea útil, como girar a la derecha, puede definir una nueva función que ejecute esa secuencia de comandos. El formato para definir una nueva función Karel es muy similar a la definición de <code>main()</code> en los ejemplos anteriores, que es una definición de función por derecho propio. Una definición de función típica se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> </code> <i class="demoText">nombre</i> <code>():</code> <br/>
+<i class="demoText" style="margin-left:3.5em">comandos que componen el cuerpo de la función</i><br/>
+</p>
+<p>En este patrón, el nombre representa el nombre que ha elegido para la nueva función. Para completar la definición, todo lo que tiene que hacer es proporcionar la secuencia de comandos en las líneas después de los dos puntos, todos con sangría en una pestaña. Por ejemplo, puede definir <code>girar_derecha()</code> como sigue:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> girar_derecha():</code> <br/>
+ <code style="margin-left:3.5em">girar_izquierda()</code> <br/>
+ <code style="margin-left:3.5em">girar_izquierda()</code> <br/>
+ <code style="margin-left:3.5em">girar_izquierda()</code> <br/>
+</p>
+<p>Del mismo modo, podría definir un nuevo <code>media_vuelta()</code> funciona así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> media_vuelta():</code> <br/>
+ <code style="margin-left:3.5em">girar_izquierda()</code> <br/>
+ <code style="margin-left:3.5em">girar_izquierda()</code> <br/>
+</p>
+<p>Puede utilizar el nombre de una nueva función como cualquiera de los Karel de Karel . Por ejemplo, una vez que haya definido <code>girar_derecha()</code> , podrías reemplazar los tres <code>girar_izquierda()</code> comandos en el programa con una sola llamada al <code>girar_derecha()</code> función. Aquí hay una implementación revisada del programa que usa <code>girar_derecha()</code> :</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<h3>Bloques de códigos de función</h3>
+<p>Un grupo de comandos sigue los dos puntos. <code translate="no">:</code> que están sangrados, se llama <b>bloque de código</b> . El cuerpo de su función es un bloque de código. Observe cómo el contenido de un bloque de código tiene sangría en una pestaña. Esto es importante desde el punto de vista funcional, ya que permite a Python saber qué líneas de código hay en un bloque determinado.</p>
+<p>Puede definir tantas funciones como desee. Todos deberían escribirse uno tras otro. No puede definir una función dentro de otra función.</p>

@@ -1,0 +1,614 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ms/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter1.html">1 - Bertemu Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter2.html">2 - Pengaturcaraan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter3.html">3 - Kaedah Baru</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter4.html">4 - Penguraian</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter5.html">5 - Untuk Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter6.html">6 - Semasa Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter7.html">7 - Keadaan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter8.html">8 - Penghalusan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/reference.html">10 - Rujukan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Ketahui lebih lanjut</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Bab 6: Semasa Gelung</h1>
+<hr/>
+<p>Teknik mendefinisikan kaedah baru, dan menentukan gelung-seperti yang berguna-tidak semestinya membolehkan Karel menyelesaikan sebarang masalah baru. Setiap kali anda run satu program ia selalu melakukan perkara yang sama. Program menjadi lebih berguna apabila mereka dapat memberi maklum balas yang berbeza kepada input yang berbeza.</p>
+<p>Sebagai contoh. Katakan anda mahu menulis program untuk mempunyai Karel move ke dinding. Tetapi anda tidak hanya mahu program ini berfungsi pada satu dunia dengan saiz tetap. Anda ingin menulis satu program tunggal yang boleh berfungsi di mana-mana dunia.</p>
+
+
+
+
+
+<div class="section embeddedIde" id="moveToWall">
+<div class="ide getStarted" id="moveToWallIde" style="height:352.0px">
+<div class="ideCenter" id="moveToWallIdeCenter">
+<div class="ideEditorDiv" id="moveToWallEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="moveToWallCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Tukar Dunia<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="moveToWallWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="moveToWallCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="moveToWallRunButton"><span class="glyphicon glyphicon-play"></span>Jalankan Program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplemoveToWall() {
+STARTER_CODE = `
+
+/*
+ * Fail: MoveKeDinding.java
+ * -----------------------
+ * Menggunakan "sementara" gelung ke move Karel sehin
+ * gga ia memukul dinding. Bekerja pada mana-mana dun
+ * ia bersaiz.
+ */
+import stanford.karel.*;
+public class MoveKeDinding extends Karel {
+   public void run() {
+      moveKeDinding();
+   }
+
+   /* ini adalah kaedah yang sangat berguna */
+   private void moveKeDinding() {
+      while(frontIsClear()) {
+         move();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('moveToWallEditor','moveToWallEditorDiv', STARTER_CODE, false);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('moveToWallCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'ms');
+    $('#moveToWallRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('moveToWallWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#moveToWallRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#moveToWallRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 352.0;
+    var canvasWidth = 300
+    var parentWidth = $("#moveToWall").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('moveToWallIde');
+    var editorDiv = document.getElementById('moveToWallEditorDiv');
+    var canvas = document.getElementById('moveToWallCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplemoveToWall();
+    </script>
+</div>
+
+<p>Cuba ubah dunia dengan mengklik dropdown "Perubahan Dunia" di atas dunia. Untuk mana-mana dunia bersaiz, Karel akan move sehingga ia mencapai dinding. Perhatikan bahawa prestasi ini tidak dapat dilaksanakan dengan menggunakan <code class="keyword">for</code> gelung. Itu akan memerlukan kita untuk mengetahui saiz dunia pada masa pengaturcaraan.</p>
+<h3>Asas Semasa Gelung</h3>
+<p>Di Karel, a <code class="keyword">while</code> gelung digunakan untuk mengulangi kod tubuh<i>as-long-as</i>keadaan yang dipegang. Gelung sementara mempunyai bentuk umum berikut:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">ujian</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">pernyataan yang akan diulang</i><br/>
+ <code>}</code>
+</p>
+<p>Aliran kawalan gelung sementara adalah seperti berikut. Apabila program itu mencecah gelung sementara ia mula mengulangi proses di mana ia terlebih dahulu<i>cek</i>jika ujian lulus, dan jika ya<i>run s</i>kod dalam badan.</p>Apabila program tersebut<i>cek</i>jika ujian lulus, ia memutuskan jika<i class="demoText">ujian</i>adalah benar untuk keadaan semasa dunia. Jika ya, gelung akan run kod dalam badan. Jika ujian gagal, gelung berakhir dan program move s.
+<p>Apabila program tersebut<i>run s</i>badan gelung itu, program ini menjalankan garisan dalam badan satu demi satu. Apabila program tiba di akhir gelung sementara, ia melompat kembali ke bahagian atas gelung. Ia kemudian menguji semula ujian itu, dan terus gelung jika ia berlalu. Program ini tidak keluar dari gelung sehingga ia mendapat pemeriksaan, dan ujian gagal.</p>
+<p>Karel mempunyai banyak<i class="demoText">ujian</i>penyataan, dan kami akan mengatasi semuanya dalam bab seterusnya. Buat masa ini kami akan menggunakan satu kenyataan ujian: <code>frontIsClear()</code> yang benar jika tidak ada tembok langsung dari Karel.</p>
+<h3>Bug Fencepost</h3>
+<p>Mari ubah suai program kami di atas untuk menjadikannya lebih menarik. Daripada hanya bergerak ke dinding, ada Karel meletakkan garis sebanyak beeper s, satu di setiap persegi. Sekali lagi kami mahu program ini berfungsi untuk dunia dengan saiz apa pun:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLineBug1">
+<div class="ide getStarted" id="beeperLineBug1Ide" style="height:369.6px">
+<div class="ideCenter" id="beeperLineBug1IdeCenter">
+<div class="ideEditorDiv" id="beeperLineBug1EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineBug1CanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Tukar Dunia<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineBug1Worlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineBug1Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineBug1RunButton"><span class="glyphicon glyphicon-play"></span>Jalankan Program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLineBug1() {
+STARTER_CODE = `
+
+/*
+ * Fail: ConoLineCono.java
+ * ----------------------
+ * Menggunakan gelung sementara untuk meletakkan gari
+ * s beeper s. Program ini berfungsi untuk dunia deng
+ * an saiz apa pun. Walau bagaimanapun, kerana setiap
+ * dunia memerlukan satu kurang move s daripada putB
+ * eeper s ia selalu merindukan beeper .
+ */
+import stanford.karel.*;
+public class ConoLineCono extends Karel {
+   public void run() {
+   	  /* berulang sehingga karel menghadap dinding */
+      while(frontIsClear()) {
+      	 /* letakkan beeper pada dataran semasa */ 
+         putBeeper();
+      	 /* move ke dataran seterusnya */
+         move();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineBug1Editor','beeperLineBug1EditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineBug1Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'ms');
+    $('#beeperLineBug1RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineBug1Worlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineBug1RunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineBug1RunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 369.6;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLineBug1").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineBug1Ide');
+    var editorDiv = document.getElementById('beeperLineBug1EditorDiv');
+    var canvas = document.getElementById('beeperLineBug1CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLineBug1();
+    </script>
+</div>
+
+<p>Itu kelihatan hebat. Kecuali satu masalah. Pada setiap dunia Karel tidak meletakkan beeper pada dataran terakhir baris (lihat dengan teliti). Apabila Karel berada di dataran terakhir, program ini tidak menjalankan badan gelung kerana ujian tidak lagi berlalu - Karel menghadapi dinding. Anda mungkin tergoda untuk mencuba menukar susunan badan supaya Karel move s sebelum meletakkan las. Kod ini boleh diedit jadi cuba!</p>
+<p>Terdapat masalah yang lebih mendalam yang tidak dapat diselesaikan semula oleh badan. Untuk dunia dengan 7 tiang, Karel perlu meletakkan 7 beeper s, tetapi hanya boleh move 6 kali. Oleh kerana gelung semasa mengeksekusi kedua-dua baris apabila ujian lulus, bagaimana anda boleh mendapatkan program untuk melaksanakan satu perintah sekali lagi daripada yang lain?</p>
+<p>Bug dalam program ini adalah contoh masalah pengaturcaraan yang disebut <b>ralat fencepost</b> . Nama itu berasal dari hakikat bahawa jika anda ingin membina pagar yang diperbuat daripada panel yang mempunyai satu pos pagar sama ada saiznya, bilangan jawatan pagar selalu lebih besar dari jumlah panel. Berapa banyak jawatan pagar, misalnya, adakah anda perlu membina pagar dengan 10 panel? Jawapannya adalah 11, seperti yang digambarkan oleh gambarajah berikut:</p>
+<center>
+<img src="../../images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/>
+</center>
+<p>Sebaik sahaja anda menemuinya, menetapkan bug ini sebenarnya agak mudah. Sebelum Karel berhenti di hujung dunia, semua program yang perlu dilakukan ialah tempat terakhir beeper :</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLine">
+<div class="ide getStarted" id="beeperLineIde" style="height:369.6px">
+<div class="ideCenter" id="beeperLineIdeCenter">
+<div class="ideEditorDiv" id="beeperLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Tukar Dunia<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineRunButton"><span class="glyphicon glyphicon-play"></span>Jalankan Program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLine() {
+STARTER_CODE = `
+
+/*
+ * Fail: ConoTalian.java
+ * --------------------
+ * Menggunakan gelung "sementara" untuk meletakkan ga
+ * ris beeper s. Program ini berfungsi untuk dunia de
+ * ngan saiz apa pun.
+ */
+import stanford.karel.*;
+public class ConoTalian extends Karel {
+   public void run() {
+      /* berulang sehingga karel menghadap dinding */
+      while(frontIsClear()) {
+         /* letakkan beeper pada dataran semasa */ 
+         putBeeper();
+         /* move ke dataran seterusnya */
+         move();
+      }
+      /* menyelesaikan permen pasca pagar */
+      putBeeper();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineEditor','beeperLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.8, 'ms');
+    $('#beeperLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 369.6;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineIde');
+    var editorDiv = document.getElementById('beeperLineEditorDiv');
+    var canvas = document.getElementById('beeperLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLine();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter7.html" role="button">Bab seterusnya</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

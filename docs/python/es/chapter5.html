@@ -1,0 +1,515 @@
+
+<html>
+<head>
+
+<title>Karel Lector</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter1.html">1 - Conoce Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter3.html">3 - Nuevas funciones</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter9.html">9 - Funciones adicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Capítulo 5: Ciclos For</h1>
+<hr/>
+<p>Una de las cosas en las que las computadoras son especialmente buenas es la repetición. ¿Cómo podemos convencer a Karel para que ejecute un bloque de código varias veces? Para ver cómo se puede usar la repetición, considere la tarea de colocar 42 conos :</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Antes de:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:200px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Después:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:200px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('python',null, canvas, '99beepersStart', 0.0, 'es',1000, 1.0 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, '99beepersGoal',0.0, 'es',  1000, 1.0 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<h3>Basic For Loop</h3>
+<p>Como sabe que hay exactamente 42 conos para colocar, la declaración de control que necesita es una <b>ciclo for</b> , que especifica que desea repetir alguna operación un número fijo de veces. La estructura de la <code>for</code> La declaración parece complicada principalmente porque en realidad es mucho más poderosa de lo que Karel necesita. La única versión del <code>for</code> la sintaxis que utiliza Karel es:</p>
+<p class="demoCode">
+ <code>for i in range(</code> <i class="demoText">contar</i> <code>):</code> <br/>
+<i style="margin-left:2em">declaraciones a repetir</i><br/>
+</p>
+<p class="mb-20">Repasaremos todos los detalles del <code>for</code> ciclo más tarde en la clase. Por ahora, debería leer esta línea como una forma de expresar "repita las declaraciones en el cuerpo de la función<i class="demoText">contar</i>veces. "Podemos utilizar este nuevo <b>ciclo for</b> para colocar 42 conos reemplazando<i class="demoText">contar</i>con 42 y poniendo el mando <code>poner_cono()</code> dentro del <code>for</code> ciclo bloque de código. Llamamos comandos en el bloque de código al <b>cuerpo</b> :</p>
+<p>
+
+
+
+
+<div class="section embeddedIde" id="99beepers">
+<div class="ide getStarted" id="99beepersIde" style="height:195.8px">
+<div class="ideCenter" id="99beepersIdeCenter">
+<div class="ideEditorDiv" id="99beepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="99beepersCanvasDiv">
+<canvas class="ideCanvas" id="99beepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="99beepersRunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function example99beepers() {
+STARTER_CODE = `
+
+# Archivo: LugarMuchosConos.py
+# -----------------------------
+# Places 42 conos usando un ciclo for
+from karel.stanfordkarel import *
+
+def main():
+   moverse()
+   # repetir poner_cono muchas veces
+   for i in range(42):
+      poner_cono()
+   moverse()
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('99beepersEditor','99beepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('99beepersCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, '99beepersStart', 0.8, 'es');
+    $('#99beepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#99beepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#99beepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 195.8;
+    var canvasWidth = 200
+    var parentWidth = $("#99beepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('99beepersIde');
+    var editorDiv = document.getElementById('99beepersEditorDiv');
+    var canvas = document.getElementById('99beepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example99beepers();
+    </script>
+</div>
+<p>
+ <b>El código anterior es editable</b> . Intente cambiarlo para que coloque solo 15 conos .</p>
+<h3>Coincidencia de postcondiciones con condiciones previas</h3>
+<p>El ejemplo anterior da la impresión de que un <code>for</code> ciclo repite una sola línea de código. Sin embargo, el cuerpo del <code>for</code> ciclo (las declaraciones que se repiten) pueden tener varias líneas. Aquí hay un ejemplo de un programa que pone un cono en cada rincón de un mundo:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers">
+<div class="ide getStarted" id="cornerBeepersIde" style="height:213.60000000000002px">
+<div class="ideCenter" id="cornerBeepersIdeCenter">
+<div class="ideEditorDiv" id="cornerBeepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepersCanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepersRunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers() {
+STARTER_CODE = `
+
+# Archivo: Esquina Conos .py
+# -----------------------------
+# cono un cono en cada esquina
+from karel.stanfordkarel import *
+def main():
+   # repite el cuerpo 4 veces
+   for i in range(4):
+	   poner_cono()
+	   moverse()
+	   moverse()
+	   moverse()
+	   girar_izquierda()
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('cornerBeepersEditor','cornerBeepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepersCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'cornerBeepersStart', 0.0, 'es');
+    $('#cornerBeepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 213.60000000000002;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepersIde');
+    var editorDiv = document.getElementById('cornerBeepersEditorDiv');
+    var canvas = document.getElementById('cornerBeepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers();
+    </script>
+</div>
+
+<p>Preste mucha atención a la forma en que el programa fluye a través de estas declaraciones de control. El programa run s mediante el conjunto de comandos en el <code>for</code> ciclo cuerpo de uno en uno. Repite el cuerpo cuatro veces.</p>
+<p>Quizás la parte más complicada de escribir un ciclo es que necesitas el estado del mundo al final del ciclo (el <b>postcondición</b> ) para ser un estado válido del mundo para el inicio del ciclo (el <b>condición previa</b> ). En el ejemplo anterior, las suposiciones coinciden. Buenos tiempos. Al comienzo de ciclo , Karel siempre está en un cuadrado sin conos frente a la siguiente esquina vacía. ¿Qué pasa si eliminas el <code>girar_izquierda()</code> al final del ciclo ? La Karel al final de la primera iteración ya no satisfaría las suposiciones hechas sobre Karel frente a la siguiente esquina vacía. El código es editable. Intente eliminar el <code>girar_izquierda()</code> Manda a ver qué pasa!</p>
+<h3>Bucles anidados</h3>
+<p>Técnicamente, el cuerpo de un <code>for</code> ciclo puede contener cualquier código de flujo de control, incluso otros ciclo s. A continuación se muestra un ejemplo de <code>for</code> ciclo que repite una llamada a una función que también tiene un <code>for</code> ciclo . A esto lo llamamos ciclo "anidado". Intente leer el programa y comprender lo que hace antes de ejecutando :
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers10">
+<div class="ide getStarted" id="cornerBeepers10Ide" style="height:373.8px">
+<div class="ideCenter" id="cornerBeepers10IdeCenter">
+<div class="ideEditorDiv" id="cornerBeepers10EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepers10CanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepers10Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepers10RunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers10() {
+STARTER_CODE = `
+
+# Archivo: CornerFive Conos .py
+# -----------------------------
+# conos cinco conos en cada esquina
+from karel.stanfordkarel import *
+def main():
+   # Repita una vez para cada esquina
+   for i in range(4):
+      poner_cinco_conos()
+      moverse_a_la_siguiente_esquina()
+
+# reposicionar karel a la siguiente esquina
+def moverse_a_la_siguiente_esquina() :
+   moverse()
+   moverse()
+   moverse()
+   girar_izquierda()
+
+# lugares 5 conos usando un ciclo for
+def poner_cinco_conos() :
+   for i in range(5):
+   	poner_cono()
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('cornerBeepers10Editor','cornerBeepers10EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepers10Canvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'cornerBeepersStart', 0.7, 'es');
+    $('#cornerBeepers10RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepers10RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepers10RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 373.8;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers10").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepers10Ide');
+    var editorDiv = document.getElementById('cornerBeepers10EditorDiv');
+    var canvas = document.getElementById('cornerBeepers10CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers10();
+    </script>
+</div>
+</p>
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter6.html" role="button">Siguiente capítulo</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

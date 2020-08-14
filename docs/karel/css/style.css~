@@ -1,0 +1,85 @@
+#header {
+	height:51px;
+	background:transparent url("../images/header.gif") repeat-x 0 0;
+	position:relative;
+	z-index:90000;
+}
+
+#inner {
+	clear:both;
+	width:1020px;
+	margin:0 auto; 
+	position:relative;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+#logo{
+	float:left;
+	height:51px;
+	width:601px;
+	margin:0 50px 0 0;
+	text-indent:-5000px;
+	background:transparent url(../images/logo2.png) no-repeat 0 0; 
+}
+
+body {
+	margin:0px;
+	background:#5b9fe1;
+	height:100%;
+	padding:0px;
+	font-family: Optima, "Lucida Grande", Lucida, Verdana, Geneva, Arial, sans-serif;
+	font-size: medium;
+}
+
+
+#content {
+ 	margin: 0px auto;
+ 	width:1020px;
+ 	height: 100%;
+}
+
+
+#canvas {
+	width:608px;
+	height:608px;
+}
+
+#interactor {
+	/*width:125px;
+	height:25px;
+	font-size:100%;*/
+}
+
+#buttonBar {
+	text-align: left;
+	font-weight: bold;
+}
+
+#smallLinks {
+	color:#b4c3fd;
+	float:right;
+	margin-right:12px;
+	margin-top:16px;
+}
+
+#smallLink {
+	color:#b4c3fd;
+	font-size:12px;
+}
+
+
+div.CodeMirror-wrapping {
+	float:left;
+	width:400px;
+	height:600px;
+	border-width:4px;
+	border-style:solid;
+	background:#eaeefa;
+}
+
+:link, :visited {
+	text-decoration:none;
+}
+
+

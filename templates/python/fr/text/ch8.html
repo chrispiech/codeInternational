@@ -1,0 +1,115 @@
+<h1>Chapitre 8: Raffinement pas à pas</h1>
+<hr/>
+<p>
+Dans une large mesure, la programmation est la science de la résolution de problèmes par ordinateur. Parce que les problèmes sont souvent difficiles, les solutions - et les programmes qui les implémentent - peuvent l'être également. Afin de faciliter le développement de ces solutions, vous devez adopter une méthodologie et une discipline qui réduisent le niveau de cette complexité à une échelle raisonnable.
+</p>
+<p>Dans les premières années de la programmation, le concept de l'informatique en tant que science était plus ou moins une expérience de vœux pieux. Personne ne connaissait grand-chose à la programmation à cette époque, et peu la considéraient comme une discipline d'ingénierie au sens conventionnel du terme. Cependant, au fur et à mesure que la programmation mûrit, une telle discipline a commencé à émerger. La pierre angulaire de cette discipline est la compréhension que la programmation se fait dans un environnement social dans lequel les programmeurs doivent travailler ensemble. Si vous vous lancez dans l'industrie, vous serez presque certainement l'un des nombreux programmeurs travaillant à développer un grand programme. De plus, il est presque certain que ce programme main à vivre et nécessitera une main au-delà de son application initialement prévue. Quelqu'un voudra que le programme inclue une nouvelle fonctionnalité ou fonctionne d'une manière différente. Lorsque cela se produit, une nouvelle équipe de programmeurs doit entrer et apporter les modifications nécessaires aux programmes. Si les programmes sont écrits dans un style individuel avec peu ou pas de points communs, il est extrêmement difficile d'amener tout le monde à travailler ensemble de manière productive.</p>
+<p>
+Pour lutter contre ce problème, les programmeurs ont commencé à développer un ensemble de méthodologies de programmation appelées collectivement <b>génie logiciel</b> . L'utilisation de bonnes compétences en génie logiciel facilite la lecture et la compréhension de vos programmes par les autres programmeurs, mais facilite également leur écriture. L’un des progrès méthodologiques les plus importants de l’ingénierie logicielle est la stratégie de <b>conception descendante</b>  ou <b>raffinement pas à pas</b> , qui consiste à résoudre des problèmes en commençant par le problème dans son ensemble. Vous décomposez tout le problème en morceaux, puis résolvez chaque élément, en les décomposant davantage si nécessaire. Cette stratégie descendante est complétée par <b>test itératif</b>  avant de continuer. Assurez-vous que les plus petits éléments de la solution fonctionnent.
+</p>
+<h3>Un exercice de raffinement par étapes</h3>
+<p>
+Pour illustrer le concept de raffinement par étapes, apprenons à Karel à résoudre un nouveau problème. Imaginez que Karel vit maintenant dans un monde qui ressemble à ceci:
+</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="world1", world="beeperTowers", canvasWidth="400", canvasRatio=0.8)
+%>
+
+
+<p>Sur chacune des colonnes, il y a une tour de jetons d'une hauteur inconnue, bien que certaines colonnes (telles que la 7e et la 9e dans le monde de l'échantillon) puissent être vides. Le travail de Karel est de rassembler tous les jetons dans chacune de ces tours, de les remettre sur le coin le plus à l'est de la 1ère rangée, puis de revenir à sa position de départ. Ainsi, lorsque Karel termine son travail dans l'exemple ci-dessus, tous les 25 jetons actuellement dans les tours doivent être empilés au coin de la 9ème colonne et de la 1ère rangée, comme suit:</p>
+
+
+	<%
+  include('templates/python/'+lang+'/programs/world.html', name="world2", world="beeperTowersGoal", canvasWidth="400", canvasRatio=0.8)
+%>
+
+
+<p>Surtout, vous pouvez supposer que Karel initialement<i>départs</i>avec zéro jetons dans son sac. Chaque jeton ramassé est ajouté à son sac. En mettant jetons dans le coin, Karel peut utiliser le <code>jetons_en_sac()</code> tester. On peut également supposer que les colonnes n'atteignent pas tout le chemin jusqu'au mur le plus au nord.</p>
+<p>La clé pour résoudre ce problème est de décomposer le programme de la bonne manière, tout en étant capable de tester au fur et à mesure. Cette tâche est plus complexe que les autres que vous avez vues, ce qui rend le choix des sous-problèmes appropriés plus important pour obtenir une solution réussie.</p>
+<h3>Le principe de la conception descendante</h3>
+<p>L'idée clé dans le raffinement par étapes est que vous devez commencer la conception de votre programme par le haut, ce qui fait référence au niveau du programme qui est conceptuellement le plus élevé et le plus abstrait. À ce niveau, le problème de la tour jeton est clairement divisé en trois phases indépendantes. Tout d'abord, Karel doit collecter tous les jetons . Deuxièmement, Karel doit les déposer à la dernière intersection. Troisièmement, Karel doit revenir à sa position d'origine. Cette décomposition conceptuelle du problème suggère que le <code>main()</code> La fonction de ce programme aura la structure suivante:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+ <code>      collectionner_tous_jetons()</code> <br/>
+ <code>      tout_laisser_tomber_jetons()</code> <br/>
+ <code>      rentrer_à_la_maison()</code> <br/>
+</p>
+<p>À ce niveau, le problème est facile à comprendre. Bien sûr, il reste quelques détails sous forme de fonctions que vous n'avez pas encore écrites. Néanmoins, il est important de regarder chaque niveau de la décomposition et de se convaincre que, tant que vous pensez que les fonctions que vous êtes sur le point d'écrire résoudront correctement les sous-problèmes, vous aurez alors une solution au problème dans son ensemble. .</p>
+<h3>Tests itératifs au fur et à mesure</h3>
+<p>Maintenant que vous avez défini la structure du programme dans son ensemble, il est temps de avancer à avancer au premier sous-problème, qui consiste à collecter tous les jetons . Cette tâche est elle-même plus compliquée que les simples problèmes des chapitres précédents. Collecter tous les jetons signifie que vous devez récupérer les jetons dans chaque tour jusqu'à ce que vous jetons au dernier virage. Le fait que vous deviez répéter une opération pour chaque tour suggère que vous avez besoin d'un <code>while</code> boucle ici. le <code>while</code> boucle répétera le processus de <code>recueillir_une_tour()</code> puis en mouvement.</p>
+<p> <b>Mise en garde:</b>  Il est dangereux d’essayer d’écrire l’ensemble du programme sans <b>essai</b>  comme vous allez. Si vous faites une erreur, il sera difficile de trouver l'erreur. Nous savons que nous allons répéter le processus de collecte d’une tour. Laissez-nous écrire et <b>tester</b>  la collecte d'une seule tour avant de mettre le <code>recueillir_une_tour()</code> processus dans un boucle for . Donc<i>temporairement</i>nous pouvons commencer par la définition suivante de <code>collectionner_tous_jetons()</code> :
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> collectionner_tous_jetons() :</code> <br/>
+ <code class="comment">      # implémentation temporaire à des fins de test</code> <br/>
+ <code>      recueillir_une_tour()</code> <br/>
+ <code>      avancer()</code> <br/>
+</p>
+<p>
+En principe, si vous avez une boucle complexe, testez la<i>corps</i> de la boucle avant d'écrire la boucle entière.
+</p>
+<h3>Raffinage de la tour de collecte</h3>
+<p>Quand <code>recueillir_une_tour()</code> est appelé, Karel est soit debout à la base d'une tour de jetons soit debout sur un coin vide. Dans le premier cas, vous devez récupérer le jetons dans la tour. Dans ce dernier, vous pouvez simplement avancer sur. Cette situation ressemble à une application pour le <code>if</code> déclaration, dans laquelle vous écririez quelque chose comme ceci:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span> jetons_présent():</code> <br/>
+ <code>      recueillir_la_tour_réelle()</code> <br/>
+</p>
+<p>Avant d'ajouter une telle instruction au code, vous devez vous demander si vous devez effectuer ce test. Souvent, les programmes peuvent être beaucoup plus simples en observant que les cas qui semblent à première vue spéciaux peuvent être traités exactement de la même manière que la situation plus générale. Dans le problème actuel, que se passe-t-il si vous décidez qu'il y a une tour de jetons sur chaque avenue mais que certaines de ces tours ont une jetons zéro jetons ? L'utilisation de ces informations simplifie le programme car vous n'avez plus à tester s'il y a une tour sur une avenue particulière.</p>
+<p>le <code>recueillir_une_tour()</code> La fonction est encore suffisamment complexe pour qu'un niveau supplémentaire de décomposition s'impose. Pour rassembler tous les jeton dans une tour, Karel doit entreprendre les étapes suivantes:</p>
+<ol>
+<li>Tournez à gauche pour faire face au jetons dans la tour.<li>Récupérez tous les jetons dans la tour, en vous arrêtant lorsque plus de jetons sont plus trouvés.<li>Retournez-vous pour faire face au fond du monde.
+<li>Retournez au mur qui représente le sol.
+<li>Tourner à gauche pour être prêt à avancer au coin suivant.</li></li></li></li></li></ol>
+<p>Encore une fois, ce schéma fournit un modèle pour la <code>recueillir_une_tour()</code> fonction, qui ressemble à ceci:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recueillir_une_tour():</code> <br/>
+ <code>      tourner_gauche()</code> <br/>
+ <code>      collecter_la_ligne_de_jetons()</code> <br/>
+ <code>      tourner_autour()</code> <br/>
+ <code>      avancer_au_mur()</code> <br/>
+ <code>      tourner_gauche()</code> <br/>
+</p>
+<h3>Conditions préalables et postconditions fonctionnelles</h3>
+<p>le <code>tourner_gauche()</code> commandes au début et à la fin de <code>recueillir_une_tour()</code> sont tous deux essentiels à l'exactitude de ce programme. Quand <code>recueillir_une_tour()</code> est appelé, Karel est toujours quelque part sur la 1ère rangée face à l'est. Lorsqu'il aura terminé son opération, le programme dans son ensemble ne fonctionnera correctement que si Karel est à nouveau face à l'est dans ce même coin. Les conditions qui doivent être vraies avant qu'une fonction ne soit appelée sont appelées <b>conditions préalables</b> ; les conditions qui doivent s'appliquer après la fin de la fonction sont appelées <b>postconditions</b> .
+</p>
+<p>Lorsque vous définissez une fonction, vous aurez beaucoup moins de problèmes si vous notez exactement quelles sont les pré et postconditions. Une fois que vous avez fait cela, vous devez vous assurer que le code que vous écrivez laisse toujours les postconditions satisfaites, en supposant que les conditions préalables étaient satisfaites au départ. Par exemple, pensez à ce qui se passe si vous appelez <code>recueillir_une_tour()</code> quand Karel est au 1er rang face à l'est. La première <code>tourner_gauche()</code> fonction laisse Karel face au nord, ce qui signifie que Karel est correctement aligné avec la colonne de jetons représentant la tour. le <code>collecter_la_ligne_de_jetons()</code> fonction - qui n'a pas encore été écrite mais qui exécute néanmoins une tâche que vous comprenez conceptuellement - simplement avancer s sans tourner. Ainsi, à la fin de l'appel à <code>collecter_la_ligne_de_jetons()</code> , Karel sera toujours face au nord. le <code>tourner_autour()</code> l'appel laisse donc Karel face au sud. Comme <code>collecter_la_ligne_de_jetons()</code> , les <code>avancer_au_mur()</code> La fonction n'implique aucun virage, mais simplement avancer s jusqu'à ce qu'elle touche le mur de avancer . Parce que Karel est face au sud, ce mur de délimitation sera celui en bas de l'écran, juste en dessous de la 1ère rangée. Le final <code>tourner_gauche()</code> La commande laisse donc Karel au 1er rang face à l'est, ce qui satisfait la post-condition.</p>
+<h3>Répéter le processus</h3>
+<p>Vous run votre programme et il efface avec succès une tour et laisse Karel dans la postcondition promise. Wahoo! Vous venez de franchir une étape importante dans la résolution de cette tâche difficile! Nous devons maintenant répéter le processus de nettoyage d'une tour à l'aide d'un <code>while</code> boucle.</p>
+<p>Mais qu'est-ce que cela <code>while</code> boucle ressemble à? Tout d'abord, vous devriez penser au test conditionnel. Vous voulez que Karel s'arrête quand il heurte le mur au bout de la rangée. Ainsi, vous voulez que Karel continue aussi longtemps que l'espace devant est dégagé. Ainsi, vous savez que le <code>collectionner_tous_jetons()</code> la fonction comprendra un <code>while</code> boucle qui utilise le <code>l'avant_est_clair()</code> tester. À chaque position, vous voulez que Karel récupère tous les jetons dans la tour en commençant à ce coin. Si vous donnez à cette opération un nom, qui pourrait être quelque chose comme <code>recueillir_une_tour()</code> , vous pouvez continuer et rédiger une définition pour le <code>collectionner_tous_jetons()</code> fonction même si vous n’avez pas encore rempli les détails.</p>
+<p>Vous devez cependant être prudent. Le code pour <code>collectionner_tous_jetons()</code> ne ressemble pas à ceci:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>collectionner_tous_jetons():</code> <br/>
+ <code class="comment">      # boucle buggy!</code> <br/>
+ <code>      <span class="keyword">while</span> l'avant_est_clair():</code> <br/>
+ <code>         recueillir_une_tour()</code> <br/>
+ <code>         avancer()</code> <br/>
+</p>
+<p>Cette implémentation est boguée pour exactement la même raison que la première version du général <code>JetonLigne</code> programme du chapitre 6 n'a pas fait son travail. Il y a une erreur de clôture dans cette version du code, car Karel doit tester la présence d'une tour jeton sur la dernière avenue. La mise en œuvre correcte est:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>collectionner_tous_jetons():</code> <br/>
+ <code>      <span class="keyword">while</span> front_is_clear():</code> <br/>
+ <code>         recueillir_une_tour()</code> <br/>
+ <code>         avancer()</code> <br/>
+ <code>      recueillir_une_tour()</code> <br/>
+</p>
+<p>Notez que cette fonction a exactement la même structure que le programme main programme Place Jeton Line présenté au chapitre 6. La seule différence est que ce programme appelle <code>recueillir_une_tour()</code> où l'autre a appelé <code>laisser_jeton()</code> . Ces deux programmes sont chacun des exemples d'une stratégie générale qui ressemble à ceci:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>collectionner_tous_jetons():</code> <br/>
+ <code>      <span class="keyword">while</span> l'avant_est_clair():</code> <br/>
+ <code>         </code> <i class="demoText">effectuer une opération.</i><br/>
+ <code>         avancer()</code> <br/>
+ <code>      </code> <i class="demoText">effectuer la même opération pour le dernier virage.</i><br/>
+</p>
+<p>Vous pouvez utiliser cette stratégie chaque fois que vous devez effectuer une opération sur chaque coin lorsque vous avancer long d'un chemin qui se termine à un mur. Si vous vous souvenez de la structure générale de cette stratégie, vous pouvez l'utiliser chaque fois que vous rencontrez un problème nécessitant une telle opération. Les stratégies réutilisables de ce type sont fréquemment rencontrées dans la programmation et sont appelées <b>idiomes de programmation</b>  ou <b>les patrons</b> . Plus vous connaissez de modèles, plus il vous sera facile de trouver celui qui convient à un type de problème particulier.
+</p>
+<h3>Finir</h3>
+<p>Bien que le travail acharné ait été fait, il reste encore plusieurs problèmes à résoudre. Le programme main appelle deux fonctions: <code>tout_laisser_tomber_jetons()</code>  et <code>rentrer_à_la_maison()</code> - qui ne sont pas encore écrites. De même, <code>recueillir_une_tour()</code> appels <code>collecter_la_ligne_de_jetons()</code>  et <code>avancer_au_mur()</code> . Heureusement, ces quatre fonctions sont assez simples pour coder sans aucune décomposition supplémentaire, en particulier si vous utilisez <code>avancer_au_mur()</code> dans la définition de <code>rentrer_à_la_maison()</code> . Voici l'implémentation complète:</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/bigCode.html', name="beeperTowers",  world="beeperTowers", ideSpeed=0.9, canvasRatio=0.8)
+%>
+
+

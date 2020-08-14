@@ -1,0 +1,538 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/sw/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter1.html">1 - kukutana na Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter2.html">2 - Programu</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter3.html">3 - Mbinu mpya</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter4.html">4 - kuacha</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter5.html">5 - Mizunguko For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter6.html">6 - Mizunguko While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter7.html">7 - Masharti</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter8.html">8 - Ufadhili</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/reference.html">10 - Rejea</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/ide.html">11 - Programu</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Jifunze zaidi</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Sura ya 2: Kuandaa Karel</h1>
+<hr/>
+<p>Mtindo rahisi wa programu ya Karel hutumia maandishi kutaja mlolongo wa amri zilizojengwa zinazopaswa kutekelezwa wakati programu <b>run</b> . Fikiria programu rahisi ya Karel hapa chini. Nakala upande wa kushoto ni programu. Hali ya dunia ya Karel imeonyeshwa upande wa kulia:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPicking">
+<div class="ide getStarted" id="beeperPickingIde" style="height:299.20000000000005px">
+<div class="ideCenter" id="beeperPickingIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingRunButton"><span class="glyphicon glyphicon-play"></span>Panga Programu</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPicking() {
+STARTER_CODE = `
+
+/*
+ * Faili: KalamuYaKwanza.java
+ * -------------------------
+ * Programu ya KalamuYaKwanza inafafanua njia " run "
+ * na amri tatu. Amri hizi husababisha Karel kwa mov
+ * e mbele moja block, kuchukua koni na kisha move mb
+ * ele ya kona ya pili.
+ */
+import stanford.karel.*;
+public class KalamuYaKwanza extends Karel {
+   /* mpango huanza run Ning hapa */
+   public void run() {
+      move();
+      chukuaKoni();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingEditor','beeperPickingEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'sw');
+    $('#beeperPickingRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 299.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPicking").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingIde');
+    var editorDiv = document.getElementById('beeperPickingEditorDiv');
+    var canvas = document.getElementById('beeperPickingCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPicking();
+    </script>
+</div>
+
+<p>Bonyeza kitufe cha "Run" ili kutekeleza programu. Mipango ni kawaida imeandikwa katika programu maalum inayoitwa <b>Ubora wa Maendeleo ya Pamoja</b> (IDE) na programu nyingi za Karel zimeandikwa katika IDE inayoitwa Eclipse. Kama IDE, msomaji huyu ana uwezo wa kutekeleza programu ili kukusaidia<i>tazama</i>jinsi mambo yanavyofanya kazi kama unavyojifunza.</p>
+<p>Mpango huu linajumuisha sehemu kadhaa. Sehemu ya kwanza ina mistari ifuatayo:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Faili: KalamuYaKwanza.java
+ * -------------------------
+ * Programu ya KalamuYaKwanza inafafanua njia " run "
+ * na amri tatu. Amri hizi husababisha Karel kwa mov
+ * e mbele moja block, kuchukua koni na kisha move mb
+ * ele ya kona ya pili.
+ */</pre>
+</p>
+<p>Mstari huu ni mfano wa <b>maoni</b> , ambayo ni maandiko tu yaliyopangwa kuelezea uendeshaji wa programu kwa wasomaji wa kibinadamu. Maoni katika wote Karel na Java huanza na wahusika <code class="comment">/*</code> na mwisho na wahusika <code class="comment">*/</code> . Hapa, maoni huanza kwenye mstari wa kwanza na inaisha mistari kadhaa baadaye. Nyota kwenye mistari ya kibinafsi ambayo hufanya maandishi ya maoni hayahitajiki, lakini iwe rahisi kwa wasomaji wa binadamu kuona kiwango cha maoni. Katika mpango rahisi, maoni ya kina yanaweza kuonekana kuwa ya udanganyifu kwa sababu matokeo ya programu ni dhahiri, lakini ni muhimu sana kama njia ya kuandika mpango wa programu kubwa, ngumu zaidi. Sehemu ya pili ya programu ni mstari:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>Mstari huu unaomba kuingizwa kwa ufafanuzi wote kutoka kwa <code>stanford.karel</code> maktaba. Maktaba hii ina ufafanuzi wa msingi muhimu kwa kuandika programu za Karel, kama vile ufafanuzi wa shughuli za kawaida <code>move()</code> na <code>chukuaKoni()</code> . Kwa sababu daima unahitaji upatikanaji wa shughuli hizi, kila mpango wa Karel unayoandika utajumuisha amri hii ya kuagiza kabla ya kuandika mpango halisi.</p>
+<p>Sehemu ya mwisho ya mpango wa Karel ina ufafanuzi wa programu zifuatazo:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> KalamuYaKwanza <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      chukuaKoni();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Ili kuelewa ufafanuzi huu, ni muhimu kuangalia kwa makini zaidi katika muundo wake. Ufafanuzi wa mpango wa KalamuYaKwanza una mwanzo wa mwanzo <code class="keyword">public class</code> na inahusisha kila kitu kati ya brace brace mwishoni mwa mstari huo na kushikamana kufunga kufunga kwenye mstari wa mwisho wa programu. Mstari mmoja unaoanzisha darasa jipya huitwa <b>kichwa</b> ya ufafanuzi; kanuni kati ya braces inaitwa <b>mwili</b> .</p>
+<p>Katika programu, mara nyingi ni muhimu sana kutafakari juu ya ufafanuzi fulani na mwili wake kama mawazo tofauti. Katika mfano huu, ufafanuzi wa KalamuYaKwanza una fomu ifuatayo, ambapo mwili wote wa ufafanuzi unaweza kufutwa kwa akili yako kwa muda:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> KalamuYaKwanza <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">mwili wa ufafanuzi wa mpango</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>Mstari wa kichwa hapo juu unakuambia kidogo kuhusu mpango wa KalamuYaKwanza, hata kabla ukiangalia kuona mwili unao. Maneno <code class="keyword">public class</code> kuanza ufafanuzi wa programu. Maneno <code><span class="keyword">extends</span> Karel</code> hutumiwa kuonyesha hiyo <code>KalamuYaKwanza</code> ni mpango wa Karel.</p>
+<p>Sasa hebu tuangalie mwili wa programu ya KalamuYaKwanza. Mwili huo una mistari ifuatayo:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      chukuaKoni();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Mistari hii inawakilisha ufafanuzi wa mpya <b>njia</b> , ambayo inaelezea mlolongo wa hatua zinazohitajika kujibu amri. Kama ilivyo katika mpango wa KalamuYaKwanza yenyewe, ufafanuzi wa njia una sehemu mbili ambazo zinaweza kuzingatiwa tofauti: Mstari wa kwanza hufanya kichwa cha njia na kanuni kati ya braces curly ni mwili wa njia. Ikiwa unapuuza mwili kwa sasa, ufafanuzi wa mbinu inaonekana kama hii:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">mwili wa ufafanuzi wa njia</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Maneno mawili ya kwanza katika kichwa cha njia, <code class="keyword">public</code> na <code class="keyword">void</code> , ni sehemu ya muundo wa kisasa wa Java, na unapaswa kujisikia huru kuwapuuza kwa hatua hii. Neno linalofuata kwenye mstari wa kichwa linafafanua jina la njia mpya, ambayo katika kesi hii ni njia <b>run</b> . Kufafanua njia ina maana kuwa Karel anaweza sasa kujibu amri mpya kwa jina hilo. Ya <code>run</code> amri ina jukumu maalum katika mpango wa Karel. Unapoanza programu ya Karel inajenga mfano mpya wa Karel, anaongeza kuwa Karel kwa ulimwengu run , kisha hutoa amri ya run . Athari ya run wa run na mwili wa njia ya run , ambayo ni mlolongo wa amri ambazo robot itatekeleza. Kwa mfano, mwili wa run mbinu kwa ajili ya mpango KalamuYaKwanza ni:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   chukuaKoni();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Hivyo, kama hali ya kwanza ya ulimwengu inafanana na mfano uliotolewa katika Sura ya 1, Karel kwanza move s move kwenye kona yenye koni , huchukua koni , na hatimaye move s mbele ya kona kabla ya ukuta, kama inavyoonekana katika yafuatayo kabla na baada ya mchoro:</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Kabla ya:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Baada ya:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'sw',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpM1',0.0, 'sw',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>Kutatua tatizo la kuvutia zaidi</h2>
+<p>Programu ya KalamuYaKwanza iliyoelezwa hapo juu haifanyi sana sana bado. Hebu jaribu kuifanya kuwa ya kuvutia zaidi. Tuseme kuwa lengo sio tu kupata Karel kuchukua koni lakini move koni kutoka nafasi yake ya kwanza kwenye safu ya 2 na mstari wa 1 katikati ya kiwanja. Hivyo, kazi yako inayofuata ni kufafanua mpango mpya wa Karel ambao unafanya kazi iliyoonyeshwa katika mchoro huu:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Kabla ya:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Baada ya:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'sw',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpGoal',0.0, 'sw',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>Amri tatu za kwanza katika programu mpya-hizo ambazo move mbele, huchukua koni , na kisha move hadi kwenye kiwanja-ni sawa na kabla:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   chukuaKoni();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Kutoka hapa, hatua inayofuata ni kugeuka kushoto ili kuanza kupanda kiwanja. Operesheni hiyo ni rahisi, kwa sababu Karel ana amri geukaKushoto katika repertoire yake ya kawaida. Kutekeleza amri geukaKushoto mwishoni mwa amri ya mlolongo uliotangulia inatoka Karel akielekea kaskazini kwenye kona ya safu ya 1 na safu ya 3. Ikiwa Karel move amri ya move , itakuwa move kaskazini ili kufikia nafasi yafuatayo:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('java',null, canvas, 'stepUpM2', 0, 'sw',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>Kutoka hapa, kitu kingine unachohitaji kufanya ni kupata Karel kugeuka kulia ili tena inakabiliwa na mashariki. Wakati operesheni hii inafikiri kama rahisi kama kupata Karel kugeuka kushoto, kuna shida kidogo: lugha ya Karel inajumuisha <code>geukaKushoto</code> amri, lakini hapana <code>geukaKulia</code> amri. Ni kama ununuliwa mfano wa uchumi na umegundua sasa kwamba hauna sifa muhimu.</p>
+<p>Kwa sasa, una fursa yako ya kwanza kuanza kufikiria kama programu. Una amri moja ya amri, lakini sio hasa unayohitaji. Unaweza kufanya nini? Je! Unaweza kukamilisha athari za amri ya geukaKulia ukitumia tu uwezo unao? Jibu, bila shaka, ni ndiyo. Unaweza kufikia athari ya kugeuka kulia kwa kugeuka kushoto mara tatu. Baada ya zamu tatu za kushoto, Karel atakabiliwa na mwelekeo uliotaka. Kutoka hapa, unahitaji kufanya ni mpango Karel hadi move juu ya katikati ya daraja, tone koni na kisha move mbele nafasi ya mwisho. Hapa ni utekelezaji kamili wa <code>Ongeze</code> mpango ambao hutimiza kazi nzima:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:422.40000000000003px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>Panga Programu</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+/*
+ * Funga: KoniPickingKarel.java
+ * ---------------------------
+ * Programu ya KoniPickingKarel inafafanua njia ya "
+ * run " na amri ambazo husababisha Karel kuchukua ko
+ * ni na kuiweka kwenye daraja.
+ */
+import stanford.karel.*;
+public class KoniPickingKarel extends Karel {
+   public void run() {
+      move();
+      chukuaKoni();
+      move();
+      geukaKushoto();
+      move();
+      geukaKushoto();
+      geukaKushoto();
+      geukaKushoto();
+      move();
+      move();
+      wekaKoni();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.5, 'sw');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 422.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">Sura inayofuata</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

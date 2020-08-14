@@ -1,0 +1,543 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/fr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 
+      Karel
+    </a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter1.html">
+      1 - Rencontrez Karel
+    </a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter2.html">2 - Programmation</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter3.html">3 - Nouvelles méthodes</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter4.html">4 - Décomposition</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter5.html">5 - Boucles For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter6.html">6 - Boucles While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter7.html">7 - Conditions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter8.html">8 - Raffinement</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/reference.html">10 - Référence</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/ide.html">11 - Code</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Apprendre encore plus</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Chapitre 5: Boucles For</h1>
+<hr/>
+<p>Une des choses pour lesquelles les ordinateurs sont particulièrement doués est la répétition. Comment pouvons-nous convaincre Karel d'exécuter un bloc de code plusieurs fois? Pour voir comment la répétition peut être utilisée, considérons la tâche de placer 42 jetons :</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Avant:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:200px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Après:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:200px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, '99beepersStart', 0.0, 'fr',1000, 1.0 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, '99beepersGoal',0.0, 'fr',  1000, 1.0 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<h3>Base pour la boucle</h3>
+<p>Puisque vous savez qu'il y a exactement 42 jetons à placer, la déclaration de contrôle dont vous avez besoin est un <b>boucle for</b> , qui indique que vous souhaitez répéter une opération un nombre de fois déterminé. La structure de la déclaration for semble compliquée principalement parce qu’elle est en réalité beaucoup plus puissante que tout ce dont Karel a besoin. La seule version de la syntaxe for utilisée par Karel est la suivante:
+</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">compter</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">déclarations à répéter</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">Nous passerons en revue tous les détails du boucle for plus tard dans la classe. Pour le moment, vous devriez lire cette ligne comme un moyen d’exprimer ", répétez les affirmations entre les accolades.<i class="demoText">compter</i> fois."
+
+ Nous pouvons utiliser cette nouvelle <b>boucle for</b> placer 42 jetons en remplaçant<i class="demoText">compter</i> avec 42 et en mettant la commande <code>laisserJeton()</code> à l'intérieur du bloc de code boucle for . Nous appelons les commandes dans le code bloquer le <b>corps</b> :
+</p>
+<p>
+
+
+
+
+<div class="section embeddedIde" id="99beepers">
+<div class="ide getStarted" id="99beepersIde" style="height:281.6px">
+<div class="ideCenter" id="99beepersIdeCenter">
+<div class="ideEditorDiv" id="99beepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="99beepersCanvasDiv">
+<canvas class="ideCanvas" id="99beepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="99beepersRunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function example99beepers() {
+STARTER_CODE = `
+
+/*
+ * Fichier: PlaceBeaucoupJetons.java
+ * --------------------------------
+ * Places 42 jetons utilisant un boucle for
+ */
+import stanford.karel.*;
+public class PlaceBeaucoupJetons extends Karel {
+   public void run() {
+      avancer();
+      /* répéter laisserJeton plusieurs fois */
+      for(int i = 0; i < 42; i++) {
+      	laisserJeton();
+      }
+      avancer();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('99beepersEditor','99beepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('99beepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '99beepersStart', 0.8, 'fr');
+    $('#99beepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#99beepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#99beepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 281.6;
+    var canvasWidth = 200
+    var parentWidth = $("#99beepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('99beepersIde');
+    var editorDiv = document.getElementById('99beepersEditorDiv');
+    var canvas = document.getElementById('99beepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example99beepers();
+    </script>
+</div>
+<p>Le code ci-dessus est éditable. Essayez de le changer pour qu'il ne place que 15 jetons .</p>
+<h3>Associer postconditions avec préconditions</h3>
+<p>L'exemple précédent donne l'impression qu'un boucle for répète une seule ligne de code. Toutefois, le corps du boucle for (les instructions répétées) peut comporter plusieurs lignes. Voici un exemple de programme qui place un jeton à chaque coin du monde:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers">
+<div class="ide getStarted" id="cornerBeepersIde" style="height:316.8px">
+<div class="ideCenter" id="cornerBeepersIdeCenter">
+<div class="ideEditorDiv" id="cornerBeepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepersCanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepersRunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers() {
+STARTER_CODE = `
+
+/*
+ * Fichier: CoinJetons.java
+ * ------------------------
+ * Place un jeton dans chaque coin
+ */
+import stanford.karel.*;
+public class CoinJetons extends Karel {
+   public void run() {
+      /* répéter le corps 4 fois */
+      for(int i = 0; i < 4; i++) {
+      	laisserJeton();
+      	avancer();
+      	avancer();
+      	avancer();
+      	tournerGauche();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepersEditor','cornerBeepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.0, 'fr');
+    $('#cornerBeepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepersIde');
+    var editorDiv = document.getElementById('cornerBeepersEditorDiv');
+    var canvas = document.getElementById('cornerBeepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers();
+    </script>
+</div>
+
+<p>Portez une attention particulière à la manière dont le programme parcourt ces déclarations de contrôle. Le programme run l’ensemble des commandes du corps boucle for . Il répète le corps quatre fois.</p>
+<p>
+La partie la plus compliquée de l’écriture d’une boucle est peut-être que vous avez besoin de l’état du monde à la fin de la boucle (le <b>postcondition</b> ) être un état du monde valide pour le début de la boucle (le <b>condition préalable</b> ). Dans l'exemple ci-dessus, les hypothèses correspondent. Bon temps. Au début de la boucle, Karel est toujours sur une case sans jetons face au prochain coin vide. Que faire si vous avez supprimé le tournerGauche à la fin de la boucle? La post-condition à la fin de la première itération ne satisferait plus les hypothèses faites à propos de Karel face au prochain coin vide. Le code est éditable. Essayez de supprimer le <code>tournerGauche();</code>  commande pour voir ce qui se passe!
+</p>
+<h3>Boucles imbriquées</h3>
+<p>Techniquement, le corps d’un boucle for peut contenir n’importe quel code de flux de contrôle, même d’autres boucles. Voici un exemple de boucle for qui répète un appel à une méthode qui a également un boucle for . Nous appelons cela une boucle "imbriquée". Essayez de lire le programme et de comprendre ce qu’il fait avant le exécuter :
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers10">
+<div class="ide getStarted" id="cornerBeepers10Ide" style="height:545.6px">
+<div class="ideCenter" id="cornerBeepers10IdeCenter">
+<div class="ideEditorDiv" id="cornerBeepers10EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepers10CanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepers10Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepers10RunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers10() {
+STARTER_CODE = `
+
+/*
+ * Fichier: CoinCinqJetons.java
+ * ----------------------------
+ * Place cinq jetons dans chaque coin
+ */
+import stanford.karel.*;
+public class CoinCinqJetons extends Karel {
+
+   public void run() {
+      /* Répétez une fois pour chaque coin */
+      for(int i = 0; i < 4; i++) {
+         mettreCinqJetons();
+         avancerAuCoinSuivant();
+      }
+   } 
+
+   /* repositionner Karel au coin suivant */
+   public void avancerAuCoinSuivant() {
+      avancer();
+      avancer();
+      avancer();
+      tournerGauche();
+   }
+
+   /* place 5 jetons utilisant un boucle for */
+   public void mettreCinqJetons() {
+      for(int i = 0; i < 5; i++) {
+      	laisserJeton();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepers10Editor','cornerBeepers10EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepers10Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.7, 'fr');
+    $('#cornerBeepers10RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepers10RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepers10RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 545.6;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers10").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepers10Ide');
+    var editorDiv = document.getElementById('cornerBeepers10EditorDiv');
+    var canvas = document.getElementById('cornerBeepers10CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers10();
+    </script>
+</div>
+</p>
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter6.html" role="button">Chapitre suivant</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

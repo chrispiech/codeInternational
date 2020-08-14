@@ -1,0 +1,46 @@
+<h1>Bölüm 3: Yeni Yöntemleri Tanımlama</h1>
+<hr/>
+<p>Son bölümde, Karel'in basit bir çıkıntıya tırmanmasına yardımcı olacak bir program yazdık:</p>
+<h3>Örnek: IlkKarel</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>Olsa bile <code>IlkKarel</code> Yukarıdaki program gerçekleştirmek mümkün olduğunu göstermektedir <code>turnRight</code> Sadece Karel'in yerleşik komutlarını kullanarak yapılan operasyonda, ortaya çıkan program kavramsal olarak açık değildir. Programın zihinsel tasarımında, Karel çıkıntının üstüne ulaştığında sağa döner. Bunu yapmak için üç turnLeft komutunu kullanmanız gerçektir. Basitçe söyleyebilseydin çok daha basit olurdu <code>turnRight()</code> ve Karel'in bu emri anlamasını sağla. Sonuçta ortaya çıkan program sadece daha kısa ve yazması kolay olmayacak, aynı zamanda okuması da daha kolay olacaktır.</p>
+<h3>Yeni Komutları Tanımlama</h3>
+<p>Neyse ki, Karel programlama dili, yeni komutları yeni yöntem tanımları ekleyerek tanımlamayı mümkün kılar. Ne zaman yararlı işler yapan bir dizi Karel komutunuz varsa - örneğin sağa dönme - bu komut dizisini uygulayan yeni bir yöntem tanımlayabilirsiniz. Yeni bir Karel metodu tanımlamak için kullanılan format, tanımının aynısıdır. <code>run</code> önceki örneklerde, bu kendi başına bir yöntem tanımıdır. Tipik bir yöntem tanımı şöyle görünür:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">isim</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">Yöntemin gövdesini oluşturan komutlar</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Bu düzende ad, yeni yöntem için seçtiğiniz adı temsil eder. Tanımı tamamlamak için tek yapmanız gereken, küme parantezleri arasındaki satırlardaki komut dizisini sağlamaktır. Örneğin, tanımlayabilirsiniz <code>turnRight</code> aşağıdaki gibi:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Benzer şekilde yeni bir tanım tanımlayabilirsiniz. <code>turnAround</code> Bunun gibi bir yöntem:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Yeni bir yöntemin adını, Karel'in yerleşik komutlarından herhangi biri gibi kullanabilirsiniz. Örneğin, bir kez tanımladıysanız <code>turnRight</code> , üç turnLeft komutunu <code>KarelHızlandırmak</code> program tek bir çağrı ile <code>turnRight</code> yöntem. İşte kullanan programın gözden geçirilmiş bir uygulaması <code>turnRight</code> :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>Tabii ki, tanımları arasında belirgin bir fark var. <code>run</code> ve <code>turnRight</code> Yukarıdaki programdaki yöntemler: <code>run</code> yöntem olarak işaretlendi <code>public</code> kıyasla <code>turnRight</code> olarak işaretlenmiş <code>private</code> . Bu iki atama arasındaki fark kamu yöntemlerinin program dışından çağrılabilirken özel yöntemlerin kullanılmamasıdır. run yönteminin halka açık olması gerekiyor, çünkü Karel ortamının run için run komutu vermesi gerekiyor. Tanımları mümkün olduğu kadar gizli tutmak genellikle iyi bir programlama uygulamasıdır.</p>
+<h3>Yöntem Kod Blokları</h3>
+<p>İki küme parantezi arasında bir grup komut <code translate="no">{ }</code> denir <b>kod bloğu</b> . Programınızın gövdesi, bir yöntemin gövdesi gibi bir kod bloğudur. Bir kod bloğunun içeriğinin tümünde bir sekme girintisi olduğuna dikkat edin. Bu, stilistik olarak önemlidir, çünkü insanların belirli bir satırda hangi kod satırlarının olduğunu bilmelerini kolaylaştırır.</p>
+<p>İstediğiniz kadar yöntem tanımlayabilirsiniz. Hepsi program kod bloğunuzun içinde birbiri ardına yazılmalıdır. Başka bir yöntemin içindeki bir yöntemi tanımlayamazsınız.</p>

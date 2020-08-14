@@ -1,0 +1,533 @@
+
+<html>
+<head>
+
+<title>Karel Okuyucu</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/tr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter1.html">1 - Karel ile tanışın</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter2.html">2 - Programlama</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter3.html">3 - Yeni Yöntemler</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter4.html">4 - Ayrışma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter5.html">5 - Döngüler İçin</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter6.html">6 - Döngülerken</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter7.html">7 - Koşullamalar</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter8.html">8 - Arıtma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter9.html">9 - SüperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/reference.html">10 - Referans</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Daha fazla bilgi edin</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Bölüm 5: Döngüler İçin</h1>
+<hr/>
+<p>Bilgisayarların özellikle iyi olduğu şeylerden biri tekrarlamadır. Karel'i birçok kez bir kod bloğu çalıştırması için nasıl ikna edebiliriz? Tekrarlamanın nasıl kullanılabileceğini görmek için, 42 beeper s yerleştirme görevini göz önünde bulundurun:</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Önce:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:200px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Sonra:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:200px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, '99beepersStart', 0.0, 'tr',1000, 1.0 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, '99beepersGoal',0.0, 'tr',  1000, 1.0 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<h3>Döngü için Temel</h3>
+<p>beeper tam olarak 42 beeper s olduğunu bildiğinizden, ihtiyacınız olan kontrol ifadesi bir <b>döngü için</b> , bazı işlemleri belirli bir sayıda tekrarlamak istediğinizi belirtir. For ifadesinin yapısı öncelikle karmaşık görünüyor çünkü aslında Karel'in ihtiyaç duyduğu her şeyden çok daha güçlü. Karel'in kullandığı for sözdiziminin tek versiyonu:</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">saymak</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">tekrarlanacak ifadeler</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">For döngüsünün tüm ayrıntılarını daha sonra sınıfta inceleyeceğiz. Şimdilik bu satırı ifade etmenin bir yolu olarak okumalısınız, "küme parantezleri arasındaki ifadeleri tekrarlayın<i class="demoText">saymak</i>"Bunu yeni kullanabiliriz <b>döngü için</b> değiştirerek 42 beeper s yerleştirmek için<i class="demoText">saymak</i>42 ile ve komutu koyarak <code>putBeeper()</code> for loop code bloğunun içinde. Kod bloğundaki komutları çağırırız. <b>vücut</b> :</p>
+<p>
+
+
+
+
+<div class="section embeddedIde" id="99beepers">
+<div class="ide getStarted" id="99beepersIde" style="height:281.6px">
+<div class="ideCenter" id="99beepersIdeCenter">
+<div class="ideEditorDiv" id="99beepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="99beepersCanvasDiv">
+<canvas class="ideCanvas" id="99beepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="99beepersRunButton"><span class="glyphicon glyphicon-play"></span>Programı çalıştır</button>
+</div>
+</div>
+<script>
+
+        
+
+function example99beepers() {
+STARTER_CODE = `
+
+/*
+ * Dosya: ÇeşitliConoSYerleştirin.java
+ * ----------------------------------
+ * Bir for döngüsü kullanarak 42 beeper s kullanır
+ */
+import stanford.karel.*;
+public class BirçokConoSYerleştirin extends Karel {
+   public void run() {
+      move();
+      /* putBeeper birçok kez tekrarlayın */
+      for(int i = 0; i < 42; i++) {
+      	putBeeper();
+      }
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('99beepersEditor','99beepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('99beepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '99beepersStart', 0.8, 'tr');
+    $('#99beepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#99beepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#99beepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 281.6;
+    var canvasWidth = 200
+    var parentWidth = $("#99beepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('99beepersIde');
+    var editorDiv = document.getElementById('99beepersEditorDiv');
+    var canvas = document.getElementById('99beepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example99beepers();
+    </script>
+</div>
+<p>Yukarıdaki kod düzenlenebilir. Yalnızca 15 beeper s yerleştirecek şekilde değiştirmeye çalışın.</p>
+<h3>Son Koşulları Ön Koşullarla Eşleştirme</h3>
+<p>Önceki örnek, bir for döngüsünün tek bir kod satırını tekrar ettiği izlenimini veriyor. Bununla birlikte for döngüsünün gövdesi (tekrarlanan ifadeler) birden fazla satır olabilir. İşte bir dünyanın her köşesine beeper koyan bir program örneği:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers">
+<div class="ide getStarted" id="cornerBeepersIde" style="height:316.8px">
+<div class="ideCenter" id="cornerBeepersIdeCenter">
+<div class="ideEditorDiv" id="cornerBeepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepersCanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepersRunButton"><span class="glyphicon glyphicon-play"></span>Programı çalıştır</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers() {
+STARTER_CODE = `
+
+/*
+ * Dosya: KöşeConoS.java
+ * --------------------
+ * Her köşeye bir beeper yerleştirir
+ */
+import stanford.karel.*;
+public class KöşeConoS extends Karel {
+   public void run() {
+      /* vücudu 4 kez tekrarlayın */
+      for(int i = 0; i < 4; i++) {
+      	putBeeper();
+      	move();
+      	move();
+      	move();
+      	turnLeft();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepersEditor','cornerBeepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.0, 'tr');
+    $('#cornerBeepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepersIde');
+    var editorDiv = document.getElementById('cornerBeepersEditorDiv');
+    var canvas = document.getElementById('cornerBeepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers();
+    </script>
+</div>
+
+<p>Programın bu kontrol ifadelerinden nasıl geçtiğine çok dikkat edin. Program run , for loop gövdesindeki komut kümesini run . Vücudu dört kez tekrarlar.</p>
+<p>Belki bir döngü yazmanın en karmaşık kısmı, döngünün sonunda dünyanın durumuna ihtiyacınız olmasıdır. <b>hedefşart</b> ) Döngünün başlangıcı için dünyanın geçerli bir hali olmak <b>ön koşul</b> ). Yukarıdaki örnekte, varsayımlar eşleşmektedir. İyi zamanlar. Döngünün başlangıcında, Karel her zaman bir sonraki boş köşeye bakan beeper s olmayan bir beeper . Ya turnLeft döngünün sonunda sildiyseniz? İlk yinelemenin sonundaki son şart, Karel hakkında bir sonraki boş köşeye bakan varsayımları artık tatmin etmeyecektir. Kod düzenlenebilir. Silmeyi deneyin <code>turnLeft();</code> ne olduğunu görmek için komut!</p>
+<h3>İç içe geçmiş döngüler</h3>
+<p>Teknik olarak for döngüsünün gövdesi, diğer döngüler dahil olmak üzere herhangi bir kontrol akış kodunu içerebilir. İşte bir for döngüsünün bir örneği, aynı zamanda for döngüsü olan bir yönteme yapılan çağrıyı tekrarlayan bir örnek. Buna "iç içe" bir döngü diyoruz. Programı okumaya çalışın ve run önce ne yaptığını anlayın:
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers10">
+<div class="ide getStarted" id="cornerBeepers10Ide" style="height:545.6px">
+<div class="ideCenter" id="cornerBeepers10IdeCenter">
+<div class="ideEditorDiv" id="cornerBeepers10EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepers10CanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepers10Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepers10RunButton"><span class="glyphicon glyphicon-play"></span>Programı çalıştır</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers10() {
+STARTER_CODE = `
+
+/*
+ * Dosya: KöşeBeşConoS.java
+ * -----------------------
+ * Her köşeye beş beeper sn yerleştirir
+ */
+import stanford.karel.*;
+public class KöşeBeşConoS extends Karel {
+
+   public void run() {
+      /* Her köşe için bir kez tekrarlayın */
+      for(int i = 0; i < 4; i++) {
+         beşConoSKoy();
+         moveSonrakiKöşeye();
+      }
+   } 
+
+   /* karel'i bir sonraki köşeye yerleştirme */
+   public void moveSonrakiKöşeye() {
+      move();
+      move();
+      move();
+      turnLeft();
+   }
+
+   /* bir for döngüsü kullanarak 5 beeper s yerleştirir */
+   public void beşConoSKoy() {
+      for(int i = 0; i < 5; i++) {
+      	putBeeper();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepers10Editor','cornerBeepers10EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepers10Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.7, 'tr');
+    $('#cornerBeepers10RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepers10RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepers10RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 545.6;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers10").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepers10Ide');
+    var editorDiv = document.getElementById('cornerBeepers10EditorDiv');
+    var canvas = document.getElementById('cornerBeepers10CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers10();
+    </script>
+</div>
+</p>
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter6.html" role="button">Sonraki bölüm</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

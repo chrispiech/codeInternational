@@ -1,0 +1,449 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/de/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter1.html">1 - Treffen Sie Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter2.html">2 - Programmierung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter3.html">3 - Neue Methoden</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter4.html">4 - Zersetzung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter5.html">5 - Für Schleifen</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter6.html">6 - While-Schleifen</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter7.html">7 - Bedingungen</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter8.html">8 - Verfeinerung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/de/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/de/reference.html">10 - Referenz</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/de/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/de/ide.html">11 - Code</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Mehr erfahren</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Kapitel 8: Schrittweise Verfeinerung</h1>
+<hr/>
+<p>Programmierung ist in hohem Maße die Wissenschaft, Probleme mit dem Computer zu lösen. Da Probleme oft schwierig sind, können auch Lösungen - und die Programme, die diese Lösungen implementieren - schwierig sein. Um Ihnen die Entwicklung dieser Lösungen zu erleichtern, müssen Sie eine Methodik und Disziplin anwenden, die den Umfang dieser Komplexität auf ein handhabbares Maß reduziert.</p>
+<p>In den Anfangsjahren der Programmierung war das Konzept des Rechnens als Wissenschaft mehr oder weniger ein Experiment im Wunschdenken. In jenen Tagen wusste niemand viel über das Programmieren und nur wenige dachten, es sei eine technische Disziplin im herkömmlichen Sinne. Mit zunehmender Programmreife entwickelte sich jedoch eine solche Disziplin. Der Eckpfeiler dieser Disziplin ist das Verständnis, dass das Programmieren in einem sozialen Umfeld stattfindet, in dem Programmierer zusammenarbeiten müssen. Wenn Sie in die Industrie einsteigen, werden Sie mit ziemlicher Sicherheit einer von vielen Programmierern sein, die an der Entwicklung eines großen Programms arbeiten. Darüber hinaus wird dieses Programm mit ziemlicher Sicherheit weiterleben und eine Wartung erfordern, die über die ursprünglich beabsichtigte Anwendung hinausgeht. Jemand möchte, dass das Programm eine neue Funktion enthält oder auf andere Weise funktioniert. In diesem Fall muss ein neues Team von Programmierern die erforderlichen Änderungen an den Programmen vornehmen. Wenn Programme in einem individuellen Stil geschrieben sind und keine oder nur geringe Gemeinsamkeiten aufweisen, ist es äußerst schwierig, alle Menschen dazu zu bringen, produktiv zusammenzuarbeiten.</p>
+<p>Um dieses Problem zu bekämpfen, begannen die Programmierer, eine Reihe von Programmiermethoden zu entwickeln, die gemeinsam aufgerufen werden <b>Softwareentwicklung</b> . Wenn Sie über gute Kenntnisse in der Softwareentwicklung verfügen, können andere Programmierer Ihre Programme nicht nur leichter lesen und verstehen, sondern Sie können diese Programme auch einfacher schreiben. Einer der wichtigsten methodischen Fortschritte beim Software Engineering ist die Strategie von <b>Top-Down-Design</b> oder <b>Schrittweise Verfeinerung</b> , das darin besteht, Probleme zu lösen, indem man mit dem gesamten Problem beginnt. Sie zerlegen das gesamte Problem in Teile und lösen dann jedes Teil, wobei Sie diese gegebenenfalls weiter zerlegen. Diese Top-Down-Strategie wird ergänzt durch <b>iteratives Testen</b> Hier stellen Sie sicher, dass die kleineren Teile der Lösung funktionieren, bevor Sie fortfahren.</p>
+<h3>Eine Übung zur schrittweisen Verfeinerung</h3>
+<p>Um das Konzept der schrittweisen Verfeinerung zu veranschaulichen, bringen wir Karel bei, ein neues Problem zu lösen. Stellen Sie sich vor, Karel lebt jetzt in einer Welt, die ungefähr so aussieht:</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'de',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>Auf jeder der Säulen befindet sich ein Turm mit beeper s unbekannter Höhe, obwohl einige Säulen (wie die 7. und 9. in der Beispielwelt) leer sein können. Karels Aufgabe ist es, alle beeper in jedem dieser Türme zu sammeln, sie wieder in der östlichsten Ecke der ersten Reihe beeper und dann in ihre Ausgangsposition zurückzukehren. Wenn Karel seine Arbeit im obigen Beispiel beendet hat, sollten daher alle 25 beeper in den Türmen wie folgt in der Ecke der 9. Spalte und der 1. Reihe gestapelt werden:</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'de',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>Wichtig ist, dass Sie diese Karel-Initiale annehmen können<i>beginnt</i>mit null beeper s in seiner Tasche. Jeder abgeholte beeper wird seiner Tasche hinzugefügt. Wenn er beeper s in die Ecke stellt, kann karel das benutzen <code>beepersInBag()</code> Prüfung.</p>
+<p>Der Schlüssel zur Lösung dieses Problems besteht darin, das Programm auf die richtige Weise zu zerlegen und es dabei zu testen. Diese Aufgabe ist komplexer als die anderen, die Sie gesehen haben, weshalb die Auswahl geeigneter Teilprobleme für eine erfolgreiche Lösung wichtiger ist.</p>
+<h3>Das Prinzip des Top-Down-Designs</h3>
+<p>Die Schlüsselidee bei der schrittweisen Verfeinerung besteht darin, dass Sie den Entwurf Ihres Programms von oben beginnen, was sich auf die Ebene des Programms bezieht, die konzeptionell am höchsten und abstraktesten ist. Auf dieser Ebene ist das beeper klar in drei unabhängige Phasen unterteilt. Zuerst muss Karel alle beeper s sammeln. Zweitens muss Karel sie an der letzten Kreuzung hinterlegen. Drittens muss Karel in seine Ausgangsposition zurückkehren. Diese konzeptionelle Zerlegung des Problems legt nahe, dass die run Methode für dieses Programm die folgende Struktur aufweist:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      sammleAlleConoS();</code> <br/>
+ <code>      conoAlleConoS();</code> <br/>
+ <code>      nachHauseZurückkehren();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Auf dieser Ebene ist das Problem leicht zu verstehen. Natürlich gibt es noch einige Details in Form von Methoden, die Sie noch nicht geschrieben haben. Trotzdem ist es wichtig, jede Ebene der Zerlegung zu betrachten und sich davon zu überzeugen, dass Sie, solange Sie glauben, dass die zu schreibenden Methoden die Teilprobleme korrekt lösen, eine Lösung für das gesamte Problem haben .</p>
+<h3>Iteratives Testen unterwegs</h3>
+<p>move Sie die Struktur für das gesamte Programm definiert haben, ist es Zeit, move mit dem ersten Teilproblem move , das darin besteht, alle beeper s zu beeper . Diese Aufgabe ist an sich komplizierter als die einfachen Probleme aus den vorhergehenden Kapiteln. beeper Sie alle beeper s beeper , müssen Sie die beeper s in jedem Turm beeper bis Sie die letzte Ecke erreichen. Die Tatsache, dass Sie eine Operation für jeden Turm wiederholen müssen, legt nahe, dass Sie hier eine while-Schleife benötigen. Die while-Schleife wiederholt den Vorgang von <code>sammleEinenTurm</code> und dann umziehen.</p>
+<p> <b>Vorsicht:</b> Es ist gefährlich zu versuchen, das gesamte Programm ohne zu schreiben <b>testen</b> es wie du gehst. Wenn Sie einen Fehler machen, wird es schwierig sein, den Fehler zu finden. Wir wissen, dass wir den Prozess des Einsammelns eines Turms wiederholen werden. Lass uns schreiben und <b>Prüfung</b> Sammeln eines einzelnen Turms, bevor wir den setzen <code>SammleEinenTurm</code> in einer for-Schleife verarbeiten. Somit<i>vorübergehend</i>Wir können mit der folgenden Definition von sammleAlleConoS beginnen:<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> sammleAlleConoS() {</code> <br/>
+ <code class="comment">      /* temporäre Implementierung zu Testzwecken */</code> <br/>
+ <code>      sammleEinenTurm();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Wenn Sie eine komplexe Schleife haben, testen Sie die<i>Karosserie</i>der Schleife, bevor Sie die gesamte Schleife schreiben.</p>
+<h3>Raffinierter Sammelturm</h3>
+<p>Wenn sammleEinenTurm aufgerufen wird, steht Karel entweder an der Basis eines beeper s beeper Turms oder an einer leeren Ecke. Im ersten Fall müssen Sie die beeper s im Turm sammeln. In letzterem kannst du einfach move an. Diese Situation klingt wie eine Anwendung für die if-Anweisung, in der Sie Folgendes schreiben würden:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(beepersPresent()){</code> <br/>
+ <code>      sammleDenEigentlichenTurm();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Bevor Sie dem Code eine solche Anweisung hinzufügen, sollten Sie überlegen, ob Sie diesen Test durchführen müssen. Oft können Programme einfacher gestaltet werden, indem man beobachtet, dass auf den ersten Blick besondere Fälle genauso behandelt werden können wie die allgemeinere Situation. Was passiert im aktuellen Problem, wenn Sie beeper , dass sich auf jeder Allee ein Turm mit beeper einige dieser Türme nicht mehr als beeper Hoch sind? Die Nutzung dieser Erkenntnisse vereinfacht das Programm, da Sie nicht mehr prüfen müssen, ob sich auf einer bestimmten Straße ein Turm befindet.</p>
+<p>Die sammleEinenTurm-Methode ist immer noch so komplex, dass ein zusätzlicher Zerlegungsgrad erforderlich ist. Um alle beeper in einem Turm zu sammeln, muss Karel die folgenden Schritte beeper :</p>
+<ol>
+<li>Biegen Sie links ab, um die beeper im Turm zu sehen.<li>beeper alle beeper im Turm und beeper an, wenn keine beeper mehr gefunden werden.<li>Drehe dich um und wende dich dem Boden der Welt zu.<li>Kehre zur Wand zurück, die den Boden darstellt.<li>Biegen Sie links ab, um bereit zu sein, move bis zur nächsten Ecke.</li></li></li></li></li></ol>
+<p>Diese Gliederung stellt erneut ein Modell für die sammleEinenTurm-Methode bereit, das wie folgt aussieht:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sammleEinenTurm(){</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>      conoVonConoS();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      moveAnDieWand();</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>Methodenvor- und -nachbedingungen</h3>
+<p>Die biegenSieLinksAb-Befehle am Anfang und am Ende der sammleEinenTurm-Methode sind für die Richtigkeit dieses Programms von entscheidender Bedeutung. Wenn sammleEinenTurm aufgerufen wird, befindet sich Karel immer irgendwo in der 1. Reihe in Richtung Osten. Nach Abschluss des Vorgangs funktioniert das gesamte Programm nur dann ordnungsgemäß, wenn Karel an derselben Ecke wieder nach Osten zeigt. Bedingungen, die erfüllt sein müssen, bevor eine Methode aufgerufen wird, werden als bezeichnet <b>Voraussetzungen</b> ; Bedingungen, die nach Beendigung der Methode gelten müssen, werden als bezeichnet <b>Nachbedingungen</b> .</p>
+<p>Wenn Sie eine Methode definieren, werden Sie weitaus weniger Probleme haben, wenn Sie genau aufschreiben, welche Vor- und Nachbedingungen vorliegen. Sobald Sie dies getan haben, müssen Sie sicherstellen, dass der von Ihnen geschriebene Code immer die Nachbedingungen erfüllt, vorausgesetzt, dass die Vorbedingungen von Anfang an erfüllt waren. Denken Sie beispielsweise darüber nach, was passiert, wenn Sie sammleEinenTurm anrufen, während Karel sich in der ersten Reihe in Richtung Osten befindet. Mit dem ersten Befehl biegenSieLinksAb wird Karel nach Norden ausgerichtet, was bedeutet, dass Karel ordnungsgemäß an der Säule von beeper s ausgerichtet ist, die den Turm darstellt. Die conoVonConoS-Methode - die noch geschrieben werden muss, aber dennoch eine konzeptuell verständliche Aufgabe erfüllt - ist einfach move s, ohne sich umzudrehen. So wird Karel am Ende des Aufrufs zu conoVonConoS weiterhin nach Norden ausgerichtet sein. Der drehDichUm-Aufruf lässt Karel also nach Süden. Wie bei conoVonConoS sind bei der move Methode move keine Umdrehungen erforderlich, sondern lediglich move s, bis sie auf die Begrenzungswand trifft. Da Karel nach Süden ausgerichtet ist, befindet sich diese Begrenzungsmauer am unteren Bildschirmrand direkt unter der ersten Reihe. Der abschließende Befehl biegenSieLinksAb verlässt Karel daher in der ersten Reihe nach Osten, was die Nachbedingung erfüllt.</p>
+<h3>Vorgang wiederholen</h3>
+<p>Sie run Ihr Programm und es löscht erfolgreich einen Turm und verlässt Karel in der versprochenen Nachbedingung. Wahoo! Sie haben gerade einen Meilenstein bei der Lösung dieser schwierigen Aufgabe erreicht! Wir müssen nun den Vorgang des Löschens eines Turms mit einer while-Schleife wiederholen.</p>
+<p>Aber wie sieht diese while-Schleife aus? Zunächst sollten Sie über den Bedingungstest nachdenken. Sie möchten, dass Karel anhält, wenn er am Ende der Reihe an die Wand stößt. Sie möchten also, dass Karel weitermacht, solange der Raum vor Ihnen frei ist. Sie wissen also, dass die sammleAlleConoS-Methode eine while-Schleife enthält, die den vorneIstKlar-Test verwendet. An jeder Position soll Karel alle beeper im Turm sammeln, die an dieser Ecke beginnen. Wenn Sie dieser Operation einen Namen geben, der so etwas wie sammleEinenTurm sein könnte, können Sie eine Definition für die sammleAlleConoS-Methode schreiben, obwohl Sie die Details noch nicht ausgefüllt haben.</p>
+<p>Sie müssen jedoch vorsichtig sein. Der Code für sammleAlleConoS sieht nicht so aus:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sammleAlleConoS(){</code> <br/>
+ <code class="comment">      /* Buggy-Schleife! */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         sammleEinenTurm();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Diese Implementierung ist aus genau dem Grund fehlerhaft, aus dem die erste Version der allgemeinen PlaceConoLinie aus Kapitel 6 ihre Aufgabe nicht erfüllt hat. In dieser Version des Codes ist ein Zaunpfostenfehler beeper , da Karel auf der letzten Allee prüfen muss, beeper ein beeper Turm vorhanden ist. Die korrekte Implementierung ist:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sammleAlleConoS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         sammleEinenTurm();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      sammleEinenTurm();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Beachten Sie, dass diese Methode genauso aufgebaut ist wie das Hauptprogramm aus dem in Kapitel 6 vorgestellten PlaceConoLinie-Programm. Der einzige Unterschied besteht darin, dass dieses Programm sammleEinenTurm aufruft, während das andere piepserSetzen heißt. Diese beiden Programme sind Beispiele für eine allgemeine Strategie, die folgendermaßen aussieht:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sammleAlleConoS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">Führen Sie eine Operation aus.</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">Führen Sie den gleichen Vorgang für die letzte Kurve durch.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Sie können diese Strategie immer dann move , wenn Sie eine Operation an jeder Ecke ausführen müssen, während Sie sich move auf einem Pfad befinden, der an einer Wand endet. Wenn Sie sich an die allgemeine Struktur dieser Strategie erinnern, können Sie sie verwenden, wenn Sie auf ein Problem stoßen, für das eine solche Operation erforderlich ist. Solche wiederverwendbaren Strategien tauchen häufig in der Programmierung auf und werden als solche bezeichnet <b>Programmiersprachen</b> oder <b>Muster</b> . Je mehr Muster Sie kennen, desto einfacher fällt es Ihnen, eines zu finden, das zu einer bestimmten Art von Problem passt.</p>
+<h3>Beenden</h3>
+<p>Obwohl die harte Arbeit geleistet wurde, gibt es noch einige offene Fragen, die gelöst werden müssen. Das Hauptprogramm ruft zwei Methoden auf - conoAlleConoS und nachHauseZurückkehren - die noch nicht geschrieben wurden. Ebenso ruft sammleEinenTurm conoVonConoS und move AnDieWand auf. Glücklicherweise sind alle vier Methoden so einfach, dass sie ohne weitere Zerlegung move können, insbesondere wenn Sie in der Definition von nachHauseZurückkehren move AnDieWand verwenden. Hier ist die vollständige Implementierung:</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1719.9px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>Programm ausführen</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * Datei: ConoKarelSammeln.java
+ * ---------------------------
+ * Die ConoKarelSammeln-Klasse sammelt alle beeper in
+ * einer Reihe vertikaler Türme und legt sie an der
+ * östlichsten Ecke in der 1. Reihe ab.
+ */
+import stanford.karel.*;
+public class ConoKarelSammeln extends Karel {
+
+   /**
+    * Gibt den Programmeinstiegspunkt an.
+    */
+   public void run() {
+      sammleAlleConoS();
+      conoAlleConoS();
+      nachHauseZurückkehren();
+   }
+
+   /**
+    * Sammelt die beeper s von jedem Turm, indem Sie sic
+    * h entlang der ersten Reihe bewegen und an jeder Ec
+    * ke sammleEinenTurm aufrufen. Nachbedingung für die
+    * se Methode ist, dass sich Karel in der östlichsten
+    * Ecke der 1. Reihe in Richtung Osten befindet.
+    */
+   private void sammleAlleConoS() {
+      while (frontIsClear()) {
+         sammleEinenTurm();
+         move(); 
+      }
+      sammleEinenTurm();
+   }
+
+   /**
+    * Sammelt die beeper s in einem einzigen Turm. Wenn
+    * sammleEinenTurm aufgerufen wird, muss sich Karel i
+    * n der ersten Reihe in Richtung Osten befinden. Die
+    * Nachbedingung für sammleEinenTurm ist, dass Karel
+    * an derselben Ecke wieder nach Osten blicken muss.
+    */
+   private void sammleEinenTurm() {
+      turnLeft();
+      conoVonConoS();
+      turnAround();
+      moveAnDieWand();
+      turnLeft();
+   }
+
+   /**
+    * Sammelt eine fortlaufende Zeile von beeper s. Das
+    * Ende der Linie beeper wird durch eine Ecke angezei
+    * gt, die keine beeper enthält.
+    */
+   private void conoVonConoS() {
+      while (beepersPresent()) {
+         pickBeeper();
+         if (frontIsClear()) {
+            move(); 
+         }
+      } 
+   }
+
+   /**
+    * beeper alle beeper s in der aktuellen Ecke fallen.
+    */
+   private void conoAlleConoS() {
+      while (beepersInBag()) {
+         putBeeper();
+      }
+   }
+
+   /**
+    * Bringt Karel in seine Ausgangsposition an der Ecke
+    * der 1st Avenue und der 1. Reihe nach Osten zurück
+    * . Voraussetzung für diese Methode ist, dass Karel
+    * irgendwo in der ersten Reihe nach Osten zeigt, was
+    * am Ende von sammleAlleConoS zutrifft.
+    */
+   private void nachHauseZurückkehren() {
+      turnAround();
+      moveAnDieWand();
+      turnAround();
+   }
+
+   /** Bewegt Karel nach vorne, bis er von einer Mauer blockiert wird. */
+   private void moveAnDieWand(){
+      while (frontIsClear()) {
+         move();
+      } 
+   }
+
+   /** Dreht Karel um 180 Grad */
+   private void turnAround(){
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'de', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1719.9;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">Nächstes Kapitel</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

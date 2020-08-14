@@ -1,0 +1,445 @@
+
+<html>
+<head>
+
+<title>قارئ كاريل</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ar/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> كاريل</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter1.html">1 - تعرف على كاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter2.html">2 - البرمجة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter3.html">3 - طرق جديدة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter4.html">4 - التحلل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter5.html">5 - دورات For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter6.html">6 - دورات While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter7.html">7 - الشرطية</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter8.html">8 - الصقل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter9.html">9 - سوبركاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/reference.html">10 - المرجع</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/ide.html">11 - الرمز</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> أعرف أكثر</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>الفصل 8: صقل تدريجي</h1>
+<hr/>
+<p>إلى حد كبير ، البرمجة هي علم حل المشكلات عن طريق الكمبيوتر. نظرًا لأن المشكلات غالبًا ما تكون صعبة ، فقد تكون الحلول - والبرامج التي تنفذ هذه الحلول - صعبة أيضًا. لتسهيل تطوير هذه الحلول ، تحتاج إلى اعتماد منهجية وانضباط يقلل من مستوى هذا التعقيد إلى نطاق يمكن التحكم فيه.</p>
+<p>في السنوات الأولى من البرمجة ، كان مفهوم الحوسبة كعلم تجربة إلى حد ما في التفكير بالتمني. لم يكن أحد يعرف الكثير عن البرمجة في تلك الأيام ، وفكر قليلون في ذلك على أنه تخصص هندسي بالمعنى التقليدي. ومع نضوج البرمجة ، بدأ هذا الانضباط في الظهور. حجر الزاوية في هذا التخصص هو فهم أن البرمجة تتم في بيئة اجتماعية يجب أن يعمل فيها المبرمجون معًا. إذا دخلت مجال الصناعة ، فمن المؤكد أنك ستكون واحدًا من العديد من المبرمجين الذين يعملون على تطوير برنامج كبير. علاوة على ذلك ، من المؤكد تقريبًا أن هذا البرنامج يحتاج إلى صيانة ويتطلب صيانة تتجاوز التطبيق المقصود منه في الأصل. يريد شخص ما أن يتضمن البرنامج بعض الميزات الجديدة أو يعمل بطريقة مختلفة. عندما يحدث ذلك ، يجب على فريق جديد من المبرمجين الدخول وإجراء التغييرات اللازمة في البرامج. إذا كانت البرامج مكتوبة بأسلوب فردي مع القليل من القواسم المشتركة أو لا تشترك فيها ، فإن جعل الجميع يعملون معًا بشكل منتج أمر صعب للغاية.</p>
+<p>لمكافحة هذه المشكلة ، بدأ المبرمجون في تطوير مجموعة من منهجيات البرمجة التي تسمى مجتمعة <b>هندسة البرمجيات</b> . إن استخدام مهارات جيدة في هندسة البرمجيات لا يجعل من السهل على المبرمجين الآخرين قراءة برامجك وفهمها ، بل يسهل عليك أيضًا كتابة هذه البرامج في المقام الأول. واحدة من أهم التطورات المنهجية للخروج من هندسة البرمجيات هي استراتيجية <b>تصميم من أعلى إلى أسفل</b> أو <b>صقل تدريجي</b> والذي يتكون من حل المشكلات عن طريق البدء بالمشكلة ككل. تقوم بتقسيم المشكلة بأكملها إلى أجزاء ، ثم تقوم بحل كل قطعة ، وتقسيمها إلى حد أكبر إذا لزم الأمر. ويكمل هذه الاستراتيجية من أعلى إلى أسفل مع <b>اختبار التكرار</b> حيث تتأكد من أن الأجزاء الأصغر من الحل تعمل قبل الانتقال.</p>
+<h3>تمرين في صقل تدريجي</h3>
+<p>لتوضيح مفهوم التحسين التدريجي ، دعونا نعلم كاريل لحل مشكلة جديدة. تخيل أن كاريل يعيش الآن في عالم يبدو مثل هذا:</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'ar',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>يوجد على كل برج من مخروط ثانية من ارتفاع غير معروف ، على الرغم من أن بعض الأعمدة (مثل 7 و 9 في عالم العينة) قد تكون فارغة. كاريل وظيفة كاريل في جمع كل الـ مخروط s في كل من هذه الأبراج ، ووضعها في الركن الشرقي الأقصى من الصف الأول ، ثم العودة إلى موضع البداية. وبالتالي ، عندما تنتهي كاريل من عملها في المثال أعلاه ، يجب أن تكون كل مخروط حاليًا في الأبراج مكدسة في زاوية العمود التاسع والصف الأول ، على النحو التالي:</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'ar',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>الأهم من ذلك ، قد تفترض أن كاريل الأولي<i>يبدأ</i>مع صفر مخروط ثانية في حقيبتها. كل مخروط التقطت يضاف إلى حقيبته. عند وضع مخروط s في الزاوية ، يمكن استخدام كاريل <code>beepersInBag()</code> اختبار.</p>
+<p>مفتاح حل هذه المشكلة هو تحليل البرنامج بالطريقة الصحيحة ، مع الاستمرار في التمكن من الاختبار حسب تقدمك. هذه المهمة أكثر تعقيدًا من تلك التي رأيتها ، مما يجعل اختيار المشكلات الفرعية المناسبة أكثر أهمية للحصول على حل ناجح.</p>
+<h3>مبدأ التصميم من أعلى إلى أسفل</h3>
+<p>الفكرة الأساسية في التحسين التدريجي هي أنه يجب عليك البدء في تصميم برنامجك من الأعلى ، والذي يشير إلى مستوى البرنامج الأعلى من الناحية النظرية والأكثر تجريدًا. في هذا المستوى ، مخروط مشكلة البرج مخروط بوضوح إلى ثلاث مراحل مستقلة. أولاً ، كاريل على كاريل جمع كل مخروط ثانية. ثانياً ، على كاريل إيداعها عند التقاطع الأخير. ثالثًا ، كاريل على كاريل العودة إلى موقعها الأصلي. يشير هذا التحليل المفاهيمي للمشكلة إلى أن الطريقة run لهذا البرنامج سيكون لها الهيكل التالي:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      جمعكلمخروطق();</code> <br/>
+ <code>      إسقاطجميعمخروطثانية();</code> <br/>
+ <code>      العودةإلىالمنزل();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>في هذا المستوى ، المشكلة سهلة الفهم. بالطبع ، هناك بعض التفاصيل المتبقية في شكل طرق لم تكتبها بعد. ومع ذلك ، من المهم أن تنظر إلى كل مستوى من مستويات التحلل وإقناع نفسك ، طالما أنك تعتقد أن الطرق التي توشك على كتابتها ستحل المشكلات الفرعية بشكل صحيح ، فسوف يكون لديك حل للمشكلة ككل .</p>
+<h3>اختبار التكرار كما تذهب</h3>
+<p>الآن وقد حددت هيكل البرنامج ككل ، فقد حان الوقت ل move إلى أول مشكلة فرعية ، والتي تتكون من جمع كل مخروط ثانية. هذه المهمة في حد ذاتها أكثر تعقيدًا من المشكلات البسيطة في الفصول السابقة. يعني جمع كل مخروط s أنه يجب عليك التقاط مخروط s في كل برج حتى تصل إلى الزاوية النهائية. تشير حقيقة أنك تحتاج إلى تكرار العملية لكل برج إلى أنك تحتاج إلى while دورة هنا. فإن while دورة كرر عملية <code>جمعبرجواحد</code> ومن ثم تتحرك.</p>
+<p> <b>الحذر:</b> من الخطورة محاولة كتابة البرنامج بالكامل بدون <b>اختبارات</b> ذلك كما تذهب. إذا ارتكبت خطأ ، فسيكون من الصعب العثور على الخطأ. نحن نعلم أننا سنكرر عملية جمع برج واحد. دعنا نكتب و <b>اختبار</b> جمع برج واحد قبل ان نضع <code>جمعبرجواحد</code> العملية في دورة for . وهكذا<i>temporariliy</i>يمكننا أن نبدأ بالتعريف التالي لجمعكلمخروطق:<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> جمعكلمخروطق() {</code> <br/>
+ <code class="comment">      /* تنفيذ مؤقت لأغراض الاختبار */</code> <br/>
+ <code>      جمعبرجواحد();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>كمبدأ توجيهي ، إذا كان لديك دورة معقدة ، اختبار<i>الجسم</i>دورة قبل كتابة دورة بأكمله.</p>
+<h3>تكرير برج جمع</h3>
+<p>عندما يتم استدعاء كاريل ، يكون كاريل إما واقفًا عند قاعدة برج مخروط أو يقف على زاوية فارغة. في الحالة الأولى ، تحتاج إلى جمع مخروط ثانية في البرج. في الأخير ، يمكنك ببساطة move جرا. يبدو هذا الموقف بمثابة تطبيق لبيان if ، الذي تكتب فيه شيئًا مثل هذا:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(beepersPresent()){</code> <br/>
+ <code>      جمعالبرجالفعلي();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>قبل إضافة مثل هذا البيان إلى الكود ، يجب أن تفكر فيما إذا كنت بحاجة لإجراء هذا الاختبار. في كثير من الأحيان ، يمكن جعل البرامج أكثر بساطة من خلال ملاحظة أن الحالات التي يبدو أنها خاصة في البداية يمكن علاجها بنفس الطريقة التي يعامل بها الوضع العام. في المشكلة الحالية ، ماذا يحدث إذا قررت أن يكون هناك برج يبلغ مخروط ثانية في كل سبيل ، ولكن بعض هذه الأبراج يبلغ مخروط ثانية؟ يؤدي استخدام هذه البصيرة إلى تبسيط البرنامج لأنه لم يعد عليك اختبار ما إذا كان هناك برج في طريق معين.</p>
+<p>طريقة جمعبرجواحد لا تزال معقدة بما فيه الكفاية أن مستوى إضافي من التحلل في النظام. لجمع مخروط s في برج ، كاريل يحتاج إلى اتخاذ الخطوات التالية:</p>
+<ol>
+<li>انعطف يسارًا لمواجهة مخروط s في البرج.<li>اجمع مخروط s في البرج ، وتوقف عند عدم العثور على مخروط s.<li>بدوره حولها لوجه الظهر نحو أسفل العالم.<li>العودة إلى الجدار الذي يمثل الأرض.<li>انعطف يسارًا لتكون جاهزًا على move حتى الزاوية التالية.</li></li></li></li></li></ol>
+<p>مرة أخرى ، يوفر هذا المخطط التفصيلي نموذجًا لطريقة جمعبرجواحد ، والذي يبدو كما يلي:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>جمعبرجواحد(){</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>      جمعخطمخروطثانية();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      moveإلىالجدار();</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>شروط مسبقة و postconditions</h3>
+<p>أوامر انعكاسفلليسار في بداية ونهاية طريقة جمعبرجواحد كلاهما ضروري لصحة هذا البرنامج. عندما يتم استدعاء كاريل ، يكون كاريل دائمًا في مكان ما في الصف الأول في مواجهة الشرق. عند اكتمال تشغيله ، سيعمل البرنامج ككل بشكل صحيح فقط إذا كان كاريل يواجه الشرق مرة أخرى في نفس الزاوية. يشار إلى الشروط التي يجب أن تكون صحيحة قبل استدعاء الأسلوب باسم <b>شروط مسبقة</b> . الشروط التي يجب تطبيقها بعد انتهاء الطريقة معروفة باسم <b>postconditions</b> .</p>
+<p>عندما تحدد طريقة ما ، سوف تواجه مشكلة أقل بكثير إذا قمت بتدوين ماهية الشروط المسبقة وما بعدها. بمجرد القيام بذلك ، ستحتاج بعد ذلك إلى التأكد من أن الكود الذي تكتبه دائمًا يترك الشروط البريدية راضية ، على افتراض أن الشروط المسبقة قد استوفيت. على سبيل المثال ، فكر فيما يحدث إذا اتصلت جمعبرجواحد عندما يكون كاريل في الصف الأول في مواجهة الشرق. يترك أمر انعكاسفلليسار الأول كاريل كاريل شمالًا ، مما يعني أن كاريل محاذاة بشكل صحيح مع عمود مخروط s الذي يمثل البرج. طريقة جمعخطمخروطثانية - التي لم تتم كتابتها بعد ولكنها تؤدي مهمة تفهمها من الناحية المفاهيمية - ببساطة move ثانية دون تحول. وبالتالي ، في نهاية الدعوة إلى جمعخطمخروطثانية ، كاريل يواجه الشمال. وبالتالي فإن الدعوة كاريل يترك كاريل تواجه الجنوب. مثل جمعخطمخروطثانية ، لا تتضمن الطريقة move إلىالجدار أي منعطفات ، ولكن بدلاً من ذلك ببساطة move s حتى تصل إلى الجدار الحدودي. نظرًا لأن كاريل يواجه الجنوب ، فسيكون هذا الجدار الحدودي هو أسفل الشاشة ، أسفل الصف الأول مباشرةً. لذا الأمر انعطفلليسار النهائي يترك كاريل على التوالي 1ST تواجه الشرق، والتي تلبي postcondition.</p>
+<h3>تكرار العملية</h3>
+<p>أنت run البرنامج الخاص بك وأنه بنجاح مسح برج واحد ويترك كاريل في حالة ما بعد البيع الموعودة. الواهو! لقد وصلت لتوه في حل هذه المهمة الصعبة! يتعين علينا الآن تكرار عملية تطهير برج واحد باستخدام while دورة .</p>
+<p>ولكن كيف يبدو هذا while دورة ؟ بادئ ذي بدء ، يجب أن تفكر في الاختبار الشرطي. تريد إيقاف كاريل عندما يضرب الجدار في نهاية الصف. وبالتالي ، تريد أن يستمر كاريل طالما كانت المساحة الموجودة في المقدمة واضحة. وبالتالي ، أنت تعلم أن طريقة جمعكلمخروطق ستشمل while دورة يستخدم اختبار الجبهةواضحة. في كل موقف ، تريد أن يقوم كاريل بتجميع مخروط s في البرج بدءًا من تلك الزاوية. إذا أعطيت هذه العملية اسمًا ، والذي قد يكون شيئًا مثل جمعبرجواحد ، فيمكنك المضي قدمًا وكتابة تعريف لأسلوب جمعكلمخروطق على الرغم من أنك لم تُملأ التفاصيل بعد.</p>
+<p>عليك ، ومع ذلك ، يجب أن تكون حذرا. رمز جمعكلمخروطق لا يشبه هذا:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>جمعكلمخروطق(){</code> <br/>
+ <code class="comment">      /* عربات التي تجرها الدواب دورة ! */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         جمعبرجواحد();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>هذا التطبيق هو عربات التي تجرها الدواب لنفس السبب بالضبط أن الإصدار الأول من العام مكان خطمخروط من الفصل 6 فشل في أداء وظيفتها. يوجد خطأ في كاريل في هذا الإصدار من الكود ، لأن كاريل يحتاج إلى اختبار وجود برج مخروط في الجادة الأخيرة. التنفيذ الصحيح هو:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>جمعكلمخروطق(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         جمعبرجواحد();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      جمعبرجواحد();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>لاحظ أن هذه الطريقة لها بالضبط نفس هيكل البرنامج الرئيسي من برنامج Place خطمخروط المقدم في الفصل 6. والفرق الوحيد هو أن هذا البرنامج يستدعي جمعبرجواحد حيث يسمى الآخر وضعالصافرة. هذان البرنامجان هما كل مثال على استراتيجية عامة تبدو كالتالي:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>جمعكلمخروطق(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">إجراء بعض العمليات.</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">أداء نفس العملية للزاوية الأخيرة.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>يمكنك استخدام هذه الإستراتيجية كلما احتجت إلى إجراء عملية في كل زاوية وأنت move على طول مسار ينتهي عند الحائط. إذا كنت تتذكر الهيكل العام لهذه الاستراتيجية ، فيمكنك استخدامها كلما واجهت مشكلة تتطلب مثل هذه العملية. استراتيجيات قابلة لإعادة الاستخدام من هذا النوع تأتي في كثير من الأحيان في البرمجة ويشار إليها باسم <b>التعابير البرمجة</b> أو <b>أنماط - رسم</b> . كلما زاد عدد الأنماط التي تعرفها ، أصبح من الأسهل عليك العثور على نموذج يناسب نوع معين من المشكلات.</p>
+<h3>الانتهاء من</h3>
+<p>على الرغم من أن العمل الشاق قد تم ، إلا أنه لا تزال هناك عدة نهايات فضفاضة تحتاج إلى حل. يستدعي البرنامج الرئيسي طريقتين - إسقاطجميعمخروطثانية و العودةإلىالمنزل - التي لم تتم كتابتها بعد. وبالمثل ، جمعبرجواحد يدعو جمعخطمخروطثانية و move إلىالجدار. لحسن الحظ ، كل هذه الطرق الأربعة بسيطة بما يكفي move دون أي تحلل إضافي ، خاصة إذا كنت تستخدم move إلىالجدار في تعريف العودةإلىالمنزل. هنا هو التنفيذ الكامل:</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1649.7px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>نفذ البرنامج</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * ملف: مخروط جمعكاريل
+ * ------------------
+ * تجمع فئة مخروط جمعكاريل جميع مخروط البالغ عددها مخ
+ * روط في سلسلة من الأبراج الرأسية وتودعها في أقصى شر
+ * ق الزاوية في الصف الأول.
+ */
+import stanford.كاريل.*;
+public class مخروطجمعكاريل extends كاريل {
+
+   /**
+    * يحدد نقطة دخول البرنامج.
+    */
+   public void run() {
+      جمعكلمخروطق();
+      إسقاطجميعمخروطثانية();
+      العودةإلىالمنزل();
+   }
+
+   /**
+    * يجمع مخروط s من كل برج من خلال التحرك على طول الصف
+    * الأول ، استدعاء جمعبرجواحد في كل زاوية. كاريل لهذ
+    * ه الطريقة هو أن كاريل في الزاوية الشرقية من الصف ا
+    * لأول في مواجهة الشرق.
+    */
+   private void جمعكلمخروطق() {
+      while (frontIsClear()) {
+         جمعبرجواحد();
+         move(); 
+      }
+      جمعبرجواحد();
+   }
+
+   /**
+    * يجمع مخروط ق في برج واحد. عندما يتم استدعاء كاريل
+    * ، يجب أن يكون كاريل في الصف الأول في مواجهة الشرق.
+    * الشرط المسبق لـ جمعبرجواحد هو أن كاريل يجب أن يوا
+    * جه الشرق مرة أخرى في نفس الزاوية.
+    */
+   private void جمعبرجواحد() {
+      turnLeft();
+      جمعخطمخروطثانية();
+      turnAround();
+      moveإلىالجدار();
+      turnLeft();
+   }
+
+   /**
+    * يجمع خط متتالي قدره مخروط ثانية. يشار إلى نهاية ال
+    * خط مخروط بزاوية لا تحتوي على مخروط ثانية.
+    */
+   private void جمعخطمخروطثانية() {
+      while (beepersPresent()) {
+         pickBeeper();
+         if (frontIsClear()) {
+            move(); 
+         }
+      } 
+   }
+
+   /**
+    * يسقط كل مخروط s في الزاوية الحالية.
+    */
+   private void إسقاطجميعمخروطثانية() {
+      while (beepersInBag()) {
+         putBeeper();
+      }
+   }
+
+   /**
+    * إرجاع كاريل إلى موقعه الأولي في زاوية الجادة الأول
+    * ى والصف الأول ، في مواجهة الشرق. الشرط المسبق لهذه
+    * الطريقة هو أن كاريل يجب أن يواجه الشرق في مكان ما
+    * في الصف الأول ، وهذا صحيح في ختام جمعكلمخروطق.
+    */
+   private void العودةإلىالمنزل() {
+      turnAround();
+      moveإلىالجدار();
+      turnAround();
+   }
+
+   /** كاريل للأمام حتى يتم حظره بواسطة الحائط. */
+   private void moveإلىالجدار(){
+      while (frontIsClear()) {
+         move();
+      } 
+   }
+
+   /** يتحول كاريل 180 درجة حولها */
+   private void turnAround(){
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'ar', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1649.7;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">الفصل التالي</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

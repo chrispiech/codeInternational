@@ -1,0 +1,538 @@
+
+<html>
+<head>
+
+<title>करेल पाठक</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/hi/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> कैरेल</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter1.html">1 - कैरेल से मिलते हैं</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter2.html">2 - प्रोग्रामिंग</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter3.html">3 - नए तरीके</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter4.html">4 - अपघटन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter5.html">5 - लूप्स के लिए</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter6.html">6 - जबकि लूप्स</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter7.html">7 - सशर्त</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter8.html">8 - शोधन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter9.html">9 - सुपरकारेल</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/reference.html">10 - संदर्भ</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/ide.html">11 - कोड</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> और अधिक जानें</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>अध्याय 2: प्रोग्रामिंग करेल</h1>
+<hr/>
+<p>कारेल कार्यक्रम की सरलतम शैली निर्मित कमांड के अनुक्रम को निर्दिष्ट करने के लिए पाठ का उपयोग करती है जिसे प्रोग्राम होने पर निष्पादित किया जाना चाहिए <b>run</b> । नीचे सरल कारेल कार्यक्रम पर विचार करें। बाईं ओर पाठ कार्यक्रम है। करेल की दुनिया की स्थिति को दाईं ओर दिखाया गया है:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPicking">
+<div class="ide getStarted" id="beeperPickingIde" style="height:299.20000000000005px">
+<div class="ideCenter" id="beeperPickingIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingRunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPicking() {
+STARTER_CODE = `
+
+/*
+ * फाइल: फर्स्टकारेल। जावा
+ * ----------------------
+ * पहला कमांड प्रोग्राम तीन कमांड के साथ " run " विधि
+ * को परिभाषित करता है। ये आदेश कारेल को move फॉरवर्
+ * ड एक ब्लॉक, beeper और फिर move आगे के कोने तक ले ज
+ * ाते हैं।
+ */
+import stanford.कैरेल.*;
+public class पहलाकारेल extends कैरेल {
+   /* कार्यक्रम run यहाँ शुरू होता है */
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingEditor','beeperPickingEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'hi');
+    $('#beeperPickingRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 299.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPicking").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingIde');
+    var editorDiv = document.getElementById('beeperPickingEditorDiv');
+    var canvas = document.getElementById('beeperPickingCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPicking();
+    </script>
+</div>
+
+<p>प्रोग्राम को निष्पादित करने के लिए "रन" बटन दबाएं। कार्यक्रम आम तौर पर एक विशेष एप्लिकेशन में लिखे जाते हैं जिन्हें a कहा जाता है <b>एकीकृत विकास एनवायरमेंट</b> (IDE) और अधिकांश कारेल कार्यक्रम एक IDE में लिखे जाते हैं जिसे ग्रहण कहा जाता है। एक आईडीई की तरह, यह पाठक आपकी मदद करने के लिए कार्यक्रमों को निष्पादित करने की क्षमता रखता है<i>देख</i>आप जो सीखते हैं, वह कैसे काम करता है।</p>
+<p>कार्यक्रम कई भागों से बना है। पहले भाग में निम्नलिखित पंक्तियाँ हैं:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * फाइल: फर्स्टकारेल। जावा
+ * ----------------------
+ * पहला कमांड प्रोग्राम तीन कमांड के साथ " run " विधि
+ * को परिभाषित करता है। ये आदेश कारेल को move फॉरवर्
+ * ड एक ब्लॉक, beeper और फिर move आगे के कोने तक ले ज
+ * ाते हैं।
+ */</pre>
+</p>
+<p>ये पंक्तियाँ एक उदाहरण हैं <b>टिप्पणी</b> , जो मानव पाठकों के लिए कार्यक्रम के संचालन की व्याख्या करने के लिए डिज़ाइन किया गया टेक्स्ट है। करेल और जावा दोनों में टिप्पणियाँ पात्रों से शुरू होती हैं <code class="comment">/*</code> और पात्रों के साथ समाप्त होता है <code class="comment">*/</code> । यहां, टिप्पणी पहली पंक्ति पर शुरू होती है और बाद में कई लाइनें समाप्त होती है। टिप्पणी के पाठ को बनाने वाले व्यक्तिगत लाइनों के सितारों की आवश्यकता नहीं है, लेकिन मानव पाठकों के लिए टिप्पणी की सीमा को देखना आसान बनाता है। एक सरल कार्यक्रम में, व्यापक टिप्पणियां मूर्खतापूर्ण लग सकती हैं क्योंकि कार्यक्रम का प्रभाव स्पष्ट है, लेकिन वे बड़े, अधिक जटिल कार्यक्रमों के डिजाइन के दस्तावेजीकरण के साधन के रूप में बेहद महत्वपूर्ण हैं। कार्यक्रम का दूसरा भाग लाइन है:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.कैरेल.*;</code> 
+</p>
+<p>यह पंक्ति सभी परिभाषाओं को शामिल करने का अनुरोध करती है <code>stanford.कैरेल</code> पुस्तकालय। इस लाइब्रेरी में करेल कार्यक्रमों को लिखने के लिए आवश्यक बुनियादी परिभाषाएँ हैं, जैसे मानक संचालन की परिभाषाएँ <code>move()</code> तथा <code>pickBeeper()</code> । क्योंकि आपको हमेशा इन परिचालनों तक पहुंच की आवश्यकता होती है, इसलिए आपके द्वारा लिखा गया प्रत्येक कारेल कार्यक्रम वास्तविक कार्यक्रम लिखने से पहले इस आयात आदेश को शामिल करेगा।</p>
+<p>कारेल कार्यक्रम के अंतिम भाग में निम्नलिखित कार्यक्रम की परिभाषा है:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> पहलाकारेल <span class="keyword">extends</span> कैरेल {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>इस परिभाषा को समझने के लिए, इसकी संरचना पर अधिक ध्यान से देखना उपयोगी है। फर्स्टेल प्रोग्राम की परिभाषा में शुरुआत के साथ लाइन शामिल है <code class="keyword">public class</code> और उस लाइन के अंत में घुंघराले ब्रेस के बीच सब कुछ समाहित करता है और प्रोग्राम के आखिरी लाइन पर संबंधित समापन ब्रेस है। नई कक्षा को प्रस्तुत करने वाली एकल रेखा को कहा जाता है <b>हैडर</b> परिभाषा की परिभाषा; ब्रेसिज़ के बीच के कोड को कहा जाता है <b>तन</b> ।</p>
+<p>प्रोग्रामिंग में, एक विशेष परिभाषा और इसके शरीर के बारे में अलग-अलग विचारों के रूप में सोचना अक्सर बहुत उपयोगी होता है। इस उदाहरण में, फर्स्टेल की परिभाषा के निम्नलिखित रूप हैं, जहां परिभाषा के पूरे शरीर को इस समय आपके दिमाग से बाहर रखा जा सकता है:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> पहलाकारेल <span class="keyword">extends</span> कैरेल {</code> <br/>
+<i class="demoText" style="margin-left:2em">कार्यक्रम की परिभाषा</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>शीर्ष पर स्थित हेडर लाइन आपको फ़र्स्टेल कार्यक्रम के बारे में काफी कुछ बताती है, इससे पहले कि आप यह देखना चाहते हैं कि शरीर में क्या है। मुहावरा <code class="keyword">public class</code> एक कार्यक्रम की परिभाषा शुरू करता है। मुहावरा <code><span class="keyword">extends</span> कैरेल</code> यह इंगित करने के लिए उपयोग किया जाता है <code>पहलाकारेल</code> एक कारेल कार्यक्रम है।</p>
+<p>अब आइए फर्स्टकेल प्रोग्राम की बॉडी को देखें। उस शरीर में निम्नलिखित पंक्तियाँ होती हैं:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>ये लाइनें एक नई की परिभाषा का प्रतिनिधित्व करती हैं <b>तरीका</b> , जो एक कमांड का जवाब देने के लिए आवश्यक चरणों के अनुक्रम को निर्दिष्ट करता है। जैसा कि फ़र्स्टेल प्रोग्राम के मामले में, विधि परिभाषा में दो भाग होते हैं जिन्हें अलग-अलग माना जा सकता है: पहली पंक्ति विधि शीर्षलेख का गठन करती है और घुंघराले ब्रेसिज़ के बीच का कोड विधि निकाय है। यदि आप अभी के लिए शरीर की उपेक्षा करते हैं, तो विधि की परिभाषा इस तरह दिखती है:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">विधि की परिभाषा</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>विधि शीर्ष लेख में पहले दो शब्द, <code class="keyword">public</code> तथा <code class="keyword">void</code> , जावा के वाक्य विन्यास संरचना का हिस्सा हैं, और आपको इस बिंदु पर उनकी उपेक्षा करने के लिए स्वतंत्र महसूस करना चाहिए। हेडर लाइन पर अगला शब्द नई विधि का नाम निर्दिष्ट करता है, जो इस मामले में विधि है <b>run</b> । एक विधि को परिभाषित करने का मतलब है कि कारेल अब उस नाम के साथ एक नए आदेश का जवाब दे सकते हैं। <code>run</code> करेल कार्यक्रम में कमांड एक विशेष भूमिका निभाता है। जब आप एक कारेल कार्यक्रम शुरू करते हैं तो यह एक नया कारेल उदाहरण बनाता है, उस कारेल को उस दुनिया में जोड़ता है जिसे आप निर्दिष्ट करते हैं, और फिर run कमांड जारी करते हैं। के प्रभाव run निंग कार्यक्रम के शरीर द्वारा परिभाषित किया गया है run विधि है, जो आदेश होते हैं जो रोबोट क्रम में निष्पादित करेंगे का एक क्रम है। उदाहरण के लिए, फर्स्टकारेल प्रोग्राम के लिए run विधि का शरीर है:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>इस प्रकार, यदि दुनिया की प्रारंभिक अवस्था अध्याय 1 में दिए गए उदाहरण से मेल खाती है, तो कैरेल पहले move के कोने में आगे beeper युक्त है, जो कि beeper उठाता है, और अंत में move को दीवार से पहले कोने में आगे move , जैसा कि दीवार में दिखाया गया है। निम्नलिखित पहले और बाद आरेख:</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">पहले:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">बाद:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'hi',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpM1',0.0, 'hi',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>एक और दिलचस्प समस्या का समाधान</h2>
+<p>ऊपर परिभाषित पहला कार्यक्रम अभी तक बहुत कुछ नहीं करता है। आइए इसे थोड़ा और दिलचस्प बनाने की कोशिश करें। मान लीजिए कि लक्ष्य केवल कैरेल को beeper लेने के लिए beeper बल्कि move से beeper 2 कॉलम पर प्रारंभिक स्थिति और एक पंक्ति के केंद्र में पहली पंक्ति है। इस प्रकार, आपका अगला काम एक नए कारेल कार्यक्रम को परिभाषित करना है जो इस चित्र में चित्रित कार्य को पूरा करता है:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">पहले:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">बाद:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'hi',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpGoal',0.0, 'hi',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>नए प्रोग्राम में पहले तीन कमांड - जो कि move फॉरवर्ड करते हैं, move आगे beeper , और फिर move को आगे बढ़ाते हैं - पहले जैसे ही हैं:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>यहां से, अगला कदम बायीं तरफ चढ़ना शुरू करने के लिए बाएं मुड़ना है। यह ऑपरेशन आसान है, क्योंकि कारेल अपने मानक प्रदर्शनों की सूची में एक अलाउमियैविक कमांड है। आदेशों के पूर्ववर्ती अनुक्रम के अंत में एक BandAmourive कमांड को निष्पादित करना, कर्ल को 1 पंक्ति और 3 कॉलम के कोने पर उत्तर का सामना करना पड़ता है। यदि कारेल ने move कमांड निष्पादित किया है, तो यह move उत्तर की ओर निम्न स्थिति तक पहुंचेगा:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('java',null, canvas, 'stepUpM2', 0, 'hi',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>यहाँ से, अगली चीज़ जो आपको करने की ज़रूरत है वह है करेल को सही मोड़ने के लिए ताकि वह फिर से पूर्व की ओर हो। हालांकि यह ऑपरेशन वैचारिक रूप से उतना ही आसान है, जितना कारेल को बाएं मुड़ना आसान है, थोड़ी परेशानी है: कारेल की भाषा में ए शामिल है <code>turnLeft</code> कमांड, लेकिन नहीं <code>turnRight</code> आदेश। यह ऐसा है जैसे आपने इकोनॉमी मॉडल खरीदा है और अब पता चला है कि यह कुछ महत्वपूर्ण विशेषताओं को याद कर रहा है।</p>
+<p>इस बिंदु पर, आपके पास एक प्रोग्रामर की तरह सोचने का पहला अवसर है। आपके पास आदेशों का एक सेट है, लेकिन ठीक उस सेट की ज़रूरत नहीं है जिसकी आपको ज़रूरत है। तुम क्या कर सकते हो? क्या आप अपने पास मौजूद क्षमताओं का उपयोग करके एक डिंगसुमेरो कमांड के प्रभाव को पूरा कर सकते हैं? इस सवाल का जवाब, बेशक, हाँ है। आप तीन बार बाएं मुड़कर दाएं मुड़ने के प्रभाव को पूरा कर सकते हैं। तीन बाएं मुड़ने के बाद, कारेल वांछित दिशा में सामना करेंगे। यहां से, आपको बस करेल को move पर कार्यक्रम को केंद्र की ओर ले जाना है, beeper और फिर move को अंतिम स्थिति तक आगे बढ़ाना है। यहाँ एक पूर्ण कार्यान्वयन है <code>आगेआना</code> कार्यक्रम जो पूरे कार्य को पूरा करता है:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:422.40000000000003px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+/*
+ * फ़ाइल: कॉनो लिफ्टकरकरेल। जावा
+ * ----------------------------
+ * कॉनो पिककारकरेल कार्यक्रम कमांड के साथ एक " run "
+ * विधि को परिभाषित करता है, जो कारेल को beeper एक कग
+ * ार पर beeper ।
+ */
+import stanford.कैरेल.*;
+public class Conoउठाकरकरेल extends कैरेल {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnLeft();
+      turnLeft();
+      turnLeft();
+      move();
+      move();
+      putBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.5, 'hi');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 422.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">अगला अध्याय</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

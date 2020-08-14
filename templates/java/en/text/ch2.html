@@ -1,0 +1,133 @@
+<h1>
+Chapter 2: Programming Karel
+</h1>
+<hr/>
+<p>
+  The simplest style of Karel program uses text to specify a sequence of built-in commands that should be executed when the program is <b>run</b>. Consider the simple Karel program below. The text on the left is the program. The state of Karel's world is shown on the right:
+</p> 
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+<p>
+Press the "Run" button to execute the program. Programs are typically written in a special application called an <b>Integrated Development Enviroment</b> (IDE) and most Karel programs are written in an IDE called Eclipse. Like an IDE, this reader has the ability to execute programs in order to help you <i>see</i> how things work as you learn.</p>
+<p>The program is composed of several parts. The first part consists of the following lines:
+</p>
+<p>
+
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * File: FirstKarel.java
+ * -----------------------------
+ * The FirstKarel program defines a "run"
+ * method with three commands. These commands cause
+ * Karel to move forward one block, pick up a beeper
+ * and then move ahead to the next corner.
+ */</pre>
+</p>
+
+<p>
+  These lines are an example of a <b>comment</b>, which is simply text designed to explain the operation of the program to human readers. Comments in both Karel and Java begin with the characters <code class="comment">/*</code> and end with the characters <code class="comment">*/</code>. Here, the comment begins on the first line and ends several lines later. The stars on the individual lines that make up the text of the comment are not required, but make it easier for human readers to see the extent of the comment. In a simple program, extensive comments may seem silly because the effect of the program is obvious, but they are extremely important as a means of documenting the design of larger, more complex programs.
+  The second part of the program is the line:
+</p>
+<p class="demoCode" style="margin-left:10px">
+  <code><span class="keyword">import</span> stanford.karel.*;</code>
+</p>
+<p>
+  This line requests the inclusion of all definitions from the <code>stanford.karel</code> library. This library contains the basic definitions necessary for writing Karel programs, such as the definitions of the standard operations <code>move()</code> and <code>pickBeeper()</code>. Because you always need access to these operations, every Karel program you write will include this import command before you write the actual program.
+</p>
+<p>
+ The final part of the Karel program consists of the following program definition:
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code><span class="keyword">public class</span> FirstKarel <span class="keyword">extends</span> Karel {</code><br/>
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> run() {</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pickBeeper();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+<code>}</code><br/>
+</p>
+<p>
+  To understand this definition, it is useful to look more carefully at its structure. The definition of the FirstKarel program consists of the line beginning with <code class="keyword">public class</code> and encompasses everything between the curly brace at the end of that line and the corresponding closing brace on the last line of the program. The single line that introduces the new class is called the <b>header</b> of the definition; the code between the braces is called the <b>body</b>.
+</p>
+<p>
+  In programming, it is often very useful to think about a particular definition and its body as separable ideas. In this example, the definition of FirstKarel has the following form, where the entire body of the definition can be put out of your mind for the moment:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code><span class="keyword">public class</span> FirstKarel <span class="keyword">extends</span> Karel {</code><br/>
+<i class="demoText" style="margin-left:2em">body of the program definition</i><br/>
+<code>}</code><br/>
+</p>
+
+<p>
+  The header line at the top tells you quite a bit about the FirstKarel program, even before you have looked to see what the body contains. The phrase <code class="keyword">public class</code> starts the definition of a program. The phrase <code><span class="keyword">extends</span> Karel</code> is used to indicate that <code>FirstKarel</code> is a Karel program.
+</p>
+
+
+<p>
+Now let's look at the body of the FirstKarel program. That body consists of the following lines:
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> run() {</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pickBeeper();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+<p>
+These lines represent the definition of a new <b>method</b>, which specifies the sequence of steps necessary to respond to a command. As in the case of the FirstKarel program itself, the method definition consists of two parts that can be considered separately: The first line constitutes the method header and the code between the curly braces is the method body. If you ignore the body for now, the method definition looks like this:
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> run() {</code><br/>
+<i class="demoText" style="margin-left:3.5em">body of the method definition</i><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+<p>
+The first two words in the method header, <code class="keyword">public</code> and <code class="keyword">void</code>, are part of Java’s syntactic structure, and you should feel free to ignore them at this point. The next word on the header line specifies the name of the new method, which in this case is the method <b>run</b>. Defining a method means that Karel can now respond to a new command with that name. The <code>run</code> command plays a special role in a Karel program. When you start a Karel program it creates a new Karel instance, adds that Karel to a world that you specify, and then issues the run command. The effect of running the program is defined by the body of the run method, which is a sequence of commands that the robot will execute in order. For example, the body of the run method for the FirstKarel program is:
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;pickBeeper();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;move();</code><br/>
+</p>
+<p>
+  Thus, if the initial state of the world matches the example given in Chapter 1, Karel first moves forward into the corner containing the beeper, picks up that beeper, and finally moves forward to the corner just before the wall, as shown in the following before-and-after diagram:
+  </p>
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+<h2>Solving a more interesting problem</h2>
+<p>
+  The FirstKarel program defined above doesn’t do very much as yet. Let’s try to make it a little more interesting. Suppose that the goal is not simply to get Karel to pick up the beeper but to move the beeper from its initial position on 2nd column and 1st row to the center of a ledge. Thus, your next assignment is to define a new Karel program that accomplishes the task illustrated in this diagram:
+  </p>
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+<p>
+  The first three commands in the new program—the ones that move forward, pick up the beeper, and then move up to the ledge—are the same as before:
+</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;pickBeeper();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;move();</code><br/>
+</p>
+<p>
+  From here, the next step is to turn left to begin climbing the ledge. That operation is easy, because Karel has a turnLeft command in its standard repertoire. Executing a turnLeft command at the end of the preceding sequence of commands leaves Karel facing north on the corner of 1st row and 3rd column. If Karel then executes a move command, it will move north to reach the following position:
+</p>
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+<p>
+  From here, the next thing you need to do is get Karel to turn right so that it is again facing east. While this operation is conceptually just as easy as getting Karel to turn left, there is a slight problem: Karel’s language includes a <code>turnLeft</code> command, but no <code>turnRight</code> command. It’s as if you bought the economy model and have now discovered that it is missing some important features.
+</p>
+<p>
+  At this point, you have your first opportunity to begin thinking like a programmer. You have one set of commands, but not exactly the set you need. What can you do? Can you accomplish the effect of a turnRight command using only the capabilities you have? The answer, of course, is yes. You can accomplish the effect of turning right by turning left three times. After three left turns, Karel will be facing in the desired direction. From here, all you need to do is program Karel to move over to the center of the ledge, drop the beeper and then move forward to the final position. Here is a complete implementation of a <code>StepUp</code> program that accomplishes the entire task:
+</p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>

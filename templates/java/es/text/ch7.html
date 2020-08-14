@@ -1,0 +1,87 @@
+<h1>Capítulo 7: Si las declaraciones</h1>
+<hr/>
+<p>La construcción de flujo de control de programación final para aprender son sentencias condicionales ( <code>if</code> y <code>if/else</code> ).</p>
+<h3>Condicionales básicos</h3>
+<p>Un <code>if/else</code> La instrucción ejecuta un bloque de código "if" si, y solo si, el proporcionado<i class="demoText">prueba</i>es cierto para el estado del mundo en el momento en que el programa llega a la declaración. De lo contrario, el programa ejecuta el bloque de código "else".</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">prueba</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">si el código de bloqueo</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">otro bloque de código</i><br/>
+ <code>}</code> 
+</p>
+<p>Para tener una idea de dónde pueden ser útiles las sentencias condicionales, escribamos un programa que tenga Karel invierta una línea de conos . Si una casilla tenía anteriormente un cono , Karel debería recogerlo. Si un cuadrado no tiene cono , Karel debe colocar uno abajo.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>Tenga en cuenta que un <code>if</code> declaración no necesita tener una <code>else</code> bloque - en cuyo caso la declaración opera como una <code>while</code> ciclo que solo se ejecuta una vez:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">prueba</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">si el código de bloqueo</i><br/>
+ <code>} </code> 
+</p>
+<h3>Condiciones</h3>
+<p>Ese último ejemplo utilizó una nueva condición. Aquí hay una lista de todas las condiciones que Karel conoce:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Prueba</th><th>Opuesto</th><th>Lo que verifica</th></tr>
+<tr>
+<td> <code>frenteDespejado()</code> </td>
+<td> <code>frenteBloqueado()</code> </td>
+<td>¿Hay una pared en frente de Karel ?</td>
+</tr>
+<tr>
+<td> <code>conosPresentes()</code> </td>
+<td> <code>conosAusentes()</code> </td>
+<td>¿Hay conos en esta esquina?</td>
+</tr>
+<tr>
+<td> <code>izquierdaDespejada()</code> </td>
+<td> <code>izquierdaBloqueada()</code> </td>
+<td>¿Hay un muro a Karel la izquierda?</td>
+</tr>
+<tr>
+<td> <code>derechaDespejada()</code> </td>
+<td> <code>derechaBloqueada()</code> </td>
+<td>¿Hay una pared a la derecha de Karel ?</td>
+</tr>
+<tr>
+<td> <code>bolsaConConos()</code> </td>
+<td> <code>bolsaSinConos()</code> </td>
+<td>¿Hay conos en la bolsa de Karel ?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>rumboNorte()</code> </td>
+<td> <code>sinRumboNorte()</code> </td>
+<td>¿Está Karel mirando hacia el norte?</td>
+</tr>
+<tr>
+<td> <code>rumboSur()</code> </td>
+<td> <code>sinRumboSur()</code> </td>
+<td>Es Karel hacia el sur?</td>
+</tr>
+<tr>
+<td> <code>rumboEste()</code> </td>
+<td> <code>sinRumboEste()</code> </td>
+<td>Es Karel mirando hacia el este?</td>
+</tr>
+<tr>
+<td> <code>rumboOeste()</code> </td>
+<td> <code>sinRumboOeste()</code> </td>
+<td>¿Está el Karel mirando al oeste?</td>
+</tr>
+</table>
+</p>
+<h3>Poniendolo todo junto</h3>
+<p>Felicidades Ahora conoces todos los bloques de flujo de control de programación básicos. Mientras los aprendió con Karel , métodos, ciclo while s, ciclos for , las ciclos for if / else funcionan de la misma manera en casi todos los lenguajes principales, incluido Java.</p>
+<p>Ahora que tiene los componentes básicos, puede juntarlos para crear soluciones a problemas cada vez más complejos. En gran medida, la programación es la ciencia de resolver problemas por computadora. Debido a que los problemas suelen ser difíciles, las soluciones y los programas que implementan esas soluciones también pueden ser difíciles. Para facilitar el desarrollo de esas soluciones, debe adoptar una metodología y disciplina que reduzca el nivel de esa complejidad a una escala manejable.</p>

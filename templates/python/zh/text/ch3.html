@@ -1,0 +1,42 @@
+<h1>第三章：定义新功能</h1>
+<hr/>
+<p>在上一章中，我们编写了一个程序来帮助Karel爬上一个简单的壁架：</p>
+<h3>示例：第一个卡雷尔</h3>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>即使 <code>第一个卡雷尔</code> 上面的程序表明可以执行 <code>turn_right()</code> 仅使用Karel的内置命令进行操作，所得程序在概念上并不特别清楚。在您对程序进行心理设计时，Karel在到达窗台顶部时会向右转。您必须使用三个事实 <code>turn_left()</code> 命令这样做很烦人。如果您可以简单地说，那会简单得多 <code>turn_right()</code> 让卡雷尔明白这个命令。生成的程序不仅更短，更容易编写，而且更容易阅读。</p>
+<h3>定义新命令</h3>
+<p>幸运的是，卡雷尔（Karel）编程语言可以通过简单地包含新的函数定义来定义新命令。每当您具有执行某些有用任务（例如右转）的Karel命令序列时，您都可以定义一个执行该命令序列的新函数。定义新的Karel函数的格式与的定义基本相同 <code>main()</code> 在前面的示例中，它本身就是一个函数定义。典型的函数定义如下所示：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> </code> <i class="demoText">名称</i> <code>():</code> <br/>
+<i class="demoText" style="margin-left:3.5em">组成函数主体的命令</i><br/>
+</p>
+<p>在此模式中，名称表示您为新功能选择的名称。要完成定义，您所要做的就是在冒号后的各行中提供命令序列，这些命令均由一个制表符缩进。例如，您可以定义 <code>turn_right()</code> 如下：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> turn_right():</code> <br/>
+ <code style="margin-left:3.5em">turn_left()</code> <br/>
+ <code style="margin-left:3.5em">turn_left()</code> <br/>
+ <code style="margin-left:3.5em">turn_left()</code> <br/>
+</p>
+<p>同样，您可以定义一个新的 <code>turn_around()</code> 像这样的功能：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> turn_around():</code> <br/>
+ <code style="margin-left:3.5em">turn_left()</code> <br/>
+ <code style="margin-left:3.5em">turn_left()</code> <br/>
+</p>
+<p>您可以像Karel的任何内置命令一样使用新函数的名称。例如，一旦定义 <code>turn_right()</code> ，您可以替换这三个 <code>turn_left()</code> 只需调用一次程序中的命令 <code>turn_right()</code> 功能。这是使用 <code>turn_right()</code> ：</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<h3>功能码块</h3>
+<p>一组命令跟随冒号 <code translate="no">:</code> 缩进的称为 <b>代码块</b> 。函数的主体是一个代码块。请注意，代码块的内容是如何在一个选项卡中全部缩进的。这在功能上很重要，因为它允许Python知道给定块中的代码行。</p>
+<p>您可以定义任意数量的函数。它们都应该一个接一个地写。您不能在另一个函数内定义一个函数。</p>

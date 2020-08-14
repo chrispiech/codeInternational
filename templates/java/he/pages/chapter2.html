@@ -1,0 +1,16 @@
+<html><head>
+  %include('templates/' + lang + '/parts/head.html')
+</head><body style=";text-align:right;direction:rtl"><!-- container --><div class="bookContainer" style=";text-align:right;direction:rtl">
+    %include('templates/' + lang + '/parts/sideBar.html')
+<!-- content --><div class="bookContent" style="display: flex;;text-align:right;direction:rtl"><!-- right gutter --><div style="flex-grow:1; flex-basis:50px; max-width:50px;text-align:right;direction:rtl"></div><!-- main stuff --><div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ;text-align:right;direction:rtl"><div class="row" style=";text-align:right;direction:rtl"><div class="col-md-12 col-xs-12" style=";text-align:right;direction:rtl">
+
+<%
+  include('templates/'+lang+'/text/ch2.html')
+  include('templates/'+lang+'/text/nextChapter.html', pageName="chapter3.html")
+%>
+
+
+
+
+%include('templates/' + lang + '/parts/footer.html')
+</div></div></div><!-- right gutter --><div style="flex-grow:4;text-align:right;direction:rtl"></div></div></div></body></html>

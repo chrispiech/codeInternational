@@ -1,0 +1,340 @@
+
+<html>
+<head>
+
+<title>قارئ كاريل</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ar/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> كاريل</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter1.html">1 - تعرف على كاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter2.html">2 - البرمجة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter3.html">3 - طرق جديدة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter4.html">4 - التحلل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter5.html">5 - دورات For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter6.html">6 - دورات While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter7.html">7 - الشرطية</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter8.html">8 - الصقل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter9.html">9 - سوبركاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/reference.html">10 - المرجع</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/ide.html">11 - الرمز</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> أعرف أكثر</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>الفصل 7: إذا البيانات</h1>
+<hr/>
+<p>البرمجة الأساسية النهائية لتدفق التحكم في التعلم هي عبارة عن عبارات شرطية ( <code>if</code> و <code>if/else</code> ).</p>
+<h3>الشرطية الأساسية</h3>
+<p>ل <code>if/else</code> تنفيذ العبارة "-" - كتلة التعليمات البرمجية إذا وفقط إذا تم توفيرها<i class="demoText">اختبار</i>صحيح بالنسبة لحالة العالم في الوقت الذي يصل فيه البرنامج إلى البيان. وإلا فإن البرنامج ينفذ "كود" آخر.</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">اختبار</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">إذا رمز كتلة</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">آخر رمز كتلة</i><br/>
+ <code>}</code> 
+</p>
+<p>للتعرف على الأماكن التي قد تكون فيها العبارات الشرطية في متناول اليد ، دعنا نكتب برنامجًا يحتوي على كاريل قلب السطر مخروط ثانية. إذا كان مربع يحتوي على مخروط ، كاريل أن كاريل . إذا كان المربع لا يحتوي على مخروط ، فيجب وضع كاريل الأسفل.</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="ide">
+<div class="ide getStarted" id="ideIde" style="height:334.40000000000003px">
+<div class="ideCenter" id="ideIdeCenter">
+<div class="ideEditorDiv" id="ideEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="ideCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">تغيير العالم<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="ideWorlds">
+<li><a>1X1</a> </li>
+<li><a>4X4</a> </li>
+<li><a>3X6</a> </li>
+<li><a>7X7</a> </li>
+<li><a>8X8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="ideCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="ideRunButton"><span class="glyphicon glyphicon-play"></span>نفذ البرنامج</button>
+</div>
+</div>
+<script>
+
+        
+
+function exampleide() {
+STARTER_CODE = `
+
+/*
+ * اكتب أي كود تريده
+ */
+import stanford.كاريل.*;
+public class برنامجي extends سوبركاريل {
+   public void run() {
+      // الرمز الخاص بك هنا ...
+   } 
+}
+
+
+
+
+
+
+
+
+
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('ideEditor','ideEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('ideCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '8x8', 0.0, 'ar');
+    $('#ideRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('ideWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#ideRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#ideRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#ide").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('ideIde');
+    var editorDiv = document.getElementById('ideEditorDiv');
+    var canvas = document.getElementById('ideCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+exampleide();
+    </script>
+</div>
+
+
+
+
+
+<p>لاحظ أن <code>if</code> بيان لا يحتاج إلى أن يكون <code>else</code> كتلة - في هذه الحالة بيان opperates مثل <code>while</code> دورة الذي ينفذ مرة واحدة فقط:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">اختبار</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">إذا رمز كتلة</i><br/>
+ <code>} </code> 
+</p>
+<h3>الظروف</h3>
+<p>هذا المثال الأخير يستخدم حالة جديدة. فيما يلي قائمة بجميع الشروط التي يعرفها كاريل :</p>
+<p>
+<table class="table table-condensed">
+<tr><th>اختبار</th><th>مقابل</th><th>ما يتحقق</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>هل يوجد جدار أمام كاريل ؟</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>هل هناك مخروط ثانية في هذه الزاوية؟</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>هل هناك جدار إلى اليسار كاريل ؟</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>هل هناك جدار ل كاريل حق؟</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>هل هناك مخروط في كيس كاريل ؟</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>هل يواجه كاريل الشمال؟</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>هل يواجه كاريل الجنوب؟</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>هل يواجه كاريل الشرق؟</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>هل يواجه كاريل الغرب؟</td>
+</tr>
+</table>
+</p>
+<h3>ضع كل شيء معا</h3>
+<p>مبروك! أنت تعرف الآن كل الكتل البرمجية التحكم في التدفق. على الرغم من أنك كاريل باستخدام كاريل ، فإن الطرق ، دورات while ، دورات for ، إذا كانت / دورات for العبارات تعمل بنفس الطريقة في جميع اللغات الرئيسية تقريبًا ، بما في ذلك Java.</p>
+<p>الآن بعد أن أصبح لديك اللبنات الأساسية ، يمكنك تجميعها معًا لبناء حلول لمشاكل أكثر تعقيدًا. إلى حد كبير ، البرمجة هي علم حل المشكلات عن طريق الكمبيوتر. نظرًا لأن المشكلات غالبًا ما تكون صعبة ، فقد تكون الحلول - والبرامج التي تنفذ هذه الحلول - صعبة أيضًا. لتسهيل تطوير هذه الحلول ، تحتاج إلى اعتماد منهجية وانضباط يقلل من مستوى هذا التعقيد إلى نطاق يمكن التحكم فيه.</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter8.html" role="button">الفصل التالي</a> 
+</center>
+
+
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

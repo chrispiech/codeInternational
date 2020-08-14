@@ -1,0 +1,57 @@
+<h1>अध्याय 4: अपघटन</h1>
+<hr/>
+<p>नए तरीकों को परिभाषित करने में सक्षम होने के साथ आने वाली शक्ति का अधिक चित्रण करने के तरीके के रूप में, यह उपयोगी है कि कैरेल move beeper एक स्थान से दूसरे स्थान पर कुछ अधिक व्यावहारिक है। रोडवेज को अक्सर मरम्मत की आवश्यकता होती है, और यह देखना मजेदार हो सकता है कि क्या कारेल अपनी सार दुनिया में गड्ढों को भर सकता है। उदाहरण के लिए, कल्पना करें कि कारेल बाएं हाथ की आकृति में दिखाया गया है, जो सड़क के एक गड्ढे के बाईं ओर एक कोने में है। कारेल का काम beeper के छेद को भरना और अगले कोने तक आगे बढ़ना है। दाईं ओर का चित्र दिखाता है कि कार्यक्रम के निष्पादन के बाद दुनिया को कैसा दिखना चाहिए।</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>यदि आप चार पूर्वनिर्धारित आदेशों तक सीमित हैं, तो इस समस्या को हल करने का run तरीका इस तरह दिखेगा:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>डैंगसूमोरो विधि को परिभाषित करने के लिए प्रारंभिक प्रेरणा यह थी कि एक सही मोड़ को पूरा करने के लिए तीन बांएमुएडिएरी कमांड को दोहराते रहना बोझिल था। हर बार जब आप किसी विशेष कार्य को करना चाहते हैं, तो नए तरीकों को परिभाषित करने से परे एक और महत्वपूर्ण उद्देश्य होता है। तरीकों को परिभाषित करने की शक्ति प्रोग्रामिंग में सबसे महत्वपूर्ण रणनीति को अनलॉक करती है - एक बड़ी समस्या को छोटे टुकड़ों में तोड़ने की प्रक्रिया जो हल करना आसान है। एक कार्यक्रम को छोटे टुकड़ों में तोड़ने की प्रक्रिया को अपघटन कहा जाता है, और एक बड़ी समस्या के घटक भागों को उपप्रोम्बल्स कहा जाता है।</p>
+<p>एक उदाहरण के रूप में, सड़क के छेद को भरने की समस्या को निम्न उपप्रकारों में विघटित किया जा सकता है:</p>
+<ol>
+<li>छेद तक ले जाएं<li>beeper को इसमें beeper छेद भरें<li>अगले कोने पर ले जाएँ</li></li></li></ol>
+<p>यदि आप इस तरह से समस्या के बारे में सोचते हैं, तो आप एक प्रोग्राम बनाने के लिए विधि परिभाषाओं का उपयोग कर सकते हैं जो प्रोग्राम संरचना के आपके गर्भाधान को दर्शाता है। run तरीका इस तरह दिखेगा:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">गड्ढाभरना();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>रूपरेखा के साथ पत्राचार तुरंत स्पष्ट है, और सब कुछ बहुत अच्छा होगा यदि केवल आप करेल को समझ सकते हैं कि आप पिटारेबना का क्या मतलब है। तरीकों को परिभाषित करने की शक्ति को देखते हुए, गड्ढाभरना को लागू करना बेहद सरल है। आपको बस एक गड्ढा करने की विधि को परिभाषित करना है, जिसके शरीर में आपके द्वारा पहले से ही काम करने के लिए लिखे गए आदेश हैं, जैसे:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> गड्ढाभरना() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>यहाँ पूरा कार्यक्रम है। ध्यान दें कि आप run विधि को पढ़ने से प्रोग्रामर के इरादे को कैसे समझ सकते हैं। जब आप run प्रोग्राम करते हैं, तो लाइन हाइलाइटिंग दिखाता है कि कंप्यूटर इसे कैसे निष्पादित करेगा, चरण दर चरण। हालाँकि, क्योंकि कार्यक्रम अच्छी तरह से टूट गया है, हम इसे मानव विचार स्तर पर समझ सकते हैं:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

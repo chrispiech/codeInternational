@@ -1,0 +1,527 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/fr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 
+      Karel
+    </a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter1.html">
+      1 - Rencontrez Karel
+    </a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter2.html">2 - Programmation</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter3.html">3 - Nouvelles fonctions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter4.html">4 - Décomposition</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter5.html">5 - Boucles For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter6.html">6 - Boucles While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter7.html">7 - Conditions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter8.html">8 - Raffinement</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter9.html">9 - Fonctionnalités supplémentaires</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/reference.html">10 - Référence</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/ide.html">11 - Code</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>
+Chapitre 2: Programmer Karel
+</h1>
+<hr/>
+<p>
+  Le style le plus simple du programme Karel utilise du texte pour spécifier une séquence de commandes intégrées à exécuter lorsque le programme est exécuté. <b>run</b> . Considérez le programme Karel simple ci-dessous. Le texte à gauche est le programme. L'état du monde de Karel est indiqué à droite:
+</p>
+
+
+
+
+
+<div class="section embeddedIde" id="firstKarel">
+<div class="ide getStarted" id="firstKarelIde" style="height:249.20000000000002px">
+<div class="ideCenter" id="firstKarelIdeCenter">
+<div class="ideEditorDiv" id="firstKarelEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="firstKarelCanvasDiv">
+<canvas class="ideCanvas" id="firstKarelCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="firstKarelRunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplefirstKarel() {
+STARTER_CODE = `
+
+# Fichier: PremierKarel.py
+# -----------------------------
+# Le programme PremierKarel définit un " main "
+# fonction avec trois commandes. Ces commandes provoquent
+# Karel à avancer avant d'un bloc, prenez un jeton
+# puis avancer devant le coin suivant.
+from karel.stanfordkarel import *
+
+def main():
+   avancer()
+   ramasser_jeton()
+   avancer()
+   
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('firstKarelEditor','firstKarelEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('firstKarelCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'stepUp', 0.0, 'fr');
+    $('#firstKarelRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#firstKarelRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#firstKarelRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 249.20000000000002;
+    var canvasWidth = 300
+    var parentWidth = $("#firstKarel").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('firstKarelIde');
+    var editorDiv = document.getElementById('firstKarelEditorDiv');
+    var canvas = document.getElementById('firstKarelCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplefirstKarel();
+    </script>
+</div>
+
+<p>
+Appuyez sur le bouton "Exécuter" pour exécuter le programme. Les programmes sont généralement écrits dans une application spéciale appelée <b>Environnement de développement intégré</b> (IDE) et la plupart des programmes Karel sont écrits dans un IDE appelé PyCharm. Comme un IDE, ce lecteur a la capacité d'exécuter des programmes afin de vous aider<i>voir</i> comment les choses fonctionnent pendant que vous apprenez.</p>
+<p>Le programme est composé de plusieurs parties. La première partie comprend les lignes suivantes:
+</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no"># Fichier: PremierKarel.py
+# -----------------------------
+# Le programme PremierKarel définit un " main "
+# fonction avec trois commandes. Ces commandes provoquent
+# Karel à avancer avant d'un bloc, prenez un jeton
+# puis avancer devant le coin suivant.</pre>
+</p>
+<p>
+  Ces lignes sont un exemple de <b>commentaire</b> , qui est simplement un texte destiné à expliquer le fonctionnement du programme aux lecteurs humains. Les commentaires dans Karel et Python commencent par les caractères <code class="comment">#</code> et incluez le reste de la ligne. Dans un programme simple, des commentaires détaillés peuvent sembler idiots parce que l'effet du programme est évident, mais ils sont extrêmement importants pour documenter la conception de programmes plus grands et plus complexes. La deuxième partie du programme est la ligne:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">from</span> karel.stanford<span class="keyword">import</span> *</code> 
+</p>
+<p>
+  Cette ligne demande l’inclusion de toutes les définitions de la <code> karel.stanford</code>  bibliothèque. Cette bibliothèque contient les définitions de base nécessaires à l'écriture de programmes Karel, telles que les définitions des opérations standard. <code>avancer()</code>  et <code>ramasser_jeton()</code> . Parce que vous avez toujours besoin d'accéder à ces opérations, chaque programme Karel que vous écrivez inclura cette commande d'importation avant d'écrire le programme réel.
+</p>
+<p>La dernière partie du programme Karel comprend la définition de fonction suivante:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+ <code>      avancer()</code> <br/>
+ <code>      ramasser_jeton()</code> <br/>
+ <code>      avancer()</code> <br/>
+</p>
+<p>
+Ces lignes représentent la définition d'un nouveau <b>fonction</b> , qui spécifie la séquence d'étapes nécessaires pour répondre à une commande. Comme dans le cas du <code>PremierKarel</code> programme lui-même, la définition de la fonction se compose de deux parties qui peuvent être considérées séparément: La première ligne constitue l'en-tête de la fonction et le code en retrait qui suit est le corps de la fonction. Si vous ignorez le corps pour l'instant, la définition de la fonction ressemble à ceci:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+<i class="demoText" style="margin-left:3.5em">corps de la définition de fonction</i><br/>
+</p>
+<p>Le premier mot de l'en-tête de la fonction, <code class="keyword">def</code> , fait partie de la structure syntaxique de Python. Il dit que vous créez une nouvelle fonction. Le mot suivant sur la ligne d'en-tête spécifie le nom de la nouvelle fonction, qui dans ce cas est <b>main</b> . La définition d'une fonction signifie que Karel peut désormais répondre à une nouvelle commande portant ce nom. le <code>main()</code> La commande joue un rôle spécial dans un programme Karel. Lorsque vous démarrez un programme Karel, il crée une nouvelle instance Karel, ajoute ce Karel à un monde que vous spécifiez, puis émet le <code>main()</code> commander. L'effet de exécuter le programme est défini par le corps du <code>main()</code> fonction, qui est une séquence de commandes que le robot exécutera dans l'ordre. Par exemple, le corps du <code>main()</code> fonction pour le <code>PremierKarel</code> programme est:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   avancer()</code> <br/>
+ <code>   ramasser_jeton()</code> <br/>
+ <code>   avancer()</code> <br/>
+</p>
+<p>Ainsi, si l'état initial du monde correspond à l'exemple donné au chapitre 1, Karel avancer abord avancer dans le coin contenant le jeton , prend ce jeton , et enfin avancer avance vers le coin juste avant le mur, comme indiqué dans le diagramme avant-après suivant:</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Avant:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Après:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'stepUp', 0.0, 'fr',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'stepUpM1',0.0, 'fr',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>Résoudre un problème plus intéressant</h2>
+<p>le <code>PremierKarel</code> programme défini ci-dessus ne fait pas grand-chose pour le moment. Essayons de le rendre un peu plus intéressant. Supposons que l'objectif ne soit pas simplement d'amener Karel à prendre le jeton mais à avancer le jeton de sa position initiale sur la 2ème colonne et la 1ère rangée au centre d'un rebord. Ainsi, votre prochaine mission est de définir un nouveau programme Karel qui accomplit la tâche illustrée dans ce diagramme:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Avant:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Après:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'stepUp', 0.0, 'fr',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'stepUpGoal',0.0, 'fr',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>Les trois premières commandes du nouveau programme - celles qui avancer avancent, prennent le jeton , puis avancer jusqu'au rebord - sont les mêmes que précédemment:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   avancer()</code> <br/>
+ <code>   ramasser_jeton()</code> <br/>
+ <code>   avancer()</code> <br/>
+</p>
+<p>De là, la prochaine étape est de tourner gauche pour commencer à grimper le rebord. Cette opération est facile, car Karel a un <code>tourner_gauche()</code> commande dans son répertoire standard. Exécuter un <code>tourner_gauche()</code> commande à la fin de la séquence de commandes précédente laisse Karel face au nord au coin de la 1ère ligne et de la 3ème colonne. Si Karel exécute alors un <code>avancer()</code> commande, il sera avancer nord pour atteindre la position suivante:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('python',null, canvas, 'stepUpM2', 0, 'fr',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>De là, la prochaine chose que vous devez faire est d'amener Karel au tourner droite afin qu'il soit à nouveau face à l'est. Bien que cette opération soit conceptuellement aussi simple que d'amener Karel à tourner gauche , il y a un léger problème: le langage de Karel comprend un <code>tourner_gauche()</code>  commande, mais non <code>tourner_droite()</code>  commander. C’est comme si vous avez acheté le modèle économique et que vous venez de découvrir qu’il manque certaines fonctionnalités importantes.
+</p>
+<p>À ce stade, vous avez votre première occasion de commencer à penser comme un programmeur. Vous avez un ensemble de commandes, mais pas exactement l'ensemble dont vous avez besoin. Que pouvez-vous faire? Pouvez-vous accomplir l'effet d'un <code>tourner_droite()</code> commande en utilisant uniquement les capacités dont vous disposez? La réponse est, bien évidemment, oui. Vous pouvez accomplir l'effet de tourner à droite en tournant à gauche trois fois. Après trois virages à gauche, Karel fera face dans la direction souhaitée. De là, tout ce que vous avez à faire est de programmer Karel à avancer au centre de la corniche, de déposer le jeton puis avancer vers la position finale. Voici une implémentation complète d'un programme qui accomplit toute la tâche:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:356.0px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+# Fichier: PremierKarel.py
+# -----------------------------
+# Le programme PremierKarel définit un " main "
+# fonction avec des commandes qui poussent Karel à prendre
+# a jeton et placez-le sur un rebord.
+from karel.stanfordkarel import *
+
+def main():
+   avancer()
+   ramasser_jeton()
+   avancer()
+   tourner_gauche()
+   avancer()
+   tourner_gauche()
+   tourner_gauche()
+   tourner_gauche()
+   avancer()
+   avancer()
+   laisser_jeton()
+   avancer()
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'stepUp', 0.5, 'fr');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 356.0;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">Chapitre suivant</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

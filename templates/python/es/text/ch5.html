@@ -1,0 +1,45 @@
+<h1>Capítulo 5: Ciclos For</h1>
+<hr/>
+<p>Una de las cosas en las que las computadoras son especialmente buenas es la repetición. ¿Cómo podemos convencer a Karel para que ejecute un bloque de código varias veces? Para ver cómo se puede usar la repetición, considere la tarea de colocar 42 conos :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Basic For Loop</h3>
+<p>Como sabe que hay exactamente 42 conos para colocar, la declaración de control que necesita es una <b>ciclo for</b> , que especifica que desea repetir alguna operación un número fijo de veces. La estructura de la <code>for</code> La declaración parece complicada principalmente porque en realidad es mucho más poderosa de lo que Karel necesita. La única versión del <code>for</code> la sintaxis que utiliza Karel es:</p>
+<p class="demoCode">
+ <code>for i in range(</code> <i class="demoText">contar</i> <code>):</code> <br/>
+<i style="margin-left:2em">declaraciones a repetir</i><br/>
+</p>
+<p class="mb-20">Repasaremos todos los detalles del <code>for</code> ciclo más tarde en la clase. Por ahora, debería leer esta línea como una forma de expresar "repita las declaraciones en el cuerpo de la función<i class="demoText">contar</i>veces. "Podemos utilizar este nuevo <b>ciclo for</b> para colocar 42 conos reemplazando<i class="demoText">contar</i>con 42 y poniendo el mando <code>poner_cono()</code> dentro del <code>for</code> ciclo bloque de código. Llamamos comandos en el bloque de código al <b>cuerpo</b> :</p>
+<p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>
+ <b>El código anterior es editable</b> . Intente cambiarlo para que coloque solo 15 conos .</p>
+<h3>Coincidencia de postcondiciones con condiciones previas</h3>
+<p>El ejemplo anterior da la impresión de que un <code>for</code> ciclo repite una sola línea de código. Sin embargo, el cuerpo del <code>for</code> ciclo (las declaraciones que se repiten) pueden tener varias líneas. Aquí hay un ejemplo de un programa que pone un cono en cada rincón de un mundo:</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Preste mucha atención a la forma en que el programa fluye a través de estas declaraciones de control. El programa run s mediante el conjunto de comandos en el <code>for</code> ciclo cuerpo de uno en uno. Repite el cuerpo cuatro veces.</p>
+<p>Quizás la parte más complicada de escribir un ciclo es que necesitas el estado del mundo al final del ciclo (el <b>postcondición</b> ) para ser un estado válido del mundo para el inicio del ciclo (el <b>condición previa</b> ). En el ejemplo anterior, las suposiciones coinciden. Buenos tiempos. Al comienzo de ciclo , Karel siempre está en un cuadrado sin conos frente a la siguiente esquina vacía. ¿Qué pasa si eliminas el <code>girar_izquierda()</code> al final del ciclo ? La Karel al final de la primera iteración ya no satisfaría las suposiciones hechas sobre Karel frente a la siguiente esquina vacía. El código es editable. Intente eliminar el <code>girar_izquierda()</code> Manda a ver qué pasa!</p>
+<h3>Bucles anidados</h3>
+<p>Técnicamente, el cuerpo de un <code>for</code> ciclo puede contener cualquier código de flujo de control, incluso otros ciclo s. A continuación se muestra un ejemplo de <code>for</code> ciclo que repite una llamada a una función que también tiene un <code>for</code> ciclo . A esto lo llamamos ciclo "anidado". Intente leer el programa y comprender lo que hace antes de ejecutando :
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

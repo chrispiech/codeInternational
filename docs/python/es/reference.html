@@ -1,0 +1,186 @@
+<html><head>
+
+<title>Karel Lector</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head><body><!-- container --><div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter1.html">1 - Conoce Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter3.html">3 - Nuevas funciones</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter9.html">9 - Funciones adicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content --><div class="bookContent" style="display: flex;"><!-- right gutter --><div style="flex-grow:1;max-width:50px;"></div><!-- main stuff --><div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px"><div class="row"><div class="col-md-12 col-xs-12">
+
+
+<h1>Referencia</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>Este apéndice define la estructura del Karel programación Karel en una sola página.</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>La base Karel ordena:</b> 
+<p class="refCode">
+ <code>moverse()</code> <br/>
+ <code>girar_izquierda()</code> <br/>
+ <code>poner_cono()</code> <br/>
+ <code>recoger_cono()</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>Karel estructuras del programa:</b> 
+<p class="refCode">
+ <code class="comment"># Los comentarios se pueden incluir en cualquier parte<br/>
+# de un programa. Empiezan con #<br/>
+# e incluya el resto de la línea.<br/></code> 
+<br/>
+ <code><span class="keyword">def</span> main() :</code> <br/>
+ <code>   </code> <i class="demoText">código para ejecutar</i><br/>
+<br/>
+<i class="demoText">declaraciones de otras funciones</i><br/>
+</p></div>
+<div class="refCel bordered">
+ <b>Nombres de las condiciones:</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>frente_despejado()</code> <br/>
+ <code>conos_presente()</code> <br/>
+ <code>conos_en_bolsa()</code> <br/>
+ <code>izquierda_despejado()</code> <br/>
+ <code>la_derecha_es_clara()</code> <br/>
+ <code>mirando_al_norte()</code> <br/>
+ <code>orientado_al_sur()</code> <br/>
+ <code>mirando_al_este()</code> <br/>
+ <code>mirando_al_oeste()</code> <br/>
+</div>
+<div class="refCol">
+ <code>frente_bloqueado()</code> 
+ <code>no_conos_presente()</code> <br/>
+ <code>no_conos_en_bolsa()</code> <br/>
+ <code>izquierda_bloqueada()</code> <br/>
+ <code>la_derecha_está_bloqueada()</code> <br/>
+ <code>no_mirando_al_norte()</code> <br/>
+ <code>no_orientado_al_sur()</code> <br/>
+ <code>no_mirando_al_este()</code> <br/>
+ <code>no_mirando_al_oeste()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Condiciones:</b> 
+<p class="refCode"> <code><span class="keyword">if</span> </code> <i class="demoText">condición</i> <code>:</code> <br/><i class="demoText" style="margin-left:2em">código run si la condición pasa</i></p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span> </code> <i class="demoText">condición</i> <code>:</code> <br/><i class="demoText" style="margin-left:2em">bloque de código para "sí"</i><br/> <code><span class="keyword">else</span>:</code> <br/><i class="demoText" style="margin-left:2em">bloque de código para "no"</i></p>
+</div>
+<div class="refCel bordered">
+ <b>Bucles</b> 
+<p class="refCode"> <code><span class="keyword">for</span> i in range(</code>  <i class="demoText">contar</i> <code>):</code> <br/><i class="demoText" style="margin-left:2em">código para repetir</i></p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span> </code> <i class="demoText">condición</i> <code>:</code> <br/><i class="demoText" style="margin-left:2em">código para repetir</i></p>
+</div>
+<div class="refCel bordered">
+ <b>Declaración de función:</b> 
+<p class="refCode"> <code><span class="keyword">def</span></code> <i class="demoText" style="margin-left:10px">nombre</i> <code>():</code> <br/><i class="demoText" style="margin-left:2em">código en el cuerpo de la función.</i><br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Comandos adicionales Karel :</b> 
+<p class="refCode">
+ <code>paint_corner(</code> <i class="demoText">NOMBRE_DEL_COLOR</i> <code>)</code> <br/>
+ <code>corner_color_is(</code> <i class="demoText">NOMBRE_DEL_COLOR</i> <code>)</code> <br/>
+</p>
+<div style="height:40"></div>
+</div>
+</div>
+</div>
+<!--
+-->
+
+<hr/>
+
+
+
+
+
+<div style="height:60px"></div>
+</div></div></div><!-- right gutter --><div style="flex-grow:4"></div></div></div></body></html>

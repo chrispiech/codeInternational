@@ -1,0 +1,611 @@
+
+<html>
+<head>
+
+<title>قارئ كاريل</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ar/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> كاريل</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter1.html">1 - تعرف على كاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter2.html">2 - البرمجة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter3.html">3 - طرق جديدة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter4.html">4 - التحلل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter5.html">5 - دورات For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter6.html">6 - دورات While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter7.html">7 - الشرطية</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter8.html">8 - الصقل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter9.html">9 - سوبركاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/reference.html">10 - المرجع</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/ide.html">11 - الرمز</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> أعرف أكثر</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>الفصل 6: دورات While</h1>
+<hr/>
+<p>إن تقنية تعريف الطرق الجديدة وتعريف دورات for - كما هي مفيدة - لا تمكن كاريل من حل أي مشاكل جديدة. في كل مرة تقوم فيها ببرنامج run ، فإنه دائمًا ما يفعل نفس الشيء تمامًا. تصبح البرامج أكثر فائدة عندما تتمكن من الاستجابة بشكل مختلف لمدخلات مختلفة.</p>
+<p>كمثال. دعنا كاريل أنك تريد أن تكتب برنامجًا ليكون لديك كاريل move على الحائط. لكنك لا تريد ببساطة أن يعمل هذا البرنامج على عالم واحد بحجم ثابت. كنت ترغب في كتابة برنامج واحد يمكن أن تعمل على أي عالم.</p>
+
+
+
+
+
+<div class="section embeddedIde" id="moveToWall">
+<div class="ide getStarted" id="moveToWallIde" style="height:334.40000000000003px">
+<div class="ideCenter" id="moveToWallIdeCenter">
+<div class="ideEditorDiv" id="moveToWallEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="moveToWallCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">تغيير العالم<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="moveToWallWorlds">
+<li><a>1X1</a> </li>
+<li><a>4X4</a> </li>
+<li><a>3X6</a> </li>
+<li><a>7X7</a> </li>
+<li><a>8X8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="moveToWallCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="moveToWallRunButton"><span class="glyphicon glyphicon-play"></span>نفذ البرنامج</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplemoveToWall() {
+STARTER_CODE = `
+
+/*
+ * ملف: نقل إلىالجدار. java
+ * -----------------------
+ * يستخدم "بينما" دورة إلى move كاريل حتى تصل إلى الح
+ * ائط. يعمل على أي عالم الحجم.
+ */
+import stanford.كاريل.*;
+public class Moveإلىالجدار extends كاريل {
+   public void run() {
+      moveإلىالجدار();
+   }
+
+   /* هذه طريقة مفيدة للغاية */
+   private void moveإلىالجدار() {
+      while(frontIsClear()) {
+         move();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('moveToWallEditor','moveToWallEditorDiv', STARTER_CODE, false);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('moveToWallCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'ar');
+    $('#moveToWallRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('moveToWallWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#moveToWallRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#moveToWallRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#moveToWall").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('moveToWallIde');
+    var editorDiv = document.getElementById('moveToWallEditorDiv');
+    var canvas = document.getElementById('moveToWallCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplemoveToWall();
+    </script>
+</div>
+
+<p>حاول تغيير العالم بالنقر فوق القائمة المنسدلة "تغيير العالم" أعلى العالم. لأي عالم بحجم ، كاريل سوف move حتى تصل إلى الحائط. لاحظ أن هذا العمل الفذ لا يمكن أن يكون acomplished باستخدام <code class="keyword">for</code> دورة . وهذا يتطلب منا أن نعرف حجم العالم في وقت البرمجة.</p>
+<h3>الأساسية بينما حلقة</h3>
+<p>في كاريل ، <code class="keyword">while</code> يتم استخدام دورة لتكرار نص التعليمات البرمجية<i>طالما</i>شرط معين يحمل. while دورة لديه الشكل العام التالي:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">اختبار</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">البيانات لتكرارها</i><br/>
+ <code>}</code> 
+</p>
+<p>التحكم في التدفق من while دورة هو على النحو التالي. عندما يصل البرنامج إلى while دورة ، يبدأ في تكرار عملية حيث أولًا<i>الشيكات</i>إذا نجح الاختبار ، وإذا كان الأمر كذلك<i>run ق</i>الرمز في الجسم.</p>عند البرنامج<i>الشيكات</i>إذا نجح الاختبار ، فإنه يقرر ما إذا كان<i class="demoText">اختبار</i>هذا صحيح للحالة الراهنة في العالم. إذا كان الأمر كذلك ، فإن دورة سوف run رمز في الجسم. إذا فشل الاختبار ، فإن دورة قد انتهى والبرنامج move ق على.
+<p>عند البرنامج<i>run ق</i>جسم دورة ، ينفذ البرنامج الخطوط في الجسم واحدة تلو الأخرى. عندما يصل البرنامج في نهاية while دورة ، ينتقل مرة أخرى إلى الجزء العلوي من دورة . ثم يعيد فحص الاختبار ، ويستمر حتى دورة إذا دورة . لا يخرج البرنامج من دورة حتى يتم التحقق منه ، وفشل الاختبار.</p>
+<p>كاريل لديه الكثير<i class="demoText">اختبار</i>البيانات ، وسنتجاوز كل منهم في الفصل التالي. في الوقت الحالي ، سنستخدم عبارة اختبار واحدة: <code>frontIsClear()</code> وهذا صحيح إذا لم يكن هناك جدار أمام كاريل مباشرة.</p>
+<h3>علة فينسبوست</h3>
+<p>دعونا تعديل برنامجنا أعلاه لجعله أكثر إثارة للاهتمام. بدلاً من مجرد الانتقال إلى الحائط ، ضع كاريل على خط مخروط ثانية ، واحد في كل مربع. مرة أخرى ، نريد أن يعمل هذا البرنامج من أجل عالم من أي حجم:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLineBug1">
+<div class="ide getStarted" id="beeperLineBug1Ide" style="height:352.0px">
+<div class="ideCenter" id="beeperLineBug1IdeCenter">
+<div class="ideEditorDiv" id="beeperLineBug1EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineBug1CanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">تغيير العالم<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineBug1Worlds">
+<li><a>1X1</a> </li>
+<li><a>4X4</a> </li>
+<li><a>3X6</a> </li>
+<li><a>7X7</a> </li>
+<li><a>8X8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineBug1Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineBug1RunButton"><span class="glyphicon glyphicon-play"></span>نفذ البرنامج</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLineBug1() {
+STARTER_CODE = `
+
+/*
+ * ملف: مخروطخطعلة
+ * --------------
+ * يستخدم while دورة لوضع خط مخروط s. هذا البرنامج يع
+ * مل من أجل عالم من أي حجم. ومع ذلك ، لأن كل عالم يت
+ * طلب move ثانية واحدة أقل من putBeeper ثانية ، فإنه
+ * يفتقد دائمًا إلى مخروط .
+ */
+import stanford.كاريل.*;
+public class مخروطخطعلة extends كاريل {
+   public void run() {
+   	  /* يكرر حتى كاريل يواجه الجدار */
+      while(frontIsClear()) {
+      	 /* ضع مخروط على الساحة الحالية */ 
+         putBeeper();
+      	 /* move إلى المربع التالي */
+         move();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineBug1Editor','beeperLineBug1EditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineBug1Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'ar');
+    $('#beeperLineBug1RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineBug1Worlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineBug1RunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineBug1RunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 352.0;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLineBug1").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineBug1Ide');
+    var editorDiv = document.getElementById('beeperLineBug1EditorDiv');
+    var canvas = document.getElementById('beeperLineBug1CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLineBug1();
+    </script>
+</div>
+
+<p>هذا يبدو عظيما. باستثناء مشكلة واحدة. على كل عالم كاريل لا مكان مخروط على آخر مربع من الخط (ننظر عن كثب). عندما يكون كاريل في المربع الأخير ، لا ينفذ البرنامج جسم دورة لأن الاختبار لم يعد يمر - يواجه كاريل جدارًا. قد يكون لديك إغراء لمحاولة تبديل ترتيب الجسم بحيث كاريل move ثانية قبل وضع البيرة. الكود قابل للتحرير ، لذا حاول تجربته!</p>
+<p>هناك مشكلة أعمق لا يمكن لأي إعادة ترتيب للجسم حلها. بالنسبة للعالم الذي كاريل 7 أعمدة ، يحتاج كاريل إلى وضع 7 مخروط ثانية ، ولكن يجب فقط move 6 مرات. نظرًا لأن while دورة ينفذ كلا الخطين عند اجتياز الاختبار ، فكيف يمكنك الحصول على البرنامج لتنفيذ أمر واحد مرة أخرى أكثر من الآخر؟</p>
+<p>الخطأ في هذا البرنامج هو مثال على مشكلة في البرمجة تسمى a <b>خطأ فينسبوست</b> . يأتي الاسم من حقيقة أنه إذا كنت ترغب في بناء سياج مصنوع من اللوحات التي تحتوي على منشور سياج واحد على أي من الحجمين ، يكون عدد منشورات السياج دائمًا واحد أكبر من عدد الأجزاء. كم عدد وظائف السياج ، على سبيل المثال ، هل تحتاج إلى بناء سياج مع 10 لوحات؟ الجواب هو 11 ، كما يتضح من المخطط التالي:</p>
+<center>
+<img src="../../images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>بمجرد اكتشافه ، يصبح إصلاح هذا الخطأ في الواقع أمرًا سهلاً للغاية. قبل توقف كاريل في نهاية العالم ، كل ما يجب على البرنامج فعله هو وضع مخروط نهائيًا:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLine">
+<div class="ide getStarted" id="beeperLineIde" style="height:352.0px">
+<div class="ideCenter" id="beeperLineIdeCenter">
+<div class="ideEditorDiv" id="beeperLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">تغيير العالم<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineWorlds">
+<li><a>1X1</a> </li>
+<li><a>4X4</a> </li>
+<li><a>3X6</a> </li>
+<li><a>7X7</a> </li>
+<li><a>8X8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineRunButton"><span class="glyphicon glyphicon-play"></span>نفذ البرنامج</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLine() {
+STARTER_CODE = `
+
+/*
+ * ملف: خطمخروط
+ * -----------
+ * يستخدم "بينما" دورة لوضع خط مخروط ثانية. هذا البرن
+ * امج يعمل من أجل عالم من أي حجم.
+ */
+import stanford.كاريل.*;
+public class خطمخروط extends كاريل {
+   public void run() {
+      /* يكرر حتى كاريل يواجه الجدار */
+      while(frontIsClear()) {
+         /* ضع مخروط على الساحة الحالية */ 
+         putBeeper();
+         /* move إلى المربع التالي */
+         move();
+      }
+      /* يحل علة آخر السياج */
+      putBeeper();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineEditor','beeperLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.8, 'ar');
+    $('#beeperLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 352.0;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineIde');
+    var editorDiv = document.getElementById('beeperLineEditorDiv');
+    var canvas = document.getElementById('beeperLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLine();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter7.html" role="button">الفصل التالي</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

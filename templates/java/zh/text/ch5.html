@@ -1,0 +1,45 @@
+<h1>第5章：循环</h1>
+<hr/>
+<p>计算机特别擅长的一件事就是重复。我们怎样才能说服Karel多次执行一段代码？要了解如何使用重复，请考虑放置42 锥体的任务：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>基本的循环</h3>
+<p>既然您知道要放置42个锥体 ，那么您需要的控制语句是a <b>for循环</b> ，指定您要重复一些操作固定次数。 for语句的结构看起来很复杂，主要是因为它实际上比Karel需要的任何东西都强大得多。 Karel使用的for语法的唯一版本是：</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">计数</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">要重复的陈述</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">我们将在后面的课程中详细介绍for循环的所有细节。现在你应该阅读这一行来表达，“重复大括号之间的陈述<i class="demoText">计数</i>时间。“我们可以使用这个新的 <b>for循环</b> 通过替换来放置42 锥体 s<i class="demoText">计数</i>用42并输入命令 <code>putBeeper()</code> 在for循环代码块中。我们在代码块中调用命令 <b>身体</b> ：</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>上面的代码是可编辑的。尝试更改它，使其仅放置15 锥体 s。</p>
+<h3>匹配后置条件与前提条件</h3>
+<p>前面的示例给出了for循环重复单行代码的印象。然而，for循环的主体（重复的语句）可以是多行。以下是将锥体置于世界每个角落的程序示例：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>密切关注程序流经这些控制语句的方式。程序run一个地通过for循环体中的命令集。它重复身体四次。</p>
+<p>也许编写循环最复杂的部分是你需要循环结束时的世界状态（ <b>后置条件</b> ）作为循环开始的世界的有效状态（ <b>前提</b> ）。在上面的例子中，假设是匹配的。美好时光。在循环开始时，卡雷尔总是在一个正方形，没有锥体秒面向下一个空角。如果你在循环结束时删除了转左怎么办？第一次迭代结束时的后置条件将不再满足卡雷尔面临下一个空角的假设。代码是可编辑的。尝试删除 <code>turnLeft();</code> 命令看看会发生什么！</p>
+<h3>嵌套循环</h3>
+<p>技术上，for循环的主体可以包含任何控制流代码，甚至是其他循环。下面是一个for循环的示例，它重复调用一个也有for循环的方法。我们称之为“嵌套”循环。在run之前尝试阅读该程序，并了解它的作用：
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

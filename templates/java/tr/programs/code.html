@@ -1,0 +1,46 @@
+
+<%
+  codePath = 'templates/'+progLang+'/'+lang+'/text/code/'+name+'.java'
+  nLines = sum(1 for line in open(codePath))
+  editorHeight = 17.6 * nLines
+  setdefault('isEditable', 'false')
+  print(editorHeight)
+%>
+
+    
+
+<div style="height:{{editorHeight}}px; width:600px;">
+<div class="ideEditorDiv" id="{{name}}EditorDiv" style="width:600px;height: inherit;">
+</div>
+</div>
+<script>
+
+        
+
+function example{{name}}() {
+STARTER_CODE = `
+
+<%
+  include(codePath)
+%>
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+  console.log('main')
+  console.log(STARTER_CODE)
+   karelEditor = importEditorCode('{{name}}Editor','{{name}}EditorDiv', STARTER_CODE, {{isEditable}});
+    
+ }
+
+ main()
+ 
+}
+example{{name}}();
+</script>

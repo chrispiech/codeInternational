@@ -1,0 +1,325 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ms/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter1.html">1 - Bertemu Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter2.html">2 - Pengaturcaraan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter3.html">3 - Kaedah Baru</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter4.html">4 - Penguraian</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter5.html">5 - Untuk Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter6.html">6 - Semasa Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter7.html">7 - Keadaan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter8.html">8 - Penghalusan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/reference.html">10 - Rujukan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Ketahui lebih lanjut</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Bab 4: Penguraian</h1>
+<hr/>
+<p>Sebagai cara menggambarkan lebih banyak kuasa yang datang dengan dapat mentakrifkan kaedah baru, berguna untuk membuat Karel melakukan sesuatu yang lebih praktikal daripada move beeper dari satu tempat ke tempat lain. Jalan raya sering sepertinya memerlukan pembaikan, dan ia mungkin menjadi keseronokan untuk melihat jika Karel dapat mengisi lubang di dunia abstraknya. Sebagai contoh, bayangkan bahawa Karel berdiri di "jalan" yang ditunjukkan dalam gambar sebelah kiri, satu sudut di sebelah kiri sebuah lubang di jalan. Tugas Karel adalah untuk mengisi lubang dengan beeper dan meneruskan ke sudut seterusnya. Rajah di sebelah kanan menggambarkan bagaimana dunia harus menjaga pelaksanaan program.</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Sebelum:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Selepas:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'pothole', 0.0, 'ms',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'potholeGoal',0.0, 'ms',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<p>Sekiranya anda terhad kepada empat arahan yang telah ditetapkan, kaedah run untuk menyelesaikan masalah ini akan kelihatan seperti ini:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Motivasi awal untuk menentukan kaedah belokKanan adalah bahawa ia adalah rumit untuk terus mengulang tiga perintah belokKiri untuk mencapai giliran yang betul. Mendefinisikan kaedah baru mempunyai satu lagi tujuan penting di luar membolehkan anda untuk mengelakkan mengulang urutan perintah yang sama setiap kali anda ingin melaksanakan tugas tertentu. Kuasa untuk menentukan kaedah membuka kunci strategi yang paling penting dalam pengaturcaraan - proses memecahkan masalah besar ke dalam kepingan yang lebih kecil yang lebih mudah untuk dipecahkan. Proses memecah program ke dalam bahagian kecil dipanggil penguraian, dan bahagian komponen masalah besar dipanggil subproblem.</p>
+<p>Sebagai contoh, masalah mengisi lubang di jalan raya boleh diuraikan ke dalam subproblem berikut:</p>
+<ol>
+<li>Bergerak ke lubang<li>Isikan lubang dengan menjatuhkan beeper ke dalamnya<li>Pindah ke sudut seterusnya</li></li></li></ol>
+<p>Jika anda berfikir tentang masalah dengan cara ini, anda boleh menggunakan definisi kaedah untuk membuat program yang mencerminkan konsep anda tentang struktur program. Kaedah run akan kelihatan seperti ini:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">mengisiLubang();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Koresponden dengan garis besarnya segera jelas, dan segala-galanya akan menjadi hebat jika hanya anda yang boleh mendapatkan Karel untuk memahami apa yang anda maksud dengan mengisiLubang. Memandangkan kuasa untuk menentukan kaedah, pelaksanaan mengisiLubang sangat mudah. Apa yang anda perlu lakukan ialah menentukan kaedah mengisiLubang yang badannya terdiri daripada arahan yang telah anda tulis untuk melakukan kerja seperti ini:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> mengisiLubang() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Berikut adalah program lengkap. Perhatikan bagaimana anda boleh memahami maksud pengaturcara semata-mata dari membaca kaedah run . Apabila anda run program itu, penonjolan garis menunjukkan bagaimana komputer akan melaksanakannya, langkah demi langkah. Walau bagaimanapun, kerana program ini dipecahkan dengan baik, kita dapat memahaminya pada tahap pemikiran manusia:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="pothole">
+<div class="ide getStarted" id="potholeIde" style="height:668.8000000000001px">
+<div class="ideCenter" id="potholeIdeCenter">
+<div class="ideEditorDiv" id="potholeEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="potholeCanvasDiv">
+<canvas class="ideCanvas" id="potholeCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span>Jalankan Program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+
+import stanford.karel.*;
+public class PengisiKarelKarel extends Karel {
+   public void run() {
+      move();
+      mengisiLubang();
+      move();
+   }
+
+   /**
+    * Mengisi lubang di bawah kedudukan semasa Karel den
+    * gan meletakkan beeper pada sudut itu. Untuk kaedah
+    * ini berfungsi dengan betul, Karel mesti menghadap
+    * ke timur tepat di atas lubang. Apabila pelaksanaa
+    * n selesai, Karel akan kembali ke dataran yang sama
+    * dan akan menghadapi lagi timur.
+    */
+   private void mengisiLubang() {
+      turnRight();
+      move();
+      putBeeper();
+      turnAround();
+      move();
+      turnRight();
+   } 
+
+   /** Menghidupkan Karel 90 darjah ke kanan. */
+   public void turnRight() {
+      turnLeft();
+      turnLeft();
+      turnLeft();
+   }
+
+   /** Menghidupkan Karel sekitar 180 darjah. */
+   public void turnAround() {
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'pothole', 0.0, 'ms');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 668.8000000000001;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter5.html" role="button">Bab seterusnya</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

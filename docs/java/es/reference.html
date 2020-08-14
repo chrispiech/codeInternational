@@ -1,0 +1,191 @@
+<html><head>
+
+<title>Lector Karel</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head><body><!-- container --><div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter1.html">1 - Cumplir Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter3.html">3 - Nuevos métodos</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter9.html">9 - Super Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Aprende más</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content --><div class="bookContent" style="display: flex;"><!-- right gutter --><div style="flex-grow:1;max-width:50px;"></div><!-- main stuff --><div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px"><div class="row"><div class="col-md-12 col-xs-12">
+
+
+<h1>Referencia</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>Este apéndice define la estructura del Karel programación Karel en una sola página.</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Base Karel commnds:</b> 
+<p class="refCode">
+ <code>moverse();</code> <br/>
+ <code>girarIzquierda();</code> <br/>
+ <code>ponerCono();</code> <br/>
+ <code>recogerCono();</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>Karel estructuras del programa:</b> 
+<p class="refCode">
+ <code class="comment">/* Los comentarios pueden ser incluidos en cualquier parte.<br/>
+ * de a programa. Ellos comienzo con a barra_oblicua-estrella<br/>
+ * and end with a star-slash.<br/>
+ */<br/></code> 
+ <code><span class="keyword">public class</span> <i class="demoText">nombre</i> <span class="keyword">extends</span> SuperKarel {</code> <br/>
+<br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      </code> <i class="demoText">código para ejecutar</i><br/>
+ <code>   }</code> <br/>
+<br/>
+ <code>   </code> <i class="demoText">Declaraciones de métodos privados.</i><br/>
+ <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Nombres de las condiciones:</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>frenteDespejado()</code> <br/>
+ <code>conosPresentes()</code> <br/>
+ <code>bolsaConConos()</code> <br/>
+ <code>izquierdaDespejada()</code> <br/>
+ <code>derechaDespejada()</code> <br/>
+ <code>rumboNorte()</code> <br/>
+ <code>rumboSur()</code> <br/>
+ <code>rumboEste()</code> <br/>
+ <code>rumboOeste()</code> <br/>
+</div>
+<div class="refCol">
+ <code>frenteBloqueado()</code> 
+ <code>conosAusentes()</code> <br/>
+ <code>bolsaSinConos()</code> <br/>
+ <code>izquierdaBloqueada()</code> <br/>
+ <code>derechaBloqueada()</code> <br/>
+ <code>sinRumboNorte()</code> <br/>
+ <code>sinRumboSur()</code> <br/>
+ <code>sinRumboEste()</code> <br/>
+ <code>sinRumboOeste()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Condiciones:</b> 
+<p class="refCode"> <code><span class="keyword">if</span>(</code> <i class="demoText">condición</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">código run si la condición pasa</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span>(</code> <i class="demoText">condición</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">bloque de código para "sí"</i><br/> <code>} <span class="keyword">else</span> {</code> <br/><i class="demoText" style="margin-left:2em">bloque de código para "no"</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Bucles</b> 
+<p class="refCode"> <code><span class="keyword">for</span>(int i = 0; i &lt;</code>  <i class="demoText">contar</i> <code>; i++){</code> <br/><i class="demoText" style="margin-left:2em">código para repetir</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span>(</code> <i class="demoText">condición</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">código para repetir</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Declaración del método:</b> 
+<p class="refCode"> <code><span class="keyword">private void</span></code> <i class="demoText" style="margin-left:10px">nombre</i> <code>() {</code> <br/><i class="demoText" style="margin-left:2em">Código en el cuerpo del método.</i><br/> <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Super Karel comandos adicionales:</b> 
+<p class="refCode">
+ <code>girarDerecha();</code> <br/>
+ <code>mediaVeulta();</code> <br/>
+ <code>aleatorio(</code> <i class="demoText">pag</i> <code>);</code> <br/>
+ <code>pintarEsquina(</code> <i class="demoText">color</i> <code>);</code> <br/>
+</p>
+</div>
+</div>
+</div>
+<!--
+-->
+
+<hr/>
+
+
+
+
+
+<div style="height:60px"></div>
+</div></div></div><!-- right gutter --><div style="flex-grow:4"></div></div></div></body></html>

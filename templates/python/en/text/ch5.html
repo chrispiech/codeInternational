@@ -1,0 +1,62 @@
+<h1>Chapter 5: For Loops</h1>
+<hr/>
+<p>
+One of the things that computers are especially good at is repetition. How can we convince Karel to execute a block of code multiple times?
+	To see how repetition can be used, consider the task of placing 42 beepers:
+</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+<h3>Basic For Loop</h3>
+
+<p>
+Since you know that there are exactly 42 beepers to place, the control statement that you need is a <b>for loop</b>, which specifies that you want to repeat some operation a fixed number of times. The structure of the <code>for</code> statement appears complicated primarily because it is actually much more powerful than anything Karel needs. The only version of the <code>for</code> syntax that Karel uses is:
+</p>
+
+	<p class="demoCode">
+<code>for i in range(</code><i class="demoText">count</i><code>):</code><br/>
+   <i style="margin-left:2em">statements to be repeated</i><br/>
+</p>
+
+<p class="mb-20">We will go over all the details of the <code>for</code> loop later in the class. For now you should read this line as a way to express, "repeat the statements in the function body <i class="demoText">count</i> times."
+
+We can use this new <b>for loop</b> to place 42 beepers by replacing <i class="demoText">count</i> with 42 and putting the command <code>put_beeper()</code> inside of the <code>for</code> loop code block. We call commands in the code block the <b>body</b>:
+</p>
+
+<p >
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+<p>
+	<b>The code above is editable</b>. Try to change it so that it places only 15 beepers.
+	</p>
+
+<h3>Matching Postconditions with Preconditions</h3>
+
+<p>
+The previous example gives the impression that a <code>for</code> loop repeats a single line of code. However the body of the <code>for</code> loop (the statements that get repeated) can be multiple lines. Here is an example of a program that puts a beeper in each corner of a world:
+</p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+<p>
+Pay very close attention to the way that the program flows through these control statements. The program runs through the set of commands in the <code>for</code> loop body one at a time. It repeats the body four times.
+</p>
+
+<p>
+Perhaps the single most complicated part of writing a loop is that you need the state of the world at the end of the loop (the <b>postcondition</b>) to be a valid state of the world for the start of the loop (the <b>precondition</b>). In the above example the assumptions match. Good times. At the start of the loop, Karel is always on a square with no beepers facing the next empty corner. What if you deleted the <code>turn_left()</code> at the end of the loop? The postcondition at the end of the first iteration would no longer satisfy the assumptions made about Karel facing the next empty corner. The code is editable. Try deleting the <code>turn_left()</code> command to see what happens!
+</p>
+
+<h3>Nested Loops</h3>
+
+<p>
+Technically the body of a <code>for</code> loop can contain any control flow code, even other loops. Here is an example of a <code>for</code> loop that repeats a call to a function which also has a <code>for</code> loop. We call this a "nested" loop. Try to read through the program, and understand what it does, before running it:
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+</p>

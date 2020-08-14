@@ -1,0 +1,324 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/cs/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter1.html">1 - Seznamte se s Karlem</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter2.html">2 - Programování</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter3.html">3 - Nové metody</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter4.html">4 - Rozklad</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter5.html">5 - Pro smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter6.html">6 - Zatímco smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter7.html">7 - Podmíněné podmínky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter8.html">8 - Zpřesnění</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/reference.html">10 - Odkaz</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/ide.html">11 - Kód</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Další informace</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Kapitola 4: Rozklad</h1>
+<hr/>
+<p>Jako způsob, jak ilustrovat více síly, která přichází s možností definovat nové metody, je užitečné, aby Karel udělal něco o něco praktičtějšího než move a kuzel z jednoho místa na druhé. Zdá se, že vozovky často potřebují opravu a může být zábavné zjistit, zda Karel může zaplnit výmoly ve svém abstraktním světě. Představte si například, že Karel stojí na „silnici“ zobrazené na levém obrázku, jeden roh vlevo od výmoly na silnici. kuzel prací je zaplnit díru kuzel a přejít k dalšímu rohu. Diagram vpravo ukazuje, jak by se měl svět starat o provádění programu.</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Před:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Po:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'pothole', 0.0, 'cs',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'potholeGoal',0.0, 'cs',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<p>Pokud jste omezeni na čtyři předdefinované příkazy, metoda run k vyřešení tohoto problému bude vypadat takto:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Počáteční motivací pro definování metody odbočitVpravo bylo, že bylo těžkopádné opakovat tři příkazy odbočitVlevo k dosažení správného obratu. Definování nových metod má další důležitý účel, kromě toho, abyste se vyhnuli opakování stejných příkazových sekvencí pokaždé, když chcete provést určitý úkol. Síla definovat metody odemkne nejdůležitější strategii v programování - proces rozbití velkého problému na menší kousky, které se snadněji řeší. Proces rozbití programu na menší kousky se nazývá rozklad a součásti velkého problému se nazývají subproblémy.</p>
+<p>Jako příklad lze uvést, že problém vyplnění díry v vozovce lze rozložit na následující podústavy:</p>
+<ol>
+<li>Přesuňte se nahoru k díře<li>Naplňte díru tím, že do ní kuzel<li>Přejděte na další roh</li></li></li></ol>
+<p>Pokud o tomto problému přemýšlíte tímto způsobem, můžete použít definice metod k vytvoření programu, který bude odrážet vaši koncepci struktury programu. Metoda run by vypadala takto:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">výplň();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Korespondence s obrysem je okamžitě jasná a všechno by bylo skvělé, kdybyste Karla dokázala pochopit, co znamená výplň. Vzhledem k moci definovat metody je implementace výplň velmi jednoduchá. Jediné, co musíte udělat, je definovat výplňovou metodu, jejíž tělo se skládá z příkazů, které jste již napsali, abyste tuto práci provedli:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> výplň() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Zde je kompletní program. Všimněte si, jak můžete pochopit, že programátoři run jednoduše číst metodu run . Když program run , zvýraznění řádku ukazuje, jak počítač provede, krok za krokem. Protože je však program pěkně členěn, můžeme ho chápat na úrovni lidského myšlení:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="pothole">
+<div class="ide getStarted" id="potholeIde" style="height:651.2px">
+<div class="ideCenter" id="potholeIdeCenter">
+<div class="ideEditorDiv" id="potholeEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="potholeCanvasDiv">
+<canvas class="ideCanvas" id="potholeCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+
+import stanford.karel.*;
+public class VýplňNaplňujícíKarel extends Karel {
+   public void run() {
+      move();
+      výplň();
+      move();
+   }
+
+   /**
+    * Vyplní díru pod současnou pozicí Karla umístěním k
+    * uzel na tento roh. Aby tato metoda fungovala správ
+    * ně, musí být Karel otočen na východ těsně nad výti
+    * skem. Když bude poprava dokončena, Karel se vrátí
+    * na stejné náměstí a bude opět směřovat na východ.
+    */
+   private void výplň() {
+      turnRight();
+      move();
+      putBeeper();
+      turnAround();
+      move();
+      turnRight();
+   } 
+
+   /** Otočí Karla o 90 stupňů doprava. */
+   public void turnRight() {
+      turnLeft();
+      turnLeft();
+      turnLeft();
+   }
+
+   /** Otočí Karla o 180 stupňů. */
+   public void turnAround() {
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'pothole', 0.0, 'cs');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 651.2;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter5.html" role="button">Další kapitola</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

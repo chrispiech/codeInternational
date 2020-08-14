@@ -1,0 +1,45 @@
+<h1>第5章：循环</h1>
+<hr/>
+<p>计算机特别擅长的一件事是重复。我们如何说服Karel多次执行代码块？若要查看如何使用重复，请考虑放置42 锥体 s的任务：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>基本的循环</h3>
+<p>由于您知道确切要放置42 锥体 s，因此您需要的控制语句是 <b>for循环</b> ，它指定您要重复执行固定次数的操作。的结构 <code>for</code> 声明看起来很复杂，主要是因为它实际上比Karel所需的功能强大得多。的唯一版本 <code>for</code> 卡雷尔使用的语法是：</p>
+<p class="demoCode">
+ <code>for i in range(</code> <i class="demoText">计数</i> <code>):</code> <br/>
+<i style="margin-left:2em">要重复的陈述</i><br/>
+</p>
+<p class="mb-20">我们将详细介绍 <code>for</code> 在课程的后面循环。现在，您应该阅读此行，以表示“重复函数主体中的语句”。<i class="demoText">计数</i>次。”我们可以使用这个新 <b>for循环</b> 通过替换放置42 锥体 s<i class="demoText">计数</i>用42并输入命令 <code>放锥体()</code> 在里面 <code>for</code> 循环代码块。我们在代码块中调用命令 <b>身体</b> ：</p>
+<p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>
+ <b>上面的代码是可编辑的</b> 。尝试更改它，使其仅放置15 锥体 s。</p>
+<h3>匹配后置条件与前提条件</h3>
+<p>前面的示例给人的印象是 <code>for</code> 循环重复一行代码。但是身体 <code>for</code> 循环（被重复的语句）可以是多行。这是一个将锥体放入世界各个角落的程序示例：</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>密切注意程序在这些控制语句中的流动方式。程序run通过以下命令中的命令集 <code>for</code> 一次循环一个身体。它重复身体四次。</p>
+<p>编写循环的最复杂的部分也许就是您需要在循环结束时了解世界的状态（ <b>后置条件</b> ）作为循环开始的世界的有效状态（ <b>前提</b> ）。在上面的示例中，假设匹配。美好的时光。在循环开始时，Karel始终位于一个正方形，没有锥体面向下一个空角。如果您删除了 <code>turn_left()</code> 在循环结束时？第一次迭代结束时的后置条件将不再满足有关Karel面对下一个空角的假设。该代码是可编辑的。尝试删除 <code>turn_left()</code> 命令看看会发生什么！</p>
+<h3>嵌套循环</h3>
+<p>从技术上讲， <code>for</code> 循环可以包含任何控制流代码，甚至可以包含其他循环。这是一个例子 <code>for</code> 循环，重复调用也有一个 <code>for</code> 循环。我们将其称为“嵌套”循环。在run之前，请尝试通读该程序，并了解它的作用：
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

@@ -1,0 +1,102 @@
+<h1>Capítulo 8: Refinamiento paso a paso</h1>
+<hr/>
+<p>En gran medida, la programación es la ciencia de resolver problemas por computadora. Debido a que los problemas suelen ser difíciles, las soluciones y los programas que implementan esas soluciones también pueden ser difíciles. Para facilitar el desarrollo de esas soluciones, debe adoptar una metodología y disciplina que reduzca el nivel de esa complejidad a una escala manejable.</p>
+<p>En los primeros años de la programación, el concepto de informática como ciencia era más o menos un experimento de ilusiones. Nadie sabía mucho sobre programación en aquellos días y pocos la consideraban una disciplina de ingeniería en el sentido convencional. Sin embargo, a medida que la programación maduró, comenzó a surgir una disciplina de este tipo. La piedra angular de esa disciplina es el entendimiento de que la programación se realiza en un entorno social en el que los programadores deben trabajar juntos. Si ingresa a la industria, es casi seguro que será uno de los muchos programadores que trabajan para desarrollar un programa grande. Además, es casi seguro que ese programa main y requerirá main tenencia main más allá de su aplicación originalmente prevista. Alguien querrá que el programa incluya alguna característica nueva o funcione de alguna manera diferente. Cuando eso ocurre, un nuevo equipo de programadores debe entrar y realizar los cambios necesarios en los programas. Si los programas están escritos en un estilo individual con poca o ninguna similitud, lograr que todos trabajen juntos de manera productiva es extremadamente difícil.</p>
+<p>Para combatir este problema, los programadores comenzaron a desarrollar un conjunto de metodologías de programación que se denominan colectivamente. <b>Ingeniería de software</b> . El uso de buenas habilidades de ingeniería de software no solo facilita la lectura y comprensión de sus programas por parte de otros programadores, sino que también facilita la escritura de dichos programas en primer lugar. Uno de los avances metodológicos más importantes de la ingeniería de software es la estrategia de <b>diseño de arriba hacia abajo</b> o <b>refinamiento por etapas</b> , que consiste en resolver problemas partiendo del problema en su conjunto. Se divide todo el problema en pedazos y luego se resuelve cada uno, dividiéndolos aún más si es necesario. Esta estrategia de arriba hacia abajo se complementa con <b>prueba iterativa</b> donde se asegura de que las piezas más pequeñas de la solución estén funcionando antes de continuar.</p>
+<h3>Un ejercicio de refinamiento escalonado.</h3>
+<p>Para ilustrar el concepto de refinamiento paso a paso, enseñemos Karel a resolver un nuevo problema. Imagina que Karel ahora vive en un mundo que se parece a esto:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="world1", world="beeperTowers", canvasWidth="400", canvasRatio=0.8)
+%>
+
+
+<p>En cada una de las columnas, hay una torre de conos de altura desconocida, aunque algunas columnas (como la 7ª y la 9ª en el mundo de muestra) pueden estar vacías. El trabajo de Karel es recolectar todos los conos en cada una de estas torres, volver a colocarlos en la esquina más al este de la primera fila y luego regresar a su posición inicial. Por lo tanto, cuando Karel termine su trabajo en el ejemplo anterior, los 25 conos actualmente en las torres deben apilarse en la esquina de la novena columna y la primera fila, de la siguiente manera:</p>
+
+
+	<%
+  include('templates/python/'+lang+'/programs/world.html', name="world2", world="beeperTowersGoal", canvasWidth="400", canvasRatio=0.8)
+%>
+
+
+<p>Es importante destacar que puede suponer que Karel inicialmente<i>empieza</i>con cero conos en su bolsa. Cada cono recogido se agrega a su bolsa. Al poner conos en la esquina, Karel puede usar el <code>conos_en_bolsa()</code> prueba. También podemos suponer que las columnas no llegan hasta el muro más al norte.</p>
+<p>La clave para resolver este problema es descomponer el programa de la manera correcta, sin dejar de poder probar sobre la marcha. Esta tarea es más compleja que las otras que ha visto, lo que hace que elegir los subproblemas adecuados sea más importante para obtener una solución exitosa.</p>
+<h3>El principio del diseño de arriba hacia abajo.</h3>
+<p>La idea clave en el refinamiento gradual es que debe comenzar el diseño de su programa desde arriba, que se refiere al nivel del programa que es conceptualmente más alto y más abstracto. En este nivel, el problema de la torre cono se divide claramente en tres fases independientes. Primero, Karel tiene que recolectar todos los conos . En segundo lugar, Karel tiene que depositarlos en la última intersección. En tercer lugar, Karel tiene que volver a su posición Karel . Esta descomposición conceptual del problema sugiere que la <code>main()</code> La función para este programa tendrá la siguiente estructura:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+ <code>      recoger_todo_conos()</code> <br/>
+ <code>      soltar_todo_conos()</code> <br/>
+ <code>      volver_a_casa()</code> <br/>
+</p>
+<p>En este nivel, el problema es fácil de entender. Por supuesto, quedan algunos detalles en forma de funciones que aún no ha escrito. Aun así, es importante mirar cada nivel de la descomposición y convencerse de que, siempre que crea que las funciones que está a punto de escribir resolverán los subproblemas correctamente, entonces tendrá una solución al problema en su conjunto. .</p>
+<h3>Pruebas iterativas sobre la marcha</h3>
+<p>Ahora que ha definido la estructura del programa como un todo, es el momento de moverse en el primer subproblema, que consiste en recopilar todos los conos . Esta tarea es en sí misma más complicada que los simples problemas de los capítulos anteriores. Recoger todo el conos significa que tienes que recoger el conos en cada torre hasta llegar a la última esquina. El hecho de que necesite repetir una operación para cada torre sugiere que necesita un <code>while</code> ciclo aquí. los <code>while</code> ciclo repetirá el proceso de <code>recoger_una_torre()</code> y luego moviéndose.</p>
+<p> <b>Precaución:</b> Es peligroso tratar de escribir todo el programa sin <b>pruebas</b> a medida que avanza Si comete un error será difícil encontrar el error. Sabemos que vamos a repetir el proceso de recogida de una torre. Escribamos y <b>prueba</b> recogiendo una sola torre antes de que pongamos el <code>recoger_una_torre()</code> proceso en un ciclo for . Así<i>temporalmente</i>podemos comenzar con la siguiente definición de <code>recoger_todo_conos()</code> :</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> recoger_todo_conos() :</code> <br/>
+ <code class="comment">      # implementación temporal con fines de prueba</code> <br/>
+ <code>      recoger_una_torre()</code> <br/>
+ <code>      moverse()</code> <br/>
+</p>
+<p>Como principio rector, si tiene un ciclo complejo, pruebe el<i>cuerpo</i>del ciclo antes de escribir el ciclo completo.</p>
+<h3>Torre de recogida de refinamiento</h3>
+<p>Cuando <code>recoger_una_torre()</code> se llama, Karel está parado en la base de una torre de conos o está parado en una esquina vacía. En el primer caso, debe recoger el conos en la torre. En este último, simplemente puede moverse en. Esta situación parece una aplicación para <code>if</code> declaración, en la que escribirías algo como esto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span> conos_presente():</code> <br/>
+ <code>      recoger_la_torre_real()</code> <br/>
+</p>
+<p>Antes de agregar dicha declaración al código, debe pensar si necesita realizar esta prueba. A menudo, los programas pueden simplificarse mucho observando que los casos que al principio parecen especiales pueden tratarse exactamente de la misma manera que la situación más general. En el problema actual, ¿qué sucede si decide que hay una torre conos en cada avenida, pero que algunas de esas torres tienen una altura de conos cero? Hacer uso de esta información simplifica el programa porque ya no tiene que probar si hay una torre en una avenida en particular.</p>
+<p>los <code>recoger_una_torre()</code> La función es todavía lo suficientemente compleja como para que exista un nivel adicional de descomposición. Para recopilar todos los cono s en una torre, Karel debe realizar los siguientes pasos:</p>
+<ol>
+<li>Gire a la izquierda para enfrentar el conos en la torre.<li>Recoge todos los conos de la torre y conos cuando no encuentres más conos .<li>Date la vuelta para mirar hacia la parte inferior del mundo.<li>Regresa a la pared que representa el suelo.<li>Gire a la izquierda para estar listo en moverse hasta la siguiente esquina.</li></li></li></li></li></ol>
+<p>Una vez más, este esquema proporciona un modelo para <code>recoger_una_torre()</code> función, que se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_una_torre():</code> <br/>
+ <code>      girar_izquierda()</code> <br/>
+ <code>      recoger_línea_de_conos()</code> <br/>
+ <code>      media_vuelta()</code> <br/>
+ <code>      moverse_a_la_pared()</code> <br/>
+ <code>      girar_izquierda()</code> <br/>
+</p>
+<h3>Condiciones previas y posteriores a la función</h3>
+<p>los <code>girar_izquierda()</code> comandos al principio y al final del <code>recoger_una_torre()</code> ambas funciones son fundamentales para la corrección de este programa. Cuando <code>recoger_una_torre()</code> se llama, Karel siempre está en algún lugar de la 1ª fila mirando al este. Cuando finalice su funcionamiento, el programa en su conjunto funcionará correctamente solo si Karel vuelve a mirar hacia el este en esa misma esquina. Las condiciones que deben ser verdaderas antes de que se llame a una función se denominan <b>condiciones previas</b> ; Las condiciones que deben aplicarse una vez finalizada la función se conocen como <b>postcondiciones</b> .</p>
+<p>Cuando defina una función, tendrá menos problemas si escribe exactamente cuáles son las condiciones previas y posteriores. Una vez que lo haya hecho, debe asegurarse de que el código que escribe siempre deje satisfechas las condiciones posteriores, asumiendo que las condiciones previas se cumplieron para empezar. Por ejemplo, piense en lo que sucede si llama <code>recoger_una_torre()</code> cuando Karel está en la 1ª fila mirando al este. El primero <code>girar_izquierda()</code> La función deja Karel mirando al norte, lo que significa que Karel está correctamente alineado con la columna de conos representa la torre. los <code>recoger_línea_de_conos()</code> función, que aún no se ha escrito pero que, sin embargo, realiza una tarea que usted comprende conceptualmente, simplemente moverse s sin girar. Así, al final de la llamada a <code>recoger_línea_de_conos()</code> , Karel seguirá mirando al norte. los <code>media_vuelta()</code> Llame por tanto sale Karel orientación sur. Me gusta <code>recoger_línea_de_conos()</code> , el <code>moverse_a_la_pared()</code> La función no implica ningún giro, sino simplemente moverse s hasta que golpea la pared límite. Dado que Karel está orientado al sur, este muro límite será el que se encuentra en la parte inferior de la pantalla, justo debajo de la primera fila. El final <code>girar_izquierda()</code> Por lo tanto, el comando deja Karel en la 1ª fila mirando al este, lo que satisface la Karel .</p>
+<h3>Repitiendo el proceso</h3>
+<p>Usted run su programa y borra con éxito una torre y deja Karel en la Karel prometida. ¡Wahoo! ¡Acaba de alcanzar un hito en la resolución de esta difícil tarea! Ahora tenemos que repetir el proceso de limpiar una torre usando un <code>while</code> ciclo .</p>
+<p>Pero que hace esto <code>while</code> ciclo parece? Primero que nada, debes pensar en la prueba condicional. Desea que Karel detenga cuando golpee la pared al final de la fila. Por lo tanto, desea que Karel continúe mientras el espacio en frente despejado . Por lo tanto, sabes que el <code>recoger_todo_conos()</code> La función incluirá un <code>while</code> ciclo que utiliza el <code>frente_despejado()</code> prueba. En cada posición, desea que Karel recolecte todos los conos en la torre que comienza en esa esquina. Si le da un nombre a esa operación, que podría ser algo como <code>recoger_una_torre()</code> , puede seguir adelante y escribir una definición para <code>recoger_todo_conos()</code> función aunque aún no haya completado los detalles.</p>
+<p>Sin embargo, debes tener cuidado. El código para <code>recoger_todo_conos()</code> no se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_todo_conos():</code> <br/>
+ <code class="comment">      # buggy ciclo !</code> <br/>
+ <code>      <span class="keyword">while</span> frente_despejado():</code> <br/>
+ <code>         recoger_una_torre()</code> <br/>
+ <code>         moverse()</code> <br/>
+</p>
+<p>Esta implementación tiene errores exactamente por la misma razón que la primera versión de la <code>ConoLínea</code> El programa del capítulo 6 falló en hacer su trabajo. Hay un error de poste de cerca en esta versión del código, porque Karel necesita probar la presencia de una torre cono en la última avenida. La implementación correcta es:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_todo_conos():</code> <br/>
+ <code>      <span class="keyword">while</span> frente_despejado():</code> <br/>
+ <code>         recoger_una_torre()</code> <br/>
+ <code>         moverse()</code> <br/>
+ <code>      recoger_una_torre()</code> <br/>
+</p>
+<p>Tenga en cuenta que esta función tiene exactamente la misma estructura que el programa main programa Place Cono Line presentado en el capítulo 6. La única diferencia es que este programa llama <code>recoger_una_torre()</code> donde el otro llamó <code>poner_cono()</code> . Estos dos programas son cada uno ejemplos de una estrategia general que se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_todo_conos():</code> <br/>
+ <code>      <span class="keyword">while</span> frente_despejado():</code> <br/>
+ <code>         </code> <i class="demoText">realizar alguna operacion</i><br/>
+ <code>         moverse()</code> <br/>
+ <code>      </code> <i class="demoText">Realiza la misma operación para la esquina final.</i><br/>
+</p>
+<p>Puede usar esta estrategia siempre que necesite realizar una operación en cada esquina mientras moverse un camino que termina en una pared. Si recuerda la estructura general de esta estrategia, puede usarla siempre que encuentre un problema que requiera dicha operación. Las estrategias reutilizables de este tipo surgen con frecuencia en la programación y se denominan <b>lenguajes de programación</b> o <b>patrones</b> . Cuantos más patrones sepa, más fácil le resultará encontrar uno que se adapte a un tipo particular de problema.</p>
+<h3>Terminando</h3>
+<p>Aunque se ha realizado un arduo trabajo, todavía quedan varios cabos sueltos que deben resolverse. El programa main llama a dos funciones: <code>soltar_todo_conos()</code> y <code>volver_a_casa()</code> - que aún no están escritos. Similar, <code>recoger_una_torre()</code> llamadas <code>recoger_línea_de_conos()</code> y <code>moverse_a_la_pared()</code> . Afortunadamente, estas cuatro funciones son lo suficientemente simples para codificar sin más descomposición, especialmente si usa <code>moverse_a_la_pared()</code> en la definición de <code>volver_a_casa()</code> . Aquí está la implementación completa:</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/bigCode.html', name="beeperTowers",  world="beeperTowers", ideSpeed=0.9, canvasRatio=0.8)
+%>
+
+

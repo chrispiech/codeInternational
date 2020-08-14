@@ -1,0 +1,333 @@
+
+<html>
+<head>
+
+<title>卡雷尔读者</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/zh/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 卡雷尔</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter1.html">1  - 遇见卡雷尔</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter2.html">2  - 编程</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter3.html">3-新功能</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter5.html">5  - 对于循环</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter6.html">6  - 循环时</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter7.html">7  - 条件</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter8.html">8  - 细化</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter9.html">9-额外功能</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/reference.html">10  - 参考</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/ide.html">11  - 代码</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第7章：如果声明</h1>
+<hr/>
+<p>要学习的最终核心编程控制流构造是条件语句（ <code>if</code> 和 <code>if/else</code> ）。</p>
+<h3>基本条件</h3>
+<p>一个 <code>if/else</code> 当且仅当提供时，语句执行“if”代码块<i class="demoText">测试</i>对于程序到达该语句时的世界状况是正确的。否则，程序将执行“ else”代码块。</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">测试</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">如果是代码块</i><br/>
+<span class="keyword">其他</span>：</p><br/>
+<i class="demoText" style="margin-left:2em">否则代码块</i><br/>
+
+<p>为了了解条件语句可能会派上用场，让我们编写一个让Karel反转一行锥体 s的程序。如果一个正方形以前有一个锥体 ，则Karel应该选择它。如果一个正方形没有锥体 ，则Karel应该放下一个。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="invertLine">
+<div class="ide getStarted" id="invertLineIde" style="height:316.8px">
+<div class="ideCenter" id="invertLineIdeCenter">
+<div class="ideEditorDiv" id="invertLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="invertLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">改变世界<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="invertLineWorlds">
+<li><a>1x1的</a> </li>
+<li><a>4×4</a> </li>
+<li><a>3×6</a> </li>
+<li><a>7×7</a> </li>
+<li><a>8×8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="invertLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="invertLineRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function exampleinvertLine() {
+STARTER_CODE = `
+
+from 卡雷尔.stanford import *
+
+＃程序的开始
+def main():
+   while front_is_clear(): 
+      反转锥体()
+      move()
+   ＃防止击剑杆错误
+   反转锥体()
+
+＃如果锥体话则接一个锥体
+＃否则放下锥体
+def 反转锥体():
+   ＃一条if / else语句
+   if 锥体():
+      选择锥体()
+   else:
+      放锥体()
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('invertLineEditor','invertLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('invertLineCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'invert', 0.0, 'zh');
+    $('#invertLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('invertLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#invertLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#invertLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 300
+    var parentWidth = $("#invertLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('invertLineIde');
+    var editorDiv = document.getElementById('invertLineEditorDiv');
+    var canvas = document.getElementById('invertLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+exampleinvertLine();
+    </script>
+</div>
+
+
+
+<p>注意一个 <code>if</code> 声明不需要有 <code>else</code> 块-在这种情况下，该语句像 <code>while</code> 只执行一次的循环：</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">测试</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">如果是代码块</i><br/>
+</p>
+<h3>条件</h3>
+<p>最后一个例子使用了一个新条件。以下列出了卡雷尔所知道的所有条件：</p>
+<p>
+<table class="table table-condensed">
+<tr><th>测试</th><th>相反</th><th>它检查什么</th></tr>
+<tr>
+<td> <code>front_is_clear()</code> </td>
+<td> <code>front_is_blocked()</code> </td>
+<td>卡雷尔面前有墙吗？</td>
+</tr>
+<tr>
+<td> <code>锥体()</code> </td>
+<td> <code>目前没有锥体()</code> </td>
+<td>这个拐角处有锥体吗？</td>
+</tr>
+<tr>
+<td> <code>左边很清楚()</code> </td>
+<td> <code>左被挡()</code> </td>
+<td>卡雷尔左边有墙吗？</td>
+</tr>
+<tr>
+<td> <code>权利很明确()</code> </td>
+<td> <code>权利被封锁()</code> </td>
+<td>Karel有没有墙？</td>
+</tr>
+<tr>
+<td> <code>锥体_s()</code> </td>
+<td> <code>袋中没有锥体_s()</code> </td>
+<td>卡雷尔的包里有锥体吗？</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>朝北()</code> </td>
+<td> <code>不朝北()</code> </td>
+<td>卡雷尔面向北方吗？</td>
+</tr>
+<tr>
+<td> <code>朝南()</code> </td>
+<td> <code>不向南()</code> </td>
+<td>卡雷尔面向南方？</td>
+</tr>
+<tr>
+<td> <code>朝东()</code> </td>
+<td> <code>不面向东方()</code> </td>
+<td>卡雷尔面向东方吗？</td>
+</tr>
+<tr>
+<td> <code>朝西()</code> </td>
+<td> <code>不向西()</code> </td>
+<td>卡雷尔面向西方？</td>
+</tr>
+</table>
+</p>
+<h3>把它们放在一起</h3>
+<p>恭喜！您现在知道了所有核心编程控制流模块。当您通过Karel学习它们时，方法，while循环，for循环，if / else语句在几乎所有主要语言（包括Python）中的工作方式都相同。</p>
+<p>现在您已经拥有了构建块，您可以将它们组合在一起，为更复杂的问题构建解决方案。在很大程度上，编程是通过计算机解决问题的科学。由于问题通常很困难，因此解决方案以及实施这些解决方案的程序也很困难。为了使您更容易开发这些解决方案，您需要采用一种方法和规程，将复杂程度降低到可管理的规模。</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter8.html" role="button">下一章</a> 
+</center>
+
+
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

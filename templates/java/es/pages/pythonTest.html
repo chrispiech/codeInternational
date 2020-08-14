@@ -1,0 +1,145 @@
+<html>
+<head>
+
+    %include('templates/'+progLang+'/'+ lang+'/parts/head.html')
+
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+        %include('templates/'+progLang+'/'+ lang+'/parts/sideBar.html')
+
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+<h1>Código</h1><hr/>
+
+
+<%
+  codePath = 'templates/'+progLang+'/'+ lang+'/python/blank.py'
+  nLines = sum(1 for line in open(codePath))
+  editorHeight = 17.6 * nLines
+  setdefault('canvasWidth', 300)
+  setdefault('ideSpeed', 0.8)
+  setdefault('isEditable', 'true')
+%>
+
+
+<div class="section embeddedIde" id="python">
+<div class="ide getStarted" id="pythonIde" style="height:{{editorHeight}}px">
+<div class="ideCenter" id="pythonIdeCenter">
+<div class="ideEditorDiv" id="pythonEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="pythonCanvasDiv">
+<canvas class="ideCanvas" id="pythonCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="pythonRunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplePython() {
+STARTER_CODE = `
+
+<%
+  include(codePath)
+%>
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('pythonEditor','pythonEditorDiv', STARTER_CODE, {{isEditable}});
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('pythonCanvas');
+    karelIde = KarelIde('python', karelEditor, canvas, '8x8', {{ideSpeed}}, '{{lang}}');
+    $('#pythonRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#pythonRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#pythonRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = {{editorHeight}};
+    var canvasWidth = {{canvasWidth}}
+    var parentWidth = $("#python").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('pythonIde');
+    var editorDiv = document.getElementById('pythonEditorDiv');
+    var canvas = document.getElementById('pythonCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplePython();
+    </script>
+</div>
+<hr/>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

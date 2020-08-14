@@ -1,0 +1,51 @@
+<h1>Chapitre 5: Boucles For</h1>
+<hr/>
+<p>Une des choses pour lesquelles les ordinateurs sont particulièrement doués est la répétition. Comment pouvons-nous convaincre Karel d'exécuter un bloc de code plusieurs fois? Pour voir comment la répétition peut être utilisée, considérons la tâche de placer 42 jetons :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Base pour la boucle</h3>
+<p>Puisque vous savez qu'il y a exactement 42 jetons à placer, la déclaration de contrôle dont vous avez besoin est un <b>boucle for</b> , qui indique que vous souhaitez répéter une opération un nombre de fois déterminé. La structure de la déclaration for semble compliquée principalement parce qu’elle est en réalité beaucoup plus puissante que tout ce dont Karel a besoin. La seule version de la syntaxe for utilisée par Karel est la suivante:
+</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">compter</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">déclarations à répéter</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">Nous passerons en revue tous les détails du boucle for plus tard dans la classe. Pour le moment, vous devriez lire cette ligne comme un moyen d’exprimer ", répétez les affirmations entre les accolades.<i class="demoText">compter</i> fois."
+
+ Nous pouvons utiliser cette nouvelle <b>boucle for</b> placer 42 jetons en remplaçant<i class="demoText">compter</i> avec 42 et en mettant la commande <code>laisserJeton()</code> à l'intérieur du bloc de code boucle for . Nous appelons les commandes dans le code bloquer le <b>corps</b> :
+</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>Le code ci-dessus est éditable. Essayez de le changer pour qu'il ne place que 15 jetons .</p>
+<h3>Associer postconditions avec préconditions</h3>
+<p>L'exemple précédent donne l'impression qu'un boucle for répète une seule ligne de code. Toutefois, le corps du boucle for (les instructions répétées) peut comporter plusieurs lignes. Voici un exemple de programme qui place un jeton à chaque coin du monde:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Portez une attention particulière à la manière dont le programme parcourt ces déclarations de contrôle. Le programme run l’ensemble des commandes du corps boucle for . Il répète le corps quatre fois.</p>
+<p>
+La partie la plus compliquée de l’écriture d’une boucle est peut-être que vous avez besoin de l’état du monde à la fin de la boucle (le <b>postcondition</b> ) être un état du monde valide pour le début de la boucle (le <b>condition préalable</b> ). Dans l'exemple ci-dessus, les hypothèses correspondent. Bon temps. Au début de la boucle, Karel est toujours sur une case sans jetons face au prochain coin vide. Que faire si vous avez supprimé le tournerGauche à la fin de la boucle? La post-condition à la fin de la première itération ne satisferait plus les hypothèses faites à propos de Karel face au prochain coin vide. Le code est éditable. Essayez de supprimer le <code>tournerGauche();</code>  commande pour voir ce qui se passe!
+</p>
+<h3>Boucles imbriquées</h3>
+<p>Techniquement, le corps d’un boucle for peut contenir n’importe quel code de flux de contrôle, même d’autres boucles. Voici un exemple de boucle for qui répète un appel à une méthode qui a également un boucle for . Nous appelons cela une boucle "imbriquée". Essayez de lire le programme et de comprendre ce qu’il fait avant le exécuter :
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

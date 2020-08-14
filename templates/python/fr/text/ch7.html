@@ -1,0 +1,89 @@
+<h1>Chapitre 7: Les déclarations if</h1>
+<hr/>
+<p> La dernière structure de flux de contrôle de programmation à apprendre est des instructions conditionnelles ( <code>if</code>  et <code>if/else</code> ).
+</p>
+<h3>Conditions de base</h3>
+<p>Une <code>if/else</code>  Cette instruction exécute un "si" code-block si et seulement si le<i class="demoText">tester</i>est vrai pour l'état du monde au moment où le programme atteint la déclaration. Sinon, le programme exécute le bloc de code "else".</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">tester</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+<span class="keyword">autre</span>:</p><br/>
+<i class="demoText" style="margin-left:2em">sinon code-block</i><br/>
+
+<p>Pour avoir une idée de l'endroit où les instructions conditionnelles pourraient être utiles, écrivons un programme dans lequel Karel inversera une ligne de jetons . Si une case avait auparavant un jeton , Karel devrait le prendre. Si une case n'a pas de jeton , Karel doit en poser une.</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="invertLine", world="invert", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+
+
+<p> Notez qu'un <code>if</code>  déclaration n'a pas besoin d'avoir un <code>else</code> bloc - auquel cas l'instruction fonctionne comme un <code>while</code>  boucle qui n’exécute qu’une fois:
+</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">tester</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+</p>
+<h3>Conditions</h3>
+<p>
+Ce dernier exemple utilisait une nouvelle condition. Voici une liste de toutes les conditions connues de Karel:
+</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Tester</th><th>Contraire</th><th>Qu'est-ce qu'il vérifie</th></tr>
+<tr>
+<td> <code>l'avant_est_clair()</code> </td>
+<td> <code>l'avant_est_bloqué()</code> </td>
+<td>Y a-t-il un mur devant Karel?</td>
+</tr>
+<tr>
+<td> <code>jetons_présent()</code> </td>
+<td> <code>no_jetons_présent()</code> </td>
+<td>Y a-t-il jetons dans ce coin?</td>
+</tr>
+<tr>
+<td> <code>la_gauche_est_claire()</code> </td>
+<td> <code>la_gauche_est_bloquée()</code> </td>
+<td>Y a-t-il un mur à gauche de Karel?</td>
+</tr>
+<tr>
+<td> <code>le_droit_est_clair()</code> </td>
+<td> <code>la_droite_est_bloquée()</code> </td>
+<td>Y a-t-il un mur à la droite de Karel?</td>
+</tr>
+<tr>
+<td> <code>jetons_en_sac()</code> </td>
+<td> <code>no_jetons_en_sac()</code> </td>
+<td>Karel a-t-il du jetons dans son sac?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>face_au_nord()</code> </td>
+<td> <code>pas_face_au_nord()</code> </td>
+<td>Karel fait-il face au nord?</td>
+</tr>
+<tr>
+<td> <code>face_au_sud()</code> </td>
+<td> <code>pas_face_au_sud()</code> </td>
+<td>Karel fait-il face au sud?</td>
+</tr>
+<tr>
+<td> <code>face_à_l'est()</code> </td>
+<td> <code>pas_face_à_l'est()</code> </td>
+<td>Karel fait-il face à l'est?</td>
+</tr>
+<tr>
+<td> <code>face_à_l'ouest()</code> </td>
+<td> <code>pas_face_à_l'ouest()</code> </td>
+<td>Karel fait-il face à l'ouest?</td>
+</tr>
+</table>
+</p>
+<h3>Mettre tous ensemble</h3>
+<p>Félicitations! Vous connaissez maintenant tous les blocs de flux de contrôle de programmation de base. Pendant que vous les avez appris avec Karel, les méthodes, les boucle while , les boucle while , les boucle for if / else fonctionnent de la même manière dans presque tous les principaux langages, y compris Python.</p>
+<p>
+Maintenant que vous avez les éléments de base, vous pouvez les assembler pour trouver des solutions à des problèmes de plus en plus complexes.
+Dans une large mesure, la programmation est la science de la résolution de problèmes par ordinateur. Parce que les problèmes sont souvent difficiles, les solutions - et les programmes qui les implémentent - peuvent l'être également. Afin de faciliter le développement de ces solutions, vous devez adopter une méthodologie et une discipline qui réduisent le niveau de cette complexité à une échelle raisonnable.
+</p>

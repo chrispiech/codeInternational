@@ -1,0 +1,55 @@
+<h1>Capítulo 4: Descomposición</h1>
+<hr/>
+<p>Como una forma de ilustrar más el poder que viene con poder definir nuevas funciones, es útil que Karel haga algo un poco más práctico que moverse a cono de un lugar a otro. Las carreteras a menudo parecen necesitar reparación, y podría ser divertido ver si Karel puede llenar los baches en su mundo abstracto. Por ejemplo, imagina que Karel está parado en el "camino" que se muestra en la figura de la izquierda, una esquina a la izquierda de un bache en el camino. El trabajo de Karel es llenar el agujero con un cono y pasar a la siguiente esquina. El diagrama de la derecha ilustra cómo debería verse el mundo después de la ejecución del programa.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Si está limitado a los cuatro comandos predefinidos, el <code>main()</code> La función para resolver este problema se vería así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">poner_cono()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+</p>
+<p>La motivación inicial para definir el <code>girar_derecha()</code> función era que era engorroso seguir repitiendo tres <code>girar_izquierda()</code> comandos para realizar un giro a la derecha. La definición de nuevas funciones tiene otro propósito importante más allá de permitirle evitar repetir las mismas secuencias de comandos cada vez que desee realizar una tarea en particular. El poder para definir funciones desbloquea la estrategia más importante en la programación: el proceso de dividir un gran problema en partes más pequeñas que son más fáciles de resolver. El proceso de dividir un programa en partes más pequeñas se llama <b>descomposición</b> , y los componentes de un gran problema se denominan <b>subproblemas</b> .</p>
+<p>Como ejemplo, el problema de rellenar el agujero en la carretera se puede descomponer en los siguientes subproblemas:</p>
+<ol>
+<li>Subir al hoyo<li>Llene el agujero dejando caer un cono en él<li>Pasa a la siguiente esquina</li></li></li></ol>
+<p>Si piensa en el problema de esta manera, puede usar definiciones de funciones para crear un programa que refleje su concepción de la estructura del programa. La función main se vería así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">llenar_baches()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+</p>
+<p>La correspondencia con el esquema es inmediatamente clara, y todo sería genial si solo pudiera lograr que Karel entendiera lo que quiere decir con <code>llenar_baches()</code> . Dado el poder de definir funciones, implementar <code>llenar_baches()</code> es extremadamente simple. Todo lo que tienes que hacer es definir un <code>llenar_baches()</code> función cuyo cuerpo consta de los comandos que ya ha escrito para hacer el trabajo, así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> llenar_baches():</code> <br/>
+ <code style="margin-left:2em">girar_derecha()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">poner_cono()</code> <br/>
+ <code style="margin-left:2em">media_vuelta()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">girar_derecha()</code> <br/>
+</p>
+<p>Aquí está el programa completo. Observe cómo puede comprender la intención del programador simplemente leyendo el <code>main()</code> función. Cuando run el programa, la línea resaltada muestra cómo lo ejecutará una computadora, paso a paso. Sin embargo, debido a que el programa está muy bien desglosado, podemos entenderlo a nivel de pensamiento humano:</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>
+

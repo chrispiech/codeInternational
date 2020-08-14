@@ -1,0 +1,99 @@
+<h1>Bölüm 2: Karel'i Programlamak</h1>
+<hr/>
+<p>Karel programının en basit stili, program çalışırken yürütülmesi gereken yerleşik komutlar dizisini belirtmek için metni kullanır <b>run</b> . Aşağıdaki basit Karel programını düşünün. Soldaki metin programdır. Karel'in dünyasının durumu sağda gösterilmiştir:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+
+<p>Programı çalıştırmak için "Çalıştır" düğmesine basın. Programlar tipik olarak özel bir uygulamada <b>Entegre Geliştirme Ortamı</b> (IDE) ve çoğu Karel programı Eclipse adlı bir IDE'ye yazılmıştır. Bir IDE gibi, bu okuyucu da size yardımcı olmak için programları yürütme olanağına sahiptir.<i>görmek</i>işlerin öğrendikçe nasıl yürüdüğünü.</p>
+<p>Program birkaç bölümden oluşmaktadır. İlk bölüm aşağıdaki satırlardan oluşur:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Dosya: IlkKarel.java
+ * -------------------
+ * İlkKarel programı üç run " run " metodunu tanımlar
+ * . Bu komutlar move bir blok move öne, beeper , dah
+ * a sonra da move sonraki köşeye ilerlemesini sağlar
+ * .
+ */</pre>
+</p>
+<p>Bu çizgiler bir örnek <b>yorum Yap</b> programın çalışmasını insan okuyuculara açıklamak için tasarlanmış bir metindir. Hem Karel hem de Java'daki yorumlar karakterlerle başlar <code class="comment">/*</code> ve karakterlerle bitirin <code class="comment">*/</code> . Burada, yorum ilk satırda başlar ve birkaç satır sonra sona erer. Yorumun metnini oluşturan münferit satırlardaki yıldızlara gerek yoktur, ancak insan okurlarının yorumun boyutunu görmesini kolaylaştırır. Basit bir programda, programın etkisi açık olduğu için kapsamlı yorumlar saçma görünebilir, ancak daha büyük, daha karmaşık programların tasarımını belgeleme aracı olarak son derece önemlidir. Programın ikinci kısmı çizgidir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>Bu satır tüm tanımların dahil edilmesini istiyor. <code>stanford.karel</code> kütüphane. Bu kütüphane, standart işlemlerin tanımları gibi Karel programlarını yazmak için gerekli temel tanımları içerir. <code>move()</code> ve <code>pickBeeper()</code> . Bu işlemlere her zaman erişmeniz gerektiğinden, yazdığınız her Karel programı, gerçek programı yazmadan önce bu içe aktarma komutunu içerecektir.</p>
+<p>Karel programının son kısmı, aşağıdaki program tanımından oluşur:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> IlkKarel <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Bu tanımı anlamak için, yapısına daha dikkatli bakmak yararlı olacaktır. İlkKarel programının tanımı ile başlayan satırdan oluşuyor. <code class="keyword">public class</code> ve bu satırın sonundaki kaşlı ayraç ile programın son satırındaki karşılık gelen ayraç arasındaki her şeyi kapsar. Yeni sınıfı tanıtan tek satır <b>başlık</b> tanımın; Parantezler arasındaki kod <b>vücut</b> .</p>
+<p>Programlamada, belirli bir tanım ve bedeni ayrılabilir fikirler olarak düşünmek genellikle çok yararlıdır. Bu örnekte, İlkKarel tanımı, tanımın bütün gövdesinin şu anda aklınızdan çıkarılabileceği aşağıdaki biçimdedir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> IlkKarel <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">program tanımı gövdesi</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>Üstteki başlık satırı, vücudun ne içerdiğini görmeden önce bile, İlkKarel programı hakkında size biraz bilgi verir. İfade <code class="keyword">public class</code> Bir programın tanımını başlatır. İfade <code><span class="keyword">extends</span> Karel</code> belirtmek için kullanılır <code>IlkKarel</code> bir Karel programıdır.</p>
+<p>Şimdi İlkKarel programının gövdesine bakalım. Bu vücut şu satırlardan oluşur:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Bu çizgiler yeni bir tanımını temsil eder. <b>yöntem</b> , bir komuta yanıt vermek için gerekli adımların sırasını belirtir. İlkKarel programının kendisinde olduğu gibi, yöntem tanımı ayrı ayrı ele alınabilecek iki bölümden oluşur: İlk satır yöntem başlığını oluşturur ve küme parantezleri arasındaki kod yöntem gövdesidir. Bedeni şimdilik görmezden gelirseniz, yöntem tanımı şöyle görünür:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">yöntem tanımının gövdesi</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Yöntem başlığındaki ilk iki kelime, <code class="keyword">public</code> ve <code class="keyword">void</code> , Java'nın sözdizimsel yapısının bir parçasıdır ve bu noktada onları görmezden gelmekten çekinmemelisiniz. Başlık satırındaki bir sonraki sözcük, bu durumda yöntem olan yeni yöntemin adını belirtir. <b>run</b> . Bir yöntem tanımlamak, Karel'in şimdi bu isimde yeni bir komuta cevap verebileceği anlamına gelir. <code>run</code> komutu bir Karel programında özel bir rol oynar. Bir Karel programına başladığınızda, yeni bir Karel örneği yaratır, run belirttiğiniz bir dünyaya ekler ve ardından run komutunu verir. run etkisi, run sırayla uygulayacağı bir komutlar dizisi olan run yönteminin gövdesi tarafından tanımlanır. Örneğin, İlkKarel programının run yönteminin gövdesi şöyledir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Böylece, dünyanın ilk durumu Bölüm 1'de verilen move beeper , beeper içeren köşeye ilk move s öne, Karel beeper ve son olarak move gösterildiği gibi duvardan hemen önce köşeye doğru ileri alır aşağıdaki öncesi ve sonrası diyagramı:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>Daha ilginç bir problem çözme</h2>
+<p>Yukarıda tanımlanan İlkKarel programı henüz pek bir şey yapmıyor. Biraz daha ilginç hale getirelim. Hedefin sadece beeper değil, move beeper 2. sütunda ve 1. sıradaki bir çıkıntının ortasına beeper sağlamak olduğunu move . Böylece, bir sonraki ödeviniz bu şemada gösterilen görevi gerçekleştiren yeni bir Karel programını tanımlamaktır:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>Yeni programdaki ilk üç komut - move ileri, beeper , sonra move çıkıntıya kadar - move aynıdır:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Buradan, bir sonraki adım çıkıntıya tırmanmaya başlamak için sola dönmektir. Bu işlem kolaydır, çünkü turnLeft standart repertuarında turnLeft komutu vardır. Önceki komut dizisinin sonunda turnLeft komutu uygulamak, turnLeft kuzeye, 1. sıra ve 3. sütunun köşesine bakacak şekilde bırakır. Karel daha sonra move komutunu çalıştırırsa, aşağıdaki pozisyona ulaşmak için move kuzeyi olacaktır:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>Buradan, yapmanız gereken bir sonraki şey Karel'in sağa dönmesini sağlamak, böylece tekrar doğuya bakması. Bu işlem kavramsal olarak Karel'in sola dönmesini sağlamak kadar kolay olsa da küçük bir sorun var: Karel'in dili bir <code>turnLeft</code> emir ama hayır <code>turnRight</code> Komut. Sanki ekonomi modelini satın aldınız ve şimdi bazı önemli özelliklerin eksik olduğunu keşfettiniz.</p>
+<p>Bu noktada, bir programcı gibi düşünmeye başlamak için ilk fırsatınız var. Tek bir komut setiniz var, fakat tam olarak ihtiyacınız olan seti değil. Ne yapabilirsin? turnRight komutunun etkisini yalnızca sahip olduğunuz yetenekleri kullanarak turnRight misiniz? Cevap, tabii ki, evet. Üç kez sola dönerek sağa dönmenin etkisini başarabilirsiniz. Üç sola döndükten sonra Karel istenilen yöne bakacak. Buradan, yapmanız gereken tek şey move çıkıntı merkezine kadar move programlamak, beeper ve ardından move son konuma getirmek. İşte tam bir uygulama <code>AdımAtmak</code> görevi tamamlayan bir program:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>

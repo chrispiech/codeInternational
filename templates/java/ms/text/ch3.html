@@ -1,0 +1,46 @@
+<h1>Bab 3: Menentukan Kaedah Baru</h1>
+<hr/>
+<p>Dalam bab terakhir kami menulis sebuah program untuk membantu Karel memanjat tebing sederhana:</p>
+<h3>Contoh: KarelPertama</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>Walaupun <code>KarelPertama</code> program di atas menunjukkan bahawa ia boleh dilakukan <code>turnRight</code> operasi menggunakan hanya perintah terbina dalam Karel, program yang dihasilkan tidak begitu jelas secara konseptual. Dalam reka bentuk mental anda program, Karel bertukar betul apabila ia mencapai bahagian atas tebing. Fakta bahawa anda perlu menggunakan tiga perintah belokKiri untuk berbuat demikian adalah menjengkelkan. Ia akan lebih mudah jika anda hanya boleh berkata <code>turnRight()</code> dan mempunyai Karel memahami arahan ini. Program yang dihasilkan tidak hanya akan menjadi lebih pendek dan lebih mudah untuk ditulis, tetapi juga lebih mudah dibaca.</p>
+<h3>Menentukan Perintah Baru</h3>
+<p>Mujurlah, bahasa pengaturcaraan Karel memungkinkan untuk mentakrifkan arahan baru hanya dengan memasukkan definisi kaedah baru. Setiap kali anda mempunyai urutan perintah Karel yang melakukan beberapa tugas yang berguna - seperti membelok ke kanan - anda boleh menentukan kaedah baru yang melaksanakan urutan perintah itu. Format untuk mendefinisikan kaedah Karel baru mempunyai sama seperti takrifan <code>run</code> dalam contoh terdahulu, yang merupakan definisi kaedah dalam haknya sendiri. Takrifan kaedah tipikal seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">nama</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">arahan yang membentuk badan kaedah</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Dalam corak ini, nama mewakili nama yang anda pilih untuk kaedah baru. Untuk melengkapkan takrif, yang perlu anda lakukan adalah menyediakan urutan perintah dalam garisan antara pendakap kerinting. Sebagai contoh, anda boleh menentukan <code>turnRight</code> seperti berikut:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Begitu juga, anda boleh menentukan yang baru <code>turnAround</code> kaedah seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Anda boleh menggunakan nama kaedah baru seperti mana-mana perintah terbina dalam Karel. Contohnya, sebaik sahaja anda telah menentukan <code>turnRight</code> , anda boleh menggantikan tiga perintah belokKiri di dalam <code>NaikKarel</code> program dengan satu panggilan ke <code>turnRight</code> kaedah. Berikut adalah pelaksanaan program yang digunakan untuk menyemak semula <code>turnRight</code> :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>Sudah tentu ada satu perbezaan jelas antara definisi <code>run</code> dan <code>turnRight</code> kaedah dalam program di atas: <code>run</code> kaedah ditandakan sebagai <code>public</code> Berbeza dengan <code>turnRight</code> , yang ditandakan sebagai <code>private</code> . Perbezaan antara kedua-dua jawatan ini ialah kaedah awam boleh digunakan dari luar program, sementara kaedah swasta tidak boleh. Kaedah run perlu menjadi umum kerana persekitaran Karel perlu mengeluarkan arahan run untuk mendapatkan perkara yang berlaku. Ia biasanya amalan pengaturcaraan yang baik untuk mengekalkan definisi peribadi apabila mungkin.</p>
+<h3>Blok Kod Kaedah</h3>
+<p>Sekumpulan perintah antara dua kurungan keriting <code translate="no">{ }</code> dipanggil a <b>blok kod</b> . Tubuh program anda adalah blok kode seperti tubuh suatu metode. Perhatikan bagaimana kandungan blok kod adalah satu tab yang diindentifikasi. Ini adalah gaya yang penting kerana memudahkan orang mengetahui kod baris apa yang ada dalam blok yang diberikan.</p>
+<p>Anda boleh menentukan seberapa banyak kaedah yang anda mahu. Mereka semua harus ditulis satu demi satu di dalam blok kod program anda. Anda tidak boleh menentukan kaedah dalam kaedah lain.</p>

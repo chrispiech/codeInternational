@@ -1,0 +1,221 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/fr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 
+      Karel
+    </a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter1.html">
+      1 - Rencontrez Karel
+    </a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter2.html">2 - Programmation</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter3.html">3 - Nouvelles méthodes</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter4.html">4 - Décomposition</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter5.html">5 - Boucles For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter6.html">6 - Boucles While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter7.html">7 - Conditions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter8.html">8 - Raffinement</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/reference.html">10 - Référence</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/ide.html">11 - Code</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Apprendre encore plus</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="width:740px; flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Chapitre 1: Présentation de Karel le robot</h1>
+<hr/>
+<p>
+  Dans les années 1970, Rich Pattis, un étudiant diplômé de Stanford, décida qu'il serait plus facile d'enseigner les bases de la programmation si les étudiants pouvaient en quelque sorte apprendre les idées de base dans un environnement simple, exempt des complexités qui caractérisent la plupart des langages de programmation. Rich a conçu un environnement de programmation d'introduction dans lequel les étudiants apprennent à un robot à résoudre des problèmes simples. Ce robot s'appelait Karel, d'après le dramaturge tchèque <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , dont 1923 jouent R.U.R. ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Les robots universels de Rossum</a> ) a donné le mot robot à la langue anglaise.
+</p>
+<center>
+<img src="../../images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>
+  Karel the Robot a été un succès. Karel a été utilisé dans des cours d'initiation à l'informatique dans le monde entier et a été enseigné à des millions d'étudiants. De nombreuses générations d'étudiants à Stanford ont appris comment fonctionne la programmation avec Karel. Il s'agit toujours de l'introduction en douceur au codage utilisée à Stanford.
+</p>
+<h3>Qu'est-ce que Karel?</h3>
+<p>
+  Karel est un robot très simple vivant dans un monde très simple. En donnant à Karel un ensemble de commandes, vous pouvez lui demander d'exécuter certaines tâches dans son monde. Le processus de spécification de ces commandes est appelé <b>la programmation</b> . À l’origine, Karel ne comprend qu’un très petit nombre de commandes prédéfinies, mais une partie importante du processus de programmation lui apprend de nouvelles commandes qui étendent ses capacités.
+</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>Les programmes Karel ont à peu près la même structure et impliquent les mêmes éléments fondamentaux que <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> , un important <a href="https://en.wikipedia.org/wiki/Programming_language">langage de programmation</a> . La différence essentielle est que le langage de programmation de Karel est extrêmement petit et que, par conséquent, les détails sont faciles à maîtriser. Néanmoins, vous découvrirez que la résolution d'un problème peut être difficile.
+</p>
+<p>
+  En commençant par Karel, vous pouvez vous concentrer sur la résolution des problèmes dès le début. La résolution de problèmes est l'essence de la programmation. Et comme Karel encourage l'imagination et la créativité, vous pourrez vous amuser beaucoup en chemin.
+</p>
+<h3>Le monde de Karel</h3>
+<p>Le monde de Karel est défini par les rangées exécuter horizontalement (est-ouest) et les colonnes exécuter verticalement (nord-sud). L'intersection d'une ligne et d'une colonne s'appelle un coin. Karel ne peut être placé que dans les coins et doit faire face à l’une des quatre directions de boussole standard (nord, sud, est, ouest). Un exemple de monde Karel est présenté ci-dessous. Karel est située ici au coin de la 1ère rangée et de la 1ère colonne, face à l'est.</p>
+<center>
+<img src="../../images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>Plusieurs autres composants du monde de Karel peuvent être vus dans cet exemple. L'objet en face de Karel est un jeton . Comme décrit dans le livre de Rich Pattis, les jetons sont «des cônes en plastique qui émettent un bip jeton ». Karel ne peut détecter un jeton s'il se trouve dans le même coin. Les lignes continues dans le diagramme sont des murs. Les murs servent de barrières dans le monde de Karel. Karel ne peut pas traverser les murs et doit plutôt les contourner. Le monde de Karel est toujours délimité par des murs, mais le monde peut avoir des dimensions différentes selon le problème spécifique que Karel doit résoudre.</p>
+<h3>Les commandes de Karel</h3>
+<p>
+  Lorsque Karel est expédié de l'usine, il répond à un très petit ensemble de commandes:
+<table class="table mt-10">
+<tr><th>Commander</th><th>La description</th></tr>
+<tr><td> <code>avancer();</code> </td><td>avancer à Karel de avancer avant d'un bloc. Karel ne peut pas répondre à une <code>avancer()</code>  commande s'il y a un mur bloquant son chemin.</td></tr>
+<tr><td> <code>tournerGauche();</code> </td><td>Demande à Karel de pivoter de 90 degrés vers la gauche (dans le sens antihoraire).</td></tr>
+<tr><td> <code>ramasserJeton();</code> </td><td>Demande à Karel de prendre un jeton dans un coin et range le jeton dans son sac jeton pouvant contenir un nombre infini de jetons . Karel ne peut pas répondre à une <code>ramasserJeton()</code> commande sauf s’il ya un jeton sur le coin en cours.</td></tr>
+<tr><td> <code>laisserJeton();</code> </td><td>jeton à Karel de prendre un jeton de son sac jeton et de le poser sur le coin en cours. Karel ne peut pas répondre à une <code>laisserJeton()</code> commande sauf s’il ya jetons dans son sac jeton .</td></tr>
+</table>
+</p>
+<p>Essayons les commandes. Utilisez les boutons ci-dessous pour que le "monde" corresponde à "l'objectif":
+</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cmd">
+<div class="ide getStarted" id="cmdIde">
+<div class="commandCanvasDiv" id="cmdCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Monde:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvas" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Objectif:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvasGoal" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+</div>
+<div class="commandButtons">
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdMove"> <code>avancer();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdTurnLeft"> <code>tournerGauche();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdPickBeeper"> <code>ramasserJeton();</code> </button>
+<button class="btn btn-default btn-lg commandButton" id="cmdPutBeeper"> <code>laisserJeton();</code> </button>
+</div>
+</div>
+</div>
+<script style="width:0px;height:0px;display:none">
+
+        
+
+function examplecmd() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('cmdCanvas');
+    karelIde = KarelIde('java',null, canvas, 'commands', 0.9, 'fr', 500, 500);
+    $('#cmdMove').click(function(){karelIde.stepMove()});
+    $('#cmdTurnLeft').click(function(){karelIde.stepTurnLeft()});
+    $('#cmdPickBeeper').click(function(){karelIde.stepPickBeeper()});
+    $('#cmdPutBeeper').click(function(){karelIde.stepPutBeeper()});
+
+    let canvasGoal = document.getElementById('cmdCanvasGoal');
+    let goalIde = KarelIde('java',null, canvasGoal, 'commandsGoal', 0.9, 'fr', 500, 500)
+ }
+
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cmdRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cmdRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ 
+ main()
+ 
+}
+examplecmd();
+    </script>
+
+<p>
+  La paire de parenthèses vide qui apparaît dans chacune de ces commandes fait partie de la syntaxe commune partagée par Karel et Java et sert à spécifier l’invocation de la commande. Finalement, les programmes que vous écrivez incluront des informations supplémentaires dans l’espace entre les parenthèses, mais ces informations ne font pas partie du monde primitif de Karel. Ces parenthèses seront donc vides dans les programmes Karel standard, mais vous devez néanmoins vous rappeler de les inclure.
+</p>
+<p>Si Karel tente de faire quelque chose d'illégal, comme se déplacer à travers un mur ou ramasser un jeton inexistant, une condition d'erreur se produit.</p>
+<p>
+  Les commandes de Karel ne sont pas exécutées seules. Au lieu de cela, vous devez les incorporer dans un programme Karel.
+Vous aurez l'occasion de voir quelques programmes Karel simples au chapitre 2!
+</p>
+<p></p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter2.html" role="button">Chapitre suivant</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

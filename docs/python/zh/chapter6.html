@@ -1,0 +1,609 @@
+
+<html>
+<head>
+
+<title>卡雷尔读者</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/zh/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 卡雷尔</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter1.html">1  - 遇见卡雷尔</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter2.html">2  - 编程</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter3.html">3-新功能</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter5.html">5  - 对于循环</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter6.html">6  - 循环时</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter7.html">7  - 条件</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter8.html">8  - 细化</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter9.html">9-额外功能</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/reference.html">10  - 参考</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/ide.html">11  - 代码</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第6章：循环</h1>
+<hr/>
+<p>定义新功能并定义的技术 <code>for</code> 循环（尽管非常有用）实际上并不能使Karel解决任何新问题。每当您使用run程序时，它始终会执行完全相同的操作。当程序可以对不同的输入做出不同的响应时，它们将变得更加有用。</p>
+<p>例如，假设您要编写一个程序以将Karel move固定在墙上。但是，您不只是希望该程序在一个固定大小的世界上运行。您想编写一个可以在任何世界上运行的程序。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="moveToWall">
+<div class="ide getStarted" id="moveToWallIde" style="height:316.8px">
+<div class="ideCenter" id="moveToWallIdeCenter">
+<div class="ideEditorDiv" id="moveToWallEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="moveToWallCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">改变世界<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="moveToWallWorlds">
+<li><a>1x1的</a> </li>
+<li><a>4×4</a> </li>
+<li><a>3×6</a> </li>
+<li><a>7×7</a> </li>
+<li><a>8×8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="moveToWallCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="moveToWallRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplemoveToWall() {
+STARTER_CODE = `
+
+＃文件：MoveToWall.py
+＃------------------------------
+＃使用“ while”循环到move卡雷尔，直到命中
+＃ 一堵墙。适用于任何大小的世界。
+from 卡雷尔.stanford import *
+
+＃程序以main
+def main():
+   ＃调用move to wall函数
+   move至墙()
+
+＃这是一个非常有用的功能
+def move至墙():
+   ＃在条件成立时重复身体
+   while front_is_clear():
+      move()
+
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('moveToWallEditor','moveToWallEditorDiv', STARTER_CODE, false);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('moveToWallCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, '7x7', 0.0, 'zh');
+    $('#moveToWallRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('moveToWallWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#moveToWallRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#moveToWallRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 300
+    var parentWidth = $("#moveToWall").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('moveToWallIde');
+    var editorDiv = document.getElementById('moveToWallEditorDiv');
+    var canvas = document.getElementById('moveToWallCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplemoveToWall();
+    </script>
+</div>
+
+<p>单击世界上方的“更改世界”下拉菜单，尝试更改世界。对于任何大小的世界，Karel都会在move之前撞墙。请注意，使用以下命令无法完成此壮举 <code class="keyword">for</code> 环。这需要我们在编程时了解世界的大小。</p>
+<h3>基本的循环</h3>
+<p>在卡雷尔，一个 <code class="keyword">while</code> 循环用于重复代码体<i>只要</i>给定条件成立。的 <code>while</code> 循环具有以下一般形式：</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span> </code> <i class="demoText">测试</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">要重复的陈述</i><br/>
+</p>
+<p>一个的控制流 <code>while</code> 循环如下。当程序点击 <code>while</code> 循环开始它首先重复一个过程<i>检查</i>如果测试通过，如果是，<i>run秒</i>体内的代码。</p>当程序<i>检查</i>如果测试通过，它决定是否通过<i class="demoText">测试</i>对于当前的世界情况是正确的。如果是这样，循环将在正文中run代码。如果测试失败，则循环结束，程序move开启。
+<p>当程序<i>run秒</i>在循环的主体中，程序一次执行主体中的行。当程序到达末尾时 <code>while</code> 循环，它跳回到循环的顶部。然后，它重新检查测试，如果通过则继续循环。程序在进行检查之前不会退出循环，并且测试失败。</p>
+<p>卡雷尔（Karel）有很多<i class="demoText">测试</i>声明，我们将在下一章中讨论所有这些。现在我们将使用一个测试语句： <code>front_is_clear()</code> 如果在卡雷尔（Karel）的正前方没有墙，这是正确的。</p>
+<h3>Fencepost Bug</h3>
+<p>让我们修改上面的程序以使其更有趣。让Karel放置一条锥体 s的线，而不是仅移到墙上，每平方一个。同样，我们希望该程序可以在任何规模的环境中工作：</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLineBug1">
+<div class="ide getStarted" id="beeperLineBug1Ide" style="height:299.20000000000005px">
+<div class="ideCenter" id="beeperLineBug1IdeCenter">
+<div class="ideEditorDiv" id="beeperLineBug1EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineBug1CanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">改变世界<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineBug1Worlds">
+<li><a>1x1的</a> </li>
+<li><a>4×4</a> </li>
+<li><a>3×6</a> </li>
+<li><a>7×7</a> </li>
+<li><a>8×8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineBug1Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineBug1RunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLineBug1() {
+STARTER_CODE = `
+
+＃文件：BeeperLineBug.py
+＃------------------------------
+＃使用while循环放置一行锥体 s。
+＃此程序适用于任何规模的世界。
+＃但是，因为每个世界都减少了一个
+＃ move比put_ 锥体总是丢失锥体 。
+from 卡雷尔.stanford import *
+
+＃程序从main开始
+def main():
+   ＃重复直到karel面对墙
+   while front_is_clear():
+      ＃在当前正方形上放置一个锥体
+      放锥体()
+      ＃ move下一个方块
+      move()
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('beeperLineBug1Editor','beeperLineBug1EditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineBug1Canvas');
+    karelIde = KarelIde('python',karelEditor, canvas, '7x7', 0.0, 'zh');
+    $('#beeperLineBug1RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineBug1Worlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineBug1RunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineBug1RunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 299.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLineBug1").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineBug1Ide');
+    var editorDiv = document.getElementById('beeperLineBug1EditorDiv');
+    var canvas = document.getElementById('beeperLineBug1CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLineBug1();
+    </script>
+</div>
+
+<p>看起来很棒。除了一个问题。在每个世界上，Karel都不会锥体的最后一个锥体上放置锥体 （仔细观察）。当Karel在最后一个正方形上时，该程序将不执行循环的主体，因为测试不再通过-Karel面向墙壁。您可能很想尝试在设置锥体之前切换主体的顺序，以使Karel move成为锥体 。该代码是可编辑的，因此请尝试一下！</p>
+<p>还有一个更深层次的问题，身体的重新排列无法解决。对于有7列的世界，Karel需要放置7 锥体秒，但仅应 <code>move()</code> 6次自从 <code>while</code> 循环在测试通过时同时执行两行，如何使程序执行一个命令的时间比另一个执行时间大？</p>
+<p>该程序中的错误是一个称为a的编程问题的示例。 <b>fencepost错误</b> 。该名称来自以下事实：如果您要构建由面板制成的围栏，而围栏的任一尺寸都具有一个围栏，则围栏的数量总是比面板的数量大一个。例如，您需要用10个面板建造几个栅栏？答案是11，如下图所示：</p>
+<center>
+<img src="../../images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>一旦发现它，修复此错误实际上非常容易。在Karel站到世界尽头之前，该程序要做的就是放置最后的锥体 ：</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLine">
+<div class="ide getStarted" id="beeperLineIde" style="height:334.40000000000003px">
+<div class="ideCenter" id="beeperLineIdeCenter">
+<div class="ideEditorDiv" id="beeperLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">改变世界<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineWorlds">
+<li><a>1x1的</a> </li>
+<li><a>4×4</a> </li>
+<li><a>3×6</a> </li>
+<li><a>7×7</a> </li>
+<li><a>8×8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLine() {
+STARTER_CODE = `
+
+
+＃文件：BeeperLine.py
+＃------------------------------
+＃使用while循环放置一行锥体 s。
+＃此程序适用于任何规模的世界。
+from 卡雷尔.stanford import *
+
+＃程序从main开始
+def main():
+   ＃重复直到karel面对墙
+   while front_is_clear():
+      ＃在当前正方形上放置一个锥体
+      放锥体()
+      ＃ move下一个方块
+      move()
+   ＃解决击剑事件
+   放锥体()
+
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('beeperLineEditor','beeperLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, '7x7', 0.8, 'zh');
+    $('#beeperLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineIde');
+    var editorDiv = document.getElementById('beeperLineEditorDiv');
+    var canvas = document.getElementById('beeperLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLine();
+    </script>
+</div>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter7.html" role="button">下一章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

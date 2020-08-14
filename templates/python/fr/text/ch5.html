@@ -1,0 +1,47 @@
+<h1>Chapitre 5: Boucles For</h1>
+<hr/>
+<p>La répétition est l'une des choses pour lesquelles les ordinateurs sont particulièrement doués. Comment convaincre Karel d'exécuter plusieurs fois un bloc de code? Pour voir comment la répétition peut être utilisée, considérez la tâche de placer 42 jetons :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Base pour la boucle</h3>
+<p>Puisque vous savez qu'il y a exactement 42 jetons à placer, l'instruction de contrôle dont vous avez besoin est une <b>boucle for</b> , qui spécifie que vous souhaitez répéter une opération un nombre fixe de fois. La structure du <code>for</code> La déclaration semble compliquée principalement parce qu'elle est en fait beaucoup plus puissante que tout ce dont Karel a besoin. La seule version du <code>for</code> La syntaxe utilisée par Karel est:</p>
+<p class="demoCode">
+ <code>for i in range(</code> <i class="demoText">compter</i> <code>):</code> <br/>
+<i style="margin-left:2em">déclarations à répéter</i><br/>
+</p>
+<p class="mb-20">Nous allons passer en revue tous les détails de la <code>for</code> boucle plus tard dans la classe. Pour l'instant, vous devriez lire cette ligne comme un moyen d'exprimer, "répétez les instructions dans le corps de la fonction<i class="demoText">compter</i>fois. "Nous pouvons utiliser ce nouveau <b>boucle for</b> placer 42 jetons en remplaçant<i class="demoText">compter</i> avec 42 et en mettant la commande <code>laisser_jeton()</code> à l'intérieur du <code>for</code> bloc de code de boucle. Nous appelons les commandes dans le bloc de code <b>corps</b> :
+</p>
+<p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>
+ <b>Le code ci-dessus est modifiable</b> . Essayez de le changer pour qu'il ne place que 15 jetons .</p>
+<h3>Associer postconditions avec préconditions</h3>
+<p>L'exemple précédent donne l'impression qu'un <code>for</code> loop répète une seule ligne de code. Cependant, le corps du <code>for</code> loop (les instructions qui se répètent) peuvent être sur plusieurs lignes. Voici un exemple de programme qui place un jeton dans chaque coin d'un monde:</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Faites très attention à la façon dont le programme circule à travers ces instructions de contrôle. Le programme run par l'ensemble des commandes du <code>for</code> boucle le corps un par un. Il répète le corps quatre fois.</p>
+<p>La partie la plus compliquée de l'écriture d'une boucle est peut-être que vous avez besoin de l'état du monde à la fin de la boucle (le <b>postcondition</b> ) être un état du monde valide pour le début de la boucle (le <b>condition préalable</b> ). Dans l'exemple ci-dessus, les hypothèses correspondent. Bon temps. Au début de la boucle, Karel est toujours sur une case sans jetons face au prochain coin vide. Et si vous supprimiez le <code>tourner_gauche()</code> à la fin de la boucle? La postcondition à la fin de la première itération ne satisferait plus les hypothèses faites sur Karel face au prochain coin vide. Le code est modifiable. Essayez de supprimer le <code>tourner_gauche()</code>  commande pour voir ce qui se passe!
+</p>
+<h3>Boucles imbriquées</h3>
+<p>Techniquement, le corps d'un <code>for</code> loop peut contenir n'importe quel code de flux de contrôle, même d'autres boucles. Voici un exemple de <code>for</code> boucle qui répète un appel à une fonction qui a également un <code>for</code> boucle. Nous appelons cela une boucle «imbriquée». Essayez de lire le programme et de comprendre ce qu'il fait avant exécuter :
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

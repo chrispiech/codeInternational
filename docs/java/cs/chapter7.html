@@ -1,0 +1,340 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/cs/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter1.html">1 - Seznamte se s Karlem</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter2.html">2 - Programování</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter3.html">3 - Nové metody</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter4.html">4 - Rozklad</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter5.html">5 - Pro smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter6.html">6 - Zatímco smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter7.html">7 - Podmíněné podmínky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter8.html">8 - Zpřesnění</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/reference.html">10 - Odkaz</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/ide.html">11 - Kód</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Další informace</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Kapitola 7: Příkazy</h1>
+<hr/>
+<p>Konečné jádro programování řídícího toku pro učení jsou podmíněné příkazy ( <code>if</code> a <code>if/else</code> ).</p>
+<h3>Základní podmínky</h3>
+<p>An <code>if/else</code> příkaz provede "pokud" kódový blok pouze tehdy, pokud je poskytován<i class="demoText">test</i>platí pro stav světa v době, kdy program dosáhne prohlášení. V opačném případě program provede kódový kód "ostatní".</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">test</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">pokud kódový blok</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">jinak kódový blok</i><br/>
+ <code>}</code> 
+</p>
+<p>Abychom získali pocit, kde by se mohly hodit podmíněné příkazy, kuzel program, který má Karel invertovat řádek kuzel s. Kdyby měl čtverec dříve kuzel , měl by ho Karel vyzvednout. Pokud čtverec nemá kuzel , měl by ho Karel dát dolů.</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="ide">
+<div class="ide getStarted" id="ideIde" style="height:334.40000000000003px">
+<div class="ideCenter" id="ideIdeCenter">
+<div class="ideEditorDiv" id="ideEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="ideCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Změnit svět<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="ideWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="ideCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="ideRunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function exampleide() {
+STARTER_CODE = `
+
+/*
+ * Napište libovolný kód, který chcete
+ */
+import stanford.karel.*;
+public class MůjProgram extends SuperKarel {
+   public void run() {
+      // Váš kód zde ...
+   } 
+}
+
+
+
+
+
+
+
+
+
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('ideEditor','ideEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('ideCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '8x8', 0.0, 'cs');
+    $('#ideRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('ideWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#ideRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#ideRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#ide").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('ideIde');
+    var editorDiv = document.getElementById('ideEditorDiv');
+    var canvas = document.getElementById('ideCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+exampleide();
+    </script>
+</div>
+
+
+
+
+
+<p>Všimněte si, že <code>if</code> prohlášení nemusí mít <code>else</code> blok - v takovém případě se prohlášení opperates jako a <code>while</code> smyčka, která se provede pouze jednou:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">test</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">pokud kódový blok</i><br/>
+ <code>} </code> 
+</p>
+<h3>Podmínky</h3>
+<p>Ten poslední příklad použil novou podmínku. Zde je seznam všech podmínek, o kterých Karel ví:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Test</th><th>Naproti</th><th>Co kontroluje</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>Je před Karlem zeď?</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>Je na tomto rohu kuzel s?</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>Je tu Karelova zeď?</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>Má Karel pravdu?</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>Nějaká kuzel s v Karlově sáčku?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>Je Karel obrácený na sever?</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>Je Karel obrácen k jihu?</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>Je Karel obrácený na východ?</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>Je Karel obrácen směrem na západ?</td>
+</tr>
+</table>
+</p>
+<h3>To vše dohromady</h3>
+<p>Gratuluji! Nyní znáte všechny základní programovací bloky řízení. Zatímco jste se naučili s Karlem, metody, zatímco smyčky, pro smyčky, if / else příkazy pracují stejným způsobem v téměř všech hlavních jazycích, včetně Java.</p>
+<p>Nyní, když máte stavební bloky, můžete je dát dohromady a vytvořit řešení stále složitějších problémů. Programování je do značné míry věda o řešení problémů pomocí počítače. Protože problémy jsou často obtížné, řešení - a programy, které tato řešení implementují - mohou být také obtížné. Abychom vám usnadnili vývoj těchto řešení, musíte přijmout metodiku a disciplínu, která sníží úroveň této složitosti na zvládnutelnou míru.</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter8.html" role="button">Další kapitola</a> 
+</center>
+
+
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

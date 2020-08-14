@@ -1,0 +1,139 @@
+<!-- <meta http-equiv="refresh" content="0; URL='/zh/chapter1.html'" /> -->
+
+
+
+<html> 
+<head> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karel Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="{{pathToRoot}}plugins/jquery.min.js"></script>
+
+<link rel="stylesheet"  href="{{pathToRoot}}plugins/bootstrap/css/bootstrap.min.css">
+<script src="{{pathToRoot}}plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="{{pathToRoot}}style.css">
+
+  <style>
+  	.indexMain {
+  		display: flex;
+  		justify-content:center;
+  		/*background-color:#fafafa;*/
+  	}
+
+  	.indexContainer {
+  		width:750px;
+  		padding:30px;
+  		background-color: white;
+  	}
+
+  	@media only screen and (max-width: 750px) {
+		  .indexContainer {
+		    width:100%;
+		    margin:10px;
+		  }
+
+		  .indexContainer {
+	  		padding:10px;
+	  	}
+
+	  	.col-xs-4 {
+	  		padding-left:5px;
+	  		padding-right:5px;
+	  	}
+
+	  	.languageBox {
+	  		margin-bottom:10px !important;
+	  	}
+		}
+
+		.fullWidthImg {
+			max-width:100%;
+			width:100%;
+		}
+
+  	.languageBox {
+  		font-size:18px;
+  		text-align: center;
+  		height:100px;
+  		cursor: pointer;
+  		display: flex;
+  		flex-direction: column;
+  		justify-content:center;
+  		padding:0px;
+  		margin-bottom:30px;
+  		background-color: #bde0ff;
+    	border-color: #bde0ff;
+  	}
+
+  	.languageBox:hover {
+  		background-color: #d4ebff;
+  		border-color: #d4ebff;
+  	}
+
+
+
+
+  	.languageName {
+  		padding:5px;
+  	}
+  </style>
+</head> 
+<body>
+	<div class="indexMain">
+		<div class="indexContainer">
+	  	<div class="row">
+        <div class="col-md-12 col-xs-12">
+
+
+
+					<center>
+						<div style="font-size:60px">International Karel</div>
+					<div style="height:40px"></div>
+					</center>
+
+					<center>
+					
+					</center>
+					<!-- for spacing -->
+					<div style="height:40px"></div>
+				</div>
+
+		</div>
+		<div class="row">
+        	<div class="col-sm-6">
+        		<center><a href="{{pathToRoot}}java"><h2>Learn Java</h2></a></center>
+        		<a href="./java"><img style ="max-width:100%; width:400px;" src="{{pathToRoot}}images/translateKarelJava.png"/></a>
+        	</div>
+        	<div class="col-sm-6">
+        		<center><a href="{{pathToRoot}}python"><h2>Learn Python</h2></a></center>
+        		<a href="./python"><img style ="max-width:100%; width:400px;" src="{{pathToRoot}}images/translateKarelPython.png"/></a>
+        	</div>
+
+		</div>
+		<!-- for spacing -->
+					<div style="height:40px"></div>
+		<h1>Karel the Robot</h1>
+		<p>Karel is a simple robot living in a simple world. Karel has been used to introduce millions of students to programming at Stanford and beyond. We have two versions of Karel, which introduce students to coding using either a smaller set of a programming language called "Java" or a programming language called "Python". Each version has been translated into multiple human languages.
+		<div style="height:40px"></div>
+			<h1>Interactive Reader</h1>
+			<p>
+				See how computers execute programs, line by line.
+			</p>
+			<p>
+				<img class="fullWidthImg" src="{{pathToRoot}}images/gifs/karelAnimating.gif"></img>
+			</p>
+			<div style="height:40px"></div>
+
+			<h1>Translated using CodeTranslate</h1>
+
+			<p>
+				<img class="fullWidthImg" src="{{pathToRoot}}images/demo.png"></img>
+			</p>
+			<div style="height:40px"></div>
+			<hr/>
+			<a href="http://stanford.edu/~cpiech/bio/index.html">Chris Piech</a>. Programming led by Colin Kincaid and Fei Fang. Translation inspiration from Olya Irzak. 
+	</div>
+</body> 
+</html>

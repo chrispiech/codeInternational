@@ -1,0 +1,99 @@
+<h1>Kapitola 2: Programování Karel</h1>
+<hr/>
+<p>Nejjednodušší styl programu Karel používá text k určení posloupnosti vestavěných příkazů, které by měly být provedeny při programu <b>run</b> . Zvažte jednoduchý program Karla níže. Text vlevo je program. Stav Karlova světa je zobrazen vpravo:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+
+<p>Stisknutím tlačítka "Spustit" spustíte program. Programy jsou obvykle napsány ve speciální aplikaci nazvané <b>Integrované vývojové prostředí</b> (IDE) a většina programů Karla je napsána v IDE nazvaném Eclipse. Stejně jako IDE má i tato čtečka možnost provádět programy, aby vám pomohla<i>vidět</i>jak věci fungují, jak se naučíte.</p>
+<p>Program se skládá z několika částí. První část obsahuje následující řádky:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Soubor: PrvníKarel.java
+ * ----------------------
+ * Program PrvníKarel definuje metodu " run " se třem
+ * i příkazy. Tyto příkazy způsobí, že Karel na move
+ * vpřed o jeden blok, zvedne kuzel a pak move dopřed
+ * u do dalšího rohu.
+ */</pre>
+</p>
+<p>Tyto řádky jsou příkladem a <b>komentář</b> , což je jednoduše text, který má vysvětlit fungování programu lidským čtenářům. Komentáře v Karlu i v Javě začínají znaky <code class="comment">/*</code> a končí znaky <code class="comment">*/</code> . Zde začíná komentář na prvním řádku a končí několik řádků později. Hvězdy na jednotlivých řádcích, které tvoří text komentáře, se nevyžadují, ale lidským čtenářům usnadňují vidět rozsah komentáře. V jednoduchém programu se rozsáhlé komentáře mohou zdát hloupé, protože účinek programu je zřejmý, ale jsou nesmírně důležité jako prostředek pro dokumentování návrhu větších, složitějších programů. Druhou částí programu je řádek:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>Tento řádek vyžaduje zahrnutí všech definic z <code>stanford.karel</code> knihovna. Tato knihovna obsahuje základní definice nezbytné pro psaní Karlových programů, jako jsou definice standardních operací <code>move()</code> a <code>pickBeeper()</code> . Protože vždy potřebujete přístup k těmto operacím, každý program Karel, který píšete, bude obsahovat tento importní příkaz před zápisem aktuálního programu.</p>
+<p>Poslední část programu Karel se skládá z následující definice programu:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> PrvníKarel <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Pro pochopení této definice je užitečné se na její strukturu podívat opatrněji. Definici programu PrvníKarel tvoří řádek začínající na <code class="keyword">public class</code> a zahrnuje vše mezi složenou závorkou na konci tohoto řádku a odpovídající uzavírací závorkou na posledním řádku programu. Jediný řádek, který zavádí novou třídu, se nazývá <b>záhlaví</b> definice; kód mezi závorkami se nazývá <b>tělo</b> .</p>
+<p>V programování je často velmi užitečné uvažovat o určité definici a jejím těle jako oddělitelných myšlenkách. V tomto příkladu má definice PrvníKarel následující podobu, kde celé tělo definice může být momentálně vyřazeno z vaší mysli:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> PrvníKarel <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">definici programu</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>Řádek záhlaví nahoře vám poví o programu PrvníKarel dost, a to ještě předtím, než jste se podívali na to, co tělo obsahuje. Fráze <code class="keyword">public class</code> začíná definovat program. Fráze <code><span class="keyword">extends</span> Karel</code> označuje to <code>PrvníKarel</code> je program Karla.</p>
+<p>Nyní se podívejme na tělo programu PrvníKarel. Tento orgán se skládá z těchto řádků:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Tyto řádky představují definici nového <b>metoda</b> , který specifikuje posloupnost kroků nezbytných k reakci na příkaz. Stejně jako v případě samotného programu PrvníKarel se definice metody skládá ze dvou částí, které lze brát v úvahu samostatně: První řádek představuje záhlaví metody a kód mezi složenými závorkami je tělo metody. Pokud toto tělo prozatím ignorujete, definice metody vypadá takto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">definici metody</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>První dvě slova v záhlaví metody, <code class="keyword">public</code> a <code class="keyword">void</code> , jsou součástí syntaktické struktury jazyka Java a v tomto okamžiku byste je měli ignorovat. Další slovo v řádku záhlaví určuje název nové metody, která je v tomto případě metoda <b>run</b> . Definování metody znamená, že Karel nyní může odpovědět na nový příkaz s tímto názvem. <code>run</code> zvláštní roli v programu Karel. Když spustíte program Karel, vytvoří novou instanci Karel, přidá, že Karel do světa, který zadáte, a pak vydá příkaz run . Účinek provádění je definován tělem metody run , což je posloupnost příkazů, které robot provede v pořadí. Například tělo metody run pro program PrvníKarel je:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Pokud tedy počáteční stav světa odpovídá příkladu uvedenému v Kapitole 1, Karel nejprve move s dopředu do rohu obsahujícího kuzel , zvedne kuzel a nakonec move s dopředu do rohu těsně před zdí, jak je ukázáno na obrázku. následující schéma před a po:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>Řešení zajímavějšího problému</h2>
+<p>Výše uvedený program PrvníKarel zatím příliš nečiní. Zkusme to trochu zajímavější. Předpokládejme, že cílem není pouze přimět Karla, aby vyzvedl kuzel ale move kuzel ze své počáteční pozice na 2. sloupci a 1. řádku do středu římsy. Dalším úkolem je tedy definování nového programu Karel, který splní úkol znázorněný v tomto diagramu:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>První tři příkazy v novém programu - ty, které move kuzel , kuzel a pak move až po římsu - jsou stejné jako dříve:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Odtud je dalším krokem odbočení doleva, aby se šplhalo po římse. Tato operace je snadná, protože Karel má odbočitVlevo příkaz ve svém standardním repertoáru. Provedení příkazu odbočitVlevo na konci předchozího pořadí příkazů opustí Karla směrem k severu na rohu 1. řádku a 3. sloupce. Pokud Karel provede příkaz move , bude move sever, aby dosáhl následující pozice:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>Další věc, kterou musíte udělat, je dostat Karla, aby se otočil doprava, aby byl opět obrácen směrem na východ. Zatímco tato operace je koncepčně stejně jednoduchá, jako když se Karel otočí doleva, je zde malý problém: Karelův jazyk obsahuje a <code>turnLeft</code> příkaz, ale ne <code>turnRight</code> příkaz. Je to, jako byste si koupili ekonomický model a zjistili jste, že chybí některé důležité funkce.</p>
+<p>V tomto okamžiku máte svou první příležitost začít myslet jako programátor. Máte jednu sadu příkazů, ale ne přesně sadu, kterou potřebujete. Co můžeš udělat? Dokážete dosáhnout účinku příkazu odbočitVpravo pouze pomocí schopností, které máte? Odpověď je samozřejmě ano. Otáčením doleva můžete třikrát otočit doleva. Po třech zatáčkách vlevo bude Karel v požadovaném směru. Odtud vše, co musíte udělat, je naprogramovat Karla na move do středu římsy, upustit kuzel a pak move dopředu do konečné pozice. Zde je kompletní implementace <code>KrokNahoru</code> program, který splní celý úkol:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>

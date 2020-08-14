@@ -1,0 +1,87 @@
+<h1>अध्याय 7: यदि कथन</h1>
+<hr/>
+<p>सीखने के लिए अंतिम कोर प्रोग्रामिंग नियंत्रण-प्रवाह निर्माण सशर्त वक्तव्य हैं ( <code>if</code> तथा <code>if/else</code> )।</p>
+<h3>बुनियादी शर्तें</h3>
+<p>एक <code>if/else</code> स्टेटमेंट "if" कोड-ब्लॉक को कार्यान्वित करता है यदि और केवल यदि प्रदान किया गया है<i class="demoText">परीक्षा</i>दुनिया के राज्य के लिए सच है जिस समय कार्यक्रम बयान तक पहुंचता है। अन्यथा प्रोग्राम "और" कोड-ब्लॉक निष्पादित करता है।</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">परीक्षा</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">अगर कोड-ब्लॉक</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">और कोड-ब्लॉक</i><br/>
+ <code>}</code> 
+</p>
+<p>यह जानने के लिए कि सशर्त कथन कहाँ से आ सकते हैं, आइए एक कार्यक्रम लिखें जिसमें कैरेल beeper की एक पंक्ति beeper । यदि पहले एक वर्ग में beeper , तो कारेल को इसे चुनना चाहिए। यदि किसी वर्ग में beeper नहीं है, तो कारेल को नीचे रखना चाहिए।</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>ध्यान दें कि ए <code>if</code> बयान की जरूरत नहीं है <code>else</code> ब्लॉक - जिस स्थिति में स्टेटमेंट एक जैसा होता है <code>while</code> लूप जो केवल एक बार निष्पादित करता है:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">परीक्षा</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">अगर कोड-ब्लॉक</i><br/>
+ <code>} </code> 
+</p>
+<h3>शर्तेँ</h3>
+<p>उस अंतिम उदाहरण ने एक नई शर्त का उपयोग किया। यहाँ उन सभी स्थितियों की एक सूची दी गई है, जिनके बारे में करेल को पता है:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>परीक्षा</th><th>सामने</th><th>यह क्या जाँच करता है</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>क्या कारेल के सामने एक दीवार है?</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>क्या इस कोने पर beeper ?</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>क्या कारेल की बाईं ओर एक दीवार है?</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>क्या कैरेल के अधिकार के लिए एक दीवार है?</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>कोई भी beeper कारेल के बैग में है?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>क्या कारेल उत्तर की ओर है?</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>क्या कारेल दक्षिण का सामना कर रहा है?</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>क्या कारेल पूर्व की ओर है?</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>क्या करेल पश्चिम का सामना कर रहा है?</td>
+</tr>
+</table>
+</p>
+<h3>यह सब एक साथ डालें</h3>
+<p>बधाई! अब आप सभी कोर प्रोग्रामिंग कंट्रोल-फ्लो ब्लॉकों को जानते हैं। जब आपने उन्हें कारेल के साथ सीखा, तो लूप्स के लिए तरीके, लूप्स के लिए, अगर / अन्यथा स्टेटमेंट जावा सहित लगभग सभी प्रमुख भाषाओं में उसी तरह काम करते हैं।</p>
+<p>अब जब आपके पास बिल्डिंग ब्लॉक हैं तो आप उन्हें कभी भी अधिक जटिल समस्याओं के समाधान के लिए एक साथ रख सकते हैं। काफी हद तक, प्रोग्रामिंग कंप्यूटर द्वारा समस्याओं को हल करने का विज्ञान है। क्योंकि समस्याएँ अक्सर कठिन होती हैं, समाधान- और उन समाधानों को लागू करने वाले कार्यक्रम- मुश्किल भी हो सकते हैं। आपके लिए उन समाधानों को विकसित करना आसान बनाने के लिए, आपको एक ऐसी पद्धति और अनुशासन को अपनाने की आवश्यकता है जो उस जटिलता के स्तर को एक प्रबंधनीय पैमाने पर कम कर दे।</p>

@@ -1,0 +1,51 @@
+<h1>Chapitre 6: Boucles While</h1>
+<hr/>
+<p>La technique boucle for définir de nouvelles méthodes et à définir les boucle for si utiles qu’ils soient, ne permet pas à Karel de résoudre de nouveaux problèmes. Chaque fois que vous run un programme , il fait toujours exactement la même chose. Les programmes deviennent beaucoup plus utiles lorsqu'ils peuvent répondre différemment à différentes entrées.</p>
+<p>Par exemple. Disons que vous vouliez écrire un programme pour avoir Karel avancer contre un mur. Mais vous ne voulez pas simplement que ce programme fonctionne sur un monde avec une taille fixe. Vous voudriez écrire un programme unique qui pourrait fonctionner sur n'importe quel monde.</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>Essayez de changer le monde en cliquant sur le menu déroulant "Changer le monde" situé au-dessus du monde. Pour tous les avancer , Karel avancer jusqu’à ce qu’il heurte un mur. Notez que cet exploit ne peut pas être accompli en utilisant un <code class="keyword">for</code>  boucle. Cela nous obligerait à connaître la taille du monde au moment de la programmation.
+</p>
+<h3>Boucle While normale</h3>
+<p>À Karel, un <code class="keyword">while</code>  la boucle est utilisée pour répéter un corps de code<i>aussi longtemps que</i>une condition donnée est valable. Le boucle while a la forme générale suivante:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">tester</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">déclarations à répéter</i><br/>
+ <code>}</code> 
+</p>
+<p>Le flux de contrôle d'un boucle while est le suivant. Lorsque le programme frappe un boucle while il commence à répéter un processus où il commence<i>chèques</i> si le test réussit, et si oui<i>run s</i> le code dans le corps.
+</p>
+Quand le programme<i>chèques</i> si le test réussit, il décide si le<i class="demoText">tester</i>est vrai pour l'état actuel du monde. Si c'est le cas, la boucle run le code dans le corps. Si le test échoue, la boucle est terminée et le programme avancer est avancer .
+<p>
+Quand le programme<i>run s</i>le corps de la boucle, le programme exécute les lignes dans le corps une par une. Lorsque le programme arrive à la fin du boucle while , il retourne au début de la boucle. Il revérifie ensuite le test et continue à boucler s'il réussit. Le programme ne quitte pas la boucle tant qu'il n'a pas été vérifié et que le test échoue.</p>
+<p>
+Karel a beaucoup<i class="demoText">tester</i> déclarations, et nous les passerons toutes en revue dans le chapitre suivant. Pour l'instant, nous allons utiliser une seule déclaration de test: <code>devantDegage()</code>  ce qui est vrai s'il n'y a pas de mur directement devant Karel.
+</p>
+<h3>Bug de poteau de clôture</h3>
+<p>Modifions notre programme ci-dessus pour le rendre plus intéressant. Au lieu de simplement vous déplacer contre un mur, jetons Karel de placer une ligne de jetons , une dans chaque carré. Encore une fois, nous voulons que ce programme fonctionne pour un monde de toute taille:</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Ça a l'air génial. Sauf pour un problème. Sur tous les jeton Karel ne place pas un jeton sur le dernier carré de la ligne (regarde de près). Lorsque Karel est sur la dernière case, le programme n'exécute pas le corps de la boucle car le test ne réussit plus. Karel fait face à un mur. Vous pourriez être tenté d'essayer de changer l'ordre du corps afin que Karel avancer s avant de placer une abeille. Le code est éditable alors allez l'essayer!</p>
+<p>Il y a un problème plus profond qu'aucun réarrangement du corps ne peut résoudre. Pour le monde avec 7 colonnes, Karel doit mettre 7 jetons , mais devrait seulement avancer 6 fois. Etant donné que le boucle while exécute les deux lignes lorsqu'un test est réussi, comment pouvez-vous boucle while le programme à exécuter une commande une fois de plus que l'autre?</p>
+<p>
+Le bogue de ce programme est un exemple de problème de programmation appelé <b>erreur de poteau de clôture</b> . Le nom vient du fait que si vous souhaitez construire une clôture composée de panneaux qui ont un poteau de clôture de chaque taille, le nombre de poteaux de clôture est toujours supérieur au nombre de panneaux. Combien de poteaux de clôture, par exemple, avez-vous besoin de construire une clôture de 10 panneaux? La réponse est 11, comme illustré par le diagramme suivant:
+</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>Une fois que vous l'avez découvert, la résolution de ce bogue est en fait assez facile. Avant que Karel ne s’arrête au bout du monde, tout ce que le programme doit faire est de placer un dernier jeton :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

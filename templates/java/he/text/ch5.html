@@ -1,0 +1,22 @@
+<h1 style=";text-align:right;direction:rtl"> פרק 5: לולאות </h1><hr/><p style=";text-align:right;direction:rtl"> אחד הדברים במחשבים טובים במיוחד הוא חזרה. כיצד נוכל לשכנע את קארל לבצע מספר רב של פעמים? כדי לראות כיצד ניתן להשתמש בחזרות, שקול את המשימה של הצבת 42 צפצופים: </p>
+
+<%
+  include('templates/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+<h3 style=";text-align:right;direction:rtl"> בסיסי לולאה </h3><p style=";text-align:right;direction:rtl"> מכיוון שאתה יודע שיש בדיוק 42 צפצופים למקום, את הצהרת השליטה שאתה צריך הוא <b>לולאה</b>, אשר מציין כי אתה רוצה לחזור על פעולה כלשהי מספר קבוע של פעמים. מבנה ההצהרה נראה מסובך בעיקר משום שהוא למעשה הרבה יותר חזק מכל מה שקארל זקוק לו. הגרסה היחידה של התחביר שבו משתמש קארל היא: </p><p class="demoCode" style=";text-align:right;direction:rtl"><code>for(int i = 0; i &lt;</code><i class="demoText">count</i><code>; i++){</code><br/><i style="margin-left:2em">הצהרות שיש לחזור עליהן</i><br/><code>}</code></p><p class="mb-20" style=";text-align:right;direction:rtl"> נעבור על כל הפרטים של לולאה מאוחר יותר בכיתה. לעת עתה אתה צריך לקרוא את השורה הזאת כדרך להביע, &quot;חזור על ההצהרות בין סוגריים מסולסלים <i class="demoText">לספור</i> פעמים.&quot; אנו יכולים להשתמש <b>בלולאה</b> חדשה זו כדי למקם 42 ביפרים על ידי החלפת <i class="demoText">הספירה ב</i>-42 ולהכניס את <code>שיםאתביפר()</code> בתוך הבלוק של קוד הלולאה. אנו קוראים פקודות בקוד לחסום את <b>הגוף</b>: </p><p style=";text-align:right;direction:rtl">
+<%
+  include('templates/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+<p style=";text-align:right;direction:rtl"> הקוד לעיל ניתן לעריכה. נסו לשנות אותו כך שהוא ימקם רק 15 צפצופים. </p><h3 style=";text-align:right;direction:rtl"> התמודדות עם תנאים מוקדמים </h3><p style=";text-align:right;direction:rtl"> הדוגמה הקודמת נותנת את הרושם כי לולאה חוזרת על שורה אחת של קוד. עם זאת את הגוף של לולאה עבור (הצהרות כי חוזרים חוזרים) יכול להיות מספר שורות. הנה דוגמה לתוכנית שמציבה ביפר בכל פינה בעולם: </p>
+
+<%
+  include('templates/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+<p style=";text-align:right;direction:rtl"> שים לב קרוב מאוד לאופן שבו התוכנית זורמת באמצעות הצהרות בקרה אלה. התוכנית פועלת דרך מערכת של פקודות בגוף לולאה אחת בכל פעם. זה חוזר על הגוף ארבע פעמים. </p><p style=";text-align:right;direction:rtl"> אולי החלק המסובך ביותר של כתיבת לולאה הוא שאתה צריך את המדינה של העולם בסוף הלולאה ( <b>postcondition</b>) להיות מצב חוקי של העולם לתחילת הלולאה ( <b>תנאי מוקדם</b>). בדוגמה שלעיל ההנחות תואמות. זמנים טובים. בתחילת הלולאה, קארל תמיד על כיכר ללא צפצופים מול הפינה הריקה הבאה. מה אם מחקת את הפונהשמאלה בסוף הלולאה? התנאי שבסוף האיטרציה הראשונה לא יספק עוד את ההנחות לגבי קארל מול הפינה הריקה הבאה. הקוד ניתן לעריכה. נסה למחוק את <code>פונהשמאלה();</code> הפקודה לראות מה קורה! </p><h3 style=";text-align:right;direction:rtl"> לולאות מקוננות </h3><p style=";text-align:right;direction:rtl"> מבחינה טכנית הגוף של לולאה יכול להכיל כל קוד זרימת שליטה, אפילו לולאות אחרות. הנה דוגמה של לולאה שחוזרת על קריאה לשיטה שיש לה גם לולאה. אנו קוראים לזה לולאה &quot;מקוננת&quot;. נסה לקרוא את התוכנית, ולהבין מה היא עושה, לפני הפעלתה: 
+
+<%
+  include('templates/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+</p></p>

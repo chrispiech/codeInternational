@@ -1,0 +1,463 @@
+
+
+
+
+#reference {
+   height:100px;
+   width:100px;
+}
+
+.programButton {
+   float: left;
+   margin-right: 5px;
+}
+
+#referenceImg {
+   width:100%;
+   height:100%;
+}
+
+.inner {
+   margin-left:24px;
+   margin-right:24px;
+}
+
+
+.deployInput {
+   font-size:x-large;
+}
+
+
+
+.programButton {
+	min-width:130px;
+	font-family:"Courier New";
+	font-weight:bolder;
+}
+
+
+
+
+.commLink {
+font-size:30px;
+   color:'blue'
+   text-decoration:none;
+}
+
+.commLink : hover {
+   color:darkblue;
+}
+
+.commLinkDiv {
+   margin-top:20px;
+   }
+
+A:link {
+	color:'blue';
+	text-decoration:none;
+}
+
+
+
+A:visited {
+	color:'blue';
+	text-decoration:none;
+}
+
+A:hover {
+	text-decoration: none; 
+	color: steelblue;
+}
+
+* {
+	margin: 0;
+}
+
+
+.stress {
+	color:#D14545;
+	font-weight:bolder;
+}
+
+.interactor {
+   float:left;
+   margin-right:5px;
+}
+
+.rightBar {
+	
+	font-size: 75%;
+	float:right;
+	height:700px;
+	background:#FFF;
+}
+
+.programLink {
+	width:130px;
+	overflow:hidden;
+	
+}
+
+.author {
+	font-size: 75%;
+}
+
+.programLink a{
+
+	color:#4E387E;
+}
+
+.programLink a:hover {
+	text-decoration:underline;
+}
+/****************** Main IDE ********************/
+.ide {
+   width:100%;
+   background:white;
+}
+
+.ideButtonBar {
+   width:100%;
+   height:40px;
+   margin-top:7px;
+}
+
+.ideEditorDiv {
+   width:45%;
+   height:100%;
+   position:absolute;
+   border-width:1px;
+   border-style:solid;
+   background:white;
+}
+
+.ideCanvasDiv {
+   width:45%;
+   height:100%;
+   position:absolute;
+}
+
+.ideCenter {
+  position: absolute;
+   /*border-top-width:1px;
+   border-top-style:solid;
+   */
+}
+
+.ideCanvas {
+   width:100%;
+   height:100%;
+   background-color:white;
+}
+
+.ideEditor {
+   width:100%;
+   height:100%;
+   
+}
+
+/***************** Learn ************************/
+
+.innerImage {
+   position:absolute;
+}
+
+.learn {
+   background:white;
+}
+
+.lessons {
+   background-image:url('../images/bg-body.jpg');
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+.titleText {
+   color:white;
+}
+
+.progressBox{
+   position:absolute;
+}
+
+.absoluteDiv {
+   position:absolute;
+   display:none;
+}
+
+.nonFadeInDiv {
+   position:absolute;
+}
+
+.resizableLink {
+   position:absolute;
+   float:right;
+	line-height: 40px;
+margin: 0;
+margin-right:5px;
+   color:#ccc;
+}
+
+.resizableLink:hover{
+   color:#999;
+}
+
+.rounded {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:white;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.roundedNoShadow {  
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:white;
+}
+
+.imageButton {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.ideMessage {
+   background-color:black;
+   z-index:99999;
+   -moz-border-radius-bottomleft: 7px;
+   border-bottom-left-radius: 7px;
+   -moz-border-radius-bottomright: 7px;
+   border-bottom-right-radius: 7px;
+}
+
+.imageButton:hover {
+   
+   margin:-3px;
+   border-style:solid;
+   border-width:3px;
+   position:absolute;
+}
+
+.coverDivNoHighlight{
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+}
+
+.coverDiv{
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+}
+
+.coverDiv:hover {
+   
+   margin:-3px;
+   border-style:solid;
+   border-width:3px;
+   
+}
+
+.disabledRoundedButton {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+   background:#bbb;
+}
+
+.unitBox {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:#f6f6f6 ;
+}
+
+.progressBox {
+-moz-border-radius: 7px;
+   border-radius: 7px;
+}
+
+.unitBox:hover{
+   background:blue;
+   color:white;
+}
+
+.roundedButton {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:#ddd ;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.roundedButton:hover {
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:lightsteelblue;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.roundedButton:active {
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:lightgreen;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.centeredText {
+    width: auto;
+    text-align:center;
+}
+
+
+.code {
+   background:white;
+   border-width:1px;
+   border-style:solid;
+   background:white;
+}
+
+.topTooltip {
+   background:transparent url(../images/black_arrow_up.png);
+	display:none;
+	font-size:24px;
+	text-align:center;
+	height:70px;
+	line-height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;	
+	z-index:9999999999999999999;
+}
+
+/* tooltip styling. by default the element to be styled is .tooltip  */
+.tooltip {
+	background:transparent url(../images/black_arrow.png);
+	display:none;
+	font-size:24px;
+	text-align:center;
+	height:70px;
+	line-height:70px;
+	width:160px;
+	padding:25px;
+	color:#fff;	
+	z-index:9999999999999999999;
+}
+
+
+
+a.tab {
+	height:100%;
+			float:left;
+			height:40px;
+			overflow:hidden;
+  	border-right-color: #535352;
+border-right-style: solid;
+border-right-width: 1px;
+	width:100px;
+	text-align:center;
+float: left;
+font-size: 16px;
+height: 100%;
+line-height: 40px;
+padding: 0px 10px;
+	color: #000;	
+	margin: 0;
+}
+
+a.tab, a.tab:visited {
+	text-decoration:none;
+	margin: 0;
+}
+
+a.tab:hover {
+  	color: #999;
+	margin: 0;
+}
+
+a.selectedtab {
+	height:100%;
+			float:left;
+			height:40px;
+			overflow:hidden;
+  	border-right-color: #535352;
+border-right-style: solid;
+border-right-width: 1px;
+	width:100px;
+	text-align:center;
+float: left;
+font-size: 16px;
+height: 100%;
+line-height: 40px;
+padding: 0px 10px;	
+	border-bottom: 2px solid #fff;
+	color: #000;
+	margin: 0;
+	background:white;
+}
+
+a.selectedtab, a.selectedtab:visited {
+	text-decoration:none;
+	margin: 0;
+}
+
+a.selectedtab:hover {
+  	color: #999;
+	margin: 0;
+}
+
+.smallLink {
+	float:right;
+	line-height: 40px;
+margin: 0;
+margin-right:5px;
+   color:black;
+}
+
+.smallLink:hover{
+   color:#999;
+}
+
+/****************** Tests ************************/
+.red {
+   background-color:red;
+}
+
+.blue {
+   background-color:blue;
+}
+
+.green {
+   background-color:green;
+}
+
+.orange {
+   background-color:orange;
+}

@@ -1,0 +1,45 @@
+<h1>Capítulo 5: Ciclos For</h1>
+<hr/>
+<p>Una de las cosas en las que las computadoras son especialmente buenas es la repetición. ¿Cómo podemos convencer a Karel para que ejecute un bloque de código varias veces? Para ver cómo se puede usar la repetición, considere la tarea de colocar 42 conos :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Basic For Loop</h3>
+<p>Como sabe que hay exactamente 42 conos para colocar, la declaración de control que necesita es una <b>ciclo for</b> , que especifica que desea repetir alguna operación un número fijo de veces. La estructura de la declaración for parece complicada principalmente porque en realidad es mucho más poderosa de lo que Karel necesita. La única versión de la sintaxis para que utiliza Karel es:</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">contar</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">declaraciones a repetir</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">ciclo for todos los detalles del ciclo for más adelante en la clase. Por ahora debería leer esta línea como una forma de expresar, "repita las declaraciones entre los corchetes.<i class="demoText">contar</i>veces. "Podemos usar este nuevo <b>ciclo for</b> colocar 42 conos reemplazando<i class="demoText">contar</i>con 42 y poniendo el mando <code>ponerCono()</code> Dentro del bloque de código ciclo for . Llamamos comandos en el bloque de código <b>cuerpo</b> :</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>El código de arriba es editable. Intenta cambiarlo para que solo conos 15 conos .</p>
+<h3>Coincidencia de postcondiciones con condiciones previas</h3>
+<p>El ejemplo anterior da la impresión de que un ciclo for repite una sola línea de código. Sin embargo, el cuerpo del ciclo for (las declaraciones que se repiten) puede ser de varias líneas. Aquí hay un ejemplo de un programa que pone un cono en cada esquina de un mundo:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Preste mucha atención a la forma en que el programa fluye a través de estas declaraciones de control. El programa run s a través del conjunto de comandos en el cuerpo ciclo for uno a la vez. Se repite el cuerpo cuatro veces.</p>
+<p>Quizás la parte más complicada de escribir un ciclo es que necesita el estado del mundo al final del ciclo (el <b>postcondición</b> ) para ser un estado válido del mundo para el inicio del ciclo (el <b>condición previa</b> ). En el ejemplo anterior las suposiciones coinciden. Buenos tiempos. Al comienzo del ciclo , Karel está siempre en un cuadrado sin conos frente a la siguiente esquina vacía. ¿Qué girarIzquierda si eliminó el girarIzquierda al final del ciclo ? La Karel al final de la primera iteración ya no satisfaría las suposiciones hechas alrededor de Karel frente a la siguiente esquina vacía. El código es editable. Intenta borrar el <code>girarIzquierda();</code> Manda a ver qué pasa!</p>
+<h3>Bucles anidados</h3>
+<p>Técnicamente, el cuerpo de un ciclo for puede contener cualquier código de flujo de control, incluso otros ciclo s. Aquí hay un ejemplo de un ciclo for que repite una llamada a un método que también tiene un ciclo for . Llamamos a esto un ciclo "anidado". Trate de leer el programa y entienda lo que hace, antes de ejecutando :
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

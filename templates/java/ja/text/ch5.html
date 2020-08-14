@@ -1,0 +1,45 @@
+<h1>第5章：ループ</h1>
+<hr/>
+<p>コンピュータが特に得意なことの1つは繰り返しです。 Karelにコードブロックを複数回実行するように説得するにはどうすればよいでしょうか。繰り返しがどのように使用できるかを見るために、42 beeperを配置するタスクを考えます。</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>ループの基本</h3>
+<p>正確に42 beeperが配置されていることがわかっているので、必要な制御ステートメントは <b>forループ</b> これは、ある操作を一定の回数繰り返すことを指定します。 for文の構造は、主にKarelが必要とするものよりもはるかに強力であるため、複雑に見えます。 Karelが使用するfor構文の唯一のバージョンは、次のとおりです。</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">カウント</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">繰り返す文</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">クラスの後半でforループの詳細をすべて説明します。今のところは、この行を表現する方法として読むべきです。<i class="demoText">カウント</i>「私達はこの新しい使用することができます <b>forループ</b> 42 beeperを交換して配置する<i class="demoText">カウント</i>42でコマンドを入れる <code>putBeeper()</code> forループコードブロックの内側。コードブロック内のコマンドを <b>体</b> ：</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>上記のコードは編集可能です。 15 beeper秒しか配置されないように変更してください。</p>
+<h3>事後条件と事前条件のマッチング</h3>
+<p>前の例は、forループが1行のコードを繰り返すという印象を与えます。ただし、forループの本体（繰り返されるステートメント）は複数行になることがあります。これは、世界の各隅にbeeperを配置するプログラムの例です。</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>プログラムがこれらの制御ステートメントをどのように流れるかに、細心の注意を払ってください。プログラムrunは、forループ本体のコマンドのセットを1つずつrunます。体を4回繰り返します。</p>
+<p>おそらく、ループを書くときの最も複雑な部分は、ループの最後に世界の状態が必要だということです（ <b>事後条件</b> ）ループの開始のための世界の有効な状態になる <b>前提条件</b> ）上記の例では、仮定は一致しています。良い時代です。ループの開始時に、カレルは常に次の空いているコーナーに面しているbeeperのないbeeperの上にいます。ループの最後でturnLeftを削除した場合はどうなりますか？最初の反復の終了時の事後条件は、次の空のコーナーに直面しているKarelに関してなされた仮定をもはや満たさないでしょう。コードは編集可能です。を削除してみてください <code>turnLeft();</code> 何が起こるかを見るためのコマンド！</p>
+<h3>入れ子になったループ</h3>
+<p>技術的にはforループの本体には、他のループを含め、あらゆる制御フローコードを含めることができます。これはforループを持つメソッドの呼び出しを繰り返すforループの例です。これを「入れ子」ループと呼びます。 runそれをrunする前に、プログラムを読み、それが何をするのか理解するようにしてください。
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

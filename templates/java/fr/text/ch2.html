@@ -1,0 +1,119 @@
+<h1>
+Chapitre 2: Programmer Karel
+</h1>
+<hr/>
+<p>
+  Le style le plus simple du programme Karel utilise du texte pour spécifier une séquence de commandes intégrées à exécuter lorsque le programme est exécuté. <b>run</b> . Considérez le programme Karel simple ci-dessous. Le texte à gauche est le programme. L'état du monde de Karel est indiqué à droite:
+</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+
+<p>
+Appuyez sur le bouton "Exécuter" pour exécuter le programme. Les programmes sont généralement écrits dans une application spéciale appelée <b>Environnement de développement intégré</b>  (IDE) et la plupart des programmes Karel sont écrits dans un IDE appelé Eclipse. Comme un IDE, ce lecteur a la capacité d’exécuter des programmes pour vous aider à<i>voir</i> comment les choses fonctionnent pendant que vous apprenez.</p>
+<p>Le programme est composé de plusieurs parties. La première partie comprend les lignes suivantes:
+</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Fichier: PremierKarel.java
+ * -------------------------
+ * Le programme PremierKarel définit une méthode " ru
+ * n " avec trois commandes. Ces commandes entraînent
+ * Karel avancer avant d'un bloc, jeton un jeton pui
+ * s avancer avant jusqu'au prochain virage.
+ */</pre>
+</p>
+<p>
+  Ces lignes sont un exemple de <b>commentaire</b> , qui est simplement un texte conçu pour expliquer le fonctionnement du programme à des lecteurs humains. Les commentaires dans Karel et Java commencent par les caractères <code class="comment">/*</code>  et terminer avec les personnages <code class="comment">*/</code> . Ici, le commentaire commence sur la première ligne et se termine plusieurs lignes plus tard. Les étoiles sur les lignes individuelles qui composent le texte du commentaire ne sont pas obligatoires, mais permettent aux lecteurs humains de voir plus facilement l'étendue du commentaire. Dans un programme simple, des commentaires détaillés peuvent sembler stupides, car leur effet est évident, mais ils sont extrêmement importants pour documenter la conception de programmes plus vastes et plus complexes.
+  La deuxième partie du programme est la ligne:
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>
+  Cette ligne demande l’inclusion de toutes les définitions de la <code>stanford.karel</code>  bibliothèque. Cette bibliothèque contient les définitions de base nécessaires à l'écriture de programmes Karel, telles que les définitions des opérations standard. <code>avancer()</code>  et <code>ramasserJeton()</code> . Parce que vous avez toujours besoin d'accéder à ces opérations, chaque programme Karel que vous écrivez inclura cette commande d'importation avant d'écrire le programme réel.
+</p>
+<p>
+ La dernière partie du programme Karel comprend la définition de programme suivante:
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> PremierKarel <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      avancer();</code> <br/>
+ <code>      ramasserJeton();</code> <br/>
+ <code>      avancer();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Pour comprendre cette définition, il est utile d’examiner plus attentivement sa structure. La définition du programme PremierKarel comprend la ligne commençant par <code class="keyword">public class</code>  et englobe tout entre l'accolade à la fin de cette ligne et l'accolade de fermeture correspondante sur la dernière ligne du programme. La ligne unique qui introduit la nouvelle classe est appelée la <b>entête</b>  de la définition; le code entre les accolades est appelé le <b>corps</b> .
+</p>
+<p>En programmation, il est souvent très utile de penser à une définition particulière et à son corps en tant qu’idées séparables. Dans cet exemple, la définition de PremierKarel a la forme suivante, où le corps entier de la définition peut être retiré de votre esprit pour le moment:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> PremierKarel <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">corps de la définition du programme</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>La ligne d'en-tête en haut vous en dit long sur le programme PremierKarel, avant même que vous ayez regardé ce que le corps contient. La phrase <code class="keyword">public class</code>  commence la définition d'un programme. La phrase <code><span class="keyword">extends</span> Karel</code>  est utilisé pour indiquer que <code>PremierKarel</code>  est un programme Karel.
+</p>
+<p>Examinons maintenant le corps du programme PremierKarel. Ce corps est composé des lignes suivantes:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      avancer();</code> <br/>
+ <code>      ramasserJeton();</code> <br/>
+ <code>      avancer();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>
+Ces lignes représentent la définition d'un nouveau <b>méthode</b> , qui spécifie la séquence des étapes nécessaires pour répondre à une commande. Comme dans le cas du programme PremierKarel lui-même, la définition de la méthode comprend deux parties pouvant être considérées séparément: La première ligne constitue l'en-tête de la méthode et le code entre les accolades est le corps de la méthode. Si vous ignorez le corps pour l'instant, la définition de la méthode ressemble à ceci:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">corps de la définition de la méthode</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>
+Les deux premiers mots de l'en-tête de la méthode, <code class="keyword">public</code>  et <code class="keyword">void</code> , font partie de la structure syntaxique de Java et vous devriez les ignorer à ce stade. Le mot suivant sur la ligne d'en-tête spécifie le nom de la nouvelle méthode, qui dans ce cas est la méthode <b>run</b> . Définir une méthode signifie que Karel peut désormais répondre à une nouvelle commande portant ce nom. le <code>run</code> le commandement joue un rôle particulier dans un programme Karel. Lorsque vous démarrez un programme Karel, il crée une nouvelle instance de Karel, ajoute ce Karel à un monde que vous spécifiez, puis émet la commande run . L'effet du programme exécuter est défini par le corps de la méthode run , qui est une séquence de commandes que le robot exécutera dans l'ordre. Par exemple, le corps de la méthode run pour le programme PremierKarel est:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   avancer();</code> <br/>
+ <code>   ramasserJeton();</code> <br/>
+ <code>   avancer();</code> <br/>
+</p>
+<p>Ainsi, si l’état initial du monde correspond à l’exemple donné au chapitre 1, Karel commence avancer avancer dans le coin contenant le jeton , prend ce jeton , et finalement le avancer avance vers l’angle situé juste avant le mur, comme indiqué dans le diagramme avant-après suivant:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>Résoudre un problème plus intéressant</h2>
+<p>Le programme PremierKarel défini ci-dessus ne fait pas encore grand chose. Essayons de le rendre un peu plus intéressant. Supposons que l’objectif n’est pas simplement d’amener Karel à récupérer le jeton mais de le avancer à avancer le jeton partir de sa position initiale sur la 2e colonne et de la 1re rangée au centre d’un rebord. Ainsi, votre prochaine tâche consiste à définir un nouveau programme Karel qui accomplit la tâche illustrée dans ce diagramme:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>Les trois premières commandes du nouveau programme - celles que avancer transmet, récupère le jeton , puis avancer jusqu'au rebord - sont les mêmes que précédemment:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   avancer();</code> <br/>
+ <code>   ramasserJeton();</code> <br/>
+ <code>   avancer();</code> <br/>
+</p>
+<p>A partir de là, la prochaine étape consiste à tourner à gauche pour commencer à gravir le rebord. Cette opération est facile, car Karel a une commande tournerGauche dans son répertoire standard. L'exécution d'une commande tournerGauche à la fin de la séquence de commandes précédente laisse Karel face au nord, à l'angle des 1ère rangée et 3ème colonne. Si Karel exécute ensuite une commande avancer , il passera au avancer nord pour atteindre la position suivante:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>
+  A partir de là, la prochaine chose à faire est de faire tourner Karel à droite pour qu’il soit à nouveau orienté vers l’est. Sur le plan conceptuel, cette opération est aussi simple que de faire tourner Karel à gauche, mais il y a un léger problème: le langage de Karel inclut une <code>tournerGauche</code>  commande, mais non <code>tournerDroite</code>  commander. C’est comme si vous avez acheté le modèle économique et que vous venez de découvrir qu’il manque certaines fonctionnalités importantes.
+</p>
+<p>À ce stade, vous avez votre première occasion de commencer à penser comme un programmeur. Vous avez un jeu de commandes, mais pas exactement le jeu dont vous avez besoin. Que pouvez-vous faire? Pouvez-vous obtenir l'effet d'une commande tournerDroite utilisant uniquement les fonctionnalités dont vous disposez? La réponse est, bien évidemment, oui. Vous pouvez obtenir l'effet de tourner à droite en tournant à gauche trois fois. Après trois virages à gauche, Karel fera face dans la direction souhaitée. À partir de là, tout ce que vous avez à faire est de programmer Karel avancer au centre du rebord, de laisser tomber jeton , puis avancer vers la position finale. Voici une implémentation complète d'un <code>Intensifier</code>  programme qui accomplit toute la tâche:
+</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>

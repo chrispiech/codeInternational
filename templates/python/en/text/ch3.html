@@ -1,0 +1,61 @@
+<h1>Chapter 3: Defining New Functions</h1>
+<hr/>
+<p>
+  In the last chapter we wrote a program to help Karel climb a simple ledge:
+</p>
+<h3>Example: FirstKarel</h3>
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+<p>
+Even though the <code>FirstKarel</code> program above demonstrates that it is possible to perform the <code>turn_right()</code> operation using only Karel’s built-in commands, the resulting program is not particularly clear conceptually. In your mental design of the program, Karel turns right when it reaches the top of the ledge. The fact that you have to use three <code>turn_left()</code> commands to do so is annoying. It would be much simpler if you could simply say <code>turn_right()</code> and have Karel understand this command. The resulting program would not only be shorter and easier to write, but also significantly easier to read.
+</p>
+<h3>Defining New Commands</h3>
+<p>
+Fortunately, the Karel programming language makes it possible to define new commands simply by including new function definitions. Whenever you have a sequence of Karel commands that performs some useful task--such as turning right--you can define a new function that executes that sequence of commands. The format for defining a new Karel function has much the same as the definition of <code>main()</code> in the preceding examples, which is a function definition in its own right. A typical function definition looks like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> </code><i class="demoText">name</i><code>():</code><br/>
+<i class="demoText" style="margin-left:3.5em">commands that make up the body of the function</i><br/>
+</p>
+
+<p>
+In this pattern, name represents the name you have chosen for the new function. To complete the definition, all you have to do is provide the sequence of commands in the lines after the colon, which are all indented by one tab. For example, you can define<code>turn_right()</code> as follows:
+</p>
+
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> turn_right():</code><br/>
+<code style="margin-left:3.5em">turn_left()</code><br/>
+<code style="margin-left:3.5em">turn_left()</code><br/>
+<code style="margin-left:3.5em">turn_left()</code><br/>
+</p>
+
+<p>
+Similarly, you could define a new <code>turn_around()</code> function like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> turn_around():</code><br/>
+<code style="margin-left:3.5em">turn_left()</code><br/>
+<code style="margin-left:3.5em">turn_left()</code><br/>
+</p>
+
+<p>
+You can use the name of a new function just like any of Karel’s built-in commands. For example, once you have defined <code>turn_right()</code>, you could replace the three <code>turn_left()</code> commands in the program with a single call to the <code>turn_right()</code> function. Here is a revised implementation of the program that uses <code>turn_right()</code>:
+</p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+<h3>Function Code Blocks</h3>
+<p>
+  A group of commands follow the colon <code translate="no">:</code> which are indented, is called a <b>code block</b>. The body of your function is a code block. Notice how the contents of a code block are all indented one tab in. This is important functionally since it allows Python to know what lines of code are in a given block.
+</p>
+
+<p>You can define as many functions as you want. They should all be written one after another. You can't define a function inside another function. </p>
+

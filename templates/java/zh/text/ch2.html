@@ -1,0 +1,99 @@
+<h1>第2章：Karel编程</h1>
+<hr/>
+<p>最简单的Karel程序使用文本来指定应该在程序执行时执行的一系列内置命令 <b>run</b> 。考虑下面的简单卡雷尔计划。左边的文字是程序。卡雷尔的世界状态如右图所示：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+
+<p>按“运行”按钮执行程序。程序通常写在一个名为的特殊应用程序中 <b>综合发展环境</b> （IDE）和大多数Karel程序都是在一个名为Eclipse的IDE中编写的。像IDE一样，这个阅读器能够执行程序以帮助您<i>看到</i>你学习的东西是如何工作的。</p>
+<p>该计划由几个部分组成。第一部分包括以下几行：</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * 文件：第一个卡雷尔.java
+ * -------------
+ * 第一个卡雷尔程序定义了一个带有三个命令的“ run
+ * ”方法。这些命令导致Karel向move前进一个
+ * 区块，然后在下一个move前方获得锥体然后move
+ * 。
+ */</pre>
+</p>
+<p>这些行是一个例子 <b>评论</b> ，这是简单的文字，旨在向人类读者解释该程序的运作。 Karel和Java中的注释都以字符开头 <code class="comment">/*</code> 并以人物结束 <code class="comment">*/</code> 。这里，评论从第一行开始，稍后结束几行。构成评论文本的各行上的星星不是必需的，但是使人类读者更容易看到评论的范围。在一个简单的程序中，广泛的评论可能看起来很愚蠢，因为该程序的效果是显而易见的，但它们作为记录更大，更复杂程序设计的手段极为重要。该计划的第二部分是该行：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.卡雷尔.*;</code> 
+</p>
+<p>该行要求包含来自的所有定义 <code>stanford.卡雷尔</code> 图书馆。该库包含编写Karel程序所需的基本定义，例如标准操作的定义 <code>move()</code> 和 <code>pickBeeper()</code> 。因为您总是需要访问这些操作，所以您编写的每个Karel程序都会在您编写实际程序之前包含此导入命令。</p>
+<p>Karel计划的最后部分包括以下计划定义：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> 第一个卡雷尔 <span class="keyword">extends</span> 卡雷尔 {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>要理解这个定义，仔细查看其结构是有用的。第一个卡雷尔计划的定义包括以...开头的行 <code class="keyword">public class</code> 并包含该行末尾的花括号和程序最后一行的相应右括号之间的所有内容。引入新类的单行称为 <b>头</b> 定义;大括号之间的代码称为 <b>身体</b> 。</p>
+<p>在编程中，将特定定义及其主体视为可分离的想法通常非常有用。在这个例子中，第一个卡雷尔的定义有以下形式，其中定义的整个主体可以暂时放在你的脑海中：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> 第一个卡雷尔 <span class="keyword">extends</span> 卡雷尔 {</code> <br/>
+<i class="demoText" style="margin-left:2em">程序定义的主体</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>顶部的标题行告诉你很多关于第一个卡雷尔程序，甚至在你看看身体包含什么之前。词组 <code class="keyword">public class</code> 开始一个程序的定义。词组 <code><span class="keyword">extends</span> 卡雷尔</code> 用于表示 <code>第一个卡雷尔</code> 是一个卡雷尔计划。</p>
+<p>现在让我们来看看第一个卡雷尔计划的主体。该机构由以下几行组成：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>这些行代表新的定义 <b>方法</b> ，它指定响应命令所需的步骤序列。与第一个卡雷尔程序本身的情况一样，方法定义由两部分组成，可以单独考虑：第一行构成方法头，花括号之间的代码是方法体。如果您暂时忽略正文，则方法定义如下所示：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">方法定义的主体</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>方法头中的前两个单词， <code class="keyword">public</code> 和 <code class="keyword">void</code> ，是Java语法结构的一部分，你现在可以随意忽略它们。标题行上的下一个单词指定新方法的名称，在本例中为方法 <b>run</b> 。定义方法意味着Karel现在可以使用该名称响应新命令。该 <code>run</code> 命令在卡雷尔计划中扮演着特殊的角色。当您启动Karel程序时，它会创建一个新的Karel实例，将Karel添加到您指定的世界，然后发出run命令。程序run的效果由run方法的主体定义，该方法是机器人按顺序执行的一系列命令。例如，第一个卡雷尔程序的run方法的主体是：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>因此，如果世界的初始状态与第1章中给出的例子匹配，卡雷尔首先move向前进入包含锥体的角落，拿起锥体 ，最后move向前到墙前的角落，如图所示以下前后图：</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>解决一个更有趣的问题</h2>
+<p>上面定义的第一个卡雷尔程序还没有做很多。让我们试着让它更有趣一点。假设目标不仅仅是让Karel从第二列和第一行的第一列到第一行的中心获得锥体而是move 锥体 。因此，您的下一个任务是定义一个新的Karel程序来完成此图中所示的任务：</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>新程序中的前三个命令 - move转发，拿起锥体 ，然后move转到窗台 - 与以前相同：</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>从这里开始，下一步是向左转，开始攀登壁架。这个操作很简单，因为Karel在其标准曲目中有一个转左命令。在前面的命令序列的末尾执行转左命令使Karel在第1行和第3列的角落朝北。如果Karel然后执行move命令，它将在move北方到达以下位置：</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>从这里开始，你需要做的下一件事就是让卡雷尔向右转，这样它再次面向东方。虽然这个操作在概念上就像让Karel左转一样容易，但是有一个小问题：Karel的语言包括 <code>turnLeft</code> 命令，但没有 <code>turnRight</code> 命令。这就像你买了经济模型，现在发现它缺少一些重要的功能。</p>
+<p>在这一点上，你有第一次机会开始像程序员一样思考。您有一组命令，但不完全是您需要的命令。你能做什么？您是否可以仅使用您拥有的功能来完成右转命令的效果？答案当然是肯定的。您可以通过向左转三次来实现向右转的效果。在左转三圈后，卡雷尔将面向所需的方向。从这里开始，您需要做的就是将Karel编程到move到达壁架的中心，然后将锥体和move向前移动到最终位置。这是一个完整的实现 <code>加紧</code> 完成整个任务的程序：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>

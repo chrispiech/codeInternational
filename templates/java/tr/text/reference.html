@@ -1,0 +1,120 @@
+<h1>Referans</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>Bu ek, Karel programlama dilinin yapısını tek bir sayfada tanımlar.</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Karel üssü emirleri:</b> 
+<p class="refCode">
+ <code>move();</code> <br/>
+ <code>turnLeft();</code> <br/>
+ <code>putBeeper();</code> <br/>
+ <code>pickBeeper();</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>Karel program yapıları:</b> 
+<p class="refCode">
+ <code class="comment">/* Yorumlar herhangi bir bölüme dahil edilebilir<br/>
+ * arasında a program. Onlar başla ile a yırtmaç-star<br/>
+ * and end with a star-slash.<br/>
+ */<br/></code> 
+ <code><span class="keyword">public class</span> <i class="demoText">isim</i> <span class="keyword">extends</span> SüperKarel {</code> <br/>
+<br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      </code> <i class="demoText">çalıştırılacak kod</i><br/>
+ <code>   }</code> <br/>
+<br/>
+ <code>   </code> <i class="demoText">özel yöntemlerin beyanları</i><br/>
+ <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Koşulların isimleri:</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>frontIsClear()</code> <br/>
+ <code>beepersPresent()</code> <br/>
+ <code>beepersInBag()</code> <br/>
+ <code>leftIsClear()</code> <br/>
+ <code>rightIsClear()</code> <br/>
+ <code>facingNorth()</code> <br/>
+ <code>facingSouth()</code> <br/>
+ <code>facingEast()</code> <br/>
+ <code>facingWest()</code> <br/>
+</div>
+<div class="refCol">
+ <code>frontIsBlocked()</code> 
+ <code>noBeepersPresent()</code> <br/>
+ <code>noBeepersInBag()</code> <br/>
+ <code>leftIsBlocked()</code> <br/>
+ <code>rightIsBlocked()</code> <br/>
+ <code>notFacingNorth()</code> <br/>
+ <code>notFacingSouth()</code> <br/>
+ <code>notFacingEast()</code> <br/>
+ <code>notFacingWest()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Koşullar:</b> 
+<p class="refCode"> <code><span class="keyword">if</span>(</code> <i class="demoText">şart</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">run kodu, koşul geçerse</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span>(</code> <i class="demoText">şart</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">"evet" için kod bloğu</i><br/> <code>} <span class="keyword">else</span> {</code> <br/><i class="demoText" style="margin-left:2em">"hayır" için kod bloğu</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>döngüler:</b> 
+<p class="refCode"> <code><span class="keyword">for</span>(int i = 0; i &lt;</code>  <i class="demoText">saymak</i> <code>; i++){</code> <br/><i class="demoText" style="margin-left:2em">yinelenecek kod</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span>(</code> <i class="demoText">şart</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">yinelenecek kod</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Yöntem Beyanı:</b> 
+<p class="refCode"> <code><span class="keyword">private void</span></code> <i class="demoText" style="margin-left:10px">isim</i> <code>() {</code> <br/><i class="demoText" style="margin-left:2em">yöntemin gövdesinde kod.</i><br/> <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>SüperKarel ek komutları:</b> 
+<p class="refCode">
+ <code>turnRight();</code> <br/>
+ <code>turnAround();</code> <br/>
+ <code>random(</code> <i class="demoText">p</i> <code>);</code> <br/>
+ <code>paintCorner(</code> <i class="demoText">renk</i> <code>);</code> <br/>
+</p>
+</div>
+</div>
+</div>
+<!--
+-->

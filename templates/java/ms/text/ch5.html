@@ -1,0 +1,45 @@
+<h1>Bab 5: Untuk Gelung</h1>
+<hr/>
+<p>Salah satu perkara yang komputer sangat baik adalah pengulangan. Bagaimanakah kita dapat meyakinkan Karel untuk melaksanakan kod blok beberapa kali? Untuk melihat bagaimana pengulangan dapat digunakan, pertimbangkan tugas menempatkan 42 beeper s:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Asas Untuk Gelung</h3>
+<p>Oleh kerana anda tahu bahawa terdapat beeper s tepat untuk diletakkan, pernyataan kawalan yang anda perlukan adalah a <b>untuk gelung</b> , yang menyatakan bahawa anda ingin mengulang beberapa operasi beberapa kali yang tetap. Struktur pernyataan itu kelihatan rumit terutamanya kerana ia sebenarnya jauh lebih kuat daripada apa yang diperlukan oleh Karel. Satu-satunya versi sintaks yang digunakan Karel ialah:</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">kiraan</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">pernyataan yang akan diulang</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">Kami akan menemui semua butiran gelung untuk kemudian di kelas. Buat masa ini anda harus membaca garis ini sebagai cara untuk menyatakan, "ulang kenyataan di antara kurungan kerinting<i class="demoText">kiraan</i>masa. "Kita boleh menggunakan yang baru ini <b>untuk gelung</b> untuk meletakkan 42 beeper s dengan menggantikan<i class="demoText">kiraan</i>dengan 42 dan meletakkan arahan itu <code>putBeeper()</code> di dalam blok kod gelung. Kami memanggil arahan dalam kod menghalangnya <b>badan</b> :</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>Kod di atas boleh diedit. Cuba beeper supaya ia meletakkan hanya 15 beeper s.</p>
+<h3>Memadai Pascondisi dengan Preconditions</h3>
+<p>Contoh terdahulu memberi kesan bahawa gelung untuk mengulangi satu baris kod. Bagaimanapun badan bagi gelung (pernyataan yang diulangi) boleh menjadi pelbagai baris. Berikut adalah contoh program yang meletakkan beeper di setiap penjuru dunia:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Bayar perhatian yang sangat dekat dengan cara program mengalir menerusi kenyataan kawalan ini. Program run s melalui set arahan dalam badan gelung satu pada satu masa. Ia mengulangi badan empat kali.</p>
+<p>Mungkin satu bahagian yang paling rumit untuk menulis sebuah gelung ialah anda memerlukan keadaan dunia pada akhir gelung (the <b>postkondition</b> ) menjadi keadaan yang sah di dunia untuk permulaan gelung (yang <b>prasyarat</b> ). Dalam contoh di atas, andaian sepadan. Masa yang baik. Pada permulaan gelung itu, Karel sentiasa di atas sebuah persegi dengan tiada beeper s menghadap sudut kosong seterusnya. Bagaimana jika anda memadam belokKiri pada hujung gelung? Poskondisi pada akhir lelaran pertama tidak lagi memuaskan andaian yang dibuat tentang Karel menghadapi sudut kosong seterusnya. Kod ini boleh diedit. Cuba hapuskan <code>turnLeft();</code> perintahkan untuk melihat apa yang berlaku!</p>
+<h3>Gelung Nested</h3>
+<p>Secara teknik, badan bagi gelung boleh mengandungi sebarang kod aliran kawalan, walaupun gelung lain. Berikut adalah contoh bagi gelung yang mengulangi panggilan kepada kaedah yang juga mempunyai gelung. Kami panggil ini gelung "bersarang". Cuba baca program ini, dan fahami apa yang berlaku sebelum run melihatnya:
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

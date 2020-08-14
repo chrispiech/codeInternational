@@ -1,0 +1,433 @@
+
+<html>
+<head>
+
+<title>カレルリーダー</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ja/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> カレル</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter1.html">1  - カレルに会う</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter2.html">2  - プログラミング</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter3.html">3  - 新しい方法</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter5.html">5  - ループ用</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter6.html">6  - ループ中</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter7.html">7  - 条件付き</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter8.html">8  - 洗練</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter9.html">9  - スーパーカレル</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/reference.html">10  - 参照</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/ide.html">11  - コード</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> もっと詳しく知る</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第8章：段階的な改良</h1>
+<hr/>
+<p>大体において、プログラミングはコンピュータによって問題を解決する科学です。問題はしばしば困難であるため、解決策、およびそれらの解決策を実装するプログラムも同様に困難になる可能性があります。これらのソリューションをより簡単に開発できるようにするには、その複雑さのレベルを管理可能な規模にまで削減する方法論と規律を採用する必要があります。</p>
+<p>プログラミングの初期の頃は、科学としてのコンピューティングの概念は、多かれ少なかれ希望的思考の実験でした。当時のプログラミングについては誰も知っていませんでしたが、それを従来の意味でのエンジニアリング分野とは考えていませんでした。しかし、プログラミングが成熟するにつれて、そのような規律が出現し始めました。その分野の礎は、プログラミングは、プログラマーが協力しなければならない社会的環境で行われるという理解です。あなたが産業に入るならば、あなたはほぼ確実に大きなプログラムを開発するために働いている多くのプログラマーのうちの1人になるでしょう。そのプログラムは、さらに、ほぼ確実に実行され、本来の用途を超えた保守を必要とします。誰かがプログラムにいくつかの新機能を含めるか、または何らかの方法で動作させることを望みます。それが起こるとき、プログラマーの新しいチームは参加してプログラムに必要な変更を加える必要があります。プログラムがほとんどまたはまったく共通性のない個別のスタイルで書かれている場合、全員が生産的に協力することは非常に困難です。</p>
+<p>この問題に対処するために、プログラマーは総称される一連のプログラミング方法論を開発し始めました。 <b>ソフトウェア工学</b> 。優れたソフトウェアエンジニアリングスキルを使用すると、他のプログラマーが自分のプログラムを読んで理解しやすくなるだけでなく、そもそもそれらのプログラムを簡単に書くことも容易になります。ソフトウェア工学から得られる最も重要な方法論的進歩の1つは、 <b>トップダウン設計</b> または <b>段階的な洗練</b> それは全体として問題から始めることによって問題を解決することから成ります。問題全体を細かく分割してから各部分を解決し、必要に応じてそれらをさらに細かくします。このトップダウン戦略は、以下によって補完されます。 <b>反復テスト</b> 先に進む前に、ソリューションの小さい部分が機能していることを確認します。</p>
+<h3>段階的洗練の練習</h3>
+<p>段階的洗練の概念を説明するために、新しい問題を解決するようにKarelに教えましょう。カレルが今、こんな感じの世界に住んでいると想像してみてください。</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'ja',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>それぞれの柱の上には、高さが不明なbeeper秒の塔がありますが、いくつかの柱（サンプル世界の7番目、9番目など）は空の場合があります。 Karelの仕事は、これらの塔のそれぞれにあるbeeperをすべて集め、それらを1列目の最東端の角に戻してから、開始位置に戻すことです。したがって、上記の例でKarelが作業を終了すると、現在タワーにある25 beeperのすべてが、次のように9列1行目の角に積み重ねられます。</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'ja',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>重要なのは、あなたはカレルの初期と仮定することができます<i>始まる</i>その袋に0 beeper秒で。拾ったそれぞれのbeeperはそのバッグに追加されます。 beeperコーナーに置くとき、カレルは <code>beepersInBag()</code> テスト。</p>
+<p>この問題を解決するための秘訣は、正しい方法でプログラムを分解することです。それでも、あなたが行っている通りにテストすることは可能です。このタスクは、これまで見てきた他のタスクよりも複雑です。そのため、適切なサブ問題を選択することが、成功する解決策を得るために重要になります。</p>
+<h3>トップダウン設計の原則</h3>
+<p>段階的改良の重要な考え方は、プログラムの設計を上から開始する必要があるということです。これは、概念的に最も高く、最も抽象的なプログラムのレベルを指します。このレベルでは、 beeperタワー問題は明らかに3つの独立したフェーズに分けられます。まず、Karelはbeeperをすべて集めなければなりbeeperん。第二に、カレルはそれらを最後の交差点に預けなければなりません。第三に、カレルはホームポジションに戻らなければなりません。この問題の概念的な分解は、このプログラムのrunメソッドが以下の構造を持つことを示唆しています。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      beeperをすべて収集();</code> <br/>
+ <code>      beeperすべてドロップ();</code> <br/>
+ <code>      帰宅();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>このレベルでは、問題は理解しやすいです。もちろん、まだ書いていないメソッドの形で残っている詳細がいくつかあります。それでも、分解の各レベルを調べて、これから作成しようとしているメソッドがサブ問題を正しく解決すると考えている限り、問題全体に対する解決策が得られることを確信してください。 。</p>
+<h3>あなたが行くように反復テスト</h3>
+<p>今、あなたは、全体として、プログラムの構造が定義されていること、それはまでの時間であるmoveすべて収集から成り最初の部分問題へのbeeper sが。この作業自体は、前の章の単純な問題よりも複雑です。 beeperすべてbeeperということは、最後のコーナーに着くまで、すべてのタワーでbeeperを拾う必要があるということです。各タワーに対して操作を繰り返す必要があるという事実は、ここでwhileループが必要であることを示唆しています。 whileループは以下のプロセスを繰り返します。 <code>一つの塔を集める</code> そして動いています。</p>
+<p> <b>あぶない：</b> せずにプログラム全体を書いてみるのは危険です。 <b>テスト</b> あなたが行くようにそれは。あなたがミスをした場合、それは間違いを見つけるのは難しいでしょう。私たちは一つの塔を集めるプロセスを繰り返すつもりであることを知っています。書きましょう <b>テスト</b> 我々が置く前に単一の塔を集める <code>一つの塔を集める</code> forループで処理します。したがって<i>一時的</i>beeperをすべてbeeperの次の定義から始めることができます。<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> beeperをすべて収集() {</code> <br/>
+ <code class="comment">      /* テスト目的での一時的な実装 */</code> <br/>
+ <code>      一つの塔を集める();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>指針として、複雑なループがある場合は、<i>体</i>あなたがループ全体を書く前に、ループの。</p>
+<h3>精製コレクトタワー</h3>
+<p>ひとつの塔をbeeperと呼ばれると、カレルはbeeper秒の塔のbeeper立っているか、空いている角に立っています。前者の場合は、タワーでbeeperを収集する必要があります。後者では、単純にmoveにすることができます。この状況はif文のアプリケーションのように聞こえます。その場合は、次のように書きます。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(beepersPresent()){</code> <br/>
+ <code>      実際の塔を集める();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>そのような文をコードに追加する前に、このテストを行う必要があるかどうかを検討する必要があります。多くの場合、プログラムは、最初は特殊であると思われるケースを、より一般的な状況とまったく同じ方法で扱うことができることを観察することによって、はるかに単純にすることができます。あなたがそこのタワーであると判断した場合、現在の問題では、何が起こるbeeper sがすべての道ではなく、これらの塔の一部がゼロであることをbeeperの高いですか？この洞察を利用すると、特定の通りに塔があるかどうかをテストする必要がなくなるため、プログラムが単純化されます。</p>
+<p>一つの塔をまとめる方法は、まだ十分に複雑であるため、追加のレベルの分解が適切です。タワーでbeeperをすべて収集するには、Karelは次の手順を実行する必要があります。</p>
+<ol>
+<li>左にbeeperてタワー内のbeeper sにbeeperます。<li>タワーにbeeperすべて集め、 beeperがもうbeeperなくなっbeeper停止する。<li>世界の底に向かって向きを変えるために振り向いてください。<li>地面を表す壁に戻ります。<li>次の角にmoveに準備ができているために左に曲がりmove 。</li></li></li></li></li></ol>
+<p>もう一度、このアウトラインは一つの塔をまとめる方法のモデルを提供します。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>一つの塔を集める(){</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>      beeperの行を収集();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      壁にMove();</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>メソッドの前提条件と事後条件</h3>
+<p>一つの塔をturnLeftの最初と最後のturnLeftコマンドは、どちらもこのプログラムの正確さにとって極めて重要です。一つの塔をまとめると呼ばれると、カレルはいつも東を向いて一列目のどこかにいます。操作が完了すると、プログラムは全体として正しく動作します。これは、Karelが再び同じコーナーで東を向いている場合に限ります。メソッドが呼び出される前に真にならなければならない条件は、次のように呼ばれます。 <b>前提条件</b> ;メソッドが終了した後に適用する必要がある条件は、 <b>事後条件</b> 。</p>
+<p>メソッドを定義するとき、事前条件と事後条件が何であるかを正確に書き留めておけば、問題がはるかに少なくなります。いったんそうしたら、あなたはあなたが書くコードが必ず前提条件が最初に満足されていると仮定して、事後条件が満足されたままであることを確認する必要があります。たとえば、カレルが東を向いて1行目にいるときにひとつの塔を集めるとしたらどうなるかを考えてみましょう。最初のturnLeftコマンドはKarelを北に向けたままにします。これは、Karelがタワーを表すbeeperの列と正しく揃っていることを意味します。 beeperの行を収集方法 - これはまだ書かれていませんが、それでもなおあなたが概念的に理解するタスクを実行します - をmoveずに単純にmove秒です。したがって、 beeperの行を収集への呼び出しの終わりに、Karelはまだ北を向いています。したがって、 turnAround呼び出しでは、カレルは南向きになります。 beeperの行を収集のように、壁にMoveメソッドはターンを必要としませんが、代わりに境界壁に当たるまでmove秒です。 Karelは南向きなので、この境界壁は画面の一番下、1行目のすぐ下にあります。したがって、最後のturnLeftコマンドは、東を向いた1行目のKarelを残します。これは事後条件を満たします。</p>
+<h3>プロセスを繰り返す</h3>
+<p>あなたはrunあなたのプログラムを成功させ、それは成功すると1つの塔をクリアして約束された事後条件でKarelを離れる。ヤフー！あなたはこの困難な課題を解決するための画期的な出来事を達成しました。今度はwhileループを使用して1つのタワーをクリアするプロセスを繰り返す必要があります。</p>
+<p>しかし、whileループはどのようなものですか？まず第一に、あなたは条件付きテストについて考えるべきです。あなたはそれが列の終わりに壁に当たったときにKarelが止まることを望みます。したがって、正面のスペースが空いている限り、Karelが動き続けることを望みます。したがって、 beeperをすべて収集メソッドにfrontIsClearテストを使用するwhileループが含まれることがfrontIsClearます。各ポジションで、あなたはKarelにそのコーナーで始まるタワーの中のbeeperのすべてを集めることを望みます。その操作に名前を付けると（それはひとつの塔をbeeperようなものになるかもしれません）、まだ詳細を記入していなくてもbeeperをすべて収集方法の定義を書くことができます。</p>
+<p>あなたは、しかし、注意する必要があります。 beeperをすべてbeeperのコードはこのようなものではありません。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>beeperをすべて収集(){</code> <br/>
+ <code class="comment">      /* バギーループ！ */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         一つの塔を集める();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>この実装は6章からの一般的なPlaceBeeper行の最初のバージョンがその仕事をすることに失敗したのと全く同じ理由でバグがあります。このバージョンのコードには、最後の通りにbeeper塔があるかbeeperをテストする必要があるため、fencepostエラーが発生します。正しい実装は次のとおりです。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>beeperをすべて収集(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         一つの塔を集める();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      一つの塔を集める();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>このメソッドは、第6章で紹介したPlaceBeeper行プログラムのメインプログラムとまったく同じ構造を持っていることに注意してください。唯一の違いは、このプログラムが1つの塔をputBeeperところでputBeeperです。これら2つのプログラムは、それぞれ次のような一般的な戦略の例です。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>beeperをすべて収集(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">何らかの操作を行います。</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">最後のコーナーでも同じ操作をします。</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>あなたが壁で終わる道に沿ってあなたがmoveとしてあなたが隅々で操作を実行する必要があるときはいつでもあなたはこの戦略を使うことができます。この戦略の一般的な構造を覚えていれば、そのような操作を必要とする問題に遭遇したときはいつでもそれを使用することができます。この種の再利用可能な戦略はプログラミングで頻繁に登場し、そして <b>プログラミングイディオム</b> または <b>パターン</b> 。知っているパターンが多ければ多いほど、特定の種類の問題に適したパターンを見つけやすくなります。</p>
+<h3>仕上げ</h3>
+<p>大変な作業は行われましたが、解決する必要があるいくつかの未解決の点がまだあります。メインプログラムは2つのメソッドをbeeperます - beeperすべてドロップとbeeper - それらはまだ書かれていません。同様に、一つの塔をbeeper calls beeperの行を収集と壁に移動。幸いなことに、これら4つの方法はすべて、特に分解を行わずにコーディングできるほど簡単です。特に帰宅の定義で壁にMoveを使用する場合は特にそうです。これが完全な実装です。</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1439.1000000000001px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * File：Beeper収集カレル.java
+ * --------------------
+ * Beeper収集カレルクラスは、一連の垂直方向の塔にあるbeeperをすべて収集し、それらを1行目の最東端の角に配置します。
+ */
+import stanford.カレル.*;
+public class Beeper収集カレル extends カレル {
+
+   /**
+    * プログラムの入り口点を指定します。
+    */
+   public void run() {
+      beeperをすべて収集();
+      beeperすべてドロップ();
+      帰宅();
+   }
+
+   /**
+    * 1列目に沿って移動することで、すべてのタワーからbeeperのsをbeeper 、あらゆるbeeperのタワーをbeeper 。この方法の事後条件は、カレルが東に面する1列目の最東端の角にあるということです。
+    */
+   private void beeperをすべて収集() {
+      while (frontIsClear()) {
+         一つの塔を集める();
+         move(); 
+      }
+      一つの塔を集める();
+   }
+
+   /**
+    * 単一のタワーにbeeperます。一つの塔をまとめると呼ばれるときは、カレルは東を向いて1列目にいなければなりません。一つの塔を集めるの事後条件は、カレルが再び同じ隅の東を向いていなければならないということです。
+    */
+   private void 一つの塔を集める() {
+      turnLeft();
+      beeperの行を収集();
+      turnAround();
+      壁にMove();
+      turnLeft();
+   }
+
+   /**
+    * beeper秒の連続行を収集します。年末beeperラインが全く含まれていないコーナーで表示されるbeeper秒。
+    */
+   private void beeperの行を収集() {
+      while (beepersPresent()) {
+         pickBeeper();
+         if (frontIsClear()) {
+            move(); 
+         }
+      } 
+   }
+
+   /**
+    * 現在のコーナーにbeeperすべてドロップします。
+    */
+   private void beeperすべてドロップ() {
+      while (beepersInBag()) {
+         putBeeper();
+      }
+   }
+
+   /**
+    * 東を向いて、1番街と1行目の角にある初期位置にカレルを返します。この方法のための前提条件は、カレルは、終了時に真である1行目、上のどこかに東向きなければならないということであるbeeperをすべて収集。
+    */
+   private void 帰宅() {
+      turnAround();
+      壁にMove();
+      turnAround();
+   }
+
+   /** 壁で塞がれるまでカレルを前方に移動します。 */
+   private void 壁にMove(){
+      while (frontIsClear()) {
+         move();
+      } 
+   }
+
+   /** カレルを180度回転させる */
+   private void turnAround(){
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'ja', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1439.1000000000001;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">次の章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

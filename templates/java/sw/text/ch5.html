@@ -1,0 +1,45 @@
+<h1>Sura ya 5: Mizunguko For</h1>
+<hr/>
+<p>Moja ya mambo ambayo kompyuta ni nzuri zaidi ni kurudia. Tunawezaje kumshawishi Karel kutekeleza kizuizi cha kanuni mara nyingi? Kuona jinsi kurudia inaweza kutumika, fikiria kazi ya kuweka 42 koni s:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Msingi Kwa Mzigo</h3>
+<p>Kwa kuwa unajua kuwa kuna 42 koni s hasa kuweka, taarifa ya kudhibiti unayohitaji ni <b>mzunguko for</b> , ambayo inasema kwamba unataka kurudia operesheni fulani mara fasta. Mfumo wa taarifa hiyo unaonekana ngumu hasa kwa sababu ni nguvu zaidi kuliko kitu chochote ambacho Karel anahitaji. Toleo pekee la syntax ambayo Karel anatumia ni:</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">hesabu</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">maelezo ya kurudiwa</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">Tutaenda juu ya maelezo yote ya mzunguko for baadaye katika darasa. Kwa sasa unapaswa kusoma mstari huu kama njia ya kueleza, "kurudia maneno kati ya mabano ya curly<i class="demoText">hesabu</i>nyakati. "Tunaweza kutumia hii mpya <b>mzunguko for</b> kuweka 42 koni s kwa kuchukua nafasi<i class="demoText">hesabu</i>na 42 na kuweka amri <code>wekaKoni()</code> ndani ya mzunguko for code block. Tunatoa amri katika msimbo wa kuzuia <b>mwili</b> :</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>Msimbo hapo juu unasababishwa. Jaribu kubadili ili iweze tu 15 koni s.</p>
+<h3>Kufananishwa na hali ya juu na Vifungo</h3>
+<p>Mfano uliopita unatoa hisia kwamba mzunguko for hurudia mstari mmoja wa kificho. Hata hivyo mwili wa mzunguko for (kauli ambayo hurudiwa) inaweza kuwa mistari mingi. Hapa ni mfano wa programu koni katika kila kona ya dunia:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Jihadharini sana na njia ambayo programu inapita kupitia kauli hizi za udhibiti. Mpango run s kwa kuweka amri katika mwili mzunguko for moja kwa wakati. Inarudia mwili mara nne.</p>
+<p>Labda sehemu moja ngumu zaidi ya kuandika kitanzi ni kwamba unahitaji hali ya ulimwengu mwishoni mwa kitanzi ( <b>postcondition</b> ) kuwa hali halali ya dunia kwa mwanzo wa kitanzi (ya <b>precondition</b> ). Katika mfano hapo juu mechi ya mawazo. Nyakati nzuri. Mwanzoni mwa kitanzi, Karel daima ni mraba na hakuna koni s inakabiliwa na kona inayofuata tupu. Je, ungependa kufuta geukaKushoto mwisho wa kitanzi? Postcondition mwishoni mwa iteration ya kwanza hakuweza kukidhi tena mawazo yaliyofanywa kuhusu Karel inakabiliwa na kona inayofuata tupu. Nambari hiyo inahaririwa. Jaribu kufuta <code>geukaKushoto();</code> amri ya kuona kinachotokea!</p>
+<h3>Loops zilizopandwa</h3>
+<p>Techniacally mwili wa mzunguko for unaweza kuwa na code yoyote ya mtiririko wa kudhibiti, hata loops nyingine. Hapa ni mfano wa mzunguko for ambao unarudia wito kwa njia ambayo pia ina mzunguko for . Tunaita hii kitanzi "chafu". Jaribu kusoma kupitia programu, na uelewe kile kinachofanya, kabla ya run :
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

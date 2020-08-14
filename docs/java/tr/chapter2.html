@@ -1,0 +1,538 @@
+
+<html>
+<head>
+
+<title>Karel Okuyucu</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/tr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter1.html">1 - Karel ile tanışın</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter2.html">2 - Programlama</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter3.html">3 - Yeni Yöntemler</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter4.html">4 - Ayrışma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter5.html">5 - Döngüler İçin</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter6.html">6 - Döngülerken</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter7.html">7 - Koşullamalar</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter8.html">8 - Arıtma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter9.html">9 - SüperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/reference.html">10 - Referans</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Daha fazla bilgi edin</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Bölüm 2: Karel'i Programlamak</h1>
+<hr/>
+<p>Karel programının en basit stili, program çalışırken yürütülmesi gereken yerleşik komutlar dizisini belirtmek için metni kullanır <b>run</b> . Aşağıdaki basit Karel programını düşünün. Soldaki metin programdır. Karel'in dünyasının durumu sağda gösterilmiştir:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPicking">
+<div class="ide getStarted" id="beeperPickingIde" style="height:299.20000000000005px">
+<div class="ideCenter" id="beeperPickingIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingRunButton"><span class="glyphicon glyphicon-play"></span>Programı çalıştır</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPicking() {
+STARTER_CODE = `
+
+/*
+ * Dosya: IlkKarel.java
+ * -------------------
+ * İlkKarel programı üç run " run " metodunu tanımlar
+ * . Bu komutlar move bir blok move öne, beeper , dah
+ * a sonra da move sonraki köşeye ilerlemesini sağlar
+ * .
+ */
+import stanford.karel.*;
+public class IlkKarel extends Karel {
+   /* program burada run ning başlıyor */
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingEditor','beeperPickingEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'tr');
+    $('#beeperPickingRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 299.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPicking").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingIde');
+    var editorDiv = document.getElementById('beeperPickingEditorDiv');
+    var canvas = document.getElementById('beeperPickingCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPicking();
+    </script>
+</div>
+
+<p>Programı çalıştırmak için "Çalıştır" düğmesine basın. Programlar tipik olarak özel bir uygulamada <b>Entegre Geliştirme Ortamı</b> (IDE) ve çoğu Karel programı Eclipse adlı bir IDE'ye yazılmıştır. Bir IDE gibi, bu okuyucu da size yardımcı olmak için programları yürütme olanağına sahiptir.<i>görmek</i>işlerin öğrendikçe nasıl yürüdüğünü.</p>
+<p>Program birkaç bölümden oluşmaktadır. İlk bölüm aşağıdaki satırlardan oluşur:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Dosya: IlkKarel.java
+ * -------------------
+ * İlkKarel programı üç run " run " metodunu tanımlar
+ * . Bu komutlar move bir blok move öne, beeper , dah
+ * a sonra da move sonraki köşeye ilerlemesini sağlar
+ * .
+ */</pre>
+</p>
+<p>Bu çizgiler bir örnek <b>yorum Yap</b> programın çalışmasını insan okuyuculara açıklamak için tasarlanmış bir metindir. Hem Karel hem de Java'daki yorumlar karakterlerle başlar <code class="comment">/*</code> ve karakterlerle bitirin <code class="comment">*/</code> . Burada, yorum ilk satırda başlar ve birkaç satır sonra sona erer. Yorumun metnini oluşturan münferit satırlardaki yıldızlara gerek yoktur, ancak insan okurlarının yorumun boyutunu görmesini kolaylaştırır. Basit bir programda, programın etkisi açık olduğu için kapsamlı yorumlar saçma görünebilir, ancak daha büyük, daha karmaşık programların tasarımını belgeleme aracı olarak son derece önemlidir. Programın ikinci kısmı çizgidir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>Bu satır tüm tanımların dahil edilmesini istiyor. <code>stanford.karel</code> kütüphane. Bu kütüphane, standart işlemlerin tanımları gibi Karel programlarını yazmak için gerekli temel tanımları içerir. <code>move()</code> ve <code>pickBeeper()</code> . Bu işlemlere her zaman erişmeniz gerektiğinden, yazdığınız her Karel programı, gerçek programı yazmadan önce bu içe aktarma komutunu içerecektir.</p>
+<p>Karel programının son kısmı, aşağıdaki program tanımından oluşur:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> IlkKarel <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Bu tanımı anlamak için, yapısına daha dikkatli bakmak yararlı olacaktır. İlkKarel programının tanımı ile başlayan satırdan oluşuyor. <code class="keyword">public class</code> ve bu satırın sonundaki kaşlı ayraç ile programın son satırındaki karşılık gelen ayraç arasındaki her şeyi kapsar. Yeni sınıfı tanıtan tek satır <b>başlık</b> tanımın; Parantezler arasındaki kod <b>vücut</b> .</p>
+<p>Programlamada, belirli bir tanım ve bedeni ayrılabilir fikirler olarak düşünmek genellikle çok yararlıdır. Bu örnekte, İlkKarel tanımı, tanımın bütün gövdesinin şu anda aklınızdan çıkarılabileceği aşağıdaki biçimdedir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> IlkKarel <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">program tanımı gövdesi</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>Üstteki başlık satırı, vücudun ne içerdiğini görmeden önce bile, İlkKarel programı hakkında size biraz bilgi verir. İfade <code class="keyword">public class</code> Bir programın tanımını başlatır. İfade <code><span class="keyword">extends</span> Karel</code> belirtmek için kullanılır <code>IlkKarel</code> bir Karel programıdır.</p>
+<p>Şimdi İlkKarel programının gövdesine bakalım. Bu vücut şu satırlardan oluşur:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Bu çizgiler yeni bir tanımını temsil eder. <b>yöntem</b> , bir komuta yanıt vermek için gerekli adımların sırasını belirtir. İlkKarel programının kendisinde olduğu gibi, yöntem tanımı ayrı ayrı ele alınabilecek iki bölümden oluşur: İlk satır yöntem başlığını oluşturur ve küme parantezleri arasındaki kod yöntem gövdesidir. Bedeni şimdilik görmezden gelirseniz, yöntem tanımı şöyle görünür:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">yöntem tanımının gövdesi</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Yöntem başlığındaki ilk iki kelime, <code class="keyword">public</code> ve <code class="keyword">void</code> , Java'nın sözdizimsel yapısının bir parçasıdır ve bu noktada onları görmezden gelmekten çekinmemelisiniz. Başlık satırındaki bir sonraki sözcük, bu durumda yöntem olan yeni yöntemin adını belirtir. <b>run</b> . Bir yöntem tanımlamak, Karel'in şimdi bu isimde yeni bir komuta cevap verebileceği anlamına gelir. <code>run</code> komutu bir Karel programında özel bir rol oynar. Bir Karel programına başladığınızda, yeni bir Karel örneği yaratır, run belirttiğiniz bir dünyaya ekler ve ardından run komutunu verir. run etkisi, run sırayla uygulayacağı bir komutlar dizisi olan run yönteminin gövdesi tarafından tanımlanır. Örneğin, İlkKarel programının run yönteminin gövdesi şöyledir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Böylece, dünyanın ilk durumu Bölüm 1'de verilen move beeper , beeper içeren köşeye ilk move s öne, Karel beeper ve son olarak move gösterildiği gibi duvardan hemen önce köşeye doğru ileri alır aşağıdaki öncesi ve sonrası diyagramı:</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Önce:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Sonra:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'tr',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpM1',0.0, 'tr',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>Daha ilginç bir problem çözme</h2>
+<p>Yukarıda tanımlanan İlkKarel programı henüz pek bir şey yapmıyor. Biraz daha ilginç hale getirelim. Hedefin sadece beeper değil, move beeper 2. sütunda ve 1. sıradaki bir çıkıntının ortasına beeper sağlamak olduğunu move . Böylece, bir sonraki ödeviniz bu şemada gösterilen görevi gerçekleştiren yeni bir Karel programını tanımlamaktır:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Önce:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Sonra:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'tr',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpGoal',0.0, 'tr',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>Yeni programdaki ilk üç komut - move ileri, beeper , sonra move çıkıntıya kadar - move aynıdır:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Buradan, bir sonraki adım çıkıntıya tırmanmaya başlamak için sola dönmektir. Bu işlem kolaydır, çünkü turnLeft standart repertuarında turnLeft komutu vardır. Önceki komut dizisinin sonunda turnLeft komutu uygulamak, turnLeft kuzeye, 1. sıra ve 3. sütunun köşesine bakacak şekilde bırakır. Karel daha sonra move komutunu çalıştırırsa, aşağıdaki pozisyona ulaşmak için move kuzeyi olacaktır:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('java',null, canvas, 'stepUpM2', 0, 'tr',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>Buradan, yapmanız gereken bir sonraki şey Karel'in sağa dönmesini sağlamak, böylece tekrar doğuya bakması. Bu işlem kavramsal olarak Karel'in sola dönmesini sağlamak kadar kolay olsa da küçük bir sorun var: Karel'in dili bir <code>turnLeft</code> emir ama hayır <code>turnRight</code> Komut. Sanki ekonomi modelini satın aldınız ve şimdi bazı önemli özelliklerin eksik olduğunu keşfettiniz.</p>
+<p>Bu noktada, bir programcı gibi düşünmeye başlamak için ilk fırsatınız var. Tek bir komut setiniz var, fakat tam olarak ihtiyacınız olan seti değil. Ne yapabilirsin? turnRight komutunun etkisini yalnızca sahip olduğunuz yetenekleri kullanarak turnRight misiniz? Cevap, tabii ki, evet. Üç kez sola dönerek sağa dönmenin etkisini başarabilirsiniz. Üç sola döndükten sonra Karel istenilen yöne bakacak. Buradan, yapmanız gereken tek şey move çıkıntı merkezine kadar move programlamak, beeper ve ardından move son konuma getirmek. İşte tam bir uygulama <code>AdımAtmak</code> görevi tamamlayan bir program:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:422.40000000000003px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>Programı çalıştır</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+/*
+ * Dosya: ConoToplama.java
+ * ----------------------
+ * ConoToplama programı, run beeper ve bir çıkıntıya
+ * yerleştirmesine neden olan komutlarla bir " run "
+ * yöntemi tanımlar.
+ */
+import stanford.karel.*;
+public class ConoToplama extends Karel {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnLeft();
+      turnLeft();
+      turnLeft();
+      move();
+      move();
+      putBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.5, 'tr');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 422.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">Sonraki bölüm</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<h1>第7章：ifステートメント</h1>
+<hr/>
+<p>学ぶべき最後のコアプログラミング制御フロー構造は条件文（ <code>if</code> そして <code>if/else</code> ）</p>
+<h3>基本条件</h3>
+<p>あ <code>if/else</code> 次の場合に限り、ステートメントは "if"コードブロックを実行します。<i class="demoText">テスト</i>プログラムが声明に達するときの世界の状態に当てはまります。そうでなければ、プログラムは "else"コードブロックを実行します。</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">テスト</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">コードブロックの場合</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">そうでなければコードブロック</i><br/>
+ <code>}</code> 
+</p>
+<p>条件文が便利になる場所を理解するために、Karelにbeeper秒の行を反転させるプログラムを書きましょう。以前に広場にbeeperがあったbeeper 、カレルはそれを拾うべきです。正方形にbeeperがないbeeper 、Karelはそれを1つ置くべきです。</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>に注意してください <code>if</code> ステートメントは持っている必要はありません <code>else</code> block  - その場合、文は以下のように動作します。 <code>while</code> 1回だけ実行されるループ</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">テスト</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">コードブロックの場合</i><br/>
+ <code>} </code> 
+</p>
+<h3>条件</h3>
+<p>最後の例では新しい条件を使用しました。これはKarelが知っているすべての条件のリストです：</p>
+<p>
+<table class="table table-condensed">
+<tr><th>テスト</th><th>反対側</th><th>何をチェック</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>カレルの前に壁はありますか？</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>この角にbeeperはありますか？</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>カレルの左に壁はありますか？</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>カレルの権利に壁はありますか？</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>カレルのカバンの中にbeeperがありますか。</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>カレルは北向きですか？</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>カレルは南向きですか？</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>カレルは東向きですか？</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>カレルは西を向いていますか？</td>
+</tr>
+</table>
+</p>
+<h3>すべてを一緒に入れて</h3>
+<p>おめでとうございます。これで、コアプログラミングの制御フローブロックがすべてわかりました。 Karel、メソッド、whileループ、forループでそれらを学びましたが、if / else文は、Javaを含むほぼすべての主要言語で同じように機能します。</p>
+<p>これでビルディングブロックが完成したので、それらをまとめてさらに複雑な問題に対する解決策を構築することができます。大体において、プログラミングはコンピュータによって問題を解決する科学です。問題はしばしば困難であるため、解決策、およびそれらの解決策を実装するプログラムも同様に困難になる可能性があります。これらのソリューションをより簡単に開発できるようにするには、その複雑さのレベルを管理可能な規模にまで削減する方法論と規律を採用する必要があります。</p>

@@ -1,0 +1,200 @@
+
+<html>
+<head>
+
+<title>カレルリーダー</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ja/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> カレル</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter1.html">1  - カレルに会う</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter2.html">2  - プログラミング</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter3.html">3  - 新しい方法</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter5.html">5  - ループ用</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter6.html">6  - ループ中</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter7.html">7  - 条件付き</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter8.html">8  - 洗練</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter9.html">9  - スーパーカレル</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/reference.html">10  - 参照</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/ide.html">11  - コード</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> もっと詳しく知る</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="width:740px; flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第1章：カレルロボットの紹介</h1>
+<hr/>
+<p>1970年代に、スタンフォード大学のRich Pattisという大学院生は、ほとんどのプログラミング言語を特徴付ける複雑さから解放された単純な環境で何らかの方法で基本的な考え方を学ぶことができれば、プログラミングの基礎を教える方が簡単だと判断しました。 Richは、学生が簡単な問題を解決するためにロボットを教えるための入門用プログラミング環境を設計しました。そのロボットはチェコの劇作家にちなんで、カレルと名付けられました。 <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">カレル・チャペック</a> 1923年にRUR（ <a href="https://en.wikipedia.org/wiki/R.U.R.">ロッサムのユニバーサルロボット</a> ）ロボットという言葉を英語にしました。</p>
+<center>
+<img src="../../images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Karel the Robotは大成功でした。 Karelは世界中のコンピュータサイエンス入門コースで使用され、何百万人もの学生に教えられてきました。スタンフォード大学の何代にもわたる学生は、プログラミングがどのようにKarelと連携するかを学びました、そしてそれはスタンフォードで使われるコーディングへの優しい入門書です。</p>
+<h3>カレルとは</h3>
+<p>カレルはとてもシンプルな世界に住むとてもシンプルなロボットです。 Karelに一連のコマンドを与えることで、その世界の中で特定のタスクを実行するように指示することができます。これらのコマンドを指定するプロセスが呼び出されます <b>プログラミング</b> 。当初、Karelはごく少数の定義済みコマンドしか理解していませんが、プログラミングプロセスの重要な部分は、その機能を拡張する新しいコマンドをKarelに教えることです。</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>カレルプログラムは、構造が同じで、基本要素も同じです。 <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> 、メジャー <a href="https://en.wikipedia.org/wiki/Programming_language">プログラミング言語</a> 。重要な違いは、Karelのプログラミング言語は非常に小さいため、詳細を習得するのは簡単だということです。そうであっても、あなたは問題を解決することが挑戦的である可能性があることを発見するでしょう。</p>
+<p>カレルから始めることによって、あなたは最初から問題を解決することに集中することができます。問題解決はプログラミングの本質です。そしてKarelは想像力と創造性を奨励するので、あなたはその過程でかなり多くの楽しみを持つことができます。</p>
+<h3>カレルの世界</h3>
+<p>カレルの世界は、行で定義されているrun寧水平方向（東西）と列run寧縦（南北）。行と列の交点はコーナーと呼ばれます。カレルは隅にしか配置できず、4つの標準的なコンパス方向（北、南、東、西）のいずれかを向いている必要があります。 Karelの世界の例を以下に示します。ここでカレルは東を向いて、1行1列の角に位置しています。</p>
+<center>
+<img src="../../images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>この例では、カレルの世界の他のいくつかの要素を見ることができます。カレルの前にある物体はbeeperです。リッチPattisの著書の中で述べたように、 beeper s「は静かなビープ音を発するプラスチックコーン」です。カレルしか検出することができますbeeper 、それは同じコーナーにある場合。図の実線は壁です。壁はカレルの世界の中で障壁として機能します。カレルは壁を通り抜けることはできず、代わりにそれらの周りを回らなければなりません。 Karelの世界は常に端に沿って壁に囲まれていますが、Karelが解決する必要がある特定の問題に応じて、世界は異なる次元を持つことがあります。</p>
+<h3>カレルの命令</h3>
+<p>Karelは工場から出荷されると、ごく少数のコマンドに応答します。<table class="table mt-10">
+<tr><th>コマンド</th><th>説明</th></tr>
+<tr><td> <code>move();</code> </td><td>move 1ブロック進むようにカレルにmoveする。 Karelはに応答できません <code>move()</code> 道を塞いでいる壁があるならば、命令しなさい。</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>カレルに左（反時計回り）に90度回転させます。</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>Karelに1つのbeeperをコーナーから拾い上げるようにbeeper 、 beeperをその無限のbeeper秒を保持できるbeeperバッグにbeeperます。 Karelはに応答できません <code>pickBeeper()</code> 現在のコーナーにbeeperがない限り、コマンド。</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>beeperバッグからbeeperて現在のコーナーに置くようにカレルにbeeperします。 Karelはに応答できません <code>putBeeper()</code> コマンドがある場合を除きbeeper sがその中beeperバッグ。</td></tr>
+</table>
+</p>
+<p>コマンドを試してみましょう。下のボタンを使って、「世界」を「目標」に合わせます。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cmd">
+<div class="ide getStarted" id="cmdIde">
+<div class="commandCanvasDiv" id="cmdCanvasDiv">
+<div>
+<div class="commandCanvasTitle">世界：</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvas" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">ゴール：</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvasGoal" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+</div>
+<div class="commandButtons">
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdMove"> <code>move();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdTurnLeft"> <code>turnLeft();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdPickBeeper"> <code>pickBeeper();</code> </button>
+<button class="btn btn-default btn-lg commandButton" id="cmdPutBeeper"> <code>putBeeper();</code> </button>
+</div>
+</div>
+</div>
+<script style="width:0px;height:0px;display:none">
+
+        
+
+function examplecmd() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('cmdCanvas');
+    karelIde = KarelIde('java',null, canvas, 'commands', 0.9, 'ja', 500, 500);
+    $('#cmdMove').click(function(){karelIde.stepMove()});
+    $('#cmdTurnLeft').click(function(){karelIde.stepTurnLeft()});
+    $('#cmdPickBeeper').click(function(){karelIde.stepPickBeeper()});
+    $('#cmdPutBeeper').click(function(){karelIde.stepPutBeeper()});
+
+    let canvasGoal = document.getElementById('cmdCanvasGoal');
+    let goalIde = KarelIde('java',null, canvasGoal, 'commandsGoal', 0.9, 'ja', 500, 500)
+ }
+
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cmdRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cmdRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ 
+ main()
+ 
+}
+examplecmd();
+    </script>
+
+<p>これらの各コマンドに表示される空の括弧は、KarelとJavaによって共有される共通の構文の一部であり、コマンドの呼び出しを指定するために使用されます。結局、あなたが書くプログラムは括弧の間のスペースに追加情報を含めるでしょう、しかしそのような情報はカレルの原始世界の一部ではありません。したがって、これらの括弧は標準のKarelプログラムでは空になりますが、それでもそれらを含めることを忘れないでください。</p>
+<p>Karelが壁の中を移動したり、存在しないbeeper手に入れたりするなど、違法なことをしようとすると、エラー状態が発生します。</p>
+<p>Karelのコマンドは単独では実行されません。代わりに、それらをKarelプログラムに組み込む必要があります。第2章では、いくつかの簡単なKarelプログラムを見ることができます。</p>
+<p></p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter2.html" role="button">次の章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

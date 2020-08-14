@@ -1,0 +1,191 @@
+<html><head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head><body><!-- container --><div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/sw/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter1.html">1 - kukutana na Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter2.html">2 - Programu</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter3.html">3 - Mbinu mpya</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter4.html">4 - kuacha</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter5.html">5 - Mizunguko For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter6.html">6 - Mizunguko While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter7.html">7 - Masharti</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter8.html">8 - Ufadhili</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/reference.html">10 - Rejea</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/ide.html">11 - Programu</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Jifunze zaidi</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content --><div class="bookContent" style="display: flex;"><!-- right gutter --><div style="flex-grow:1;max-width:50px;"></div><!-- main stuff --><div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px"><div class="row"><div class="col-md-12 col-xs-12">
+
+
+<h1>Rejea</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>Kiambatisho hiki kinafafanua muundo wa lugha ya programu ya Karel kwenye ukurasa mmoja.</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Msingi Karel anaendelea:</b> 
+<p class="refCode">
+ <code>move();</code> <br/>
+ <code>geukaKushoto();</code> <br/>
+ <code>wekaKoni();</code> <br/>
+ <code>chukuaKoni();</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>Mfumo wa mpango wa Karel:</b> 
+<p class="refCode">
+ <code class="comment">/* Maoni yanaweza kuingizwa katika sehemu yoyote<br/>
+ * ya a programu. Wao kuanza na a kuua-nyota<br/>
+ * and end with a star-slash.<br/>
+ */<br/></code> 
+ <code><span class="keyword">public class</span> <i class="demoText">jina</i> <span class="keyword">extends</span> SuperKarel {</code> <br/>
+<br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      </code> <i class="demoText">msimbo wa kutekeleza</i><br/>
+ <code>   }</code> <br/>
+<br/>
+ <code>   </code> <i class="demoText">matangazo ya mbinu za kibinafsi</i><br/>
+ <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Majina ya masharti:</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>frontIsClear()</code> <br/>
+ <code>koniIko()</code> <br/>
+ <code>beepersInBag()</code> <br/>
+ <code>leftIsClear()</code> <br/>
+ <code>rightIsClear()</code> <br/>
+ <code>facingNorth()</code> <br/>
+ <code>facingSouth()</code> <br/>
+ <code>facingEast()</code> <br/>
+ <code>facingWest()</code> <br/>
+</div>
+<div class="refCol">
+ <code>frontIsBlocked()</code> 
+ <code>koniHaipo()</code> <br/>
+ <code>noBeepersInBag()</code> <br/>
+ <code>leftIsBlocked()</code> <br/>
+ <code>rightIsBlocked()</code> <br/>
+ <code>notFacingNorth()</code> <br/>
+ <code>notFacingSouth()</code> <br/>
+ <code>notFacingEast()</code> <br/>
+ <code>notFacingWest()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Masharti:</b> 
+<p class="refCode"> <code><span class="keyword">if</span>(</code> <i class="demoText">hali</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">kanuni run ikiwa hali inapita</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span>(</code> <i class="demoText">hali</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">block block kwa "ndiyo"</i><br/> <code>} <span class="keyword">else</span> {</code> <br/><i class="demoText" style="margin-left:2em">block block kwa "hapana"</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Mizigo:</b> 
+<p class="refCode"> <code><span class="keyword">for</span>(int i = 0; i &lt;</code>  <i class="demoText">hesabu</i> <code>; i++){</code> <br/><i class="demoText" style="margin-left:2em">kanuni ya kurudia</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span>(</code> <i class="demoText">hali</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">kanuni ya kurudia</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Azimio la Njia:</b> 
+<p class="refCode"> <code><span class="keyword">private void</span></code> <i class="demoText" style="margin-left:10px">jina</i> <code>() {</code> <br/><i class="demoText" style="margin-left:2em">kanuni katika mwili wa njia.</i><br/> <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Amri za ziada za SuperKarel:</b> 
+<p class="refCode">
+ <code>geukaKulia();</code> <br/>
+ <code>turnAround();</code> <br/>
+ <code>random(</code> <i class="demoText">p</i> <code>);</code> <br/>
+ <code>paintCorner(</code> <i class="demoText">rangi</i> <code>);</code> <br/>
+</p>
+</div>
+</div>
+</div>
+<!--
+-->
+
+<hr/>
+
+
+
+
+
+<div style="height:60px"></div>
+</div></div></div><!-- right gutter --><div style="flex-grow:4"></div></div></div></body></html>

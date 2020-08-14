@@ -1,0 +1,314 @@
+
+<html>
+<head>
+
+<title>Karel Lector</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter1.html">1 - Conoce Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter3.html">3 - Nuevas funciones</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter9.html">9 - Funciones adicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Capítulo 4: Descomposición</h1>
+<hr/>
+<p>Como una forma de ilustrar más el poder que viene con poder definir nuevas funciones, es útil que Karel haga algo un poco más práctico que moverse a cono de un lugar a otro. Las carreteras a menudo parecen necesitar reparación, y podría ser divertido ver si Karel puede llenar los baches en su mundo abstracto. Por ejemplo, imagina que Karel está parado en el "camino" que se muestra en la figura de la izquierda, una esquina a la izquierda de un bache en el camino. El trabajo de Karel es llenar el agujero con un cono y pasar a la siguiente esquina. El diagrama de la derecha ilustra cómo debería verse el mundo después de la ejecución del programa.</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Antes de:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Después:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'pothole', 0.0, 'es',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'potholeGoal',0.0, 'es',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<p>Si está limitado a los cuatro comandos predefinidos, el <code>main()</code> La función para resolver este problema se vería así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">poner_cono()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">girar_izquierda()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+</p>
+<p>La motivación inicial para definir el <code>girar_derecha()</code> función era que era engorroso seguir repitiendo tres <code>girar_izquierda()</code> comandos para realizar un giro a la derecha. La definición de nuevas funciones tiene otro propósito importante más allá de permitirle evitar repetir las mismas secuencias de comandos cada vez que desee realizar una tarea en particular. El poder para definir funciones desbloquea la estrategia más importante en la programación: el proceso de dividir un gran problema en partes más pequeñas que son más fáciles de resolver. El proceso de dividir un programa en partes más pequeñas se llama <b>descomposición</b> , y los componentes de un gran problema se denominan <b>subproblemas</b> .</p>
+<p>Como ejemplo, el problema de rellenar el agujero en la carretera se puede descomponer en los siguientes subproblemas:</p>
+<ol>
+<li>Subir al hoyo<li>Llene el agujero dejando caer un cono en él<li>Pasa a la siguiente esquina</li></li></li></ol>
+<p>Si piensa en el problema de esta manera, puede usar definiciones de funciones para crear un programa que refleje su concepción de la estructura del programa. La función main se vería así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">llenar_baches()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+</p>
+<p>La correspondencia con el esquema es inmediatamente clara, y todo sería genial si solo pudiera lograr que Karel entendiera lo que quiere decir con <code>llenar_baches()</code> . Dado el poder de definir funciones, implementar <code>llenar_baches()</code> es extremadamente simple. Todo lo que tienes que hacer es definir un <code>llenar_baches()</code> función cuyo cuerpo consta de los comandos que ya ha escrito para hacer el trabajo, así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> llenar_baches():</code> <br/>
+ <code style="margin-left:2em">girar_derecha()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">poner_cono()</code> <br/>
+ <code style="margin-left:2em">media_vuelta()</code> <br/>
+ <code style="margin-left:2em">moverse()</code> <br/>
+ <code style="margin-left:2em">girar_derecha()</code> <br/>
+</p>
+<p>Aquí está el programa completo. Observe cómo puede comprender la intención del programador simplemente leyendo el <code>main()</code> función. Cuando run el programa, la línea resaltada muestra cómo lo ejecutará una computadora, paso a paso. Sin embargo, debido a que el programa está muy bien desglosado, podemos entenderlo a nivel de pensamiento humano:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="pothole">
+<div class="ide getStarted" id="potholeIde" style="height:516.2px">
+<div class="ideCenter" id="potholeIdeCenter">
+<div class="ideEditorDiv" id="potholeEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="potholeCanvasDiv">
+<canvas class="ideCanvas" id="potholeCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+
+from karel.stanfordkarel import *
+def main():
+   moverse()
+   llenar_baches()
+   moverse()
+
+# Rellena el bache debajo de la posición actual de Karel
+# colocando un cono en esa esquina. Para que esta función funcione
+# correctamente, Karel debe estar orientado hacia el este inmediatamente arriba del
+# bache. Cuando se complete la ejecución, Karel tendrá
+# regresó al mismo cuadrado y nuevamente estará orientado hacia el este.
+def llenar_baches():
+   girar_derecha()
+   moverse()
+   poner_cono()
+   media_vuelta()
+   moverse()
+   girar_derecha()
+
+# Gira Karel 90 grados a la derecha.
+def girar_derecha():
+   girar_izquierda()
+   girar_izquierda()
+   girar_izquierda()
+
+# Gira Karel alrededor de 180 grados.
+def media_vuelta():
+   girar_izquierda()
+   girar_izquierda()
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'pothole', 0.0, 'es');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 516.2;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter5.html" role="button">Siguiente capítulo</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

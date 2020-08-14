@@ -1,0 +1,325 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/sw/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter1.html">1 - kukutana na Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter2.html">2 - Programu</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter3.html">3 - Mbinu mpya</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter4.html">4 - kuacha</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter5.html">5 - Mizunguko For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter6.html">6 - Mizunguko While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter7.html">7 - Masharti</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter8.html">8 - Ufadhili</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/reference.html">10 - Rejea</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/ide.html">11 - Programu</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Jifunze zaidi</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Sura ya 4: Kusagwa</h1>
+<hr/>
+<p>Kama njia ya kuonyesha zaidi ya nguvu zinazoja na kuwa na uwezo wa kufafanua mbinu mpya, ni muhimu kuwa Karel kufanya kitu kidogo zaidi kuliko vitendo move koni kutoka sehemu moja hadi nyingine. Njia hizi zinaonekana kuwa zinahitajika kutengenezwa, na inaweza kuwa ya kujifurahisha kuona kama Karel anaweza kujaza mashimo katika ulimwengu wake usioonekana. Kwa mfano, fikiria kuwa Karel amesimama kwenye "barabara" iliyoonyeshwa kwa mfano wa kushoto, kona moja kushoto ya pothole barabara. Kazi ya Karel ni kujaza shimo kwa koni na kuendelea kwenye kona inayofuata. Mchoro juu ya haki unaonyesha jinsi ulimwengu unapaswa kufuatilia utekelezaji wa programu.</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Kabla ya:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Baada ya:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'pothole', 0.0, 'sw',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'potholeGoal',0.0, 'sw',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<p>Ikiwa umepunguzwa na amri nne run njia run ya kutatua tatizo hili ingeonekana kama hii:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">wekaKoni();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">geukaKushoto();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Mwongozo wa kwanza wa kufafanua njia ya geukaKulia ilikuwa ni vigumu kuendelea kurudia amri tatu geukaKushoto ili kufikia upande wa kulia. Kufafanua mbinu mpya kuna lengo lingine muhimu zaidi ya kukuwezesha kuepuka kurudia utaratibu sawa wa amri kila wakati unataka kufanya kazi fulani. Nguvu ya kufafanua mbinu inafungua mkakati muhimu katika programu-mchakato wa kuvunja tatizo kubwa hadi vipande vidogo ambavyo ni rahisi kutatua. Mchakato wa kuvunja mpango hadi vipande vidogo unaitwa uharibifu, na sehemu ya sehemu ya shida kubwa huitwa subproblems.</p>
+<p>Kwa mfano, shida ya kujaza shimo katika barabara inaweza kuharibiwa katika subproblems zifuatazo:</p>
+<ol>
+<li>Hoja hadi shimo<li>Jaza shimo kwa kuacha koni ndani yake<li>Nenda kwenye kona inayofuata</li></li></li></ol>
+<p>Ikiwa unafikiri juu ya tatizo kwa njia hii, unaweza kutumia ufafanuzi wa njia ili kuunda mpango unaoonyesha mimba yako ya muundo wa programu. Njia ya run itaonekana kama hii:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">kujazaPothole();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Mawasiliano na muhtasari huwa wazi, na kila kitu kitakuwa kizuri kama tu unaweza kupata Karel kuelewa nini unamaanisha kwa kujazaPothole. Kutokana na uwezo wa kufafanua mbinu, kutekeleza kujazaPothole ni rahisi sana. Wote unachotakiwa kufanya ni kufafanua njia ya kujazaPothole ambayo mwili wake una amri ambazo umeandika tayari kufanya kazi, kama hii:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> kujazaPothole() {</code> <br/>
+ <code style="margin-left:2em">geukaKulia();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">wekaKoni();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">geukaKulia();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Hapa ni mpango kamili. Angalia jinsi unavyoweza kuelewa run programu tu kwa kusoma njia ya run . Wakati wa run mpango, mstari unaonyesha inaonyesha jinsi kompyuta run , hatua kwa hatua. Hata hivyo, kwa sababu mpango huo umevunjika vizuri tunaweza kuelewa kwenye kiwango cha mawazo ya kibinadamu:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="pothole">
+<div class="ide getStarted" id="potholeIde" style="height:668.8000000000001px">
+<div class="ideCenter" id="potholeIdeCenter">
+<div class="ideEditorDiv" id="potholeEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="potholeCanvasDiv">
+<canvas class="ideCanvas" id="potholeCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span>Panga Programu</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+
+import stanford.karel.*;
+public class PholeKujazaKarel extends Karel {
+   public void run() {
+      move();
+      kujazaPothole();
+      move();
+   }
+
+   /**
+    * Inajaza pothole chini ya nafasi ya sasa ya Karel k
+    * wa kuweka koni kwenye kona hiyo. Kwa njia hii ya k
+    * ufanya kazi kwa usahihi, Karel lazima atakabiliwa
+    * mashariki mara moja juu ya pothole. Wakati utekele
+    * zaji ukamilifu, Karel atarudi kwenye mraba huo na
+    * ataangalia tena mashariki.
+    */
+   private void kujazaPothole() {
+      geukaKulia();
+      move();
+      wekaKoni();
+      turnAround();
+      move();
+      geukaKulia();
+   } 
+
+   /** Inarudi Karel 90 kwa haki. */
+   public void geukaKulia() {
+      geukaKushoto();
+      geukaKushoto();
+      geukaKushoto();
+   }
+
+   /** Anachukua Karel karibu digrii 180. */
+   public void turnAround() {
+      geukaKushoto();
+      geukaKushoto();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'pothole', 0.0, 'sw');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 668.8000000000001;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter5.html" role="button">Sura inayofuata</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

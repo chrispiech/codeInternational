@@ -1,0 +1,41 @@
+<h1>Kapitola 1: Představení Karla Robota</h1>
+<hr/>
+<p>V 70-tých letech, Stanford postgraduální student jmenoval Rich Pattis rozhodl, že to by bylo snazší učit základy programování jestliže studenti mohli nějak se učit základní myšlenky v jednoduchém prostředí bez složitostí, které charakterizují většinu programovacích jazyků. Rich navrhl úvodní programovací prostředí, ve kterém studenti učí robota řešit jednoduché problémy. Ten robot se po českém dramatikovi jmenoval Karel <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , jehož 1923 hraje RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Rossumovy univerzální roboty</a> ) dal slovo robot do anglického jazyka.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Karel Robot byl docela úspěšný. Karel byl používán v úvodních kurzech počítačové vědy po celém světě a byl vyučován milionům studentů. Mnoho generací Stanfordových studentů se naučilo, jak programování pracuje s Karlem, a je to stále jemné představení kódování používané ve Stanfordu.</p>
+<h3>Co je Karel?</h3>
+<p>Karel je velmi jednoduchý robot žijící ve velmi jednoduchém světě. Tím, že Karlu dáváte řadu příkazů, můžete jej nasměrovat k plnění určitých úkolů ve svém světě. Zavolá se proces určování těchto příkazů <b>programování</b> . Karel zpočátku chápe jen velmi malý počet předdefinovaných příkazů, ale důležitou součástí procesu programování je naučit Karla nové příkazy, které rozšiřují jeho možnosti.</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>Programy Karla mají mnohem stejnou strukturu a zahrnují stejné základní prvky jako <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Jáva</a> , hlavní <a href="https://en.wikipedia.org/wiki/Programming_language">programovací jazyk</a> . Kritický rozdíl je v tom, že Karelův programovací jazyk je extrémně malý a detaily se tak snadno zvládnou. I tak však zjistíte, že řešení problému může být náročné.</p>
+<p>Začněte s Karlem a můžete se soustředit na řešení problémů od samého počátku. Řešení problémů je podstatou programování. A protože Karel povzbuzuje představivost a kreativitu, můžete si po cestě užít spoustu legrace.</p>
+<h3>Karelův svět</h3>
+<p>provádění svět je definován řadami provádění horizontálně (východ-západ) a sloupci provádění vertikálně (sever-jih). Průsečík řádku a sloupce se nazývá roh. Karel může být umístěn pouze v rozích a musí směřovat k jednomu ze čtyř standardních směrů kompasu (sever, jih, východ, západ). Vzorový svět Karla je uveden níže. Zde se Karel nachází v rohu 1. řady a 1. sloupu, orientován na východ.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>V tomto příkladu je vidět několik dalších složek Karlova světa. Objekt před Karlem je kuzel . Jak je popsáno v knize Rich Pattis, kuzel s jsou „plastové kužely, které vydávají tichý pípavý zvuk.“ Karel dokáže detekovat pouze kuzel pokud je ve stejném rohu. Plné čáry v diagramu jsou stěny. Stěny slouží jako bariéry v Karlově světě. Karel nemůže projít zdí a musí je obejít. Karelův svět je vždy ohraničen zdmi podél okrajů, ale svět může mít různé rozměry v závislosti na konkrétním problému, který Karel potřebuje vyřešit.</p>
+<h3>Karelovy příkazy</h3>
+<p>Když je Karel expedován z továrny, reaguje na velmi malou sadu příkazů:<table class="table mt-10">
+<tr><th>Příkaz</th><th>Popis</th></tr>
+<tr><td> <code>move();</code> </td><td>move Karla na move vpřed o jeden blok. Karel nemůže odpovědět a <code>move()</code> příkaz, pokud je zeď blokována.</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>Požádá Karla, aby otočil o 90 stupňů doleva (proti směru hodinových ručiček).</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>Požádá Karla, aby vyzvedl jeden kuzel a kuzel do své tašky kuzel , která může pojmout nekonečné množství kuzel s. Karel nemůže odpovědět a <code>pickBeeper()</code> pokud není v aktuálním rohu kuzel .</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>Požádá Karla, aby si vzal kuzel z pytle kuzel a položil ho na aktuální roh. Karel nemůže odpovědět a <code>putBeeper()</code> povel, pokud ve své tašce kuzel není kuzel s.</td></tr>
+</table>
+</p>
+<p>Vyzkoušíme příkazy. Pomocí tlačítek níže přejděte na „svět“ tak, aby odpovídal cíli:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/commands.html', name="cmd", world="commands", goalWorld="commandsGoal")
+%>
+
+
+<p>Prázdný pár závorek, který se objeví v každém z těchto příkazů, je součástí společné syntaxe sdílené Karlem a Javou a slouží k určení vyvolání příkazu. Nakonec programy, které píšete, budou obsahovat další informace v prostoru mezi závorkami, ale tyto informace nejsou součástí Karlova primitivního světa. Tyto závorky budou tedy ve standardních Karelových programech prázdné, ale musíte je pamatovat na jejich zahrnutí.</p>
+<p>Pokud se Karel pokouší udělat něco nezákonného, jako je pohyb po zdi nebo vyzvednutí neexistujícího kuzel , dojde k chybovému stavu.</p>
+<p>Karelovy příkazy nejsou prováděny samy. Místo toho je musíte začlenit do programu Karel. Budete mít možnost vidět několik jednoduchých Karlových programů v kapitole 2!</p>
+<p></p>

@@ -1,0 +1,68 @@
+<h1>Chapter 3: Defining New Methods</h1>
+<hr/>
+<p>
+  In the last chapter we wrote a program to help Karel climb a simple ledge:
+</p>
+<h3>Example: FirstKarel</h3>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+<p>
+  Even though the <code>FirstKarel</code> program above demonstrates that it is possible to perform the <code>turnRight</code> operation using only Karel’s built-in commands, the resulting program is not particularly clear conceptually. In your mental design of the program, Karel turns right when it reaches the top of the ledge. The fact that you have to use three turnLeft commands to do so is annoying. It would be much simpler if you could simply say <code>turnRight()</code> and have Karel understand this command. The resulting program would not only be shorter and easier to write, but also significantly easier to read.
+</p>
+<h3>Defining New Commands</h3>
+<p>
+  Fortunately, the Karel programming language makes it possible to define new commands simply by including new method definitions. Whenever you have a sequence of Karel commands that performs some useful task--such as turning right--you can define a new method that executes that sequence of commands. The format for defining a new Karel method has much the same as the definition of <code>run</code> in the preceding examples, which is a method definition in its own right. A typical method definition looks like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void</span> </code><i class="demoText">name</i><code>() {</code><br/>
+<i class="demoText" style="margin-left:3.5em">commands that make up the body of the method</i><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+  In this pattern, name represents the name you have chosen for the new method. To complete the definition, all you have to do is provide the sequence of commands in the lines between the curly braces. For example, you can define <code>turnRight</code> as follows:
+</p>
+
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void</span> turnRight() {</code><br/>
+<code style="margin-left:3.5em">turnLeft();</code><br/>
+<code style="margin-left:3.5em">turnLeft();</code><br/>
+<code style="margin-left:3.5em">turnLeft();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+  Similarly, you could define a new <code>turnAround</code> method like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void</span> turnAround() {</code><br/>
+<code style="margin-left:3.5em">turnLeft();</code><br/>
+<code style="margin-left:3.5em">turnLeft();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+  You can use the name of a new method just like any of Karel’s built-in commands. For example, once you have defined <code>turnRight</code>, you could replace the three turnLeft commands in the <code>StepUpKarel</code> program with a single call to the <code>turnRight</code> method. Here is a revised implementation of the program that uses <code>turnRight</code>:
+</p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+<p>
+  There is, of course, one obvious difference between the definitions of the <code>run</code> and <code>turnRight</code> methods in the program above: the <code>run</code> method is marked as <code>public</code> in contrast to <code>turnRight</code>, which is marked as <code>private</code>. The difference between these two designations is that public methods can be invoked from outside the program, while private methods cannot. The run method needs to be public because the Karel environment needs to be able to issue a run command to get things going. It is generally good programming practice to keep definitions private whenever possible. 
+</p>
+
+<h3>Method Code Blocks</h3>
+<p>
+  A group of commands between two curly brackets <code translate="no">{ }</code> is called a <b>code block</b>. The body of your program is a code block as is the body of a method. Notice how the contents of a code block are all indented one tab in. This is important stylistically since it makes it easy for humans to know what lines of code are in a given block.
+</p>
+
+<p>You can define as many methods as you want. They should all be written one after another inside your program code block. You can't define a method inside another method. </p>
+

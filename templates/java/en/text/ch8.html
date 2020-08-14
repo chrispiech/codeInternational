@@ -1,0 +1,196 @@
+<h1>Chapter 8: Stepwise Refinement</h1>
+<hr/>
+
+<p>
+	To a large extent, programming is the science of solving problems by computer. Because problems are often difficult, solutions—and the programs that implement those solutions—can be difficult as well. In order to make it easier for you to develop those solutions, you need to adopt a methodology and discipline that reduces the level of that complexity to a manageable scale.
+</p>
+
+<p>
+	In the early years of programming, the concept of computing as a science was more or less an experiment in wishful thinking. No one knew much about programming in those days, and few thought of it as an engineering discipline in the conventional sense. As programming matured, however, such a discipline began to emerge. The cornerstone of that discipline is the understanding that programming is done in a social environment in which programmers must work together. If you go into industry, you will almost certainly be one of many programmers working to develop a large program. That program, moreover, is almost certain to live on and require maintenance beyond its originally intended application. Someone will want the program to include some new feature or work in some different way. When that occurs, a new team of programmers must go in and make the necessary changes in the programs. If programs are written in an individual style with little or no commonality, getting everyone to work together productively is extremely difficult.
+</p>
+
+<p>
+	To combat this problem, programmers began to develop a set of programming methodologies that are collectively called <b>software engineering</b>. Using good software engineering skills not only makes it easier for other programmers to read and understand your programs, but also makes it easier for you to write those programs in the first place. One of the most important methodological advances to come out of software engineering is the strategy of <b>top-down design</b> or <b>stepwise refinement</b>, which consists of solving problems by starting with the problem as a whole. You break the whole problem down into pieces, and then solve each piece, breaking those down further if necessary. This top down strategy is complemented with  <b>iterative testing</b> where you make sure that the smaller pieces of the solution are working before moving on.
+</p>
+
+<h3>An exercise in stepwise refinement</h3>
+
+<p>
+	To illustrate the concept of stepwise refinement, let’s teach Karel to solve a new problem. Imagine that Karel is now living in a world that looks something like this:
+</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="world1", world="beeperTowers", canvasWidth="400", canvasRatio=0.8)
+%>
+
+<p>
+	On each of the columns, there is a tower of beepers of an unknown height, although some columns (such as the 7th, and 9th in the sample world) may be empty. Karel’s job is to collect all the beepers in each of these towers, put them back down on the easternmost corner of 1st row, and then return to its starting position. Thus, when Karel finishes its work in the example above, all 25 beepers currently in the towers should be stacked on the corner of 9th column and 1st row, as follows:
+	</p>
+
+	<%
+  include('templates/java/'+lang+'/programs/world.html', name="world2", world="beeperTowersGoal", canvasWidth="400", canvasRatio=0.8)
+%>
+
+<p>
+	Importantly, you may assume that Karel initial <i>starts</i> with zero beepers in its bag. Each beeper picked up is added to its bag. When putting beepers in the corner, karel can use the <code>beepersInBag()</code> test.
+	</p>
+
+<p>
+	The key to solving this problem is to decompose the program in the right way, while still being able to test as you go. This task is more complex than the others you have seen, which makes choosing appropriate subproblems more important to obtaining a successful solution.
+	</p>
+
+	<h3>The principle of top-down design</h3>
+
+	<p>
+		The key idea in stepwise refinement is that you should start the design of your program from the top, which refers to the level of the program that is conceptually highest and most abstract. At this level, the beeper tower problem is clearly divided into three independent phases. First, Karel has to collect all the beepers. Second, Karel has to deposit them on the last intersection. Third, Karel has to return to its home position. This conceptual decomposition of the problem suggests that the run method for this program will have the following structure:
+	</p>
+
+	<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">public void</span> run() {</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collectAllBeepers();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dropAllBeepers();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnHome();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+	At this level, the problem is easy to understand. Of course, there are a few details left over in the form of methods that you have not yet written. Even so, it is important to look at each level of the decomposition and convince yourself that, as long as you believe that the methods you are about to write will solve the subproblems correctly, you will then have a solution to the problem as a whole.
+</p>
+
+<h3>Iterative testing as you go</h3>
+
+<p>
+
+Now that you have defined the structure for the program as a whole, it is time to move on to the first subproblem, which consists of collecting all the beepers. This task is itself more complicated than the simple problems from the preceding chapters. Collecting all the beepers means that you have to pick up the beepers in every tower until you get to the final corner. The fact that you need to repeat an operation for each tower suggests that you need a while loop here. The while loop will repeat the process of <code>collectOneTower</code> and then moving.	
+</p>
+
+<p><b>Caution:</b> It is dangerous to try to write the entire program without <b>testing</b> it as you go. If you make a mistake it will be hard to find the mistake. We know that we are going to repeat the process of collecting one tower. Let us write and <b>test</b> collecting a single tower before we put the <code>CollectOneTower</code> process in a for loop. Thus <i>temporariliy</i> we can start with the following definition of collectAllBeepers:
+
+	<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void</span> collectAllBeepers() {</code><br/>
+<code class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* temporary implementation for testing purposes */</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collectOneTower();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+	As a guiding principle, if you have a complex loop, test the <i>body</i> of the loop before you write the entire loop.
+	</p>
+
+<h3>Refining collect tower</h3>
+
+<p>
+	When collectOneTower is called, Karel is either standing at the base of a tower of beepers or standing on an empty corner. In the former case, you need to collect the beepers in the tower. In the latter, you can simply move on. This situation sounds like an application for the if statement, in which you would write something like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>(beepersPresent()){</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collectActualTower();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+	Before you add such a statement to the code, you should think about whether you need to make this test. Often, programs can be made much simpler by observing that cases that at first seem to be special can be treated in precisely the same way as the more general situation. In the current problem, what happens if you decide that there is a tower of beepers on every avenue but that some of those towers are zero beepers high? Making use of this insight simplifies the program because you no longer have to test whether there is a tower on a particular avenue.
+</p>
+
+<p>
+	The collectOneTower method is still complex enough that an additional level of decomposition is in order. To collect all the beepers in a tower, Karel needs to undertake the following steps:
+</p>
+
+<ol>
+	<li>Turn left to face the beepers in the tower.
+<li>Collect all the beepers in the tower, stopping when no more beepers are found.
+<li>Turn around to face back toward the bottom of the world.
+<li>Return to the wall that represents the ground.
+<li>Turn left to be ready to move to the next corner.
+	</ol>
+
+<p>
+	Once again, this outline provides a model for the collectOneTower method, which looks like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void </span>collectOneTower(){</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collectLineOfBeepers();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnAround();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;moveToWall();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<h3>Method preconditions and postconditions</h3>
+
+<p>
+	The turnLeft commands at the beginning and end of the collectOneTower method are both critical to the correctness of this program. When collectOneTower is called, Karel is always somewhere on 1st row facing east. When it completes its operation, the program as a whole will work correctly only if Karel is again facing east at that same corner. Conditions that must be true before a method is called are referred to as <b>preconditions</b>; conditions that must apply after the method finishes are known as <b>postconditions</b>.
+</p>
+
+<p>
+	When you define a method, you will get into far less trouble if you write down exactly what the pre- and postconditions are. Once you have done so, you then need to make sure that the code you write always leaves the postconditions satisfied, assuming that the preconditions were satisfied to begin with. For example, think about what happens if you call collectOneTower when Karel is on 1st row facing east. The first turnLeft command leaves Karel facing north, which means that Karel is properly aligned with the column of beepers representing the tower. The collectLineOfBeepers method—which has yet to be written but nonetheless performs a task that you understand conceptually— simply moves without turning. Thus, at the end of the call to collectLineOfBeepers, Karel will still be facing north. The turnAround call therefore leaves Karel facing south. Like collectLineOfBeepers, the moveToWall method does not involve any turns but instead simply moves until it hits the boundary wall. Because Karel is facing south, this boundary wall will be the one at the bottom of the screen, just below 1st row. The final turnLeft command therefore leaves Karel on 1st row facing east, which satisfies the postcondition.
+</p>
+
+<h3>Repeating the process</h3>
+
+<p>You run your program and it successfully clears one tower and leaves Karel in the promised postcondition. Wahoo! You have just hit a milestone in solving this hard task! We now have to repeat the process of clearing one tower using a while loop.
+</p>
+
+<p>
+	But what does this while loop look like? First of all, you should think about the conditional test. You want Karel to stop when it hits the wall at the end of the row. Thus, you want Karel to keep going as long as the space in front is clear. Thus, you know that the collectAllBeepers method will include a while loop that uses the frontIsClear test. At each position, you want Karel to collect all the beepers in the tower beginning on that corner. If you give that operation a name, which might be something like collectOneTower, you can go ahead and write a definition for the collectAllBeepers method even though you haven’t yet filled in the details.
+</p>
+
+<p>
+	You do, however, have to be careful. The code for collectAllBeepers does not look like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void </span>collectAllBeepers(){</code><br/>
+<code class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* buggy loop! */</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span>(frontIsClear()) {</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collectOneTower();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+	This implementation is buggy for exactly the same reason that the first version of the general PlaceBeeperLine from chapter 6 failed to do its job. There is a fencepost error in this version of the code, because Karel needs to test for the presence of a beeper tower on the last avenue. The correct implementation is:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void </span>collectAllBeepers(){</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span>(frontIsClear()) {</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collectOneTower();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collectOneTower();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+	Note that this method has precisely the same structure as the main program from the PlaceBeeperLine program presented in chapter 6. The only difference is that this program calls collectOneTower where the other called putBeeper. These two programs are each examples of a general strategy that looks like this:
+</p>
+
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">private void </span>collectAllBeepers(){</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span>(frontIsClear()) {</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><i class="demoText">perform some operation.</i><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move();</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><i class="demoText" >perform the same operation for the final corner.</i><br/>
+<code>&nbsp;&nbsp;&nbsp;}</code><br/>
+</p>
+
+<p>
+	You can use this strategy whenever you need to perform an operation on every corner as you move along a path that ends at a wall. If you remember the general structure of this strategy, you can use it whenever you encounter a problem that requires such an operation. Reusable strategies of this sort come up frequently in programming and are referred to as <b>programming idioms</b> or <b>patterns</b>. The more patterns you know, the easier it will be for you to find one that fits a particular type of problem.
+</p>
+
+<h3>Finishing up</h3>
+
+<p>Although the hard work has been done, there are still several loose ends that need to be resolved. The main program calls two methods—dropAllBeepers and returnHome— that are as yet unwritten. Similarly, collectOneTower calls collectLineOfBeepers and moveToWall. Fortunately, all four of these methods are simple enough to code without any further decomposition, particularly if you use moveToWall in the definition of returnHome. Here is the complete implementation:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/bigCode.html', name="beeperTowers",  world="beeperTowers", ideSpeed=0.9, canvasRatio=0.8)
+%>
+

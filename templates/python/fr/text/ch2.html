@@ -1,0 +1,89 @@
+<h1>
+Chapitre 2: Programmer Karel
+</h1>
+<hr/>
+<p>
+  Le style le plus simple du programme Karel utilise du texte pour spécifier une séquence de commandes intégrées à exécuter lorsque le programme est exécuté. <b>run</b> . Considérez le programme Karel simple ci-dessous. Le texte à gauche est le programme. L'état du monde de Karel est indiqué à droite:
+</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="firstKarel", world="stepUp")
+%>
+
+
+<p>
+Appuyez sur le bouton "Exécuter" pour exécuter le programme. Les programmes sont généralement écrits dans une application spéciale appelée <b>Environnement de développement intégré</b> (IDE) et la plupart des programmes Karel sont écrits dans un IDE appelé PyCharm. Comme un IDE, ce lecteur a la capacité d'exécuter des programmes afin de vous aider<i>voir</i> comment les choses fonctionnent pendant que vous apprenez.</p>
+<p>Le programme est composé de plusieurs parties. La première partie comprend les lignes suivantes:
+</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no"># Fichier: PremierKarel.py
+# -----------------------------
+# Le programme PremierKarel définit un " main "
+# fonction avec trois commandes. Ces commandes provoquent
+# Karel à avancer avant d'un bloc, prenez un jeton
+# puis avancer devant le coin suivant.</pre>
+</p>
+<p>
+  Ces lignes sont un exemple de <b>commentaire</b> , qui est simplement un texte destiné à expliquer le fonctionnement du programme aux lecteurs humains. Les commentaires dans Karel et Python commencent par les caractères <code class="comment">#</code> et incluez le reste de la ligne. Dans un programme simple, des commentaires détaillés peuvent sembler idiots parce que l'effet du programme est évident, mais ils sont extrêmement importants pour documenter la conception de programmes plus grands et plus complexes. La deuxième partie du programme est la ligne:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">from</span> karel.stanford<span class="keyword">import</span> *</code> 
+</p>
+<p>
+  Cette ligne demande l’inclusion de toutes les définitions de la <code> karel.stanford</code>  bibliothèque. Cette bibliothèque contient les définitions de base nécessaires à l'écriture de programmes Karel, telles que les définitions des opérations standard. <code>avancer()</code>  et <code>ramasser_jeton()</code> . Parce que vous avez toujours besoin d'accéder à ces opérations, chaque programme Karel que vous écrivez inclura cette commande d'importation avant d'écrire le programme réel.
+</p>
+<p>La dernière partie du programme Karel comprend la définition de fonction suivante:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+ <code>      avancer()</code> <br/>
+ <code>      ramasser_jeton()</code> <br/>
+ <code>      avancer()</code> <br/>
+</p>
+<p>
+Ces lignes représentent la définition d'un nouveau <b>fonction</b> , qui spécifie la séquence d'étapes nécessaires pour répondre à une commande. Comme dans le cas du <code>PremierKarel</code> programme lui-même, la définition de la fonction se compose de deux parties qui peuvent être considérées séparément: La première ligne constitue l'en-tête de la fonction et le code en retrait qui suit est le corps de la fonction. Si vous ignorez le corps pour l'instant, la définition de la fonction ressemble à ceci:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+<i class="demoText" style="margin-left:3.5em">corps de la définition de fonction</i><br/>
+</p>
+<p>Le premier mot de l'en-tête de la fonction, <code class="keyword">def</code> , fait partie de la structure syntaxique de Python. Il dit que vous créez une nouvelle fonction. Le mot suivant sur la ligne d'en-tête spécifie le nom de la nouvelle fonction, qui dans ce cas est <b>main</b> . La définition d'une fonction signifie que Karel peut désormais répondre à une nouvelle commande portant ce nom. le <code>main()</code> La commande joue un rôle spécial dans un programme Karel. Lorsque vous démarrez un programme Karel, il crée une nouvelle instance Karel, ajoute ce Karel à un monde que vous spécifiez, puis émet le <code>main()</code> commander. L'effet de exécuter le programme est défini par le corps du <code>main()</code> fonction, qui est une séquence de commandes que le robot exécutera dans l'ordre. Par exemple, le corps du <code>main()</code> fonction pour le <code>PremierKarel</code> programme est:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   avancer()</code> <br/>
+ <code>   ramasser_jeton()</code> <br/>
+ <code>   avancer()</code> <br/>
+</p>
+<p>Ainsi, si l'état initial du monde correspond à l'exemple donné au chapitre 1, Karel avancer abord avancer dans le coin contenant le jeton , prend ce jeton , et enfin avancer avance vers le coin juste avant le mur, comme indiqué dans le diagramme avant-après suivant:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>Résoudre un problème plus intéressant</h2>
+<p>le <code>PremierKarel</code> programme défini ci-dessus ne fait pas grand-chose pour le moment. Essayons de le rendre un peu plus intéressant. Supposons que l'objectif ne soit pas simplement d'amener Karel à prendre le jeton mais à avancer le jeton de sa position initiale sur la 2ème colonne et la 1ère rangée au centre d'un rebord. Ainsi, votre prochaine mission est de définir un nouveau programme Karel qui accomplit la tâche illustrée dans ce diagramme:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>Les trois premières commandes du nouveau programme - celles qui avancer avancent, prennent le jeton , puis avancer jusqu'au rebord - sont les mêmes que précédemment:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   avancer()</code> <br/>
+ <code>   ramasser_jeton()</code> <br/>
+ <code>   avancer()</code> <br/>
+</p>
+<p>De là, la prochaine étape est de tourner gauche pour commencer à grimper le rebord. Cette opération est facile, car Karel a un <code>tourner_gauche()</code> commande dans son répertoire standard. Exécuter un <code>tourner_gauche()</code> commande à la fin de la séquence de commandes précédente laisse Karel face au nord au coin de la 1ère ligne et de la 3ème colonne. Si Karel exécute alors un <code>avancer()</code> commande, il sera avancer nord pour atteindre la position suivante:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>De là, la prochaine chose que vous devez faire est d'amener Karel au tourner droite afin qu'il soit à nouveau face à l'est. Bien que cette opération soit conceptuellement aussi simple que d'amener Karel à tourner gauche , il y a un léger problème: le langage de Karel comprend un <code>tourner_gauche()</code>  commande, mais non <code>tourner_droite()</code>  commander. C’est comme si vous avez acheté le modèle économique et que vous venez de découvrir qu’il manque certaines fonctionnalités importantes.
+</p>
+<p>À ce stade, vous avez votre première occasion de commencer à penser comme un programmeur. Vous avez un ensemble de commandes, mais pas exactement l'ensemble dont vous avez besoin. Que pouvez-vous faire? Pouvez-vous accomplir l'effet d'un <code>tourner_droite()</code> commande en utilisant uniquement les capacités dont vous disposez? La réponse est, bien évidemment, oui. Vous pouvez accomplir l'effet de tourner à droite en tournant à gauche trois fois. Après trois virages à gauche, Karel fera face dans la direction souhaitée. De là, tout ce que vous avez à faire est de programmer Karel à avancer au centre de la corniche, de déposer le jeton puis avancer vers la position finale. Voici une implémentation complète d'un programme qui accomplit toute la tâche:</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>
+

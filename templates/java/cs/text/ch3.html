@@ -1,0 +1,46 @@
+<h1>Kapitola 3: Definování nových metod</h1>
+<hr/>
+<p>V poslední kapitole jsme napsali program, který pomůže Karlu vylézt jednoduchou římsu:</p>
+<h3>Příklad: PrvníKarel</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>I když <code>PrvníKarel</code> program ukazuje, že je možné provést <code>turnRight</code> Při použití pouze Karlových vestavěných příkazů není výsledný program pojmově zřetelný. Ve své mentální koncepci se Karel otočí, když dosáhne vrcholu římsy. Skutečnost, že k tomu musíte použít tři příkazy odbočitVlevo, je nepříjemná. Bylo by mnohem jednodušší, kdybyste mohl jednoduše říct <code>turnRight()</code> a pochopil Karel tento příkaz. Výsledný program by byl nejen kratší a jednodušší psát, ale také by byl mnohem snazší číst.</p>
+<h3>Definování nových příkazů</h3>
+<p>Programovací jazyk Karel naštěstí umožňuje definovat nové příkazy jednoduše pomocí nových definic metod. Kdykoliv máte posloupnost Karlových příkazů, která vykonává nějaký užitečný úkol - například otáčení doprava - můžete definovat novou metodu, která provede tuto posloupnost příkazů. Formát pro definování nové metody Karla má stejný význam jako definice <code>run</code> v předchozích příkladech, což je vlastní definice metody. Typická definice metody vypadá takto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">název</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">příkazy, které tvoří tělo metody</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>V tomto vzoru název představuje název, který jste vybrali pro novou metodu. Chcete-li dokončit definici, vše, co musíte udělat, je poskytnout posloupnost příkazů v řádcích mezi složenými závorkami. Můžete například definovat <code>turnRight</code> jak následuje:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Podobně můžete definovat nové <code>turnAround</code> tato metoda:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Název nové metody můžete použít stejně jako kterýkoliv z Karlových vestavěných příkazů. Například, jakmile definujete <code>turnRight</code> , můžete nahradit tři příkazy odbočitVlevo v <code>ZintenzivnitKarel</code> program s jedním voláním <code>turnRight</code> metoda. Zde je revidovaná implementace programu, který využívá <code>turnRight</code> :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>Existuje samozřejmě jeden zřejmý rozdíl mezi definicemi <code>run</code> a <code>turnRight</code> výše uvedené metody: <code>run</code> metoda je označena jako <code>public</code> na rozdíl od <code>turnRight</code> , která je označena jako <code>private</code> . Rozdíl mezi těmito dvěma označeními spočívá v tom, že veřejné metody mohou být vyvolány mimo program, zatímco soukromé metody nemohou. Metoda run musí být veřejná, protože prostředí Karla musí být schopno vydat příkaz run aby se věci dostali. Obecně je dobré udržet definice soukromé, kdykoli je to možné.</p>
+<h3>Metoda Kód Bloky</h3>
+<p>Skupina příkazů mezi dvěma složenými závorkami <code translate="no">{ }</code> se nazývá <b>kódový blok</b> . Tělo programu je kódový blok, stejně jako tělo metody. Všimněte si, jak jsou všechny obsahy kódu blokovány jednou záložkou. To je důležité stylisticky, protože umožňuje lidem snadno zjistit, jaké řádky kódu jsou v daném bloku.</p>
+<p>Můžete definovat tolik metod, kolik chcete. Všechny by měly být napsány jeden po druhém ve vašem programovém kódovém bloku. Metodu nelze definovat uvnitř jiné metody.</p>

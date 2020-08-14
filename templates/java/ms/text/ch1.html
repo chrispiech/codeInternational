@@ -1,0 +1,41 @@
+<h1>Bab 1: Memperkenalkan Robot Karel</h1>
+<hr/>
+<p>Pada tahun 1970-an, seorang pelajar siswazah Stanford bernama Rich Pattis memutuskan bahawa lebih mudah untuk mengajar asas-asas pengaturcaraan jika pelajar entah bagaimana dapat mempelajari idea-idea asas dalam persekitaran yang mudah bebas daripada kerumitan yang mencirikan kebanyakan bahasa pengaturcaraan. Kaya merancang persekitaran pengenalan pengantar di mana pelajar mengajar robot untuk menyelesaikan masalah mudah. Robot itu dinamakan Karel, selepas pemain drama Republik Czech <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , yang 1923 bermain RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Robin Universal Rossum</a> ) memberikan robot perkataan kepada bahasa Inggeris.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Karel Robot agak berjaya. Karel telah digunakan dalam pengenalan kursus sains komputer di seluruh dunia dan telah diajar kepada berjuta-juta pelajar. Ramai generasi pelajar Stanford belajar bagaimana pengaturcaraan berfungsi dengan Karel, dan ia masih pengenalan lembut untuk pengekodan yang digunakan di Stanford.</p>
+<h3>Apa itu Karel?</h3>
+<p>Karel adalah robot yang sangat mudah hidup di dunia yang sangat mudah. Dengan memberikan satu set arahan, anda boleh mengarahkannya untuk melaksanakan tugas-tugas tertentu di dalam dunia. Proses menentukan arahan tersebut dipanggil <b>pengaturcaraan</b> . Pada mulanya, Karel memahami hanya sebilangan kecil perintah yang telah ditetapkan, tetapi bahagian penting dalam proses pengaturcaraan adalah mengajar perintah baru Karel yang memperluas keupayaannya.</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>Program Karel mempunyai banyak struktur yang sama dan melibatkan elemen-elemen asas yang sama seperti <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> , major <a href="https://en.wikipedia.org/wiki/Programming_language">bahasa pengaturcaraan</a> . Perbezaan kritikal adalah bahasa pengaturcaraan Karel sangat kecil dan oleh itu butirannya mudah dikuasai. Walaupun demikian, anda akan mendapati bahawa menyelesaikan masalah boleh mencabar.</p>
+<p>Dengan bermula dengan Karel, anda boleh menumpukan perhatian untuk menyelesaikan masalah dari awal lagi. Penyelesaian masalah adalah intipati pengaturcaraan. Dan kerana Karel menggalakkan imaginasi dan kreativiti, anda boleh menikmati banyak keseronokan di sepanjang jalan.</p>
+<h3>Dunia Karel</h3>
+<p>Dunia Karel ditakrifkan oleh baris run mendatar (timur-barat) dan tiang run menegak (utara-selatan). Persimpangan baris dan lajur dipanggil sudut. Karel hanya boleh diletakkan di penjuru dan mesti menghadap salah satu daripada empat arahan kompas standard (utara, selatan, timur, barat). Contoh dunia Karel ditunjukkan di bawah. Di sini Karel terletak di sudut baris 1 dan lajur 1, menghadap ke timur.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>Beberapa komponen lain dari dunia Karel dapat dilihat dalam contoh ini. Objek di hadapan Karel ialah beeper . Seperti yang dijelaskan dalam buku Rich Pattis, beeper s adalah "kerusi plastik yang memancarkan bunyi bising yang tenang." Karel hanya dapat mengesan beeper jika ia berada di sudut yang sama. Garis padat dalam gambar rajah adalah dinding. Dinding berfungsi sebagai halangan dalam dunia Karel. Karel tidak boleh berjalan melalui dinding dan sebaliknya harus pergi ke sekelilingnya. Dunia Karel selalu dibatasi oleh dinding di sepanjang tepi, tetapi dunia mungkin mempunyai dimensi yang berbeza bergantung pada masalah tertentu Karel perlu selesaikan.</p>
+<h3>Arahan Karel</h3>
+<p>Apabila Karel dihantar dari kilang, ia bertindak balas kepada satu set perintah yang sangat kecil:<table class="table mt-10">
+<tr><th>Perintah</th><th>Penerangan</th></tr>
+<tr><td> <code>move();</code> </td><td>Minta Karel ke move ke hadapan satu blok. Karel tidak dapat memberi respons kepada a <code>move()</code> perintah jika ada dinding yang menyekat jalannya.</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>Minta Karel berputar 90 darjah ke kiri (lawan jam).</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>Minta Karel mengambil satu beeper dari sudut dan menyimpan beeper dalam beg beeper , yang boleh memegang jumlah tak terhingga beeper s. Karel tidak dapat memberi respons kepada a <code>pickBeeper()</code> arahan kecuali terdapat beeper pada sudut semasa.</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>Minta Karel mengambil beeper dari beg beeper dan meletakkannya di sudut sekarang. Karel tidak dapat memberi respons kepada a <code>putBeeper()</code> perintah kecuali ada beeper s dalam begnya beeper .</td></tr>
+</table>
+</p>
+<p>Mari cuba percubaan. Gunakan butang di bawah untuk mendapatkan "dunia" untuk dipadankan dengan "matlamat":</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/commands.html', name="cmd", world="commands", goalWorld="commandsGoal")
+%>
+
+
+<p>Pasangan kosong kurungan yang muncul dalam setiap perintah ini adalah sebahagian daripada sintaks biasa yang dikongsi oleh Karel dan Jawa dan digunakan untuk menentukan permintaan perintah tersebut. Akhirnya, program yang anda tulis akan menyertakan maklumat tambahan dalam ruang antara tanda kurung, tetapi maklumat tersebut bukan sebahagian daripada dunia primitif Karel. Oleh itu, kurungan ini akan kosong dalam program Karel standard, tetapi anda harus ingat untuk memasukkannya tetap.</p>
+<p>Jika Karel cuba melakukan sesuatu yang menyalahi undang-undang, seperti bergerak melalui dinding atau memetik beeper tidak wujud, keadaan ralat berlaku.</p>
+<p>Perintah Karel, tidak dilaksanakan dengan sendirinya. Sebaliknya, anda perlu memasukkannya ke dalam program Karel. Anda akan berpeluang untuk melihat beberapa program Karel mudah dalam Bab 2!</p>
+<p></p>

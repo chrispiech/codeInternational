@@ -1,0 +1,43 @@
+<h1>第6章：循环</h1>
+<hr/>
+<p>定义新方法和定义循环的技术 - 尽管它们很有用 - 实际上并不能使Karel解决任何新问题。每当你run一个程序，它总是做同样的事情。当程序对不同的输入做出不同的响应时，程序会变得更有用。</p>
+<p>举个例子。假设您想编写一个程序，将Karel move放到墙上。但是，您并不只是希望这个程序能够在一个固定大小的世界上运行。您想编写一个可以在任何世界上运行的程序。</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>点击世界上方的“更改世界”下拉菜单，尝试改变世界。对于任何规模的世界，卡雷尔将move直到它撞墙。请注意，使用a不能完成此专长 <code class="keyword">for</code> 环。这需要我们在编程时了解世界的大小。</p>
+<h3>基本的循环</h3>
+<p>在卡雷尔，一个 <code class="keyword">while</code> 循环用于重复代码体<i>只要</i>给定条件成立。 while循环具有以下一般形式：</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">测试</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">要重复的陈述</i><br/>
+ <code>}</code>
+</p>
+<p>while循环的控制流程如下。当程序遇到while循环时，它开始重复一个进程<i>检查</i>如果测试通过，如果是，<i>run s</i>身体中的代码。</p>当程序<i>检查</i>如果测试通过，它决定是否通过<i class="demoText">测试</i>对于当前的世界状况是正确的。如果是这样，循环将run的代码。如果测试失败，则循环结束并且程序move打开。
+<p>当程序<i>run s</i>循环体，程序一次一个地执行体内的线条。当程序到达while循环结束时，它会跳回到循环的顶部。然后重新检查测试，如果通过则继续循环。程序在进行检查之前不会退出循环，并且测试失败。</p>
+<p>卡雷尔有很多<i class="demoText">测试</i>声明，我们将在下一章中讨论所有这些。现在我们将使用一个测试语句： <code>frontIsClear()</code> 如果没有直接面对卡雷尔的墙，这是真的。</p>
+<h3>Fencepost Bug</h3>
+<p>让我们修改上面的程序，使其更有趣。卡雷尔不是只是移动到墙上，而是在每个方格中放置一条锥体秒的线。我们再次希望这个程序适用于任何规模的世界：</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>那看起来很棒。除了一个问题。在每个世界上，卡雷尔都没有锥体的最后一个锥体上放置锥体 （仔细观察）。当卡雷尔位于最后一个方格时，程序不会执行循环体，因为测试不再通过 - 卡雷尔面向墙。你可能想尝试切换身体的秩序，使卡雷尔move小号放置beeper之前。代码是可编辑的，所以去试试吧！</p>
+<p>存在一个更深层次的问题，即身体的重排不能解决。对于有7列的世界，卡雷尔需要投入7 锥体 s，但应该只有move 6次。由于while循环在测试通过时执行两行，如何让程序比另一行更多地执行一个命令？</p>
+<p>这个程序中的错误是一个称为a的编程问题的例子 <b>fencepost错误</b> 。这个名字的来源是这样一个事实：如果你想建造一个由任何尺寸都有一个栅栏柱的面板制成的栅栏，栅栏柱的数量总是大于窗格的数量。例如，你需要多少个栅栏柱来建造一个有10个面板的栅栏？答案是11，如下图所示：</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/>
+</center>
+<p>一旦你发现它，修复这个错误实际上很容易。在卡雷尔停在世界末日之前，该计划所要做的就是下一个锥体 ：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

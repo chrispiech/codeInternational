@@ -1,0 +1,533 @@
+
+
+<html> 
+<head> 
+<title>Karel Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="../../plugins/jquery.min.js"></script>
+
+<link rel="stylesheet"  href="../../plugins/bootstrap/css/bootstrap.min.css">
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../../style.css">
+
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head> 
+<body>
+  <!-- container -->
+  <div class="bookContainer">
+<!-- side bar -->
+<div class="bookSideBar">
+  <div class="homeLink">
+    <a href="../../python/en/intro.html">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      Karel
+    </a>
+  </div>
+  <hr/>
+  
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter1.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter1.html">
+      1 - Meet Karel
+    </a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter2.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter2.html">2 - Programming</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter3.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter3.html">3 - New Functions</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter4.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter4.html">4 - Decomposition</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter5.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter5.html">5 - For Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter6.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter6.html">6 - While Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter7.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter7.html">7 - Conditionals</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter8.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter8.html">8 - Refinement</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter9.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter9.html">9 - Extra Features</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../python/en/reference.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/reference.html">10 - Reference</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../python/en/ide.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/ide.html">11 - Code</a>
+  </div>
+
+  <hr/>
+
+  <!--<a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/> Learn more</a> -->
+
+  <!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/>
+    </center> -->
+</div>
+    <!-- content -->
+    <div class="bookContent" style="display: flex;">
+      <!-- right gutter -->
+      <div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+
+      <!-- main stuff -->
+      <div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+
+<h1>
+Chapter 2: Programming Karel
+</h1>
+<hr/>
+<p>
+  The simplest style of Karel program uses text to specify a sequence of built-in commands that should be executed when the program is <b>run</b>. Consider the simple Karel program below. The text on the left is the program. The state of Karel's world is shown on the right:
+</p> 
+
+
+<div class="section embeddedIde" id="firstKarel">
+    <div id ='firstKarelIde' class = "ide getStarted" style="height:249.20000000000002px">
+      <div id = 'firstKarelIdeCenter' class = "ideCenter" >
+         <div id = 'firstKarelEditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = 'firstKarelCanvasDiv' class = 'ideCanvasDiv'>
+            <canvas id='firstKarelCanvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="firstKarelRunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function examplefirstKarel() {
+STARTER_CODE = `
+# File: FirstKarel.py
+# -----------------------------
+# The FirstKarel program defines a "main" 
+# function with three commands. These commands cause  
+# Karel to move forward one block, pick up a beeper
+# and then move ahead to the next corner.
+from karel.stanfordkarel import *
+
+def main():
+   move()
+   pick_beeper()
+   move()
+   
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('firstKarelEditor','firstKarelEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('firstKarelCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'stepUp', 0.0, 'en');
+    $('#firstKarelRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#firstKarelRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#firstKarelRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 249.20000000000002;
+    var canvasWidth = 300
+    var parentWidth = $("#firstKarel").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('firstKarelIde');
+    var editorDiv = document.getElementById('firstKarelEditorDiv');
+    var canvas = document.getElementById('firstKarelCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplefirstKarel();
+    </script>
+</div>
+<p>
+Press the "Run" button to execute the program. Programs are typically written in a special application called an <b>Integrated Development Enviroment</b> (IDE) and most Karel programs are written in an IDE called PyCharm. Like an IDE, this reader has the ability to execute programs in order to help you <i>see</i> how things work as you learn.</p>
+<p>The program is composed of several parts. The first part consists of the following lines:
+</p>
+<p>
+
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no"># File: FirstKarel.py
+# -----------------------------
+# The FirstKarel program defines a "main" 
+# function with three commands. These commands cause  
+# Karel to move forward one block, pick up a beeper
+# and then move ahead to the next corner.</pre>
+</p>
+
+<p>
+  These lines are an example of a <b>comment</b>, which is simply text designed to explain the operation of the program to human readers. Comments in both Karel and Python begin with the characters <code class="comment">#</code> and include the rest of the line. In a simple program, extensive comments may seem silly because the effect of the program is obvious, but they are extremely important as a means of documenting the design of larger, more complex programs.
+  The second part of the program is the line:
+</p>
+<p class="demoCode" style="margin-left:10px">
+  <code><span class="keyword">from</span> karel.stanford <span class="keyword">import</span> *</code>
+</p>
+<p>
+  This line requests the inclusion of all definitions from the <code> karel.stanford</code> library. This library contains the basic definitions necessary for writing Karel programs, such as the definitions of the standard operations <code>move()</code> and <code>pick_beeper()</code>. Because you always need access to these operations, every Karel program you write will include this import command before you write the actual program.
+</p>
+<p>
+ The final part of the Karel program consists of the following function definition:
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> main():</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move()</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pick_beeper()</code><br/>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move()</code><br/>
+</p>
+<p>
+These lines represent the definition of a new <b>function</b>, which specifies the sequence of steps necessary to respond to a command. As in the case of the <code>FirstKarel</code> program itself, the function definition consists of two parts that can be considered separately: The first line constitutes the function header and the indented code following is the function body. If you ignore the body for now, the function definition looks like this:
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> main():</code><br/>
+<i class="demoText" style="margin-left:3.5em">body of the function definition</i><br/>
+</p>
+<p>
+The first word in the function header, <code class="keyword">def</code>, is part of Python's syntactic structure. It says that you are creating a new function. The next word on the header line specifies the name of the new function, which in this case is <b>main</b>. Defining a function means that Karel can now respond to a new command with that name. The <code>main()</code> command plays a special role in a Karel program. When you start a Karel program it creates a new Karel instance, adds that Karel to a world that you specify, and then issues the <code>main()</code> command. The effect of running the program is defined by the body of the <code>main()</code> function, which is a sequence of commands that the robot will execute in order. For example, the body of the <code>main()</code> function for the <code>FirstKarel</code> program is:
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;move()</code><br/>
+<code>&nbsp;&nbsp;&nbsp;pick_beeper()</code><br/>
+<code>&nbsp;&nbsp;&nbsp;move()</code><br/>
+</p>
+<p>
+Thus, if the initial state of the world matches the example given in Chapter 1, Karel first moves forward into the corner containing the beeper, picks up that beeper, and finally moves forward to the corner just before the wall, as shown in the following before-and-after diagram:
+  </p>
+
+<div class="section" id="ba2">
+    <div id ='ba2Ide' class = "ide getStarted">
+         <div id = 'ba2CanvasDiv' class = 'commandCanvasDiv'>
+          <div>
+            <div class="commandCanvasTitle">Before:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='ba2CanvasBefore' style="width:300px;"></canvas>
+            </div>
+          </div>
+          <div style="width:50px"></div>
+          <div>
+            <div class="commandCanvasTitle">After:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='ba2CanvasAfter' style="width:300px;"></canvas>
+            </div>
+          </div>
+         </div> 
+    </div>
+    
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'stepUp', 0.0, 'en',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'stepUpM1',0.0, 'en',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div><h2>Solving a more interesting problem</h2>
+<p>
+  The <code>FirstKarel</code> program defined above doesn’t do very much as yet. Let’s try to make it a little more interesting. Suppose that the goal is not simply to get Karel to pick up the beeper but to move the beeper from its initial position on 2nd column and 1st row to the center of a ledge. Thus, your next assignment is to define a new Karel program that accomplishes the task illustrated in this diagram:
+  </p>
+
+<div class="section" id="ba3">
+    <div id ='ba3Ide' class = "ide getStarted">
+         <div id = 'ba3CanvasDiv' class = 'commandCanvasDiv'>
+          <div>
+            <div class="commandCanvasTitle">Before:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='ba3CanvasBefore' style="width:300px;"></canvas>
+            </div>
+          </div>
+          <div style="width:50px"></div>
+          <div>
+            <div class="commandCanvasTitle">After:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='ba3CanvasAfter' style="width:300px;"></canvas>
+            </div>
+          </div>
+         </div> 
+    </div>
+    
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'stepUp', 0.0, 'en',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'stepUpGoal',0.0, 'en',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div><p>
+  The first three commands in the new program—the ones that move forward, pick up the beeper, and then move up to the ledge—are the same as before:
+</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+<code>&nbsp;&nbsp;&nbsp;move()</code><br/>
+<code>&nbsp;&nbsp;&nbsp;pick_beeper()</code><br/>
+<code>&nbsp;&nbsp;&nbsp;move()</code><br/>
+</p>
+<p>
+From here, the next step is to turn left to begin climbing the ledge. That operation is easy, because Karel has a <code>turn_left()</code> command in its standard repertoire. Executing a <code>turn_left()</code> command at the end of the preceding sequence of commands leaves Karel facing north on the corner of 1st row and 3rd column. If Karel then executes a <code>move()</code> command, it will move north to reach the following position:
+</p>
+
+<div class="section" id="ba3">
+    <div id ='ba3Ide' class = "ide getStarted">
+         <div id = 'ba3CanvasDiv' class = 'commandCanvasDiv'>
+          <div>
+            <div class="commandCanvasOuter">
+              <canvas id='ba3Canvas' style="width:300px;"></canvas>
+            </div>
+          </div>
+         </div> 
+    </div>
+    
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('python',null, canvas, 'stepUpM2', 0, 'en',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div><p>
+From here, the next thing you need to do is get Karel to turn right so that it is again facing east. While this operation is conceptually just as easy as getting Karel to turn left, there is a slight problem: Karel’s language includes a <code>turn_left()</code> command, but no <code>turn_right()</code> command. It’s as if you bought the economy model and have now discovered that it is missing some important features.
+</p>
+<p>
+At this point, you have your first opportunity to begin thinking like a programmer. You have one set of commands, but not exactly the set you need. What can you do? Can you accomplish the effect of a <code>turn_right()</code> command using only the capabilities you have? The answer, of course, is yes. You can accomplish the effect of turning right by turning left three times. After three left turns, Karel will be facing in the desired direction. From here, all you need to do is program Karel to move over to the center of the ledge, drop the beeper and then move forward to the final position. Here is a complete implementation of a program that accomplishes the entire task:
+</p>
+
+
+<div class="section embeddedIde" id="stepUp">
+    <div id ='stepUpIde' class = "ide getStarted" style="height:373.8px">
+      <div id = 'stepUpIdeCenter' class = "ideCenter" >
+         <div id = 'stepUpEditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = 'stepUpCanvasDiv' class = 'ideCanvasDiv'>
+            <canvas id='stepUpCanvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+# File: FirstKarel.py
+# -----------------------------
+# The FirstKarel program defines a "main" 
+# function with commands that cause Karel to pick up
+# a beeper and place it on a ledge.
+from karel.stanfordkarel import *
+
+def main():
+   move()
+   pick_beeper()
+   move()
+   turn_left()
+   move()
+   turn_left()
+   turn_left()
+   turn_left()
+   move()
+   move()
+   put_beeper()
+   move()
+   `
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'stepUp', 0.5, 'en');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 373.8;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div><hr/>
+<center>
+  <a class="btn btn-primary btn-lg" href="chapter3.html" role="button">Next Chapter</a>
+</center>
+</p>
+
+<div style="height:60px"></div>        </div>
+      </div>
+
+      </div>
+      <!-- right gutter -->
+      <div style="flex-grow:4"></div>
+    </div>
+  </div>
+</body> 
+</html>

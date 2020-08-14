@@ -1,0 +1,533 @@
+
+<html>
+<head>
+
+<title>卡雷尔读者</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/zh/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 卡雷尔</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter1.html">1  - 遇见卡雷尔</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter2.html">2  - 编程</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter3.html">3  - 新方法</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter5.html">5  - 对于循环</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter6.html">6  - 循环时</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter7.html">7  - 条件</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter8.html">8  - 细化</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter9.html">9  - 超级卡雷尔</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/reference.html">10  - 参考</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/ide.html">11  - 代码</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> 学到更多</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第5章：循环</h1>
+<hr/>
+<p>计算机特别擅长的一件事就是重复。我们怎样才能说服Karel多次执行一段代码？要了解如何使用重复，请考虑放置42 锥体的任务：</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">之前：</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:200px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">后：</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:200px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, '99beepersStart', 0.0, 'zh',1000, 1.0 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, '99beepersGoal',0.0, 'zh',  1000, 1.0 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<h3>基本的循环</h3>
+<p>既然您知道要放置42个锥体 ，那么您需要的控制语句是a <b>for循环</b> ，指定您要重复一些操作固定次数。 for语句的结构看起来很复杂，主要是因为它实际上比Karel需要的任何东西都强大得多。 Karel使用的for语法的唯一版本是：</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">计数</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">要重复的陈述</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">我们将在后面的课程中详细介绍for循环的所有细节。现在你应该阅读这一行来表达，“重复大括号之间的陈述<i class="demoText">计数</i>时间。“我们可以使用这个新的 <b>for循环</b> 通过替换来放置42 锥体 s<i class="demoText">计数</i>用42并输入命令 <code>putBeeper()</code> 在for循环代码块中。我们在代码块中调用命令 <b>身体</b> ：</p>
+<p>
+
+
+
+
+<div class="section embeddedIde" id="99beepers">
+<div class="ide getStarted" id="99beepersIde" style="height:281.6px">
+<div class="ideCenter" id="99beepersIdeCenter">
+<div class="ideEditorDiv" id="99beepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="99beepersCanvasDiv">
+<canvas class="ideCanvas" id="99beepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="99beepersRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function example99beepers() {
+STARTER_CODE = `
+
+/*
+ * File：放置很多锥体S.java
+ * ----------------
+ * 使用for循环锥体 42 锥体 s
+ */
+import stanford.卡雷尔.*;
+public class 放置很多锥体S extends 卡雷尔 {
+   public void run() {
+      move();
+      /* 重复把蜂鸣器多次 */
+      for(int i = 0; i < 42; i++) {
+      	putBeeper();
+      }
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('99beepersEditor','99beepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('99beepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '99beepersStart', 0.8, 'zh');
+    $('#99beepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#99beepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#99beepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 281.6;
+    var canvasWidth = 200
+    var parentWidth = $("#99beepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('99beepersIde');
+    var editorDiv = document.getElementById('99beepersEditorDiv');
+    var canvas = document.getElementById('99beepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example99beepers();
+    </script>
+</div>
+<p>上面的代码是可编辑的。尝试更改它，使其仅放置15 锥体 s。</p>
+<h3>匹配后置条件与前提条件</h3>
+<p>前面的示例给出了for循环重复单行代码的印象。然而，for循环的主体（重复的语句）可以是多行。以下是将锥体置于世界每个角落的程序示例：</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers">
+<div class="ide getStarted" id="cornerBeepersIde" style="height:316.8px">
+<div class="ideCenter" id="cornerBeepersIdeCenter">
+<div class="ideEditorDiv" id="cornerBeepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepersCanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepersRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers() {
+STARTER_CODE = `
+
+/*
+ * 文件：阁锥体S.java
+ * -----------
+ * 在每个角落锥体一个锥体
+ */
+import stanford.卡雷尔.*;
+public class 角锥体S extends 卡雷尔 {
+   public void run() {
+      /* 重复身体4次 */
+      for(int i = 0; i < 4; i++) {
+      	putBeeper();
+      	move();
+      	move();
+      	move();
+      	turnLeft();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepersEditor','cornerBeepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.0, 'zh');
+    $('#cornerBeepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepersIde');
+    var editorDiv = document.getElementById('cornerBeepersEditorDiv');
+    var canvas = document.getElementById('cornerBeepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers();
+    </script>
+</div>
+
+<p>密切关注程序流经这些控制语句的方式。程序run一个地通过for循环体中的命令集。它重复身体四次。</p>
+<p>也许编写循环最复杂的部分是你需要循环结束时的世界状态（ <b>后置条件</b> ）作为循环开始的世界的有效状态（ <b>前提</b> ）。在上面的例子中，假设是匹配的。美好时光。在循环开始时，卡雷尔总是在一个正方形，没有锥体秒面向下一个空角。如果你在循环结束时删除了转左怎么办？第一次迭代结束时的后置条件将不再满足卡雷尔面临下一个空角的假设。代码是可编辑的。尝试删除 <code>turnLeft();</code> 命令看看会发生什么！</p>
+<h3>嵌套循环</h3>
+<p>技术上，for循环的主体可以包含任何控制流代码，甚至是其他循环。下面是一个for循环的示例，它重复调用一个也有for循环的方法。我们称之为“嵌套”循环。在run之前尝试阅读该程序，并了解它的作用：
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers10">
+<div class="ide getStarted" id="cornerBeepers10Ide" style="height:545.6px">
+<div class="ideCenter" id="cornerBeepers10IdeCenter">
+<div class="ideEditorDiv" id="cornerBeepers10EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepers10CanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepers10Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepers10RunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers10() {
+STARTER_CODE = `
+
+/*
+ * File：第五个角落锥体.java
+ * ----------------
+ * 在每个角落锥体五个锥体
+ */
+import stanford.卡雷尔.*;
+public class 第五个角落锥体 extends 卡雷尔 {
+
+   public void run() {
+      /* 每个角落重复一次 */
+      for(int i = 0; i < 4; i++) {
+         放五个锥体();
+         move到下一个角落();
+      }
+   } 
+
+   /* 将卡雷尔重新定位到下一个角落 */
+   public void move到下一个角落() {
+      move();
+      move();
+      move();
+      turnLeft();
+   }
+
+   /* 使用for循环放置5 锥体 s */
+   public void 放五个锥体() {
+      for(int i = 0; i < 5; i++) {
+      	putBeeper();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepers10Editor','cornerBeepers10EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepers10Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.7, 'zh');
+    $('#cornerBeepers10RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepers10RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepers10RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 545.6;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers10").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepers10Ide');
+    var editorDiv = document.getElementById('cornerBeepers10EditorDiv');
+    var canvas = document.getElementById('cornerBeepers10CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers10();
+    </script>
+</div>
+</p>
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter6.html" role="button">下一章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

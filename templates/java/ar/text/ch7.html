@@ -1,0 +1,87 @@
+<h1>الفصل 7: إذا البيانات</h1>
+<hr/>
+<p>البرمجة الأساسية النهائية لتدفق التحكم في التعلم هي عبارة عن عبارات شرطية ( <code>if</code> و <code>if/else</code> ).</p>
+<h3>الشرطية الأساسية</h3>
+<p>ل <code>if/else</code> تنفيذ العبارة "-" - كتلة التعليمات البرمجية إذا وفقط إذا تم توفيرها<i class="demoText">اختبار</i>صحيح بالنسبة لحالة العالم في الوقت الذي يصل فيه البرنامج إلى البيان. وإلا فإن البرنامج ينفذ "كود" آخر.</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">اختبار</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">إذا رمز كتلة</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">آخر رمز كتلة</i><br/>
+ <code>}</code> 
+</p>
+<p>للتعرف على الأماكن التي قد تكون فيها العبارات الشرطية في متناول اليد ، دعنا نكتب برنامجًا يحتوي على كاريل قلب السطر مخروط ثانية. إذا كان مربع يحتوي على مخروط ، كاريل أن كاريل . إذا كان المربع لا يحتوي على مخروط ، فيجب وضع كاريل الأسفل.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>لاحظ أن <code>if</code> بيان لا يحتاج إلى أن يكون <code>else</code> كتلة - في هذه الحالة بيان opperates مثل <code>while</code> دورة الذي ينفذ مرة واحدة فقط:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">اختبار</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">إذا رمز كتلة</i><br/>
+ <code>} </code> 
+</p>
+<h3>الظروف</h3>
+<p>هذا المثال الأخير يستخدم حالة جديدة. فيما يلي قائمة بجميع الشروط التي يعرفها كاريل :</p>
+<p>
+<table class="table table-condensed">
+<tr><th>اختبار</th><th>مقابل</th><th>ما يتحقق</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>هل يوجد جدار أمام كاريل ؟</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>هل هناك مخروط ثانية في هذه الزاوية؟</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>هل هناك جدار إلى اليسار كاريل ؟</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>هل هناك جدار ل كاريل حق؟</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>هل هناك مخروط في كيس كاريل ؟</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>هل يواجه كاريل الشمال؟</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>هل يواجه كاريل الجنوب؟</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>هل يواجه كاريل الشرق؟</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>هل يواجه كاريل الغرب؟</td>
+</tr>
+</table>
+</p>
+<h3>ضع كل شيء معا</h3>
+<p>مبروك! أنت تعرف الآن كل الكتل البرمجية التحكم في التدفق. على الرغم من أنك كاريل باستخدام كاريل ، فإن الطرق ، دورات while ، دورات for ، إذا كانت / دورات for العبارات تعمل بنفس الطريقة في جميع اللغات الرئيسية تقريبًا ، بما في ذلك Java.</p>
+<p>الآن بعد أن أصبح لديك اللبنات الأساسية ، يمكنك تجميعها معًا لبناء حلول لمشاكل أكثر تعقيدًا. إلى حد كبير ، البرمجة هي علم حل المشكلات عن طريق الكمبيوتر. نظرًا لأن المشكلات غالبًا ما تكون صعبة ، فقد تكون الحلول - والبرامج التي تنفذ هذه الحلول - صعبة أيضًا. لتسهيل تطوير هذه الحلول ، تحتاج إلى اعتماد منهجية وانضباط يقلل من مستوى هذا التعقيد إلى نطاق يمكن التحكم فيه.</p>

@@ -1,0 +1,43 @@
+<h1>Bab 6: Semasa Gelung</h1>
+<hr/>
+<p>Teknik mendefinisikan kaedah baru, dan menentukan gelung-seperti yang berguna-tidak semestinya membolehkan Karel menyelesaikan sebarang masalah baru. Setiap kali anda run satu program ia selalu melakukan perkara yang sama. Program menjadi lebih berguna apabila mereka dapat memberi maklum balas yang berbeza kepada input yang berbeza.</p>
+<p>Sebagai contoh. Katakan anda mahu menulis program untuk mempunyai Karel move ke dinding. Tetapi anda tidak hanya mahu program ini berfungsi pada satu dunia dengan saiz tetap. Anda ingin menulis satu program tunggal yang boleh berfungsi di mana-mana dunia.</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>Cuba ubah dunia dengan mengklik dropdown "Perubahan Dunia" di atas dunia. Untuk mana-mana dunia bersaiz, Karel akan move sehingga ia mencapai dinding. Perhatikan bahawa prestasi ini tidak dapat dilaksanakan dengan menggunakan <code class="keyword">for</code> gelung. Itu akan memerlukan kita untuk mengetahui saiz dunia pada masa pengaturcaraan.</p>
+<h3>Asas Semasa Gelung</h3>
+<p>Di Karel, a <code class="keyword">while</code> gelung digunakan untuk mengulangi kod tubuh<i>as-long-as</i>keadaan yang dipegang. Gelung sementara mempunyai bentuk umum berikut:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">ujian</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">pernyataan yang akan diulang</i><br/>
+ <code>}</code>
+</p>
+<p>Aliran kawalan gelung sementara adalah seperti berikut. Apabila program itu mencecah gelung sementara ia mula mengulangi proses di mana ia terlebih dahulu<i>cek</i>jika ujian lulus, dan jika ya<i>run s</i>kod dalam badan.</p>Apabila program tersebut<i>cek</i>jika ujian lulus, ia memutuskan jika<i class="demoText">ujian</i>adalah benar untuk keadaan semasa dunia. Jika ya, gelung akan run kod dalam badan. Jika ujian gagal, gelung berakhir dan program move s.
+<p>Apabila program tersebut<i>run s</i>badan gelung itu, program ini menjalankan garisan dalam badan satu demi satu. Apabila program tiba di akhir gelung sementara, ia melompat kembali ke bahagian atas gelung. Ia kemudian menguji semula ujian itu, dan terus gelung jika ia berlalu. Program ini tidak keluar dari gelung sehingga ia mendapat pemeriksaan, dan ujian gagal.</p>
+<p>Karel mempunyai banyak<i class="demoText">ujian</i>penyataan, dan kami akan mengatasi semuanya dalam bab seterusnya. Buat masa ini kami akan menggunakan satu kenyataan ujian: <code>frontIsClear()</code> yang benar jika tidak ada tembok langsung dari Karel.</p>
+<h3>Bug Fencepost</h3>
+<p>Mari ubah suai program kami di atas untuk menjadikannya lebih menarik. Daripada hanya bergerak ke dinding, ada Karel meletakkan garis sebanyak beeper s, satu di setiap persegi. Sekali lagi kami mahu program ini berfungsi untuk dunia dengan saiz apa pun:</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Itu kelihatan hebat. Kecuali satu masalah. Pada setiap dunia Karel tidak meletakkan beeper pada dataran terakhir baris (lihat dengan teliti). Apabila Karel berada di dataran terakhir, program ini tidak menjalankan badan gelung kerana ujian tidak lagi berlalu - Karel menghadapi dinding. Anda mungkin tergoda untuk mencuba menukar susunan badan supaya Karel move s sebelum meletakkan las. Kod ini boleh diedit jadi cuba!</p>
+<p>Terdapat masalah yang lebih mendalam yang tidak dapat diselesaikan semula oleh badan. Untuk dunia dengan 7 tiang, Karel perlu meletakkan 7 beeper s, tetapi hanya boleh move 6 kali. Oleh kerana gelung semasa mengeksekusi kedua-dua baris apabila ujian lulus, bagaimana anda boleh mendapatkan program untuk melaksanakan satu perintah sekali lagi daripada yang lain?</p>
+<p>Bug dalam program ini adalah contoh masalah pengaturcaraan yang disebut <b>ralat fencepost</b> . Nama itu berasal dari hakikat bahawa jika anda ingin membina pagar yang diperbuat daripada panel yang mempunyai satu pos pagar sama ada saiznya, bilangan jawatan pagar selalu lebih besar dari jumlah panel. Berapa banyak jawatan pagar, misalnya, adakah anda perlu membina pagar dengan 10 panel? Jawapannya adalah 11, seperti yang digambarkan oleh gambarajah berikut:</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/>
+</center>
+<p>Sebaik sahaja anda menemuinya, menetapkan bug ini sebenarnya agak mudah. Sebelum Karel berhenti di hujung dunia, semua program yang perlu dilakukan ialah tempat terakhir beeper :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

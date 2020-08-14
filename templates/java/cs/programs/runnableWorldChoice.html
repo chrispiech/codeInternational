@@ -1,0 +1,155 @@
+
+<%
+  codePath = 'templates/'+progLang+'/'+lang+'/text/code/'+name+'.java'
+  nLines = sum(1 for line in open(codePath))
+  editorHeight = 17.6 * nLines
+  setdefault('canvasWidth', 300)
+  setdefault('ideSpeed', 0.0)
+  setdefault('isEditable', 'false')
+%>
+
+
+<div class="section embeddedIde" id="{{name}}">
+<div class="ide getStarted" id="{{name}}Ide" style="height:{{editorHeight}}px">
+<div class="ideCenter" id="{{name}}IdeCenter">
+<div class="ideEditorDiv" id="{{name}}EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="{{name}}CanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Změnit svět<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="{{name}}Worlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="{{name}}Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="{{name}}RunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function example{{name}}() {
+STARTER_CODE = `
+
+<%
+  include(codePath)
+%>
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('{{name}}Editor','{{name}}EditorDiv', STARTER_CODE, {{isEditable}});
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('{{name}}Canvas');
+    karelIde = KarelIde('{{progLang}}',karelEditor, canvas, '{{world}}', {{ideSpeed}}, '{{lang}}');
+    $('#{{name}}RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('{{name}}Worlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#{{name}}RunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#{{name}}RunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = {{editorHeight}};
+    var canvasWidth = {{canvasWidth}}
+    var parentWidth = $("#{{name}}").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('{{name}}Ide');
+    var editorDiv = document.getElementById('{{name}}EditorDiv');
+    var canvas = document.getElementById('{{name}}CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example{{name}}();
+    </script>
+</div>

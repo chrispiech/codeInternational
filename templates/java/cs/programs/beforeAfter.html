@@ -1,0 +1,47 @@
+
+<%
+%>
+
+
+<div class="section" id="{{name}}">
+<div class="ide getStarted" id="{{name}}Ide">
+<div class="commandCanvasDiv" id="{{name}}CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Před:</div>
+<div class="commandCanvasOuter">
+<canvas id="{{name}}CanvasBefore" style="width:{{canvasWidth}}px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Po:</div>
+<div class="commandCanvasOuter">
+<canvas id="{{name}}CanvasAfter" style="width:{{canvasWidth}}px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function example{{name}}() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('{{name}}CanvasBefore');
+    karelIde = KarelIde('{{progLang}}',null, canvas, '{{before}}', 0.0, '{{lang}}',1000, {{ratio}} * 1000);
+
+    let canvasGoal = document.getElementById('{{name}}CanvasAfter');
+    let goalIde = KarelIde('{{progLang}}',null, canvasGoal, '{{after}}',0.0, '{{lang}}',  1000, {{ratio}} * 1000)
+ }
+
+ 
+ main()
+ 
+}
+example{{name}}();
+    </script>
+</div>

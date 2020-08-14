@@ -1,0 +1,531 @@
+
+
+<html> 
+<head> 
+<title>Karel Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="../../plugins/jquery.min.js"></script>
+
+<link rel="stylesheet"  href="../../plugins/bootstrap/css/bootstrap.min.css">
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../../style.css">
+
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head> 
+<body>
+  <!-- container -->
+  <div class="bookContainer">
+<!-- side bar -->
+<div class="bookSideBar">
+  <div class="homeLink">
+    <a href="../../python/en/intro.html">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      Karel
+    </a>
+  </div>
+  <hr/>
+  
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter1.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter1.html">
+      1 - Meet Karel
+    </a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter2.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter2.html">2 - Programming</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter3.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter3.html">3 - New Functions</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter4.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter4.html">4 - Decomposition</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter5.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter5.html">5 - For Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter6.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter6.html">6 - While Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter7.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter7.html">7 - Conditionals</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter8.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter8.html">8 - Refinement</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter9.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter9.html">9 - Extra Features</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../python/en/reference.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/reference.html">10 - Reference</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../python/en/ide.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/ide.html">11 - Code</a>
+  </div>
+
+  <hr/>
+
+  <!--<a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/> Learn more</a> -->
+
+  <!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/>
+    </center> -->
+</div>
+    <!-- content -->
+    <div class="bookContent" style="display: flex;">
+      <!-- right gutter -->
+      <div style="flex-grow:1;max-width:50px;"></div>
+
+      <!-- main stuff -->
+      <div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+
+<h1>Chapter 5: For Loops</h1>
+<hr/>
+<p>
+One of the things that computers are especially good at is repetition. How can we convince Karel to execute a block of code multiple times?
+	To see how repetition can be used, consider the task of placing 42 beepers:
+</p>
+
+
+<div class="section" id="ba">
+    <div id ='baIde' class = "ide getStarted">
+         <div id = 'baCanvasDiv' class = 'commandCanvasDiv'>
+          <div>
+            <div class="commandCanvasTitle">Before:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='baCanvasBefore' style="width:200px;"></canvas>
+            </div>
+          </div>
+          <div style="width:50px"></div>
+          <div>
+            <div class="commandCanvasTitle">After:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='baCanvasAfter' style="width:200px;"></canvas>
+            </div>
+          </div>
+         </div> 
+    </div>
+    
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('python',null, canvas, '99beepersStart', 0.0, 'en',1000, 1.0 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, '99beepersGoal',0.0, 'en',  1000, 1.0 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+<h3>Basic For Loop</h3>
+
+<p>
+Since you know that there are exactly 42 beepers to place, the control statement that you need is a <b>for loop</b>, which specifies that you want to repeat some operation a fixed number of times. The structure of the <code>for</code> statement appears complicated primarily because it is actually much more powerful than anything Karel needs. The only version of the <code>for</code> syntax that Karel uses is:
+</p>
+
+	<p class="demoCode">
+<code>for i in range(</code><i class="demoText">count</i><code>):</code><br/>
+   <i style="margin-left:2em">statements to be repeated</i><br/>
+</p>
+
+<p class="mb-20">We will go over all the details of the <code>for</code> loop later in the class. For now you should read this line as a way to express, "repeat the statements in the function body <i class="demoText">count</i> times."
+
+We can use this new <b>for loop</b> to place 42 beepers by replacing <i class="demoText">count</i> with 42 and putting the command <code>put_beeper()</code> inside of the <code>for</code> loop code block. We call commands in the code block the <b>body</b>:
+</p>
+
+<p >
+
+<div class="section embeddedIde" id="99beepers">
+    <div id ='99beepersIde' class = "ide getStarted" style="height:213.60000000000002px">
+      <div id = '99beepersIdeCenter' class = "ideCenter" >
+         <div id = '99beepersEditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = '99beepersCanvasDiv' class = 'ideCanvasDiv'>
+            <canvas id='99beepersCanvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="99beepersRunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function example99beepers() {
+STARTER_CODE = `
+# File: PlaceManyBeepers.py
+# -----------------------------
+# Places 42 beepers using a for loop
+from karel.stanfordkarel import *
+
+def main():
+   move()
+   # repeat put_beeper many times 
+   for i in range(42):
+      put_beeper()
+   move()
+   `
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('99beepersEditor','99beepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('99beepersCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, '99beepersStart', 0.8, 'en');
+    $('#99beepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#99beepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#99beepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 213.60000000000002;
+    var canvasWidth = 200
+    var parentWidth = $("#99beepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('99beepersIde');
+    var editorDiv = document.getElementById('99beepersEditorDiv');
+    var canvas = document.getElementById('99beepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example99beepers();
+    </script>
+</div><p>
+	<b>The code above is editable</b>. Try to change it so that it places only 15 beepers.
+	</p>
+
+<h3>Matching Postconditions with Preconditions</h3>
+
+<p>
+The previous example gives the impression that a <code>for</code> loop repeats a single line of code. However the body of the <code>for</code> loop (the statements that get repeated) can be multiple lines. Here is an example of a program that puts a beeper in each corner of a world:
+</p>
+
+
+<div class="section embeddedIde" id="cornerBeepers">
+    <div id ='cornerBeepersIde' class = "ide getStarted" style="height:213.60000000000002px">
+      <div id = 'cornerBeepersIdeCenter' class = "ideCenter" >
+         <div id = 'cornerBeepersEditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = 'cornerBeepersCanvasDiv' class = 'ideCanvasDiv'>
+            <canvas id='cornerBeepersCanvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="cornerBeepersRunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function examplecornerBeepers() {
+STARTER_CODE = `
+# File: CornerBeepers.py
+# -----------------------------
+# Places one beeper in each corner
+from karel.stanfordkarel import *
+def main():
+   # repeat the body 4 times 
+   for i in range(4):
+	   put_beeper()
+	   move()
+	   move()
+	   move()
+	   turn_left()
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('cornerBeepersEditor','cornerBeepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepersCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'cornerBeepersStart', 0.0, 'en');
+    $('#cornerBeepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 213.60000000000002;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepersIde');
+    var editorDiv = document.getElementById('cornerBeepersEditorDiv');
+    var canvas = document.getElementById('cornerBeepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers();
+    </script>
+</div>
+<p>
+Pay very close attention to the way that the program flows through these control statements. The program runs through the set of commands in the <code>for</code> loop body one at a time. It repeats the body four times.
+</p>
+
+<p>
+Perhaps the single most complicated part of writing a loop is that you need the state of the world at the end of the loop (the <b>postcondition</b>) to be a valid state of the world for the start of the loop (the <b>precondition</b>). In the above example the assumptions match. Good times. At the start of the loop, Karel is always on a square with no beepers facing the next empty corner. What if you deleted the <code>turn_left()</code> at the end of the loop? The postcondition at the end of the first iteration would no longer satisfy the assumptions made about Karel facing the next empty corner. The code is editable. Try deleting the <code>turn_left()</code> command to see what happens!
+</p>
+
+<h3>Nested Loops</h3>
+
+<p>
+Technically the body of a <code>for</code> loop can contain any control flow code, even other loops. Here is an example of a <code>for</code> loop that repeats a call to a function which also has a <code>for</code> loop. We call this a "nested" loop. Try to read through the program, and understand what it does, before running it:
+
+
+<div class="section embeddedIde" id="cornerBeepers10">
+    <div id ='cornerBeepers10Ide' class = "ide getStarted" style="height:373.8px">
+      <div id = 'cornerBeepers10IdeCenter' class = "ideCenter" >
+         <div id = 'cornerBeepers10EditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = 'cornerBeepers10CanvasDiv' class = 'ideCanvasDiv'>
+            <canvas id='cornerBeepers10Canvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="cornerBeepers10RunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function examplecornerBeepers10() {
+STARTER_CODE = `
+# File: CornerFiveBeepers.py
+# -----------------------------
+# Places five beepers in each corner
+from karel.stanfordkarel import *
+def main():
+   # Repeat once for each corner 
+   for i in range(4):
+      put_five_beepers()
+      move_to_next_corner()
+
+# reposition karel to the next corner 
+def move_to_next_corner() :
+   move()
+   move()
+   move()
+   turn_left()
+
+# places 5 beepers using a for loop 
+def put_five_beepers() :
+   for i in range(5):
+   	put_beeper()
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('cornerBeepers10Editor','cornerBeepers10EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepers10Canvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'cornerBeepersStart', 0.7, 'en');
+    $('#cornerBeepers10RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepers10RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepers10RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 373.8;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers10").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepers10Ide');
+    var editorDiv = document.getElementById('cornerBeepers10EditorDiv');
+    var canvas = document.getElementById('cornerBeepers10CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers10();
+    </script>
+</div></p>
+<hr/>
+<center>
+  <a class="btn btn-primary btn-lg" href="chapter6.html" role="button">Next Chapter</a>
+</center>
+</p>
+
+<div style="height:60px"></div>        </div>
+      </div>
+
+      </div>
+      <!-- right gutter -->
+      <div style="flex-grow:4"></div>
+    </div>
+  </div>
+</body> 
+</html>

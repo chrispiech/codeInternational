@@ -1,0 +1,22 @@
+div.CodeMirror-wrapping {
+	float:left;
+	width:320px;
+	height:650px;
+	border-width:2px;
+	border-style:solid;
+	background:#fff;
+	
+}
+
+#canvas {
+	float:left;
+	width:475px;
+	height:475px;
+}
+
+#checkOut {
+	padding-left:15px;
+	float:right;
+	width:150px;
+	height:650px;
+}

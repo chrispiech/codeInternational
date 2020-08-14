@@ -1,0 +1,113 @@
+<h1>Bab 8: Penghapusan Stepwise</h1>
+<hr/>
+<p>Untuk sebahagian besar, pengaturcaraan adalah ilmu menyelesaikan masalah dengan komputer. Kerana masalah sering sukar, penyelesaian-dan program-program yang melaksanakan penyelesaian-boleh menjadi sukar juga. Untuk memudahkan anda mengembangkan penyelesaian itu, anda perlu mengamalkan metodologi dan disiplin yang dapat mengurangkan tahap kerumitan itu kepada skala yang boleh diurus.</p>
+<p>Pada tahun-tahun awal pengaturcaraan, konsep pengkomputeran sebagai sains adalah lebih kurang percubaan dalam pemikiran yang ingin tahu. Tiada siapa yang mengetahui banyak tentang pengaturcaraan pada masa itu, dan sedikit pemikirannya sebagai disiplin kejuruteraan dalam erti kata konvensional. Walau bagaimanapun pengaturcaraan matang, disiplin seperti itu mula muncul. Yang menjadi asas kepada disiplin itu ialah pemahaman bahawa pengaturcaraan dilakukan dalam persekitaran sosial di mana programmer harus bekerjasama. Jika anda masuk ke dalam industri, anda pasti akan menjadi salah satu daripada banyak pengaturcara yang bekerja untuk membangunkan program yang besar. Program itu, lebih-lebih lagi, hampir pasti untuk hidup dan memerlukan penyelenggaraan melampaui penerapannya yang asalnya. Seseorang akan mahu program itu menyertakan beberapa ciri baru atau berfungsi dengan cara yang berbeza. Apabila berlaku, pasukan pengaturcara baru mesti masuk dan membuat perubahan yang diperlukan dalam program. Sekiranya program ditulis dalam gaya individu dengan sedikit atau tiada kesamaan, semua orang untuk bekerja bersama secara produktif adalah amat sukar.</p>
+<p>Untuk memerangi masalah ini, pengaturcara mula membangun satu set metodologi pengaturcaraan yang dipanggil secara kolektif <b>Kejuruteraan perisian</b> . Menggunakan kemahiran kejuruteraan perisian yang baik bukan sahaja memudahkan para pengaturcara lain untuk membaca dan memahami program anda, tetapi juga memudahkan anda menulis program-program tersebut di tempat pertama. Salah satu kemajuan metodologi yang paling penting untuk keluar dari kejuruteraan perisian ialah strategi <b>reka bentuk atas ke bawah</b> atau <b>penambahbaikan langkah demi langkah</b> , yang terdiri daripada menyelesaikan masalah dengan memulakan dengan masalah secara keseluruhan. Anda memecahkan seluruh masalah ke dalam kepingan, dan kemudian menyelesaikan setiap bahagian, memecahkan mereka ke bawah jika perlu. Strategi teratas ini dilengkapkan dengan <b>ujian berulang</b> di mana anda memastikan bahawa potongan penyelesaian yang lebih kecil berfungsi sebelum bergerak.</p>
+<h3>Latihan dalam perbaikan langkah demi langkah</h3>
+<p>Untuk menggambarkan konsep penghalusan berturut-turut, mari kita ajar Karel untuk menyelesaikan masalah baru. Bayangkan Karel kini hidup dalam dunia yang kelihatan seperti ini:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="world1", world="beeperTowers", canvasWidth="400", canvasRatio=0.8)
+%>
+
+
+<p>Di setiap lajur, terdapat menara beeper s yang tinggi tidak diketahui, walaupun beberapa lajur (seperti 7, dan 9 dalam dunia sampel) mungkin kosong. Tugas Karel adalah untuk mengumpul semua beeper s di setiap menara ini, meletakkannya kembali di sudut paling timur baris 1, dan kemudian kembali ke kedudukan permulaannya. Oleh itu, apabila Karel menyelesaikan tugasnya dalam contoh di atas, semua 25 beeper saat ini di menara harus disusun di sudut lajur ke-9 dan baris 1, seperti berikut:</p>
+
+
+	<%
+  include('templates/java/'+lang+'/programs/world.html', name="world2", world="beeperTowersGoal", canvasWidth="400", canvasRatio=0.8)
+%>
+
+
+<p>Yang penting, anda boleh mengandaikan bahawa Karel bermula<i>bermula</i>dengan sifar beeper s dalam begnya. Setiap beeper dijemput ditambah ke begnya. Apabila meletakkan beeper s di sudut, karel boleh menggunakannya <code>beepersInBag()</code> ujian.</p>
+<p>Kunci untuk menyelesaikan masalah ini ialah mengurai program dengan cara yang betul, sementara masih dapat menguji ketika anda pergi. Tugas ini lebih kompleks daripada yang lain yang anda lihat, yang menjadikan subproblem yang sesuai lebih penting untuk mendapatkan penyelesaian yang berjaya.</p>
+<h3>Prinsip reka bentuk atas ke bawah</h3>
+<p>Idea utama dalam perbaikan langkah demi langkah ialah anda harus memulakan rancangan program anda dari atas, yang merujuk kepada tahap program yang paling tinggi secara konseptual dan paling abstrak. Di peringkat ini, masalah menara beeper jelas dibahagikan kepada tiga fasa bebas. Pertama, Karel perlu mengumpul semua beeper s. Kedua, Karel perlu menyimpannya di persimpangan terakhir. Ketiga, Karel harus kembali ke kedudukan rumahnya. Penguraian konsep ini mengisyaratkan bahawa kaedah run untuk program ini akan mempunyai struktur berikut:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      kumpulkanSemuaConoS();</code> <br/>
+ <code>      dropSemuaConoS();</code> <br/>
+ <code>      pulangKeRumah();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Di peringkat ini, masalahnya mudah difahami. Sudah tentu, ada beberapa butiran yang tersisa dalam bentuk kaedah yang belum anda tulis. Walau bagaimanapun, adalah penting untuk melihat setiap tahap penguraian dan meyakinkan diri sendiri bahawa, selagi anda percaya bahawa kaedah yang akan anda tulis akan menyelesaikan subproblem dengan betul, maka anda akan mempunyai penyelesaian kepada masalah secara keseluruhan .</p>
+<h3>Ujian menguji semasa anda pergi</h3>
+<p>Sekarang anda telah menentukan struktur untuk program ini secara keseluruhan, tiba masanya untuk move ke move pertama, yang terdiri daripada mengumpul semua beeper s. Tugas ini sendiri lebih rumit daripada masalah mudah dari bab-bab sebelumnya. Mengumpul semua beeper s bermakna anda perlu mengambil beeper s di setiap menara sehingga anda sampai ke sudut akhir. Hakikat bahawa anda perlu mengulangi operasi untuk setiap menara menunjukkan bahawa anda memerlukan gelung sementara di sini. Gelung sementara akan mengulangi proses <code>mengumpulSatuMenara</code> dan kemudian bergerak.</p>
+<p> <b>Awas:</b> Ia berbahaya untuk cuba menulis keseluruhan program tanpa <b>ujian</b> ia seperti yang anda pergi. Jika anda membuat kesilapan, sukar untuk mencari kesilapan. Kita tahu bahawa kita akan mengulangi proses mengumpul satu menara. Marilah kita menulis dan <b>ujian</b> mengumpul menara tunggal sebelum kami meletakkan <code>MengumpulSatuMenara</code> proses dalam untuk gelung. Oleh itu<i>temporariliy</i>kita boleh mulakan dengan takrif berikut kumpulkanSemuaConoS:<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> kumpulkanSemuaConoS() {</code> <br/>
+ <code class="comment">      /* pelaksanaan sementara untuk tujuan ujian */</code> <br/>
+ <code>      mengumpulSatuMenara();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Sebagai prinsip panduan, jika anda mempunyai gelung yang kompleks, menguji<i>badan</i>gelung sebelum anda menulis gelung keseluruhan.</p>
+<h3>Menempah mengumpul menara</h3>
+<p>Apabila mengumpulSatuMenara dipanggil, Karel sama ada berdiri di pangkal menara beeper s atau berdiri di sudut kosong. Dalam kes pertama, anda perlu mengumpul beeper s di menara. Di dalam yang terakhir, anda boleh move . Keadaan ini terdengar seperti permohonan untuk pernyataan jika, di mana anda akan menulis sesuatu seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(beepersPresent()){</code> <br/>
+ <code>      mengumpulMenaraSebenar();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Sebelum anda menambah pernyataan sedemikian kepada kod, anda harus memikirkan sama ada anda perlu membuat ujian ini. Selalunya, program boleh dibuat dengan lebih mudah dengan memerhati kes-kes yang pada mulanya kelihatan istimewa boleh dirawat dengan cara yang sama seperti situasi yang lebih umum. Dalam masalah semasa, apa yang berlaku jika anda memutuskan bahawa terdapat menara beeper s di setiap jalan tetapi beberapa menara itu sifar beeper s tinggi? Penggunaan wawasan ini memudahkan program kerana anda tidak lagi perlu menguji sama ada terdapat menara di jalan tertentu.</p>
+<p>Kaedah mengumpulSatuMenara masih cukup rumit bahawa tahap penguraian tambahan adalah teratur. Untuk mengumpul semua beeper s di sebuah menara, Karel perlu melakukan langkah-langkah berikut:</p>
+<ol>
+<li>Belok kiri ke muka beeper s di menara.<li>Kumpulkan semua beeper s di menara, berhenti apabila tidak lagi beeper s ditemui.<li>Beralih ke muka kembali ke bahagian bawah dunia.<li>Kembali ke dinding yang mewakili tanah.<li>Belok kiri untuk bersiap sedia ke move ke sudut seterusnya.</li></li></li></li></li></ol>
+<p>Sekali lagi, garis panduan ini menyediakan model untuk kaedah mengumpulSatuMenara, yang kelihatan seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>mengumpulSatuMenara(){</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>      mengumpulBarisConoS();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      moveKeDinding();</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>Kaedah prasyarat dan postkondisi</h3>
+<p>Perintah belokKiri pada permulaan dan akhir kaedah mengumpulSatuMenara adalah penting bagi ketepatan program ini. Apabila mengumpulSatuMenara dipanggil, Karel sentiasa berada di suatu tempat di baris pertama menghadap ke timur. Apabila ia menyelesaikan operasi, program secara keseluruhan akan berfungsi dengan betul hanya jika Karel sekali lagi menghadap ke timur pada sudut yang sama. Syarat-syarat yang mesti berlaku sebelum kaedah dipanggil dirujuk sebagai <b>prasyarat</b> ; syarat-syarat yang mesti diguna pakai setelah selesai kaedah dikenali sebagai <b>postkonditions</b> .</p>
+<p>Apabila anda mentakrifkan satu kaedah, anda akan mendapat masalah yang lebih sedikit jika anda menulis dengan tepat apa yang pra dan postkondisi. Sebaik sahaja anda berbuat demikian, anda perlu memastikan bahawa kod yang anda tulis selalu meninggalkan postkondisi yang memuaskan, dengan mengandaikan bahawa prasyarat itu berpuas hati untuk dimulakan. Sebagai contoh, fikirkan tentang apa yang berlaku jika anda memanggil MengumpulSatuMenara ketika Karel berada di baris 1 menghadap ke timur. Perintah belokKiri yang pertama meninggalkan Karel menghadap utara, yang bermaksud bahawa Karel betul-betul selari dengan lajur beeper s yang mewakili menara. Kaedah MengumpulBarisConoS - yang masih belum ditulis tetapi tetap melakukan tugas yang anda faham secara konseptual - hanya move s tanpa berpaling. Oleh itu, pada akhir panggilan untuk mengumpulBarisConoS, Karel masih akan menghadap utara. Oleh itu, panggilan pusing meninggalkan Karel menghadap ke selatan. Seperti mengumpulBarisConoS, kaedah move KeDinding tidak melibatkan apa-apa giliran tetapi sebaliknya hanya move sehingga ia mencapai dinding sempadan. Kerana Karel menghadap ke selatan, dinding sempadan ini akan menjadi satu di bahagian bawah layar, tepat di bawah baris 1. Oleh itu arahan akhir belokKiri meninggalkan Karel pada baris 1 yang menghadap ke timur, yang memuaskan postkondisi.</p>
+<h3>Mengulangi proses itu</h3>
+<p>Anda run program anda dan ia berjaya membersihkan satu menara dan meninggalkan Karel dalam postkondisi yang dijanjikan. Wahoo! Anda baru sahaja memukul tonggak penting dalam menyelesaikan tugas keras ini! Sekarang kita perlu mengulangi proses membersihkan satu menara menggunakan gelung sementara.</p>
+<p>Tetapi apa yang kelihatan seperti gelung ini? Pertama sekali, anda harus memikirkan ujian bersyarat. Anda mahu Karel berhenti apabila ia memukul dinding pada akhir baris. Oleh itu, anda mahu Karel tetap selagi ruang di depan adalah jelas. Oleh itu, anda tahu bahawa kaedah kumpulkanSemuaConoS akan menyertakan gelung sementara yang menggunakan ujian depanAdalahJelas. Di setiap kedudukan, anda mahu Karel mengumpul semua beeper s di menara bermula di sudut itu. Sekiranya anda memberikan nama tersebut, yang mungkin seperti mengumpulSatuMenara, anda boleh meneruskan dan menulis definisi untuk kaedah kumpulkanSemuaConoS walaupun anda belum lagi mengisi butir-butirnya.</p>
+<p>Walau bagaimanapun, anda perlu berhati-hati. Kod untuk kumpulkanSemuaConoS tidak kelihatan seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>kumpulkanSemuaConoS(){</code> <br/>
+ <code class="comment">      /* gelung kereta! */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         mengumpulSatuMenara();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Pelaksanaan ini adalah buggy kerana alasan yang sama bahawa versi pertama PlaceConoTalian umum dari bab 6 gagal melakukan tugasnya. Terdapat ralat fencepost dalam versi kod ini, kerana Karel perlu menguji kehadiran menara beeper di jalan terakhir. Pelaksanaan yang betul adalah:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>kumpulkanSemuaConoS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         mengumpulSatuMenara();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      mengumpulSatuMenara();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Ambil perhatian bahawa kaedah ini mempunyai struktur yang sama dengan program utama dari program PlaceConoTalian yang dibentangkan dalam bab 6. Satu-satunya perbezaan adalah bahawa program ini memanggilSatuMenara di mana yang lain disebut tempatkanBeeper. Kedua-dua program ini adalah setiap contoh strategi umum yang kelihatan seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>kumpulkanSemuaConoS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">melakukan beberapa operasi.</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">melakukan operasi yang sama untuk sudut akhir.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Anda boleh menggunakan strategi ini setiap kali anda perlu melakukan operasi di setiap sudut seperti anda move sepanjang jalan yang berakhir di dinding. Sekiranya anda mengingati struktur umum strategi ini, anda boleh menggunakannya apabila anda menghadapi masalah yang memerlukan operasi sedemikian. Strategi yang boleh digunakan semula seperti ini sering muncul dalam pengaturcaraan dan dirujuk sebagai <b>idiom pengaturcaraan</b> atau <b>corak</b> . Semakin banyak pola yang anda ketahui, semakin mudah bagi anda untuk mencari satu yang sesuai dengan jenis masalah tertentu.</p>
+<h3>Selesai</h3>
+<p>Walaupun kerja keras telah dilakukan, masih terdapat beberapa hujung yang longgar yang perlu diselesaikan. Program utama memanggil dua kaedah-dropSemuaConoS dan pulangKeRumah- yang masih belum ditulis. Begitu juga mengumpulSatuMenara panggilan mengumpulBarisConoS dan move KeDinding. Mujurlah, semua empat kaedah ini cukup mudah untuk kod tanpa penguraian lanjut, terutamanya jika anda menggunakan move KeDinding dalam definisi pulangKeRumah. Inilah pelaksanaan lengkap:</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/bigCode.html', name="beeperTowers",  world="beeperTowers", ideSpeed=0.9, canvasRatio=0.8)
+%>
+
+
+</p>

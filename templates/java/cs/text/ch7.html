@@ -1,0 +1,87 @@
+<h1>Kapitola 7: Příkazy</h1>
+<hr/>
+<p>Konečné jádro programování řídícího toku pro učení jsou podmíněné příkazy ( <code>if</code> a <code>if/else</code> ).</p>
+<h3>Základní podmínky</h3>
+<p>An <code>if/else</code> příkaz provede "pokud" kódový blok pouze tehdy, pokud je poskytován<i class="demoText">test</i>platí pro stav světa v době, kdy program dosáhne prohlášení. V opačném případě program provede kódový kód "ostatní".</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">test</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">pokud kódový blok</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">jinak kódový blok</i><br/>
+ <code>}</code> 
+</p>
+<p>Abychom získali pocit, kde by se mohly hodit podmíněné příkazy, kuzel program, který má Karel invertovat řádek kuzel s. Kdyby měl čtverec dříve kuzel , měl by ho Karel vyzvednout. Pokud čtverec nemá kuzel , měl by ho Karel dát dolů.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>Všimněte si, že <code>if</code> prohlášení nemusí mít <code>else</code> blok - v takovém případě se prohlášení opperates jako a <code>while</code> smyčka, která se provede pouze jednou:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">test</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">pokud kódový blok</i><br/>
+ <code>} </code> 
+</p>
+<h3>Podmínky</h3>
+<p>Ten poslední příklad použil novou podmínku. Zde je seznam všech podmínek, o kterých Karel ví:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Test</th><th>Naproti</th><th>Co kontroluje</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>Je před Karlem zeď?</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>Je na tomto rohu kuzel s?</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>Je tu Karelova zeď?</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>Má Karel pravdu?</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>Nějaká kuzel s v Karlově sáčku?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>Je Karel obrácený na sever?</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>Je Karel obrácen k jihu?</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>Je Karel obrácený na východ?</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>Je Karel obrácen směrem na západ?</td>
+</tr>
+</table>
+</p>
+<h3>To vše dohromady</h3>
+<p>Gratuluji! Nyní znáte všechny základní programovací bloky řízení. Zatímco jste se naučili s Karlem, metody, zatímco smyčky, pro smyčky, if / else příkazy pracují stejným způsobem v téměř všech hlavních jazycích, včetně Java.</p>
+<p>Nyní, když máte stavební bloky, můžete je dát dohromady a vytvořit řešení stále složitějších problémů. Programování je do značné míry věda o řešení problémů pomocí počítače. Protože problémy jsou často obtížné, řešení - a programy, které tato řešení implementují - mohou být také obtížné. Abychom vám usnadnili vývoj těchto řešení, musíte přijmout metodiku a disciplínu, která sníží úroveň této složitosti na zvládnutelnou míru.</p>

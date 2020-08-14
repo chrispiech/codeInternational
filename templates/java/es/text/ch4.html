@@ -1,0 +1,57 @@
+<h1>Capítulo 4: Descomposición</h1>
+<hr/>
+<p>Como una forma de ilustrar más el poder que viene con poder definir nuevos métodos, es útil hacer que Karel haga algo un poco más práctico que moverse a cono de un lugar a otro. Los caminos a menudo parecen necesitar reparación, y podría ser divertido ver si Karel puede llenar baches en su mundo abstracto. Por ejemplo, imagine que Karel está parado en la "carretera" que se muestra en la figura de la izquierda, una esquina a la izquierda de un bache en la carretera. El trabajo de Karel es llenar el agujero con un cono y pasar a la siguiente esquina. El diagrama a la derecha ilustra cómo el mundo debe cuidar la ejecución del programa.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Si está limitado a los cuatro comandos predefinidos, el método run para resolver este problema se vería así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code style="margin-left:2em">ponerCono();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">girarIzquierda();</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code>}</code> 
+</p>
+<p>La motivación inicial para definir el método girarDerecha fue que era incómodo seguir repitiendo tres comandos girarIzquierda para lograr un giro a la derecha. Definir nuevos métodos tiene otro propósito importante más allá de permitirle evitar repetir las mismas secuencias de comandos cada vez que desee realizar una tarea en particular. El poder de definir métodos desbloquea la estrategia más importante en la programación: el proceso de descomponer un problema grande en partes más pequeñas que son más fáciles de resolver. El proceso de descomponer un programa en partes más pequeñas se denomina descomposición, y las partes componentes de un gran problema se denominan subproblemas.</p>
+<p>Como ejemplo, el problema de rellenar el agujero en la carretera se puede descomponer en los siguientes subproblemas:</p>
+<ol>
+<li>Subir al hoyo<li>Rellena el agujero colocando un cono en él.<li>Pasa a la siguiente esquina</li></li></li></ol>
+<p>Si piensa en el problema de esta manera, puede usar las definiciones de métodos para crear un programa que refleje su concepción de la estructura del programa. El método run se vería así:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code style="margin-left:2em">llenarBaches();</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code>}</code> 
+</p>
+<p>La correspondencia con el esquema es inmediatamente clara, y todo estaría bien si solo pudieras obtener Karel para entender lo que quieres decir con llenarBaches. Dado el poder de definir métodos, la implementación de llenarBaches es extremadamente simple. Todo lo que tienes que hacer es definir un método de llenarBaches cuyo cuerpo consiste en los comandos que ya has escrito para hacer el trabajo, como este:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> llenarBaches() {</code> <br/>
+ <code style="margin-left:2em">girarDerecha();</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code style="margin-left:2em">ponerCono();</code> <br/>
+ <code style="margin-left:2em">mediaVeulta();</code> <br/>
+ <code style="margin-left:2em">moverse();</code> <br/>
+ <code style="margin-left:2em">girarDerecha();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Aquí está el programa completo. Observe cómo puede entender la intención de los programadores simplemente leyendo el método run . Cuando run el programa, el resaltado de línea muestra cómo una computadora lo ejecutará, paso a paso. Sin embargo, debido a que el programa está bien dividido, podemos entenderlo en un nivel de pensamiento humano:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

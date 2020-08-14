@@ -1,0 +1,156 @@
+
+
+<html> 
+<head> 
+<title>Karel Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="../../plugins/jquery.min.js"></script>
+
+<link rel="stylesheet"  href="../../plugins/bootstrap/css/bootstrap.min.css">
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../../style.css">
+
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head> 
+<body>
+  <!-- container -->
+  <div class="bookContainer">
+<!-- side bar -->
+<div class="bookSideBar">
+  <div class="homeLink">
+    <a href="../../python/en/intro.html">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      Karel
+    </a>
+  </div>
+  <hr/>
+  
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter1.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter1.html">
+      1 - Meet Karel
+    </a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter2.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter2.html">2 - Programming</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter3.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter3.html">3 - New Functions</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter4.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter4.html">4 - Decomposition</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter5.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter5.html">5 - For Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter6.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter6.html">6 - While Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter7.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter7.html">7 - Conditionals</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter8.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter8.html">8 - Refinement</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../python/en/chapter9.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/chapter9.html">9 - Extra Features</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../python/en/reference.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/reference.html">10 - Reference</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../python/en/ide.html'">
+    <a class="bookLink btn btn-link" href="../../python/en/ide.html">11 - Code</a>
+  </div>
+
+  <hr/>
+
+  <!--<a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/> Learn more</a> -->
+
+  <!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/>
+    </center> -->
+</div>
+    <!-- content -->
+    <div class="bookContent" style="display: flex;">
+      <!-- right gutter -->
+      <div style="flex-grow:1;max-width:50px;"></div>
+
+      <!-- main stuff -->
+      <div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+
+<h1>Chapter 9: Extra Karel Features</h1>
+<hr/>
+
+<h3>Painting corners</h3>
+
+<p>
+    Karel also has the ability to paint corners in its world with 
+    the following colors:
+</p>
+
+<ul>
+    <li><code>BLANK</code>, which removes any color on the square</li>
+    <li><code>BLACK</code></li>
+    <li><code>BLUE</code></li>
+    <li><code>CYAN</code></li>
+    <li><code>DARK_GRAY</code></li>
+    <li><code>GRAY</code></li>
+    <li><code>GREEN</code></li>
+    <li><code>LIGHT_GRAY</code></li>
+    <li><code>MAGENTA</code></li>
+    <li><code>ORANGE</code></li>
+    <li><code>PINK</code></li>
+    <li><code>RED</code></li>
+    <li><code>WHITE</code></li>
+    <li><code>YELLOW</code></li>
+</ul>
+
+<br />
+<p>
+    To use Karel's paint functionality, use the following commands:
+</p>
+
+<table class="table table-condensed">
+    <tr>
+        <th>Command</th>
+        <th>What it does</th>
+    </tr>
+    <tr>
+        <td><code>paint_corner(COLOR_NAME)</code></td>
+        <td>
+            Karel colors the corner he's standing on <code>COLOR_NAME</code>. 
+            For example, to color the corner blue, you would write 
+            <code>paint_corner(BLUE).</code>
+        </td>
+    </tr>
+    <tr>
+        <td><code>corner_color_is(COLOR_NAME)</code></td>
+        <td>
+            A condition checking this question: Is the color of the corner 
+            Karel is standing on <code>COLOR NAME</code>?
+        </td>
+    </tr>
+</table>
+<hr/>
+<center>
+  <a class="btn btn-primary btn-lg" href="reference.html" role="button">Next Chapter</a>
+</center>
+</p>
+
+<div style="height:60px"></div>        </div>
+      </div>
+
+      </div>
+      <!-- right gutter -->
+      <div style="flex-grow:4"></div>
+    </div>
+  </div>
+</body> 
+</html>

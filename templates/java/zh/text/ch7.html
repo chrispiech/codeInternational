@@ -1,0 +1,87 @@
+<h1>第7章：如果声明</h1>
+<hr/>
+<p>要学习的最终核心编程控制流构造是条件语句（ <code>if</code> 和 <code>if/else</code> ）。</p>
+<h3>基本条件</h3>
+<p>一个 <code>if/else</code> 当且仅当提供时，语句执行“if”代码块<i class="demoText">测试</i>对于程序到达声明时的世界状态是正确的。否则程序执行“else”代码块。</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">测试</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">如果是代码块</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">否则代码块</i><br/>
+ <code>}</code> 
+</p>
+<p>为了了解条件语句可能派上用场的地方，让我们编写一个让Karel反转锥体秒的程序。如果一个广场以前有锥体 ，卡雷尔应该拿起它。如果一个方格没有锥体 ，卡雷尔应该放下一个。</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>注意一个 <code>if</code> 声明不需要有 <code>else</code> 块 - 在这种情况下，语句操作类似于 <code>while</code> 只执行一次的循环：</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">测试</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">如果是代码块</i><br/>
+ <code>} </code> 
+</p>
+<h3>条件</h3>
+<p>最后一个例子使用了一个新条件。以下列出了卡雷尔所知道的所有条件：</p>
+<p>
+<table class="table table-condensed">
+<tr><th>测试</th><th>相反</th><th>它检查什么</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>卡雷尔面前有墙吗？</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>这个角落有锥体吗？</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>卡雷尔左边有墙吗？</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>Karel有没有墙？</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>在Karel的包里有锥体吗？</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>卡雷尔面向北方吗？</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>卡雷尔面向南方？</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>卡雷尔面向东方吗？</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>卡雷尔面向西方？</td>
+</tr>
+</table>
+</p>
+<h3>把它们放在一起</h3>
+<p>恭喜！您现在知道所有核心编程控制流程块。当你使用Karel，方法，while循环，for循环学习它们时，if / else语句在几乎所有主要语言（包括Java）中都以相同的方式工作。</p>
+<p>现在您已经拥有了构建块，您可以将它们组合在一起，为更复杂的问题构建解决方案。在很大程度上，编程是通过计算机解决问题的科学。由于问题通常很困难，因此解决方案以及实施这些解决方案的程序也很困难。为了使您更容易开发这些解决方案，您需要采用一种方法和规程，将复杂程度降低到可管理的规模。</p>

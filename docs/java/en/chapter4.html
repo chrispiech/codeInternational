@@ -1,0 +1,353 @@
+
+
+<html> 
+<head> 
+<title>Karel Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="../../plugins/jquery.min.js"></script>
+
+<link rel="stylesheet"  href="../../plugins/bootstrap/css/bootstrap.min.css">
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../../style.css">
+
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head> 
+<body>
+  <!-- container -->
+  <div class="bookContainer">
+<!-- side bar -->
+<div class="bookSideBar">
+  <div class="homeLink">
+    <a href="../../java/en/intro.html">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      Karel
+    </a>
+  </div>
+  <hr/>
+  
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter1.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter1.html">
+      1 - Meet Karel
+    </a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter2.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter2.html">2 - Programming</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter3.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter3.html">3 - New Methods</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter4.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter4.html">4 - Decomposition</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter5.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter5.html">5 - For Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter6.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter6.html">6 - While Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter7.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter7.html">7 - Conditionals</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter8.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter8.html">8 - Refinement</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter9.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter9.html">9 - SuperKarel</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../java/en/reference.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/reference.html">10 - Reference</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../java/en/ide.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/ide.html">11 - Code</a>
+  </div>
+
+  <hr/>
+
+  <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/> Learn more</a> 
+
+  <!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/>
+    </center> -->
+</div>
+    <!-- content -->
+    <div class="bookContent" style="display: flex;">
+      <!-- right gutter -->
+      <div style="flex-grow:1;max-width:50px;"></div>
+
+      <!-- main stuff -->
+      <div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+
+<h1>Chapter 4: Decomposition</h1>
+<hr/>
+<p>
+  As a way of illustrating more of the power that comes with being able to define new methods, it’s useful to have Karel do something a little more practical than move a beeper from one place to another. The roadways often seem to be in need of repair, and it might be fun to see if Karel can fill potholes in its abstract world. For example, imagine that Karel is standing on the “road” shown in the left-hand figure, one corner to the left of a pothole in the road. Karel’s job is to fill the hole with a beeper and proceed to the next corner. The diagram on the right illustrates how the world should look after the program execution.
+</p>
+
+
+<div class="section" id="ba">
+    <div id ='baIde' class = "ide getStarted">
+         <div id = 'baCanvasDiv' class = 'commandCanvasDiv'>
+          <div>
+            <div class="commandCanvasTitle">Before:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='baCanvasBefore' style="width:300px;"></canvas>
+            </div>
+          </div>
+          <div style="width:50px"></div>
+          <div>
+            <div class="commandCanvasTitle">After:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='baCanvasAfter' style="width:300px;"></canvas>
+            </div>
+          </div>
+         </div> 
+    </div>
+    
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'pothole', 0.0, 'en',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'potholeGoal',0.0, 'en',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+<p>
+  If you are limited to the four predefined commands, the run method to solve this problem would look like this:
+</p>
+
+<p style="margin-left:2em">
+  <code><span class="keyword">private void</span> run() {</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+    <code style="margin-left:2em">putBeeper();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+  <code>}</code>
+</p>
+
+<p>
+  The initial motivation for defining the turnRight method was that it was cumbersome to keep repeating three turnLeft commands to accomplish a right turn. Defining new methods has another important purpose beyond allowing you to avoid repeating the same command sequences every time you want to perform a particular task. The power to define methods unlocks the most important strategy in programming—the process of breaking a large problem down into smaller pieces that are easier to solve. The process of breaking a program down into smaller pieces is called decomposition, and the component parts of a large problem are called subproblems.
+</p>
+
+<p>
+  As an example, the problem of filling the hole in the roadway can be decomposed into the following subproblems:
+</p>
+
+<ol>
+<li> Move up to the hole
+<li> Fill the hole by dropping a beeper into it
+<li> Move on to the next corner
+</ol>
+
+<p>
+  If you think about the problem in this way, you can use method definitions to create a program that reflects your conception of the program structure. The run method would look like this:
+  </p>
+
+<p style="margin-left:2em">
+<code><span class="keyword">private void</span> run() {</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+   <code style="margin-left:2em">fillPothole();</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+<code>}</code>
+</p>
+
+<p>
+  The correspondence with the outline is immediately clear, and everything would be great if only you could get Karel to understand what you mean by fillPothole. Given the power to define methods, implementing fillPothole is extremely simple. All you have to do is define a fillPothole method whose body consists of the commands you have already written to do the job, like this:
+</p>
+
+<p style="margin-left:2em">
+<code><span class="keyword">private void</span> fillPothole() {</code><br/>
+   <code style="margin-left:2em">turnRight();</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+   <code style="margin-left:2em">putBeeper();</code><br/>
+   <code style="margin-left:2em">turnAround();</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+   <code style="margin-left:2em">turnRight();</code><br/>
+<code>}</code>
+</p>
+
+<p>
+  Here is the complete program. Notice how you can understand the programmers intent simply from reading the run method. When you run the program, the line highlighting  shows how a computer will execute it, step by step. However, because the program is nicely broken down we can understand it on a human thought level:
+</p>
+
+
+<div class="section embeddedIde" id="pothole">
+    <div id ='potholeIde' class = "ide getStarted" style="height:651.2px">
+      <div id = 'potholeIdeCenter' class = "ideCenter" >
+         <div id = 'potholeEditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = 'potholeCanvasDiv' class = 'ideCanvasDiv'>
+            <canvas id='potholeCanvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+import stanford.karel.*;
+public class PotholeFillingKarel extends Karel {
+   public void run() {
+      move();
+      fillPothole();
+      move();
+   }
+
+   /**
+    * Fills the pothole beneath Karel's current position by 
+    * placing a beeper on that corner. For this method to work 
+    * correctly, Karel must be facing east immediately above the 
+    * pothole. When execution is complete, Karel will have 
+    * returned to the same square and will again be facing east.
+    */
+   private void fillPothole() {
+      turnRight();
+      move();
+      putBeeper();
+      turnAround();
+      move();
+      turnRight();
+   } 
+
+   /** Turns Karel 90 degrees to the right. */
+   public void turnRight() {
+      turnLeft();
+      turnLeft();
+      turnLeft();
+   }
+
+   /** Turns Karel around 180 degrees. */
+   public void turnAround() {
+      turnLeft();
+      turnLeft();
+   }
+}`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'pothole', 0.0, 'en');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 651.2;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div><hr/>
+<center>
+  <a class="btn btn-primary btn-lg" href="chapter5.html" role="button">Next Chapter</a>
+</center>
+</p>
+
+<div style="height:60px"></div>        </div>
+      </div>
+
+      </div>
+      <!-- right gutter -->
+      <div style="flex-grow:4"></div>
+    </div>
+  </div>
+</body> 
+</html>

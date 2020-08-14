@@ -1,0 +1,57 @@
+<h1>第4章：分解</h1>
+<hr/>
+<p>作为一种说明能够定义新方法所带来的更多功能的方法，让Karel从move和锥体从一个地方到另一个地方做一些更实用的事情是有用的。道路通常似乎需要维修，看看卡雷尔是否可以填补其抽象世界中的坑洼可能会很有趣。例如，想象卡雷尔站在左手图中所示的“道路”上，道路坑洞左侧的一个角落。卡雷尔的工作是填补锥体的漏洞，然后前往下一个角落。右图说明了世界应该如何看待程序执行。</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>如果您仅限于四个预定义命令，则解决此问题的run方法将如下所示：</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>定义右转方法的最初动机是，重复三个转左命令以完成右转是很麻烦的。定义新方法有另一个重要目的，除了允许您每次要执行特定任务时都避免重复相同的命令序列。定义方法的力量解锁了编程中最重要的策略 - 将大问题分解为更容易解决的小块的过程。将程序分解为较小的部分的过程称为分解，而大问题的组成部分称为子问题。</p>
+<p>例如，填补道路上的洞的问题可以分解为以下子问题：</p>
+<ol>
+<li>向上移动到洞口<li>通过将锥体放入其中来填充孔<li>转到下一个角落</li></li></li></ol>
+<p>如果以这种方式考虑问题，可以使用方法定义来创建反映程序结构概念的程序。 run方法如下所示：</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">填充坑洼();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>与轮廓的对应立即清楚，只要你能让Karel了解填充坑洼的意思，一切都会很好。鉴于定义方法的能力，实施填充坑洼非常简单。您所要做的就是定义一个填充坑洼方法，该方法的主体由您已编写的命令组成，如下所示：</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> 填充坑洼() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>这是完整的计划。注意如何通过阅读run方法来理解程序员的意图。 run程序时，突出显示行显示计算机将如何执行它，一步一步。但是，由于程序很好地分解，我们可以在人类思维层面上理解它：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

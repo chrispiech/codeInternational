@@ -1,0 +1,45 @@
+<h1>Bölüm 5: Döngüler İçin</h1>
+<hr/>
+<p>Bilgisayarların özellikle iyi olduğu şeylerden biri tekrarlamadır. Karel'i birçok kez bir kod bloğu çalıştırması için nasıl ikna edebiliriz? Tekrarlamanın nasıl kullanılabileceğini görmek için, 42 beeper s yerleştirme görevini göz önünde bulundurun:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Döngü için Temel</h3>
+<p>beeper tam olarak 42 beeper s olduğunu bildiğinizden, ihtiyacınız olan kontrol ifadesi bir <b>döngü için</b> , bazı işlemleri belirli bir sayıda tekrarlamak istediğinizi belirtir. For ifadesinin yapısı öncelikle karmaşık görünüyor çünkü aslında Karel'in ihtiyaç duyduğu her şeyden çok daha güçlü. Karel'in kullandığı for sözdiziminin tek versiyonu:</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">saymak</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">tekrarlanacak ifadeler</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">For döngüsünün tüm ayrıntılarını daha sonra sınıfta inceleyeceğiz. Şimdilik bu satırı ifade etmenin bir yolu olarak okumalısınız, "küme parantezleri arasındaki ifadeleri tekrarlayın<i class="demoText">saymak</i>"Bunu yeni kullanabiliriz <b>döngü için</b> değiştirerek 42 beeper s yerleştirmek için<i class="demoText">saymak</i>42 ile ve komutu koyarak <code>putBeeper()</code> for loop code bloğunun içinde. Kod bloğundaki komutları çağırırız. <b>vücut</b> :</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>Yukarıdaki kod düzenlenebilir. Yalnızca 15 beeper s yerleştirecek şekilde değiştirmeye çalışın.</p>
+<h3>Son Koşulları Ön Koşullarla Eşleştirme</h3>
+<p>Önceki örnek, bir for döngüsünün tek bir kod satırını tekrar ettiği izlenimini veriyor. Bununla birlikte for döngüsünün gövdesi (tekrarlanan ifadeler) birden fazla satır olabilir. İşte bir dünyanın her köşesine beeper koyan bir program örneği:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Programın bu kontrol ifadelerinden nasıl geçtiğine çok dikkat edin. Program run , for loop gövdesindeki komut kümesini run . Vücudu dört kez tekrarlar.</p>
+<p>Belki bir döngü yazmanın en karmaşık kısmı, döngünün sonunda dünyanın durumuna ihtiyacınız olmasıdır. <b>hedefşart</b> ) Döngünün başlangıcı için dünyanın geçerli bir hali olmak <b>ön koşul</b> ). Yukarıdaki örnekte, varsayımlar eşleşmektedir. İyi zamanlar. Döngünün başlangıcında, Karel her zaman bir sonraki boş köşeye bakan beeper s olmayan bir beeper . Ya turnLeft döngünün sonunda sildiyseniz? İlk yinelemenin sonundaki son şart, Karel hakkında bir sonraki boş köşeye bakan varsayımları artık tatmin etmeyecektir. Kod düzenlenebilir. Silmeyi deneyin <code>turnLeft();</code> ne olduğunu görmek için komut!</p>
+<h3>İç içe geçmiş döngüler</h3>
+<p>Teknik olarak for döngüsünün gövdesi, diğer döngüler dahil olmak üzere herhangi bir kontrol akış kodunu içerebilir. İşte bir for döngüsünün bir örneği, aynı zamanda for döngüsü olan bir yönteme yapılan çağrıyı tekrarlayan bir örnek. Buna "iç içe" bir döngü diyoruz. Programı okumaya çalışın ve run önce ne yaptığını anlayın:
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

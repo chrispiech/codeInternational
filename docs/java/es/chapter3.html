@@ -1,0 +1,386 @@
+
+<html>
+<head>
+
+<title>Lector Karel</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter1.html">1 - Cumplir Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter3.html">3 - Nuevos métodos</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter9.html">9 - Super Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Aprende más</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Capítulo 3: Definiendo nuevos métodos</h1>
+<hr/>
+<p>En el último capítulo escribimos un programa para ayudar a Karel escalar una simple repisa:</p>
+<h3>Por ejemplo: Primero Karel</h3>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPickingRedux">
+<div class="ide getStarted" id="beeperPickingReduxIde" style="height:387.20000000000005px">
+<div class="ideCenter" id="beeperPickingReduxIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingReduxEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingReduxCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingReduxCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingReduxRunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPickingRedux() {
+STARTER_CODE = `
+
+/*
+ * Archivo: Primero Karel .java
+ * ---------------------------
+ * Karel toma un cono y lo coloca en una repisa.
+ */
+import stanford.karel.*;
+public class PrimeroKarel extends Karel {
+   public void run() {
+      moverse();
+      recogerCono();
+      moverse();
+      girarIzquierda();
+      moverse();
+      girarIzquierda();
+      girarIzquierda();
+      girarIzquierda();
+      moverse();
+      moverse();
+      ponerCono();
+      moverse();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingReduxEditor','beeperPickingReduxEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingReduxCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.8, 'es');
+    $('#beeperPickingReduxRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingReduxRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingReduxRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 387.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPickingRedux").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingReduxIde');
+    var editorDiv = document.getElementById('beeperPickingReduxEditorDiv');
+    var canvas = document.getElementById('beeperPickingReduxCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPickingRedux();
+    </script>
+</div>
+
+<p>A pesar de <code>PrimeroKarel</code> programa anterior demuestra que es posible realizar la <code>girarDerecha</code> Al utilizar solo los Karel incorporados de Karel , el programa resultante no es particularmente claro conceptualmente. En su diseño mental del programa, Karel gira a la derecha cuando llega a la parte superior de la cornisa. El hecho de que tenga que usar tres comandos girarIzquierda para hacerlo es molesto. Sería mucho más simple si pudieras simplemente decir <code>girarDerecha()</code> y tener Karel entender este comando. El programa resultante no solo sería más corto y más fácil de escribir, sino también mucho más fácil de leer.</p>
+<h3>Definiendo nuevos comandos</h3>
+<p>Afortunadamente, el Karel programación Karel hace posible definir nuevos comandos simplemente mediante la inclusión de nuevas definiciones de métodos. Siempre que tenga una secuencia de Karel comandos que realice alguna tarea útil, como girar a la derecha, puede definir un nuevo método que ejecute esa secuencia de comandos. El formato para definir un nuevo método Karel es muy similar a la definición de <code>run</code> en los ejemplos anteriores, que es una definición de método por derecho propio. Una definición de método típica se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">nombre</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">Comandos que conforman el cuerpo del método.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>En este patrón, el nombre representa el nombre que ha elegido para el nuevo método. Para completar la definición, todo lo que tiene que hacer es proporcionar la secuencia de comandos en las líneas entre las llaves. Por ejemplo, puedes definir <code>girarDerecha</code> como sigue:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> girarDerecha() {</code> <br/>
+ <code style="margin-left:3.5em">girarIzquierda();</code> <br/>
+ <code style="margin-left:3.5em">girarIzquierda();</code> <br/>
+ <code style="margin-left:3.5em">girarIzquierda();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Del mismo modo, podría definir una nueva <code>mediaVeulta</code> método como este:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> mediaVeulta() {</code> <br/>
+ <code style="margin-left:3.5em">girarIzquierda();</code> <br/>
+ <code style="margin-left:3.5em">girarIzquierda();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Puede usar el nombre de un nuevo método como cualquiera de los Karel de Karel . Por ejemplo, una vez que haya definido <code>girarDerecha</code> , puede reemplazar los tres comandos girarIzquierda en el <code>IntensificarKarel</code> programa con una sola llamada a la <code>girarDerecha</code> método. Aquí hay una implementación revisada del programa que usa <code>girarDerecha</code> :</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp2">
+<div class="ide getStarted" id="stepUp2Ide" style="height:563.2px">
+<div class="ideCenter" id="stepUp2IdeCenter">
+<div class="ideEditorDiv" id="stepUp2EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUp2CanvasDiv">
+<canvas class="ideCanvas" id="stepUp2Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUp2RunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp2() {
+STARTER_CODE = `
+
+/*
+ * Archivo: ConoRecogiendo Karel .java
+ * ----------------------------------
+ * El programa ConoRecogiendo Karel define un método
+ * " run " con tres comandos. Estos comandos causan K
+ * arel a moverserse avanzar un bloque, recoger un cono
+ * , y luego moverserse avanzar a la siguiente esquina.
+ */
+import stanford.karel.*;
+public class ConoRecogiendoKarel extends Karel {
+   public void run() {
+      moverse();
+      recogerCono();
+      moverse();
+      girarIzquierda();
+      moverse();
+      girarDerecha();
+      moverse();
+      moverse();
+      ponerCono();
+      moverse();
+   }
+
+   /**
+    * Gira Karel 90 grados a la derecha.
+    */
+   private void girarDerecha() {
+      girarIzquierda();
+      girarIzquierda();
+      girarIzquierda();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUp2Editor','stepUp2EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUp2Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'es');
+    $('#stepUp2RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUp2RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUp2RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 563.2;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp2").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUp2Ide');
+    var editorDiv = document.getElementById('stepUp2EditorDiv');
+    var canvas = document.getElementById('stepUp2CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp2();
+    </script>
+</div>
+
+<p>Existe, por supuesto, una diferencia obvia entre las definiciones de los <code>run</code> y <code>girarDerecha</code> métodos en el programa anterior: el <code>run</code> el método está marcado como <code>public</code> en contraste con <code>girarDerecha</code> , que está marcado como <code>private</code> . La diferencia entre estas dos designaciones es que los métodos públicos pueden invocarse desde fuera del programa, mientras que los métodos privados no pueden. El método run debe ser público porque el entorno Karel debe poder emitir un comando run para que todo run . En general, es una buena práctica de programación mantener las definiciones privadas siempre que sea posible.</p>
+<h3>Bloques de código de método</h3>
+<p>Un grupo de comandos entre dos llaves. <code translate="no">{ }</code> se llama un <b>bloque de código</b> . El cuerpo de su programa es un bloque de código, al igual que el cuerpo de un método. Observe que el contenido de un bloque de código está sangrado en una sola pestaña. Esto es importante desde un punto de vista estilístico, ya que facilita a los humanos saber qué líneas de código están en un bloque determinado.</p>
+<p>Puedes definir tantos métodos como quieras. Todos deben escribirse uno tras otro dentro del bloque de código de su programa. No puedes definir un método dentro de otro método.</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter4.html" role="button">Siguiente capítulo</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

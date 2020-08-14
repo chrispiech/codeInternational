@@ -1,0 +1,200 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/sw/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter1.html">1 - kukutana na Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter2.html">2 - Programu</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter3.html">3 - Mbinu mpya</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter4.html">4 - kuacha</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter5.html">5 - Mizunguko For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter6.html">6 - Mizunguko While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter7.html">7 - Masharti</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter8.html">8 - Ufadhili</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/reference.html">10 - Rejea</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/ide.html">11 - Programu</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Jifunze zaidi</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="width:740px; flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Sura ya 1: Kuanzisha Karel Robot</h1>
+<hr/>
+<p>Katika miaka ya 1970, mwanafunzi aliyehitimu Stanford aitwaye Rich Pattis aliamua kuwa itakuwa vigumu kufundisha msingi wa programu kama wanafunzi wanaweza kujifunza mawazo ya msingi katika mazingira rahisi bila ya matatizo ambayo yana lugha nyingi za programu. Rich imeanzisha programu ya utangulizi ambayo wanafunzi hufundisha robot kutatua matatizo rahisi. Robot hiyo ilikuwa jina la Karel, baada ya mchezaji wa Czech <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , ambao 1923 kucheza RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Robots ya Universal ya Rossum</a> ) alitoa neno robot kwa lugha ya Kiingereza.</p>
+<center>
+<img src="../../images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Karel Robot ilikuwa mafanikio kabisa. Karel imetumika katika kozi za sayansi ya utangulizi duniani kote na imefundishwa kwa mamilioni ya wanafunzi. Vizazi vingi vya wanafunzi wa Stanford vilijifunza jinsi programu inavyofanya kazi na Karel, na bado ni kuanzishwa kwa upole kwa kusajiliwa kutumika huko Stanford.</p>
+<h3>Karel ni nini?</h3>
+<p>Karel ni robot rahisi sana wanaoishi katika ulimwengu rahisi sana. Kwa kumpa Karel amri ya amri, unaweza kuiongoza kufanya kazi fulani ndani ya ulimwengu wake. Utaratibu wa kutaja amri hizo huitwa <b>programu</b> . Mwanzoni, Karel anaelewa tu idadi ndogo sana ya amri zilizopangwa, lakini sehemu muhimu ya mchakato wa programu ni kufundisha maagizo mapya ya Karel ambayo huongeza uwezo wake.</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>Programu za Karel zina muundo sawa na zinahusisha mambo sawa ya msingi kama <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> , kubwa <a href="https://en.wikipedia.org/wiki/Programming_language">lugha ya programu</a> . Tofauti kubwa ni kwamba lugha ya Karel ya programu ni ndogo mno na kama maelezo hayo ni rahisi sana. Hata hivyo, utagundua kuwa kutatua tatizo kunaweza kuwa vigumu.</p>
+<p>Kwa kuanzia na Karel, unaweza kuzingatia kutatua matatizo tangu mwanzo. Kutatua tatizo ni kiini cha programu. Na kwa sababu Karel anahimiza mawazo na ubunifu, unaweza kuwa na furaha nyingi njiani.</p>
+<h3>Dunia ya Karel</h3>
+<p>Dunia ya Karel inafafanuliwa na mistari run usawa (mashariki-magharibi) na nguzo run ning vertically (kaskazini-kusini). Mfululizo wa safu na safu inaitwa kona. Karel inaweza kuwekwa kwenye pembe na lazima inakabiliwa na moja ya maelekezo ya kiwango cha dira nne (kaskazini, kusini, mashariki, magharibi). Sampuli ya dunia ya Karel inavyoonyeshwa hapa chini. Hapa Karel iko kwenye kona ya safu ya 1 na safu ya 1, inakabiliwa mashariki.</p>
+<center>
+<img src="../../images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>Vipengele vingine vingi vya ulimwengu wa Karel vinaweza kuonekana katika mfano huu. Kitu mbele ya Karel ni koni . Kama ilivyoelezwa katika kitabu cha Rich Pattis, koni s ni "mbegu za plastiki ambazo hutoa kelele ya utulivu." Karel anaweza tu kutambua koni ikiwa iko kwenye kona moja. Mistari imara katika mchoro ni kuta. Majumba hutumika kama vikwazo ndani ya ulimwengu wa Karel. Karel hawezi kutembea kupitia kuta na lazima aende karibu nao. Dunia ya Karel daima imefungwa na kuta kando kando, lakini dunia inaweza kuwa na vipimo tofauti kulingana na shida maalum Karel anahitaji kutatua.</p>
+<h3>Amri za Karel</h3>
+<p>Wakati Karel anatumwa kutoka kiwanda, inachukua amri ndogo sana ya amri:<table class="table mt-10">
+<tr><th>Amri</th><th>Maelezo</th></tr>
+<tr><td> <code>move();</code> </td><td>move Karel hadi move mbele moja. Karel hawezi kujibu <code>move()</code> amri ikiwa kuna ukuta unaozuia njia yake.</td></tr>
+<tr><td> <code>geukaKushoto();</code> </td><td>Anauliza Karel kugeuka digrii 90 kwa kushoto (counterclockwise).</td></tr>
+<tr><td> <code>chukuaKoni();</code> </td><td>Anataka Karel kuchukua moja koni kutoka kona na kuhifadhi koni katika koni yake koni , ambayo inaweza kushikilia idadi usio na koni s. Karel hawezi kujibu <code>chukuaKoni()</code> amri isipokuwa kuna koni kwenye kona ya sasa.</td></tr>
+<tr><td> <code>wekaKoni();</code> </td><td>Anaomba Karel kuchukua koni kutoka kwa mfuko wake koni na kuiweka kwenye kona ya sasa. Karel hawezi kujibu <code>wekaKoni()</code> amri isipokuwa kuna koni s katika mfuko wake koni .</td></tr>
+</table>
+</p>
+<p>Hebu jaribu amri. Tumia vifungo bomba ili kupata "ulimwengu" ili kufanana na "lengo":</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cmd">
+<div class="ide getStarted" id="cmdIde">
+<div class="commandCanvasDiv" id="cmdCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Dunia:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvas" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Lengo:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvasGoal" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+</div>
+<div class="commandButtons">
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdMove"> <code>move();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdTurnLeft"> <code>geukaKushoto();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdPickBeeper"> <code>chukuaKoni();</code> </button>
+<button class="btn btn-default btn-lg commandButton" id="cmdPutBeeper"> <code>wekaKoni();</code> </button>
+</div>
+</div>
+</div>
+<script style="width:0px;height:0px;display:none">
+
+        
+
+function examplecmd() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('cmdCanvas');
+    karelIde = KarelIde('java',null, canvas, 'commands', 0.9, 'sw', 500, 500);
+    $('#cmdMove').click(function(){karelIde.stepMove()});
+    $('#cmdTurnLeft').click(function(){karelIde.stepTurnLeft()});
+    $('#cmdPickBeeper').click(function(){karelIde.stepPickBeeper()});
+    $('#cmdPutBeeper').click(function(){karelIde.stepPutBeeper()});
+
+    let canvasGoal = document.getElementById('cmdCanvasGoal');
+    let goalIde = KarelIde('java',null, canvasGoal, 'commandsGoal', 0.9, 'sw', 500, 500)
+ }
+
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cmdRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cmdRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ 
+ main()
+ 
+}
+examplecmd();
+    </script>
+
+<p>Jozi la mabano ya tupu ambayo inaonekana katika kila amri hizi ni sehemu ya syntax ya kawaida iliyoshirikiwa na Karel na Java na inatumiwa kutaja kuomba kwa amri. Hatimaye, mipango unayoandika itajumuisha maelezo ya ziada katika nafasi kati ya mahusiano, lakini habari kama hizo si sehemu ya dunia ya kale ya Karel. Kwa hiyo mabanki haya hayatakuwa na mipango ya kiwango cha Karel, lakini lazima ukumbuke kuziweka nao hata hivyo.</p>
+<p>Ikiwa Karel anajaribu kufanya kitu kinyume cha sheria, kama vile kuhamia ukuta au kukataa haipo koni , hali ya kosa hutokea.</p>
+<p>Amri za Karel, hazijitekelezwa peke yao. Badala yake, unahitaji kuziweka kwenye programu ya Karel. Utakuwa na nafasi ya kuona programu rahisi za Karel katika Sura ya 2!</p>
+<p></p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter2.html" role="button">Sura inayofuata</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

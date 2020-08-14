@@ -1,0 +1,324 @@
+
+<html>
+<head>
+
+<title>Karel Okuyucu</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/tr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter1.html">1 - Karel ile tanışın</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter2.html">2 - Programlama</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter3.html">3 - Yeni Yöntemler</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter4.html">4 - Ayrışma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter5.html">5 - Döngüler İçin</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter6.html">6 - Döngülerken</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter7.html">7 - Koşullamalar</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter8.html">8 - Arıtma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter9.html">9 - SüperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/reference.html">10 - Referans</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Daha fazla bilgi edin</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Bölüm 4: Ayrıştırma</h1>
+<hr/>
+<p>Yeni yöntemleri tanımlayabilen gücün daha fazlasını göstermenin bir yolu olarak, move , beeper bir yerden diğerine biraz daha pratik bir şeyler yapması faydalıdır. Yollar genellikle tamir edilmeye ihtiyaç duyar gibi görünmektedir ve Karel'in soyut dünyadaki çukurları doldurup doldurmadığını görmek eğlenceli olabilir. Örneğin, Karel'in soldaki şekilde gösterilen “yol” üzerinde, yoldaki bir çukurun solunda bir köşede durduğunu hayal edin. beeper deliği beeper ile doldurmak ve bir sonraki köşeye geçmek. Sağdaki diyagram, programın yürütülmesinden sonra dünyanın nasıl görünmesi gerektiğini göstermektedir.</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Önce:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Sonra:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'pothole', 0.0, 'tr',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'potholeGoal',0.0, 'tr',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<p>Önceden tanımlanmış dört komutla sınırlıysanız, bu sorunu çözmek için run yöntemi şöyle görünür:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>turnRight yöntemini tanımlamak için ilk motivasyon, sağa dönüşü gerçekleştirmek için üç turnLeft komutunu tekrar etmeyi sürdürmenin hantal turnLeft . Yeni yöntemler tanımlamanın, belirli bir görevi gerçekleştirmek istediğiniz her seferde aynı komut dizilerini tekrar etmekten kaçınmanıza izin vermekten başka önemli bir amacı vardır. Yöntem tanımlama gücü, programlamadaki en önemli stratejiyi, büyük bir problemi çözülmesi daha kolay olan küçük parçalara bölme sürecini açar. Bir programı daha küçük parçalara ayırma işlemine ayrıştırma, büyük bir problemin bileşen parçalarına alt problemler denir.</p>
+<p>Örnek olarak, yoldaki deliği doldurma sorunu aşağıdaki alt sorunlara ayrılabilir:</p>
+<ol>
+<li>Deliğe kadar hareket<li>Bir beeper bırakarak deliği doldurun<li>Bir sonraki köşeye geç</li></li></li></ol>
+<p>Sorunu bu şekilde düşünürseniz, program yapısını anlamanızı yansıtan bir program oluşturmak için yöntem tanımlarını kullanabilirsiniz. run yöntemi şöyle görünür:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">çukuruDoldur();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Anahatla yazışmalar hemen anlaşılır ve Çelinin çukuruDoldur ile ne demek istediğini anlayabilmesi için her şeyin mükemmel olacağını söyleyebiliriz. Yöntem tanımlama gücü verildiğinde, çukuruDoldur'u uygulamak son derece basittir. Yapmanız gereken tek şey, bedeni işi yapmak için zaten yazdığınız komutlardan oluşan bir çukuruDoldur yöntemi tanımlamaktır.</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> çukuruDoldur() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>İşte tam program. Programcıların niyetini sadece run yöntemini okumaktan nasıl anlayabildiğine dikkat edin. Program run , vurgulanan satır, bilgisayarın nasıl yürüteceğini adım adım gösterir. Ancak, program güzel bir şekilde bozulduğundan, onu insan düşünce düzeyinde anlayabiliriz:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="pothole">
+<div class="ide getStarted" id="potholeIde" style="height:651.2px">
+<div class="ideCenter" id="potholeIdeCenter">
+<div class="ideEditorDiv" id="potholeEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="potholeCanvasDiv">
+<canvas class="ideCanvas" id="potholeCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span>Programı çalıştır</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+
+import stanford.karel.*;
+public class ÇukurDoldurmaKareli extends Karel {
+   public void run() {
+      move();
+      çukuruDoldur();
+      move();
+   }
+
+   /**
+    * Bu köşeye beeper koyarak beeper mevcut pozisyonunu
+    * n altındaki çukuru doldurur. Bu yöntemin doğru çal
+    * ışması için Karel'in, çukurun hemen üstünden doğuy
+    * a bakması gerekir. Yürütme tamamlandığında, Karel
+    * aynı kareye geri dönecek ve tekrar doğuya bakacak.
+    */
+   private void çukuruDoldur() {
+      turnRight();
+      move();
+      putBeeper();
+      turnAround();
+      move();
+      turnRight();
+   } 
+
+   /** Karel'i 90 derece sağa döndürür. */
+   public void turnRight() {
+      turnLeft();
+      turnLeft();
+      turnLeft();
+   }
+
+   /** Karel'i yaklaşık 180 derece döndürür. */
+   public void turnAround() {
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'pothole', 0.0, 'tr');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 651.2;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter5.html" role="button">Sonraki bölüm</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

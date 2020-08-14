@@ -1,0 +1,325 @@
+
+<html>
+<head>
+
+<title>करेल पाठक</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/hi/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> कैरेल</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter1.html">1 - कैरेल से मिलते हैं</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter2.html">2 - प्रोग्रामिंग</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter3.html">3 - नए तरीके</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter4.html">4 - अपघटन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter5.html">5 - लूप्स के लिए</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter6.html">6 - जबकि लूप्स</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter7.html">7 - सशर्त</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter8.html">8 - शोधन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter9.html">9 - सुपरकारेल</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/reference.html">10 - संदर्भ</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/ide.html">11 - कोड</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> और अधिक जानें</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>अध्याय 4: अपघटन</h1>
+<hr/>
+<p>नए तरीकों को परिभाषित करने में सक्षम होने के साथ आने वाली शक्ति का अधिक चित्रण करने के तरीके के रूप में, यह उपयोगी है कि कैरेल move beeper एक स्थान से दूसरे स्थान पर कुछ अधिक व्यावहारिक है। रोडवेज को अक्सर मरम्मत की आवश्यकता होती है, और यह देखना मजेदार हो सकता है कि क्या कारेल अपनी सार दुनिया में गड्ढों को भर सकता है। उदाहरण के लिए, कल्पना करें कि कारेल बाएं हाथ की आकृति में दिखाया गया है, जो सड़क के एक गड्ढे के बाईं ओर एक कोने में है। कारेल का काम beeper के छेद को भरना और अगले कोने तक आगे बढ़ना है। दाईं ओर का चित्र दिखाता है कि कार्यक्रम के निष्पादन के बाद दुनिया को कैसा दिखना चाहिए।</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">पहले:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">बाद:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'pothole', 0.0, 'hi',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'potholeGoal',0.0, 'hi',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<p>यदि आप चार पूर्वनिर्धारित आदेशों तक सीमित हैं, तो इस समस्या को हल करने का run तरीका इस तरह दिखेगा:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>डैंगसूमोरो विधि को परिभाषित करने के लिए प्रारंभिक प्रेरणा यह थी कि एक सही मोड़ को पूरा करने के लिए तीन बांएमुएडिएरी कमांड को दोहराते रहना बोझिल था। हर बार जब आप किसी विशेष कार्य को करना चाहते हैं, तो नए तरीकों को परिभाषित करने से परे एक और महत्वपूर्ण उद्देश्य होता है। तरीकों को परिभाषित करने की शक्ति प्रोग्रामिंग में सबसे महत्वपूर्ण रणनीति को अनलॉक करती है - एक बड़ी समस्या को छोटे टुकड़ों में तोड़ने की प्रक्रिया जो हल करना आसान है। एक कार्यक्रम को छोटे टुकड़ों में तोड़ने की प्रक्रिया को अपघटन कहा जाता है, और एक बड़ी समस्या के घटक भागों को उपप्रोम्बल्स कहा जाता है।</p>
+<p>एक उदाहरण के रूप में, सड़क के छेद को भरने की समस्या को निम्न उपप्रकारों में विघटित किया जा सकता है:</p>
+<ol>
+<li>छेद तक ले जाएं<li>beeper को इसमें beeper छेद भरें<li>अगले कोने पर ले जाएँ</li></li></li></ol>
+<p>यदि आप इस तरह से समस्या के बारे में सोचते हैं, तो आप एक प्रोग्राम बनाने के लिए विधि परिभाषाओं का उपयोग कर सकते हैं जो प्रोग्राम संरचना के आपके गर्भाधान को दर्शाता है। run तरीका इस तरह दिखेगा:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">गड्ढाभरना();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>रूपरेखा के साथ पत्राचार तुरंत स्पष्ट है, और सब कुछ बहुत अच्छा होगा यदि केवल आप करेल को समझ सकते हैं कि आप पिटारेबना का क्या मतलब है। तरीकों को परिभाषित करने की शक्ति को देखते हुए, गड्ढाभरना को लागू करना बेहद सरल है। आपको बस एक गड्ढा करने की विधि को परिभाषित करना है, जिसके शरीर में आपके द्वारा पहले से ही काम करने के लिए लिखे गए आदेश हैं, जैसे:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> गड्ढाभरना() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>यहाँ पूरा कार्यक्रम है। ध्यान दें कि आप run विधि को पढ़ने से प्रोग्रामर के इरादे को कैसे समझ सकते हैं। जब आप run प्रोग्राम करते हैं, तो लाइन हाइलाइटिंग दिखाता है कि कंप्यूटर इसे कैसे निष्पादित करेगा, चरण दर चरण। हालाँकि, क्योंकि कार्यक्रम अच्छी तरह से टूट गया है, हम इसे मानव विचार स्तर पर समझ सकते हैं:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="pothole">
+<div class="ide getStarted" id="potholeIde" style="height:668.8000000000001px">
+<div class="ideCenter" id="potholeIdeCenter">
+<div class="ideEditorDiv" id="potholeEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="potholeCanvasDiv">
+<canvas class="ideCanvas" id="potholeCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+
+import stanford.कैरेल.*;
+public class गड्ढेभरनेवालाकरेल extends कैरेल {
+   public void run() {
+      move();
+      गड्ढाभरना();
+      move();
+   }
+
+   /**
+    * उस कोने पर beeper रखकर करेल की वर्तमान स्थिति के न
+    * ीचे गड्ढे को भरता है। सही तरीके से काम करने के लिए
+    * इस विधि के लिए, कारेल को गड्ढे के ऊपर तुरंत पूर्व
+    * की ओर होना चाहिए। जब निष्पादन पूरा हो जाएगा, तो क
+    * ारेल उसी वर्ग में लौट आएंगे और फिर से पूर्व की ओर
+    * मुख करेंगे।
+    */
+   private void गड्ढाभरना() {
+      turnRight();
+      move();
+      putBeeper();
+      turnAround();
+      move();
+      turnRight();
+   } 
+
+   /** करेल को 90 डिग्री दाईं ओर मोड़ता है। */
+   public void turnRight() {
+      turnLeft();
+      turnLeft();
+      turnLeft();
+   }
+
+   /** करेल को 180 डिग्री के आसपास घुमाता है। */
+   public void turnAround() {
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'pothole', 0.0, 'hi');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 668.8000000000001;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter5.html" role="button">अगला अध्याय</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

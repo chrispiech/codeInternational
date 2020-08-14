@@ -1,0 +1,57 @@
+<h1>第4章：分解</h1>
+<hr/>
+<p>新しいメソッドを定義することができることに付属している電源の多くを説明する方法として、カレルがより少しより実用的な何かを持っていると便利ですmove beeperある場所から別の場所へ。道路はしばしば修理を必要としているように見えます、そして、Karelがその抽象的な世界でくぼみを埋めることができるかどうか見るのは楽しいかもしれません。たとえば、カレルが左側の図に示されている「道路」の上に立っていると想像してください。道路の穴の左側に1つの角があります。カレルの仕事はbeeper穴を埋めて次のコーナーに進むことです。右側の図は、プログラムの実行後に世界がどのように見えるべきかを示しています。</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>4つの定義済みコマンドに限定されている場合、この問題を解決するためのrun方法はrunようになります。</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>turnRightメソッドを定義するための最初の動機は、正しいターンを達成するために3つのturnLeftコマンドを繰り返し続けることが面倒だったことです。新しいメソッドを定義することには、特定のタスクを実行したいときに毎回同じコマンドシーケンスを繰り返さないようにすること以外に、もう1つ重要な目的があります。メソッドを定義する能力は、プログラミングにおける最も重要な戦略、つまり大きな問題を解決しやすい小さな部分に分割するプロセスのロックを解除します。プログラムを細かく分割するプロセスは分解と呼ばれ、大きな問題の構成部分はサブ問題と呼ばれます。</p>
+<p>一例として、道路の穴を埋める問題は、以下の副問題に分解することができる。</p>
+<ol>
+<li>穴まで上がる<li>beeperを落として穴を埋めます<li>次のコーナーに進む</li></li></li></ol>
+<p>このようにして問題について考えるのであれば、メソッド定義を使用して、プログラム構造の概念を反映したプログラムを作成できます。 runメソッドは次のようになります。</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">穴を埋める();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>アウトラインとの対応はすぐに明らかになります。穴を埋めることによって、自分だけの意味をKarelに理解させることができれば、すべてが素晴らしいものになります。メソッドを定義する力を考えると、穴を埋めることは非常に簡単です。あなたがしなければならないのは、ボディをその仕事をするためにあなたがすでに書いたコマンドから成る穴を埋めるメソッドを定義することです：</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> 穴を埋める() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>これが完全なプログラムです。 runメソッドを読むだけでプログラマの意図を理解できることに注目してください。あなたの場合はrunプログラムは、ラインのハイライトは、コンピュータが、ステップバイステップでそれを実行する方法を示しています。しかし、プログラムはうまく分割されているので、人間の思考レベルで理解することができます。</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

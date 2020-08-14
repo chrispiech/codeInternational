@@ -1,0 +1,44 @@
+
+<html>
+<head>
+
+  %include('templates/'+progLang+'/'+ lang+'/parts/head.html')
+
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+    %include('templates/'+progLang+'/'+ lang+'/parts/sideBar.html')
+
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; ;max-width:50px;flex-basis:0px;"></div>
+<!-- main stuff -->
+<div class="" style="width:740px; flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+<center>
+<div style="font-size:60px">Karel, o robô</div>
+</center>
+<center>
+<img src="{{pathToRoot}}images/javaKarel.png" style="width:300px;"/> 
+</center>
+<center>
+<div style="font-size:60px">Aprende Java</div>
+</center>
+<center style="padding:20px">Chris Piech e Eric Roberts<br/>Departamento de Ciência da Computação<br/>Universidade de Stanford<br/>Janeiro de 2019</center>
+<center>
+<a class="btn btn-default btn-lg" href="{{pathToRoot}}original.pdf" role="button"><span aria-hidden="true" class="glyphicon glyphicon-download"></span>PDF original</a> 
+<a class="btn btn-primary btn-lg" href="chapter1.html" role="button"><span aria-hidden="true" class="glyphicon glyphicon-play"></span>Iniciar</a> 
+</center>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:5"></div>
+</div>
+</div>
+</body>
+</html>

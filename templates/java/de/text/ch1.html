@@ -1,0 +1,41 @@
+<h1>Kapitel 1: Einführung in Karel den Roboter</h1>
+<hr/>
+<p>In den 1970er Jahren entschied ein Stanford-Absolvent namens Rich Pattis, dass es einfacher sein würde, die Grundlagen des Programmierens zu vermitteln, wenn die Studenten die grundlegenden Ideen in einer einfachen Umgebung lernen könnten, die frei von den Komplexitäten ist, die die meisten Programmiersprachen charakterisieren. Rich entwarf eine einführende Programmierumgebung, in der die Schüler einen Roboter unterrichten, um einfache Probleme zu lösen. Dieser Roboter hieß Karel, nach dem tschechischen Dramatiker <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , deren 1923 spielen RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Rossums Universalroboter</a> ) gab der englischen Sprache das Wort robot.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Karel the Robot war ein ziemlicher Erfolg. Karel wurde in einführenden Informatikkursen auf der ganzen Welt eingesetzt und hat Millionen von Studenten unterrichtet. Viele Generationen von Stanford-Schülern haben gelernt, wie das Programmieren mit Karel funktioniert, und es ist immer noch die sanfte Einführung in die Codierung, die bei Stanford verwendet wird.</p>
+<h3>Was ist Karel?</h3>
+<p>Karel ist ein sehr einfacher Roboter, der in einer sehr einfachen Welt lebt. Indem Sie Karel einen Befehlssatz geben, können Sie ihn anweisen, bestimmte Aufgaben innerhalb seiner Welt auszuführen. Der Vorgang zum Angeben dieser Befehle wird aufgerufen <b>Programmierung</b> . Anfangs versteht Karel nur eine sehr kleine Anzahl vordefinierter Befehle, aber ein wichtiger Teil des Programmierprozesses besteht darin, Karel neue Befehle beizubringen, die seine Fähigkeiten erweitern.</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>Karel-Programme haben fast die gleiche Struktur und beinhalten die gleichen grundlegenden Elemente wie <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> ein Major <a href="https://en.wikipedia.org/wiki/Programming_language">Programmiersprache</a> . Der entscheidende Unterschied ist, dass die Programmiersprache von Karel extrem klein ist und die Details daher leicht zu beherrschen sind. Trotzdem werden Sie feststellen, dass die Lösung eines Problems eine Herausforderung sein kann.</p>
+<p>Wenn Sie mit Karel beginnen, können Sie sich von Anfang an auf die Lösung von Problemen konzentrieren. Problemlösung ist die Essenz der Programmierung. Und weil Karel Fantasie und Kreativität anregt, kann man auf dem Weg eine Menge Spaß haben.</p>
+<h3>Karels Welt</h3>
+<p>Karels Welt wird durch die Zeilen run definiert, die horizontal (Ost-West) und die Spalten run vertikal (Nord-Süd) angeordnet sind. Der Schnittpunkt einer Zeile und einer Spalte wird als Ecke bezeichnet. Karel kann nur an Ecken positioniert werden und muss einer der vier Standardkompassrichtungen (Norden, Süden, Osten, Westen) zugewandt sein. Ein Beispiel für eine Karel-Welt ist unten dargestellt. Hier befindet sich Karel an der Ecke der 1. Reihe und 1. Spalte nach Osten.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>In diesem Beispiel sind mehrere andere Komponenten der Welt von Karel zu sehen. Das Objekt vor Karel ist eine beeper . Wie in Rich Pattis 'Buch beschrieben, handelt es sich bei beeper um „Plastikkegel, die ein leises Piepen ausstrahlen“. Karel kann einen beeper nur dann erkennen, wenn er sich in derselben Ecke befindet. Die durchgezogenen Linien im Diagramm sind Wände. Wände dienen als Barrieren in Karels Welt. Karel kann nicht durch Mauern gehen und muss stattdessen um sie herumgehen. Karels Welt ist immer durch Wände an den Rändern begrenzt, aber die Welt kann je nach dem spezifischen Problem, das Karel lösen muss, unterschiedliche Dimensionen haben.</p>
+<h3>Karels Befehle</h3>
+<p>Wenn Karel ab Werk ausgeliefert wird, reagiert es auf einen sehr kleinen Befehlssatz:<table class="table mt-10">
+<tr><th>Befehl</th><th>Beschreibung</th></tr>
+<tr><td> <code>move();</code> </td><td>Fordert Karel auf, move einen Block weiterzuleiten. Karel kann nicht auf a antworten <code>move()</code> Befehl, wenn eine Mauer den Weg versperrt.</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>Fordert Karel auf, sich um 90 Grad nach links zu drehen (gegen den Uhrzeigersinn).</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>Bittet Karel, einen beeper aus einer Ecke zu holen und den beeper in seiner beeper Tasche beeper , die eine unendliche Anzahl von beeper s aufnehmen kann. Karel kann nicht auf a antworten <code>pickBeeper()</code> Befehl, es sei beeper in der aktuellen Ecke befindet sich ein beeper .</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>Bittet Karel, einen beeper aus seiner beeper Tasche zu nehmen und ihn an der aktuellen Ecke beeper . Karel kann nicht auf a antworten <code>putBeeper()</code> Befehl, es sei denn, es befinden sich beeper s in seiner beeper Tasche.</td></tr>
+</table>
+</p>
+<p>Probieren wir die Befehle aus. Verwenden Sie die folgenden Schaltflächen, um die "Welt" dem "Ziel" anzupassen:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/commands.html', name="cmd", world="commands", goalWorld="commandsGoal")
+%>
+
+
+<p>Das leere Klammerpaar in jedem dieser Befehle ist Teil der gemeinsamen Syntax von Karel und Java und wird zum Festlegen des Befehlsaufrufs verwendet. Eventuell enthalten die von Ihnen geschriebenen Programme zusätzliche Informationen in den Klammern, die jedoch nicht Teil der primitiven Welt von Karel sind. Diese Klammern sind daher in Standard-Karel-Programmen leer, Sie müssen jedoch daran denken, sie trotzdem einzuschließen.</p>
+<p>Wenn Karel versucht, etwas Illegales zu tun, z. B. sich durch eine Wand zu bewegen oder eine nicht vorhandene beeper , tritt ein Fehler auf.</p>
+<p>Karels Befehle werden nicht alleine ausgeführt. Stattdessen müssen Sie sie in ein Karel-Programm integrieren. In Kapitel 2 haben Sie die Möglichkeit, einige einfache Karel-Programme zu sehen!</p>
+<p></p>

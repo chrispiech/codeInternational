@@ -1,0 +1,534 @@
+
+<html>
+<head>
+
+<title>カレルリーダー</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ja/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> カレル</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter1.html">1  - カレルに会う</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter2.html">2  - プログラミング</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter3.html">3  - 新しい方法</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter5.html">5  - ループ用</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter6.html">6  - ループ中</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter7.html">7  - 条件付き</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter8.html">8  - 洗練</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter9.html">9  - スーパーカレル</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/reference.html">10  - 参照</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/ide.html">11  - コード</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> もっと詳しく知る</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第5章：ループ</h1>
+<hr/>
+<p>コンピュータが特に得意なことの1つは繰り返しです。 Karelにコードブロックを複数回実行するように説得するにはどうすればよいでしょうか。繰り返しがどのように使用できるかを見るために、42 beeperを配置するタスクを考えます。</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">前：</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:200px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">後：</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:200px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('java',null, canvas, '99beepersStart', 0.0, 'ja',1000, 1.0 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, '99beepersGoal',0.0, 'ja',  1000, 1.0 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<h3>ループの基本</h3>
+<p>正確に42 beeperが配置されていることがわかっているので、必要な制御ステートメントは <b>forループ</b> これは、ある操作を一定の回数繰り返すことを指定します。 for文の構造は、主にKarelが必要とするものよりもはるかに強力であるため、複雑に見えます。 Karelが使用するfor構文の唯一のバージョンは、次のとおりです。</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">カウント</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">繰り返す文</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">クラスの後半でforループの詳細をすべて説明します。今のところは、この行を表現する方法として読むべきです。<i class="demoText">カウント</i>「私達はこの新しい使用することができます <b>forループ</b> 42 beeperを交換して配置する<i class="demoText">カウント</i>42でコマンドを入れる <code>putBeeper()</code> forループコードブロックの内側。コードブロック内のコマンドを <b>体</b> ：</p>
+<p>
+
+
+
+
+<div class="section embeddedIde" id="99beepers">
+<div class="ide getStarted" id="99beepersIde" style="height:299.20000000000005px">
+<div class="ideCenter" id="99beepersIdeCenter">
+<div class="ideEditorDiv" id="99beepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="99beepersCanvasDiv">
+<canvas class="ideCanvas" id="99beepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="99beepersRunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function example99beepers() {
+STARTER_CODE = `
+
+/*
+ * File：Beeper多数Beeperする.java
+ * -------------------------
+ * forループを使用して42 beeper sを配置
+ * する
+ */
+import stanford.カレル.*;
+public class Beeper多数Beeperする extends カレル {
+   public void run() {
+      move();
+      /* putBeeper何度も繰り返す */
+      for(int i = 0; i < 42; i++) {
+      	putBeeper();
+      }
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('99beepersEditor','99beepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('99beepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '99beepersStart', 0.8, 'ja');
+    $('#99beepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#99beepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#99beepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 299.20000000000005;
+    var canvasWidth = 200
+    var parentWidth = $("#99beepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('99beepersIde');
+    var editorDiv = document.getElementById('99beepersEditorDiv');
+    var canvas = document.getElementById('99beepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example99beepers();
+    </script>
+</div>
+<p>上記のコードは編集可能です。 15 beeper秒しか配置されないように変更してください。</p>
+<h3>事後条件と事前条件のマッチング</h3>
+<p>前の例は、forループが1行のコードを繰り返すという印象を与えます。ただし、forループの本体（繰り返されるステートメント）は複数行になることがあります。これは、世界の各隅にbeeperを配置するプログラムの例です。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers">
+<div class="ide getStarted" id="cornerBeepersIde" style="height:316.8px">
+<div class="ideCenter" id="cornerBeepersIdeCenter">
+<div class="ideEditorDiv" id="cornerBeepersEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepersCanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepersCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepersRunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers() {
+STARTER_CODE = `
+
+/*
+ * ファイル：コーナーBeeper秒.java
+ * --------------------
+ * 各コーナーにbeeperを配置する
+ */
+import stanford.カレル.*;
+public class コーナーBeeper秒 extends カレル {
+   public void run() {
+      /* 体を4回繰り返す */
+      for(int i = 0; i < 4; i++) {
+      	putBeeper();
+      	move();
+      	move();
+      	move();
+      	turnLeft();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepersEditor','cornerBeepersEditorDiv', STARTER_CODE, true);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.0, 'ja');
+    $('#cornerBeepersRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepersRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepersIde');
+    var editorDiv = document.getElementById('cornerBeepersEditorDiv');
+    var canvas = document.getElementById('cornerBeepersCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers();
+    </script>
+</div>
+
+<p>プログラムがこれらの制御ステートメントをどのように流れるかに、細心の注意を払ってください。プログラムrunは、forループ本体のコマンドのセットを1つずつrunます。体を4回繰り返します。</p>
+<p>おそらく、ループを書くときの最も複雑な部分は、ループの最後に世界の状態が必要だということです（ <b>事後条件</b> ）ループの開始のための世界の有効な状態になる <b>前提条件</b> ）上記の例では、仮定は一致しています。良い時代です。ループの開始時に、カレルは常に次の空いているコーナーに面しているbeeperのないbeeperの上にいます。ループの最後でturnLeftを削除した場合はどうなりますか？最初の反復の終了時の事後条件は、次の空のコーナーに直面しているKarelに関してなされた仮定をもはや満たさないでしょう。コードは編集可能です。を削除してみてください <code>turnLeft();</code> 何が起こるかを見るためのコマンド！</p>
+<h3>入れ子になったループ</h3>
+<p>技術的にはforループの本体には、他のループを含め、あらゆる制御フローコードを含めることができます。これはforループを持つメソッドの呼び出しを繰り返すforループの例です。これを「入れ子」ループと呼びます。 runそれをrunする前に、プログラムを読み、それが何をするのか理解するようにしてください。
+
+
+
+
+<div class="section embeddedIde" id="cornerBeepers10">
+<div class="ide getStarted" id="cornerBeepers10Ide" style="height:545.6px">
+<div class="ideCenter" id="cornerBeepers10IdeCenter">
+<div class="ideEditorDiv" id="cornerBeepers10EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="cornerBeepers10CanvasDiv">
+<canvas class="ideCanvas" id="cornerBeepers10Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="cornerBeepers10RunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplecornerBeepers10() {
+STARTER_CODE = `
+
+/*
+ * ファイル：コーナー・ファイバーBeeper秒.java
+ * --------------------------
+ * 各コーナーにbeeper 5つbeeper
+ */
+import stanford.カレル.*;
+public class コーナー・ファイブBeeper秒 extends カレル {
+
+   public void run() {
+      /* コーナーごとに1回繰り返す */
+      for(int i = 0; i < 4; i++) {
+         5つBeeper();
+         次のコーナーへMove();
+      }
+   } 
+
+   /* カレルを次のコーナーに移動 */
+   public void 次のコーナーへMove() {
+      move();
+      move();
+      move();
+      turnLeft();
+   }
+
+   /* forループを使用して5 beeperします。 */
+   public void 5つBeeper() {
+      for(int i = 0; i < 5; i++) {
+      	putBeeper();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('cornerBeepers10Editor','cornerBeepers10EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('cornerBeepers10Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'cornerBeepersStart', 0.7, 'ja');
+    $('#cornerBeepers10RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cornerBeepers10RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cornerBeepers10RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 545.6;
+    var canvasWidth = 200
+    var parentWidth = $("#cornerBeepers10").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('cornerBeepers10Ide');
+    var editorDiv = document.getElementById('cornerBeepers10EditorDiv');
+    var canvas = document.getElementById('cornerBeepers10CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplecornerBeepers10();
+    </script>
+</div>
+</p>
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter6.html" role="button">次の章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

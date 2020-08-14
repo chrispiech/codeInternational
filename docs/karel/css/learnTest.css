@@ -1,0 +1,213 @@
+html, body {
+   padding:0px;
+	margin:0px;
+	height:100%;
+	width:100%;
+	padding:0px;
+	font-family: Calibri, Lucida, Verdana, Geneva, Arial, sans-serif;
+	font-size: medium;
+	background:dimgray ;
+	overflow:hidden;
+}
+
+#main {
+   height:900px;
+}
+
+.code {
+   position: absolute;
+	float:left;
+   background:#fff;
+	font-size:large;
+	-moz-border-radius-topleft: 7px;
+   border-top-left-radius: 7px;
+	-moz-border-radius-bottomleft: 7px;
+   border-bottom-left-radius: 7px;
+}
+
+.canvasTile {
+   background-color:LightSteelBlue;
+   position:absolute;
+	-moz-border-radius: 7px;
+   border-radius: 7px;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+#ideButtonBarBorder {
+   background-color:dimgray;
+}
+#ideButtonBar {
+   background-color:steelblue  ;
+   -moz-border-radius-topleft: 7px;
+   border-top-left-radius: 7px;
+   -moz-border-radius-topright: 7px;
+   border-top-right-radius: 7px;
+}
+
+#ace_gutter {
+   -moz-border-radius-topleft: 7px;
+   border-top-left-radius: 7px;
+   -moz-border-radius-bottomleft: 7px;
+   border-bottom-left-radius: 7px;
+}
+
+#ide {
+   position:absolute;
+   /*background-image:url('../images/bg-body.jpg');
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;*/
+	background:LightSteelBlue;
+	-moz-border-radius: 7px;
+   border-radius: 7px;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+#content {
+   position:absolute;
+   background-image:url('../images/bg-body.jpg');
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+#progressBarDiv {
+   position:absolute;
+   width:100%;
+   background-image:url('../images/bottomBar.png');
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+#headerDiv {
+   position:absolute;
+   width:100%;
+   background-color:black ;
+}
+
+#centerAreaDiv {
+   position:absolute;
+   width:100%;
+}
+
+.titleText {
+   color:white;
+}
+
+.progressBox{
+   position:absolute;
+}
+
+.absoluteDiv {
+   position:absolute;
+   display:none;
+}
+
+.nonFadeInDiv {
+   position:absolute;
+}
+
+.rounded {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:white;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.roundedNoShadow {  
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:white;
+}
+
+.imageButton {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+#ideMessage {
+   background-color:black;
+   z-index:99999;
+   -moz-border-radius-bottomleft: 7px;
+   border-bottom-left-radius: 7px;
+   -moz-border-radius-bottomright: 7px;
+   border-bottom-right-radius: 7px;
+}
+
+.imageButton:hover {
+   
+   margin:-3px;
+   border-style:solid;
+   border-width:3px;
+   
+}
+
+.disabledRoundedButton {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:white ;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.roundedButton {
+   position:absolute;
+   display:none;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:white ;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.roundedButton:hover {
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:lightgreen;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.roundedButton:active {
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:blue;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
+}
+
+.centeredText {
+    width: auto;
+    text-align:center;
+}
+
+p {
+   margin:0px;
+   font-size:40px;
+}

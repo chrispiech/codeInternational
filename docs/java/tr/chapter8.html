@@ -1,0 +1,447 @@
+
+<html>
+<head>
+
+<title>Karel Okuyucu</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/tr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter1.html">1 - Karel ile tanışın</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter2.html">2 - Programlama</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter3.html">3 - Yeni Yöntemler</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter4.html">4 - Ayrışma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter5.html">5 - Döngüler İçin</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter6.html">6 - Döngülerken</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter7.html">7 - Koşullamalar</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter8.html">8 - Arıtma</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/chapter9.html">9 - SüperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/reference.html">10 - Referans</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/tr/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/tr/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Daha fazla bilgi edin</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Bölüm 8: Kademeli İyileştirme</h1>
+<hr/>
+<p>Büyük ölçüde, programlama problemleri bilgisayarla çözme bilimidir. Sorunlar genellikle zor olduğu için, çözümler - ve bu çözümleri uygulayan programlar - da zor olabilir. Bu çözümleri geliştirmenizi kolaylaştırmak için, bu karmaşıklık seviyesini yönetilebilir bir ölçek seviyesine düşüren bir metodoloji ve disiplin kullanmanız gerekir.</p>
+<p>Programlamanın ilk yıllarında, bir bilim olarak hesaplama kavramı, az ya da çok kederli bir denemeydi. Hiç kimse o günlerde programlama hakkında pek bir şey bilmiyordu ve çok azı konuyu geleneksel anlamda bir mühendislik disiplini olarak görüyordu. Ancak programlama olgunlaştıkça, böyle bir disiplin ortaya çıkmaya başladı. Bu disiplinin temel taşı, programlamanın, programcıların birlikte çalışması gereken sosyal bir ortamda yapılması anlayışıdır. Endüstriye girerseniz, neredeyse kesinlikle büyük bir program geliştirmek için çalışan birçok programcıdan biri olacaksınız. Üstelik, bu program, devam etmesi ve başlangıçta amaçlanan uygulamasının ötesinde bakım gerektirmesi konusunda neredeyse kesin. Birisi programın bazı yeni özellikler içermesini veya farklı bir şekilde çalışmasını isteyecektir. Bu olduğunda, yeni bir programcı ekibi içeri girmeli ve programlarda gerekli değişiklikleri yapmalıdır. Programlar çok az ortaklığa sahip ya da hiç ortak olmayan bir tarzda yazılırsa, herkesin verimli bir şekilde birlikte çalışmasını sağlamak çok zordur.</p>
+<p>Bu sorunla mücadele etmek için, programcılar kolektif olarak adlandırılan bir dizi programlama metodolojisi geliştirmeye başladı. <b>yazılım Mühendisliği</b> . İyi yazılım mühendisliği becerilerini kullanmak, yalnızca diğer programcıların programlarınızı okumasını ve anlamasını kolaylaştırmakla kalmaz, aynı zamanda ilk önce bu programları yazmanızı da kolaylaştırır. Yazılım mühendisliğinden çıkacak en önemli yöntemsel gelişmelerden biri stratejisidir. <b>yukarıdan aşağıya tasarım</b> veya <b>Kademeli arıtma</b> bir bütün olarak problemden başlayarak problemleri çözmekten ibarettir. Tüm problemi parçalara ayırıp, ardından her parçayı çözerek gerekirse daha fazla parçalara ayırıyorsunuz. Bu yukarıdan aşağıya stratejisi ile tamamlanmaktadır <b>yinelemeli test</b> devam etmeden önce çözümün daha küçük parçalarının çalıştığından emin olun.</p>
+<h3>Kademeli arıtma konusunda bir egzersiz</h3>
+<p>Kademeli arıtma kavramını göstermek için, Karel'e yeni bir problem çözmeyi öğretelim. Karel'in şu anda şuna benzeyen bir dünyada yaşadığını hayal edin:</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'tr',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>Sütunların her birinde, bilinmeyen bir yüksekliğe sahip beeper s'lik bir kule vardır, ancak bazı sütunlar (örneklem dünyasında 7. ve 9. gibi) boş olabilir. beeper bu kulelerin her birinde bulunan beeper toplamak, onları ilk sıranın en doğu köşesine koyup başlangıç pozisyonuna dönmektir. Bu nedenle, Karel çalışmalarını yukarıdaki örnekte bitirdiğinde, şu anda kulelerde bulunan 25 beeper s, 9. sütunun ve 1. sıranın köşesinde, aşağıdaki gibi istiflenmelidir:</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'tr',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>Önemlisi, Karel'in başlangıçtaki<i>başlar</i>sıfırda beeper s ile çantasında. beeper her beeper , çantasına eklendi. beeper s beeper <code>beepersInBag()</code> Ölçek.</p>
+<p>Bu problemi çözmenin anahtarı, programın doğru şekilde ayrıştırılmasını sağlarken, hala ilerledikçe test edebilmektir. Bu görev, gördüğünüz diğer görevlerden daha karmaşıktır; bu da başarılı bir çözüm elde etmek için uygun alt problemlerin seçilmesini daha önemlidir.</p>
+<h3>Yukarıdan aşağıya tasarım ilkesi</h3>
+<p>Kademeli bir iyileştirme işleminde ana fikir, programınızın tasarımına üstten başlamalısınız, bu da programın kavramsal olarak en yüksek ve en soyut olan seviyesini gösterir. Bu seviyede, beeper kule problemi açıkça üç bağımsız aşamaya ayrılmıştır. Birincisi, Karel beeper un tamamını toplamak beeper . İkincisi, Karel son kavşakta onları yatırmak zorunda. Üçüncüsü, Karel kendi evine dönmek zorunda. Sorunun bu kavramsal ayrışması, bu program için run yönteminin aşağıdaki yapıya sahip olacağını göstermektedir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      conoSCono();</code> <br/>
+ <code>      conoS'NinTamamınıBırak();</code> <br/>
+ <code>      eveDön();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Bu seviyede, problemi anlamak kolaydır. Tabii ki, henüz yazmadığınız yöntemler biçiminde kalan birkaç detay var. Öyle olsa bile, ayrışmanın her bir seviyesine bakmak ve kendinizi, yazmak üzere olduğunuz yöntemlerin alt sorunları doğru çözeceğine inandığınız sürece, soruna bir bütün olarak bir çözüm bulacağınıza inanmanız önemlidir. .</p>
+<h3>Gibi iteratif testler</h3>
+<p>Şimdi programın yapısını bir bütün olarak move , tüm beeper toplanmasından oluşan ilk alt move üzerinde move zamanı. Bu görevin kendisi, önceki bölümlerdeki basit sorunlardan daha karmaşıktır. Tüm beeper toplanması, son köşeye gelinceye kadar her kulede beeper almak zorunda olduğunuz anlamına gelir. Her kule için bir işlemi tekrar etmeniz gerekmesi, burada bir süre döngüsüne ihtiyacınız olduğunu gösterir. While döngüsü işlemi tekrar eder. <code>birKuleTopla</code> ve sonra hareket ediyor.</p>
+<p> <b>Dikkat:</b> Programın tamamını yazmadan denemek tehlikelidir. <b>test yapmak</b> gittiğiniz gibi. Bir hata yaparsanız hatayı bulmak zor olacaktır. Bir kule toplama işlemini tekrarlayacağımızı biliyoruz. Bize yazalım <b>Ölçek</b> biz koymak önce tek bir kule toplama <code>BirKuleTopla</code> bir for döngüsü içinde işlem. Böylece<i>temporariliy</i>conoSCono'nun aşağıdaki tanımı ile başlayabiliriz:<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> conoSCono() {</code> <br/>
+ <code class="comment">      /* Test amaçlı geçici uygulama */</code> <br/>
+ <code>      birKuleTopla();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Yol gösterici bir ilke olarak, eğer karmaşık bir döngüye sahipseniz,<i>vücut</i>Tüm döngüyü yazmadan önce döngünün</p>
+<h3>Rafine toplama kulesi</h3>
+<p>BirKuleTopla dendiğinde, Karel ya beeper s bir kulenin beeper ya da boş bir köşede duruyor. Eski durumda, beeper kulede toplamanız gerekir. İkincisi, sadece move açık. Bu durum, şöyle bir şey yazacağınız if ifadesi için bir başvuru gibi geliyor:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(beepersPresent()){</code> <br/>
+ <code>      gerçekKuleToplamak();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Koda böyle bir ifade eklemeden önce, bu testi yapmanız gerekip gerekmediğini düşünmelisiniz. Genellikle, programlar ilk bakışta özel göründüğü durumların tam olarak aynı genel durumla aynı şekilde ele alınabileceğini gözlemleyerek çok daha basit hale getirilebilir. Mevcut problemde, her caddede beeper s'lik bir kulenin olduğuna, ancak bu kulelerin bazılarının sıfır beeper s yüksek olduğuna karar verirseniz ne olur? Bu içgörüden faydalanmak programı basitleştirir çünkü artık belirli bir caddede bir kule olup olmadığını test etmek zorunda kalmazsınız.</p>
+<p>BirKuleTopla metodu, ilave bir ayrışma seviyesi olması için hala yeterince karmaşık. Tüm beeper bir kulede toplamak için, beeper aşağıdaki adımları atması gerekiyor:</p>
+<ol>
+<li>beeper için sola dönün.<li>Tüm beeper kulede toplayın, beeper bulunmadığında beeper .<li>Dünyanın alt tarafına doğru yüzleşmek için geri dönün.<li>Zemini temsil eden duvara dön.<li>move e bir sonraki köşeye hazır olmak için sola dönün.</li></li></li></li></li></ol>
+<p>Bir kez daha, bu taslak birKuleTopla yöntemi için şöyle bir model sunmaktadır:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>birKuleTopla(){</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>      conoSSatırToplamak();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      moveDuvara();</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>Yöntem ön koşulları ve son koşullar</h3>
+<p>BirKuleTopla yönteminin başlangıcındaki ve sonundaki turnLeft komutları bu programın doğruluğu için kritik öneme sahiptir. BirKuleTopla çağrıldığında, Karel her zaman doğuya bakan 1. sırada yer almaktadır. İşleyişini tamamladığında, program bir bütün olarak sadece Karel yine aynı köşeden doğuya bakarsa düzgün çalışacaktır. Bir yöntem çağrılmadan önce doğru olması gereken şartlar olarak adlandırılır. <b>önkoşul</b> ; yöntem bittikten sonra uygulanması gereken koşullar, <b>Hedefşartlar</b> .</p>
+<p>Bir metodu tanımladığınızda, ön ve son koşulların tam olarak ne olduğunu yazarsanız, çok daha az belaya gireceksiniz. Bunu yaptıktan sonra, yazdığınız kodun, ön koşulların başlayacağından emin olarak varsayımları her zaman memnun bıraktığından emin olmanız gerekir. Örneğin, Karel doğuya bakan 1. sıradayken birKuleTopla'yı çağırırsanız ne olacağını düşünün. İlk turnLeft komutu turnLeft terk eder, bu da beeper kuleyi temsil eden beeper s sütunu ile hizalı olduğu anlamına gelir. Henüz yazılmamış fakat yine de kavramsal olarak anladığınız bir görevi yerine getiren conoSSatırToplamak yöntemi sadece move s. Böylece, TopoşatırToplamak çağrısının sonunda, Karel hala kuzeye dönük olacak. turnAround çağrısı bu nedenle turnAround güneye bakar. ConoSSatırToplamak gibi, move Duvara metodu herhangi bir dönüş içermez fakat bunun yerine sınır duvarına move kadar sadece move sn. Karel güneye baktığı için, bu sınır duvarı ekranın en altındaki, ilk sıranın hemen altında olacak. Son turnLeft komutu bu nedenle, turnLeft doğuya bakan ilk sırayı alır ve bu da son şartı sağlar.</p>
+<h3>İşlem tekrarı</h3>
+<p>Siz run programınızı başarıyla run , bir kuleyi başarıyla temizler ve söz verilen son run ayrılır. Wahoo! Bu zor işi çözmek için az önce bir dönüm noktasına geldiniz! Şimdi bir while döngüsü kullanarak bir kuleyi temizleme işlemini tekrarlamamız gerekiyor.</p>
+<p>Fakat bu döngü nasıl görünür? Öncelikle, şartlı testi düşünmelisiniz. Karel'in sıranın sonunda duvara çarptığında durmasını istiyorsun. Böylece, Karel'in öndeki alan açık olduğu sürece devam etmesini istiyorsunuz. Bu nedenle, conoSCono yönteminin frontIsClear testini kullanan bir while döngüsü frontIsClear . Her pozisyonda, beeper köşedeki başlangıçtaki kuledeki beeper un tamamını toplamasını istiyorsun. Bu işleme birKuleTopla gibi bir isim verecekseniz, detayları girmemiş olsanız bile, devam edip conoSCono yöntemi için bir tanım yazabilirsiniz.</p>
+<p>Ancak dikkatli olmalısınız. ConoSCono kodu şöyle görünmüyor:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>conoSCono(){</code> <br/>
+ <code class="comment">      /* adamcağız döngü! */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         birKuleTopla();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Bu uygulama, genel olarak PlaceConoHattı'nın 6. bölümdeki ilk versiyonunun görevini yerine getirememesiyle aynı nedenlerden ötürü bir sorun oluşturuyor. Kodun bu sürümünde bir hatam hatası var, çünkü beeper son caddede beeper kulesinin varlığını test etmesi gerekiyor. Doğru uygulama:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>conoSCono(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         birKuleTopla();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      birKuleTopla();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Bu yöntemin tam olarak 6. bölümde sunulan PlaceConoHattı programındaki ana program ile aynı yapıya sahip olduğuna putBeeper . Bu iki program her biri şuna benzeyen genel bir stratejinin örnekleridir:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>conoSCono(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">biraz işlem gerçekleştirmek.</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">son köşe için aynı işlemi uygulayın.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>move gibi bir duvarda biten bir yol boyunca her köşesinde bir işlem yapmanız gerektiğinde bu stratejiyi kullanabilirsiniz. Bu stratejinin genel yapısını hatırlarsanız, böyle bir işlem gerektiren bir sorunla karşılaştığınızda kullanabilirsiniz. Bu türden yeniden kullanılabilir stratejiler programlamada sıkça ortaya çıkar ve <b>deyimler programlama</b> veya <b>desenler</b> . Ne kadar çok kalıp bilirseniz, belirli bir soruna uyan birini bulmak sizin için o kadar kolay olacaktır.</p>
+<h3>Bitirmek</h3>
+<p>Zor bir iş yapılmış olmasına rağmen, hala çözülmesi gereken birkaç gevşek amaç var. Ana program iki yöntem çağırıyor: conoS'NinTamamınıBırak ve eveDön - henüz yazılmamış. Benzer şekilde, birKuleTopla conoSSatırToplamak ve move Duvara'yı çağırır. Neyse ki, bu yöntemlerin dördü, daha fazla ayrışma olmadan, özellikle move tanımında move Duvara kullanıyorsanız, move için move basittir. İşte tam uygulama:</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1684.8000000000002px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>Programı çalıştır</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * Dosya: ConoTopluyor.java
+ * -----------------------
+ * ConoTopluyor sınıfı tüm beeper bir dizi dikey kule
+ * de toplar ve onları ilk sıradaki en doğu köşesine
+ * yerleştirir.
+ */
+import stanford.karel.*;
+public class ConoTopluyor extends Karel {
+
+   /**
+    * Programın giriş noktasını belirtir.
+    */
+   public void run() {
+      conoSCono();
+      conoS'NinTamamınıBırak();
+      eveDön();
+   }
+
+   /**
+    * Her köşede birKuleTopla çağırarak, 1. sıra boyunca
+    * hareket ederek her kuleden beeper s toplar. Bu yö
+    * ntemin son şartı Karel'in, ilk sıranın doğudaki kö
+    * şesinde doğuya bakmasıdır.
+    */
+   private void conoSCono() {
+      while (frontIsClear()) {
+         birKuleTopla();
+         move(); 
+      }
+      birKuleTopla();
+   }
+
+   /**
+    * beeper tek bir kulede toplar. BirKuleTopla arandığ
+    * ında, Karel doğuya bakan 1. sırada olmalıdır. BirK
+    * uleTopla'nın son şartı, Karel'in yine aynı köşede
+    * doğuya bakması gerektiğidir.
+    */
+   private void birKuleTopla() {
+      turnLeft();
+      conoSSatırToplamak();
+      turnAround();
+      moveDuvara();
+      turnLeft();
+   }
+
+   /**
+    * beeper arda beeper s'lik bir çizgi toplar. beeper
+    * satırının sonu, beeper sn içermeyen bir köşe ile g
+    * österilir.
+    */
+   private void conoSSatırToplamak() {
+      while (beepersPresent()) {
+         pickBeeper();
+         if (frontIsClear()) {
+            move(); 
+         }
+      } 
+   }
+
+   /**
+    * Geçerli köşedeki tüm beeper .
+    */
+   private void conoS'NinTamamınıBırak() {
+      while (beepersInBag()) {
+         putBeeper();
+      }
+   }
+
+   /**
+    * Doğu yönüne bakan Karel'i 1. Cadde ve 1. sıra köşe
+    * sinde başlangıç pozisyonuna getirir. Bu yöntemin ö
+    * nkoşulu, Karel'in, conoSCono'nun sonuçlarında doğr
+    * u olan, 1. sırada bir yere doğuya bakması gerektiğ
+    * idir.
+    */
+   private void eveDön() {
+      turnAround();
+      moveDuvara();
+      turnAround();
+   }
+
+   /** Karel'i bir duvarla engellenene kadar ileri götürür. */
+   private void moveDuvara(){
+      while (frontIsClear()) {
+         move();
+      } 
+   }
+
+   /** Karel'i 180 derece döndürür */
+   private void turnAround(){
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'tr', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1684.8000000000002;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">Sonraki bölüm</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

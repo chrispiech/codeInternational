@@ -1,0 +1,87 @@
+<h1>Sura ya 7: Kama Taarifa</h1>
+<hr/>
+<p>Mwisho wa msingi wa programu ya udhibiti wa mipango ya kujifunza kujifunza ni masharti ya masharti ( <code>if</code> na <code>if/else</code> ).</p>
+<h3>Masharti ya Msingi</h3>
+<p>An <code>if/else</code> taarifa inafanya "kama" code-block kama na tu kama zinazotolewa<i class="demoText">mtihani</i>ni kweli kwa hali ya ulimwengu wakati programu inapofikia taarifa hiyo. Vinginevyo mpango unafanya "block" kificho-block.</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">mtihani</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">ikiwa ni kanuni-kuzuia</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">mwingine kuzuia kanuni</i><br/>
+ <code>}</code> 
+</p>
+<p>Ili kupata maana ya maneno ambayo masharti yanaweza kutokea, hebu tuandike mpango ambao Karel koni mstari wa koni s. Ikiwa mraba hapo awali ulikuwa na koni , Karel anapaswa kuichukua. Ikiwa mraba haina koni , Karel anapaswa kuweka moja chini.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>Kumbuka kuwa <code>if</code> taarifa haifai kuwa na <code>else</code> kuzuia - ambayo kesi hiyo inawakabili kama <code>while</code> kitanzi kinachotekeleza wakati mmoja tu:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">mtihani</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">ikiwa ni kanuni-kuzuia</i><br/>
+ <code>} </code> 
+</p>
+<h3>Masharti</h3>
+<p>Mfano wa mwisho uliotumia hali mpya. Hapa kuna orodha ya hali zote ambazo Karel anajua:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Mtihani</th><th>Upinzani</th><th>Kinachoangalia</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>Je! Kuna ukuta mbele ya Karel?</td>
+</tr>
+<tr>
+<td> <code>koniIko()</code> </td>
+<td> <code>koniHaipo()</code> </td>
+<td>Je! Kuna koni s kwenye kona hii?</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>Je, kuna ukuta wa kushoto kwa Karel?</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>Je, kuna ukuta wa haki ya Karel?</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>Yoyote kuna koni s katika mfuko wa Karel?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>Je Karel anaelekea kaskazini?</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>Je, Karel ameelekea kusini?</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>Je, Karel ameelekea mashariki?</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>Je, Karel ameelekea magharibi?</td>
+</tr>
+</table>
+</p>
+<h3>Kuweka yote pamoja</h3>
+<p>Hongera! Sasa unajua vitalu vyote vya msingi vya udhibiti wa programu. Wakati mizunguko while kwa Karel, mbinu, mizunguko while , mzunguko for s, ikiwa / kauli nyingine mzunguko for kwa njia sawa katika lugha zote kuu, ikiwa ni pamoja na Java.</p>
+<p>Sasa kwa kuwa una vitengo vya ujenzi unaweza kuwaweka pamoja ili kujenga suluhisho la matatizo magumu zaidi. Kwa kiasi kikubwa, programu ni sayansi ya kutatua matatizo kwa kompyuta. Sababu matatizo mara nyingi ni magumu, ufumbuzi-na mipango ambayo hutekeleza ufumbuzi huo-inaweza kuwa vigumu pia. Ili iwe rahisi iwe kukuza ufumbuzi huo, unahitaji kupitisha mbinu na nidhamu ambayo inapunguza kiwango cha utata huo kwa kiwango kikubwa.</p>

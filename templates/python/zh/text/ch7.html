@@ -1,0 +1,82 @@
+<h1>第7章：如果声明</h1>
+<hr/>
+<p>要学习的最终核心编程控制流构造是条件语句（ <code>if</code> 和 <code>if/else</code> ）。</p>
+<h3>基本条件</h3>
+<p>一个 <code>if/else</code> 当且仅当提供时，语句执行“if”代码块<i class="demoText">测试</i>对于程序到达该语句时的世界状况是正确的。否则，程序将执行“ else”代码块。</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">测试</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">如果是代码块</i><br/>
+<span class="keyword">其他</span>：</p><br/>
+<i class="demoText" style="margin-left:2em">否则代码块</i><br/>
+
+<p>为了了解条件语句可能会派上用场，让我们编写一个让Karel反转一行锥体 s的程序。如果一个正方形以前有一个锥体 ，则Karel应该选择它。如果一个正方形没有锥体 ，则Karel应该放下一个。</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="invertLine", world="invert", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+
+
+<p>注意一个 <code>if</code> 声明不需要有 <code>else</code> 块-在这种情况下，该语句像 <code>while</code> 只执行一次的循环：</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">测试</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">如果是代码块</i><br/>
+</p>
+<h3>条件</h3>
+<p>最后一个例子使用了一个新条件。以下列出了卡雷尔所知道的所有条件：</p>
+<p>
+<table class="table table-condensed">
+<tr><th>测试</th><th>相反</th><th>它检查什么</th></tr>
+<tr>
+<td> <code>front_is_clear()</code> </td>
+<td> <code>front_is_blocked()</code> </td>
+<td>卡雷尔面前有墙吗？</td>
+</tr>
+<tr>
+<td> <code>锥体()</code> </td>
+<td> <code>目前没有锥体()</code> </td>
+<td>这个拐角处有锥体吗？</td>
+</tr>
+<tr>
+<td> <code>左边很清楚()</code> </td>
+<td> <code>左被挡()</code> </td>
+<td>卡雷尔左边有墙吗？</td>
+</tr>
+<tr>
+<td> <code>权利很明确()</code> </td>
+<td> <code>权利被封锁()</code> </td>
+<td>Karel有没有墙？</td>
+</tr>
+<tr>
+<td> <code>锥体_s()</code> </td>
+<td> <code>袋中没有锥体_s()</code> </td>
+<td>卡雷尔的包里有锥体吗？</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>朝北()</code> </td>
+<td> <code>不朝北()</code> </td>
+<td>卡雷尔面向北方吗？</td>
+</tr>
+<tr>
+<td> <code>朝南()</code> </td>
+<td> <code>不向南()</code> </td>
+<td>卡雷尔面向南方？</td>
+</tr>
+<tr>
+<td> <code>朝东()</code> </td>
+<td> <code>不面向东方()</code> </td>
+<td>卡雷尔面向东方吗？</td>
+</tr>
+<tr>
+<td> <code>朝西()</code> </td>
+<td> <code>不向西()</code> </td>
+<td>卡雷尔面向西方？</td>
+</tr>
+</table>
+</p>
+<h3>把它们放在一起</h3>
+<p>恭喜！您现在知道了所有核心编程控制流模块。当您通过Karel学习它们时，方法，while循环，for循环，if / else语句在几乎所有主要语言（包括Python）中的工作方式都相同。</p>
+<p>现在您已经拥有了构建块，您可以将它们组合在一起，为更复杂的问题构建解决方案。在很大程度上，编程是通过计算机解决问题的科学。由于问题通常很困难，因此解决方案以及实施这些解决方案的程序也很困难。为了使您更容易开发这些解决方案，您需要采用一种方法和规程，将复杂程度降低到可管理的规模。</p>

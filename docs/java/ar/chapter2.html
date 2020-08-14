@@ -1,0 +1,535 @@
+
+<html>
+<head>
+
+<title>قارئ كاريل</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ar/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> كاريل</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter1.html">1 - تعرف على كاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter2.html">2 - البرمجة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter3.html">3 - طرق جديدة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter4.html">4 - التحلل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter5.html">5 - دورات For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter6.html">6 - دورات While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter7.html">7 - الشرطية</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter8.html">8 - الصقل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter9.html">9 - سوبركاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/reference.html">10 - المرجع</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/ide.html">11 - الرمز</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> أعرف أكثر</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>الفصل الثاني: البرمجة كاريل</h1>
+<hr/>
+<p>يستخدم أبسط نمط من برنامج كاريل النص لتحديد سلسلة من الأوامر المدمجة التي ينبغي تنفيذها عندما يكون البرنامج <b>run</b> . النظر في البرنامج كاريل بسيط أدناه. النص على اليسار هو البرنامج. تظهر حالة كاريل على اليمين:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPicking">
+<div class="ide getStarted" id="beeperPickingIde" style="height:281.6px">
+<div class="ideCenter" id="beeperPickingIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingRunButton"><span class="glyphicon glyphicon-play"></span>نفذ البرنامج</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPicking() {
+STARTER_CODE = `
+
+/*
+ * ملف: أولكاريل
+ * ------------
+ * يعرف برنامج run طريقة " run " بثلاثة أوامر. هذه ال
+ * أوامر تسبب كاريل إلى move إلى الأمام كتلة واحدة، و
+ * التقاط مخروط ثم move قدما إلى الزاوية القادمة.
+ */
+import stanford.كاريل.*;
+public class أولكاريل extends كاريل {
+   /* يبدأ البرنامج جري هنا */
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingEditor','beeperPickingEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'ar');
+    $('#beeperPickingRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 281.6;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPicking").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingIde');
+    var editorDiv = document.getElementById('beeperPickingEditorDiv');
+    var canvas = document.getElementById('beeperPickingCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPicking();
+    </script>
+</div>
+
+<p>اضغط على زر "تشغيل" لتنفيذ البرنامج. تتم كتابة البرامج عادة في تطبيق خاص يسمى <b>بيئة التطوير المتكاملة</b> (IDE) ومعظم برامج كاريل مكتوبة في IDE تسمى Eclipse . مثل IDE ، يمتلك هذا القارئ القدرة على تنفيذ البرامج من أجل مساعدتك<i>نرى</i>كيف تعمل الأشياء كما تتعلم.</p>
+<p>يتكون البرنامج من عدة أجزاء. الجزء الأول يتكون من الأسطر التالية:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * ملف: أولكاريل
+ * ------------
+ * يعرف برنامج run طريقة " run " بثلاثة أوامر. هذه ال
+ * أوامر تسبب كاريل إلى move إلى الأمام كتلة واحدة، و
+ * التقاط مخروط ثم move قدما إلى الزاوية القادمة.
+ */</pre>
+</p>
+<p>هذه الخطوط هي مثال على أ <b>تعليق</b> وهو ببساطة نص مصمم لشرح تشغيل البرنامج للقراء البشر. تبدأ التعليقات في كل من كاريل و Java بالأحرف <code class="comment">/*</code> وتنتهي مع الشخصيات <code class="comment">*/</code> . هنا ، يبدأ التعليق في السطر الأول وينتهي بعدة أسطر لاحقًا. النجوم على الأسطر الفردية التي تشكل نص التعليق ليست مطلوبة ، ولكن تسهل على القراء من البشر رؤية مدى التعليق. في برنامج بسيط ، قد تبدو التعليقات المستفيضة سخيفة لأن تأثير البرنامج واضح ، لكنها مهمة للغاية كوسيلة لتوثيق تصميم برامج أكبر وأكثر تعقيدًا. الجزء الثاني من البرنامج هو الخط:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.كاريل.*;</code> 
+</p>
+<p>يطلب هذا السطر إدراج جميع التعاريف من <code>stanford.كاريل</code> مكتبة. تحتوي هذه المكتبة على التعريفات الأساسية اللازمة لكتابة برامج كاريل ، مثل تعريفات العمليات القياسية <code>move()</code> و <code>pickBeeper()</code> . نظرًا لأنك تحتاج دائمًا إلى الوصول إلى هذه العمليات ، فإن كل برنامج كاريل تكتبه سيتضمن أمر الاستيراد هذا قبل كتابة البرنامج الفعلي.</p>
+<p>يتكون الجزء الأخير من البرنامج كاريل من تعريف البرنامج التالي:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> أولكاريل <span class="keyword">extends</span> كاريل {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>لفهم هذا التعريف ، من المفيد أن ننظر بعناية أكبر في هيكله. تعريف برنامج أولكاريل يتكون من السطر الذي يبدأ بـ <code class="keyword">public class</code> ويشمل كل شيء بين قوس مجعد في نهاية هذا الخط ودعامة إغلاق المقابلة في السطر الأخير من البرنامج. الخط الوحيد الذي يقدم الصف الجديد يسمى <b>رأس</b> من التعريف ؛ الكود بين الأقواس يسمى <b>الجسم</b> .</p>
+<p>في البرمجة ، يكون من المفيد للغاية التفكير في تعريف معين وجسمه كأفكار قابلة للفصل. في هذا المثال ، يحتوي تعريف أولكاريل على النموذج التالي ، حيث يمكن وضع نص التعريف بالكامل في الاعتبار في الوقت الحالي:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> أولكاريل <span class="keyword">extends</span> كاريل {</code> <br/>
+<i class="demoText" style="margin-left:2em">نص تعريف البرنامج</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>يخبرك سطر العنوان في الجزء العلوي قليلاً عن برنامج أولكاريل ، حتى قبل أن تنظر لمعرفة ما يحتويه الجسم. الجملة <code class="keyword">public class</code> يبدأ تعريف البرنامج. الجملة <code><span class="keyword">extends</span> كاريل</code> يستخدم للإشارة إلى ذلك <code>أولكاريل</code> هو برنامج كاريل .</p>
+<p>الآن دعنا ننظر إلى نص برنامج أولكاريل. يتكون هذا الجسم من الأسطر التالية:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>هذه السطور تمثل تعريف جديد <b>طريقة</b> ، الذي يحدد تسلسل الخطوات اللازمة للرد على أمر. كما هو الحال في برنامج أولكاريل نفسه ، يتكون تعريف الطريقة من جزأين يمكن اعتبارهما منفصلين: السطر الأول يشكل رأس الطريقة والرمز بين الأقواس المعقوفة هو نص الطريقة. إذا تجاهلت النص الآن ، فإن تعريف الطريقة يبدو كما يلي:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">نص تعريف الطريقة</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>أول كلمتين في رأس الأسلوب ، <code class="keyword">public</code> و <code class="keyword">void</code> ، جزء من بنية جافا النحوية ، ويجب أن تشعر بحرية تجاهلها في هذه المرحلة. تحدد الكلمة التالية في سطر الرأس اسم الطريقة الجديدة ، والتي في هذه الحالة هي الطريقة <b>run</b> . يعني تعريف الطريقة أن كاريل يمكنه الآن الاستجابة إلى أمر جديد بهذا الاسم. ال <code>run</code> يلعب الأمر دورًا خاصًا في برنامج كاريل . عند بدء تشغيل برنامج كاريل يقوم بإنشاء مثيل كاريل جديد ، ويضيف ذلك كاريل إلى عالم تحدده ، ثم يصدر الأمر run . يتم تحديد تأثير البرنامج جري بواسطة run طريقة run ، وهو عبارة عن سلسلة من الأوامر التي run الروبوت بالترتيب. على سبيل المثال ، run طريقة run لبرنامج أولكاريل هو:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>وهكذا ، إذا كانت الحالة الأولية للعالم تتطابق مع المثال الوارد في الفصل 1 ، كاريل أول move ثانية للأمام في الزاوية التي تحتوي على مخروط ، تلتقط تلك مخروط ، وأخيراً move ثانية للأمام إلى الزاوية قبل الجدار مباشرةً ، كما هو موضح في الرسم البياني التالي قبل وبعد:</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">قبل:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">بعد:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'ar',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpM1',0.0, 'ar',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>حل مشكلة أكثر إثارة للاهتمام</h2>
+<p>برنامج أولكاريل المحدد أعلاه لا يفعل الكثير حتى الآن. دعونا نحاول جعلها أكثر إثارة للاهتمام قليلا. لنفترض أن الهدف ليس مجرد الحصول على كاريل لالتقاط مخروط ولكن إلى move مخروط من موقعها الأولي في العمود الثاني والصف الأول إلى مركز الحافة. وبالتالي ، فإن مهمتك التالية هي تحديد برنامج كاريل جديد يحقق المهمة الموضحة في هذا المخطط:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">قبل:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">بعد:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'ar',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpGoal',0.0, 'ar',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>الأوامر الثلاثة الأولى في البرنامج الجديد - move للأمام ، والتقاط مخروط ، ثم move حتى الحافة - هي نفسها كما كانت من قبل:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>من هنا ، فإن الخطوة التالية هي الاتجاه نحو اليسار لبدء تسلق الحافة. هذه العملية سهلة ، لأن كاريل لديه أمر انعطفلليسار في ذخيرته القياسية. يؤدي تنفيذ أمر انعطفلليسار في نهاية التسلسل السابق للأوامر إلى ترك كاريل الشمال عند زاوية الصف الأول والعمود الثالث. إذا قام كاريل بتنفيذ أمر move ، move إلى الشمال move للوصول إلى الموضع التالي:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('java',null, canvas, 'stepUpM2', 0, 'ar',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>من هنا ، الشيء التالي الذي عليك القيام به هو كاريل إلى الاستدارة يمينًا بحيث يواجه الشرق مرة أخرى. في حين أن هذه العملية سهلة من الناحية النظرية تمامًا مثل تحويل كاريل إلى اليسار ، إلا أن هناك مشكلة بسيطة: كاريل لغة كاريل على <code>turnLeft</code> القيادة ، ولكن لا <code>turnRight</code> أمر. يبدو الأمر كما لو كنت قد اشتريت نموذج الاقتصاد واكتشفت الآن أنه يفتقد إلى بعض الميزات المهمة.</p>
+<p>في هذه المرحلة ، لديك أول فرصة لبدء التفكير كمبرمج. لديك مجموعة واحدة من الأوامر ، ولكن ليس بالضبط المجموعة التي تحتاج إليها. ما الذي تستطيع القيام به؟ هل يمكنك إنجاز تأثير أمر انعطفيمينا باستخدام القدرات التي لديك فقط؟ الجواب ، بالطبع ، هو نعم. يمكنك تحقيق تأثير الانعطاف يمينًا عن طريق الدوران الأيسر ثلاث مرات. بعد ثلاث لفات كاريل ، سوف يواجه كاريل في الاتجاه المطلوب. من هنا ، كل ما عليك فعله هو البرنامج من كاريل إلى move إلى مركز الحافة ، واسقاط مخروط ثم move إلى الأمام إلى الموضع النهائي. هنا هو التنفيذ الكامل ل <code>خطوةللأعلى</code> البرنامج الذي ينجز المهمة بأكملها:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:404.8px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>نفذ البرنامج</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+/*
+ * ملف: مخروطاختياركاريل. java
+ * --------------------------
+ * يُعرّف برنامج run طريقة " run " بالأوامر التي تسبب
+ * كاريل لالتقاط مخروط ووضعه على الحافة.
+ */
+import stanford.كاريل.*;
+public class مخروطاختياركاريل extends كاريل {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnLeft();
+      turnLeft();
+      turnLeft();
+      move();
+      move();
+      putBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.5, 'ar');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 404.8;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">الفصل التالي</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<h1>Kapitel 6: While-Schleifen</h1>
+<hr/>
+<p>Die Technik, neue Methoden zu definieren und for-Schleifen zu definieren - so nützlich sie auch sind -, versetzt Karel nicht in die Lage, neue Probleme zu lösen. Jedes Mal, wenn run ein Programm run geschieht genau das Gleiche. Programme werden viel nützlicher, wenn sie auf verschiedene Eingaben unterschiedlich reagieren können.</p>
+<p>Als Beispiel. move , Sie wollten ein Programm schreiben, um Karel move an die Wand zu bekommen. Sie möchten jedoch nicht, dass dieses Programm auf einer Welt mit einer festen Größe ausgeführt wird. Sie möchten ein einzelnes Programm schreiben, das auf jeder Welt funktionieren kann.</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>Versuchen Sie, die Welt zu verändern, indem Sie auf das Dropdown-Menü "Change World" über der Welt klicken. Für jede move wird Karel move bis es an eine Wand stößt. Beachten Sie, dass dieses Kunststück mit a nicht beendet werden kann <code class="keyword">for</code> Schleife. Dazu müssten wir die Größe der Welt zum Zeitpunkt der Programmierung kennen.</p>
+<h3>Grundlegende While-Schleife</h3>
+<p>In Karel, a <code class="keyword">while</code> loop wird verwendet, um einen Code zu wiederholen<i>so lange wie</i>eine gegebene Bedingung gilt. Die while-Schleife hat die folgende allgemeine Form:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">Prüfung</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">zu wiederholende Aussagen</i><br/>
+ <code>}</code> 
+</p>
+<p>Der Steuerungsablauf einer while-Schleife ist wie folgt. Wenn das Programm eine while-Schleife erreicht, beginnt es, einen Prozess dort zu wiederholen, wo er zuerst ausgeführt wurde<i>prüft</i>wenn der Test erfolgreich ist und wenn ja<i>run s</i>der Code im Körper.</p>Wenn das Programm<i>prüft</i>Besteht der Test, entscheidet er, ob der<i class="demoText">Prüfung</i>trifft für den gegenwärtigen Zustand der Welt zu. Wenn ja, wird die Schleife den Code im Körper run . Wenn der Test fehlschlägt, ist die Schleife beendet und das Programm move .
+<p>Wenn das Programm<i>run s</i>Im Hauptteil der Schleife führt das Programm die Zeilen im Hauptteil nacheinander aus. Wenn das Programm am Ende der while-Schleife ankommt, springt es an den Anfang der Schleife zurück. Anschließend wird der Test erneut überprüft und die Schleife fortgesetzt, wenn der Test erfolgreich war. Das Programm verlässt die Schleife erst, wenn es zu einer Überprüfung kommt und der Test fehlschlägt.</p>
+<p>Karel hat viele<i class="demoText">Prüfung</i>Aussagen, und wir werden sie alle im nächsten Kapitel besprechen. Im Moment werden wir eine einzelne Testanweisung verwenden: <code>frontIsClear()</code> Das ist wahr, wenn es keine Mauer direkt vor Karel gibt.</p>
+<h3>Zaunpfosten Bug</h3>
+<p>Lassen Sie uns unser Programm oben modifizieren, um es interessanter zu machen. Anstatt nur an eine Wand zu gehen, muss Karel eine Linie von beeper s auf jedes Quadrat setzen. Wir möchten, dass dieses Programm für eine Welt jeder Größe funktioniert:</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Das sieht gut aus. Bis auf ein Problem. Auf jeder Welt platziert Karel keine beeper auf dem letzten Feld der Linie (genau hinschauen). Wenn sich Karel auf dem letzten Feld befindet, führt das Programm den Körper der Schleife nicht aus, da der Test nicht mehr besteht - Karel steht vor einer Wand. Sie könnten versucht sein, die Reihenfolge des Körpers so zu move , dass Karel move bevor Sie eine Biene platzieren. Der Code kann bearbeitet werden. Probieren Sie es aus!</p>
+<p>Es gibt ein tieferes Problem, das keine Umlagerung des Körpers lösen kann. Für die Welt mit 7 Spalten muss Karel 7 beeper s setzen, sollte aber nur move 6 mal. Da die while-Schleife beim Bestehen eines Tests beide Zeilen ausführt, wie können Sie das Programm veranlassen, einen Befehl mehr als den anderen auszuführen?</p>
+<p>Der Fehler in diesem Programm ist ein Beispiel für ein Programmierproblem namens a <b>Zaunpfostenfehler</b> . Der Name kommt von der Tatsache, dass, wenn Sie einen Zaun aus Paneelen mit einem Zaunpfosten in beiden Größen bauen möchten, die Anzahl der Zaunpfosten immer um eins größer ist als die Anzahl der Scheiben. Wie viele Zaunpfosten benötigen Sie zum Beispiel, um einen Zaun mit 10 Paneelen zu bauen? Die Antwort ist 11, wie das folgende Diagramm zeigt:</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>Sobald Sie es entdeckt haben, ist es recht einfach, diesen Fehler zu beheben. Bevor Karel am Ende der Welt anhält, muss das Programm nur noch ein endgültiges beeper :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

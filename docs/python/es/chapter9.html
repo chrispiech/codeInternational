@@ -1,0 +1,129 @@
+
+<html>
+<head>
+
+<title>Karel Lector</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter1.html">1 - Conoce Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter3.html">3 - Nuevas funciones</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter9.html">9 - Funciones adicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Capítulo 9: Karel adicionales de Karel</h1>
+<hr/>
+<h3>Pintar esquinas</h3>
+<p>Karel también tiene la capacidad de pintar esquina s en su mundo con los siguientes colores:</p>
+<ul>
+<li> <code>BLANCO</code> , que es moverse s cualquier color en el cuadrado</li>
+<li> <code>NEGRO</code> </li>
+<li> <code>AZUL</code> </li>
+<li> <code>CIAN</code> </li>
+<li> <code>GRIS_OSCURO</code> </li>
+<li> <code>GRIS</code> </li>
+<li> <code>VERDE</code> </li>
+<li> <code>GRIS_CLARO</code> </li>
+<li> <code>MAGENTA</code> </li>
+<li> <code>NARANJA</code> </li>
+<li> <code>ROSADO</code> </li>
+<li> <code>ROJO</code> </li>
+<li> <code>BLANCO</code> </li>
+<li> <code>AMARILLO</code> </li>
+</ul>
+<br/>
+<p>Para usar la funcionalidad de pintura de Karel , use los siguientes comandos:</p>
+<table class="table table-condensed">
+<tr>
+<th>Mando</th>
+<th>Que hace</th>
+</tr>
+<tr>
+<td> <code>pintar_esquina(NOMBRE_DEL_COLOR)</code> </td>
+<td>Karel colorea la esquina en la que está parado <code>NOMBRE_DEL_COLOR</code> . Por ejemplo, para colorear la esquina de azul, escribirías <code>pintar_esquina(AZUL).</code> 
+</td>
+</tr>
+<tr>
+<td> <code>el_color_de_la_esquina_es(NOMBRE_DEL_COLOR)</code> </td>
+<td>Una condición que verifica esta pregunta: ¿Es el color de la esquina en la que Karel está parado? <code>COLOR NOMBRE</code> ?</td>
+</tr>
+</table>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="reference.html" role="button">Siguiente capítulo</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

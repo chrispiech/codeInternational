@@ -1,0 +1,372 @@
+
+
+
+<html> 
+<head> 
+<title>Karel Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="../../plugins/jquery.min.js"></script>
+
+<link rel="stylesheet"  href="../../plugins/bootstrap/css/bootstrap.min.css">
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../../style.css">
+
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head> 
+<body>
+  <!-- container -->
+  <div class="bookContainer">
+<!-- side bar -->
+<div class="bookSideBar">
+  <div class="homeLink">
+    <a href="../../java/en/intro.html">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      Karel
+    </a>
+  </div>
+  <hr/>
+  
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter1.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter1.html">
+      1 - Meet Karel
+    </a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter2.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter2.html">2 - Programming</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter3.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter3.html">3 - New Methods</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter4.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter4.html">4 - Decomposition</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter5.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter5.html">5 - For Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter6.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter6.html">6 - While Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter7.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter7.html">7 - Conditionals</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter8.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter8.html">8 - Refinement</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter9.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter9.html">9 - SuperKarel</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../java/en/reference.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/reference.html">10 - Reference</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../java/en/ide.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/ide.html">11 - Code</a>
+  </div>
+
+  <hr/>
+
+  <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/> Learn more</a> 
+
+  <!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/>
+    </center> -->
+</div>
+    <!-- content -->
+    <div class="bookContent" style="display: flex;">
+      <!-- right gutter -->
+      <div style="flex-grow:1;max-width:50px;"></div>
+
+      <!-- main stuff -->
+      <div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+
+<h1>Chapter 7: If Statements</h1>
+<hr/>
+
+<p> The final core programming control-flow construct to learn are conditional statements (<code>if</code> and <code>if/else</code>).
+</p>
+
+<h3>Basic Conditionals</h3>
+
+<p>
+	An <code>if/else</code> statement executes an "if" code-block if and only if the provided <i class="demoText">test</i> is true for the state of the world at the time the program reaches the statement. Otherwise the program executes the "else" code-block. 
+</p>
+
+<p class="demoCode">
+	<code><span class="keyword">if</span>(</code><i class="demoText">test</i><code>){</code><br/>
+	<i class="demoText" style="margin-left:2em">if code-block</i><br/>
+	<code>} <span class="keyword">else</span> {</code><br/>
+	<i class="demoText" style="margin-left:2em">else code-block</i><br/>
+	<code>}</code>
+</p>
+<p>
+	To get a sense of where conditional statements might come in handy, let's write a program that has Karel invert a line of beepers. If a square previously had a beeper, Karel should pick it up. If a square has no beeper, Karel should put one down. 
+</p>
+
+
+
+<div class="section embeddedIde" id="ide">
+    <div id ='ideIde' class = "ide getStarted" style="height:334.40000000000003px">
+      <div id = 'ideIdeCenter' class = "ideCenter" >
+         <div id = 'ideEditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = 'ideCanvasDiv' class = 'ideCanvasDiv'>
+            <div class="worldDropdown">
+
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Change World
+                  <span class="caret"></span>
+                </button>
+                <ul id="ideWorlds" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a>1x1</a></li>
+                  <li><a>4x4</a></li>
+                  <li><a>3x6</a></li>
+                  <li><a>7x7</a></li>
+                  <li><a>8x8</a></li>
+                </ul>
+              </div>
+            </div>
+            <canvas id='ideCanvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="ideRunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function exampleide() {
+STARTER_CODE = `
+/*
+ * Write any code you want
+ */
+import stanford.karel.*;
+public class MyProgram extends SuperKarel {
+   public void run() {
+      // your code here...
+   } 
+}
+
+
+
+
+
+
+
+
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('ideEditor','ideEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('ideCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '8x8', 0.0, 'en');
+    $('#ideRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('ideWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#ideRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#ideRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#ide").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('ideIde');
+    var editorDiv = document.getElementById('ideEditorDiv');
+    var canvas = document.getElementById('ideCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+exampleide();
+    </script>
+</div>
+
+
+
+
+<p> Note that an <code>if</code> statement does not need to have an <code>else</code> block -- in which case the statement opperates like a <code>while</code> loop that only executes one time:
+	</p>
+	<p class="demoCode">
+	<code><span class="keyword">if</span>(</code><i class="demoText">test</i><code>){</code><br/>
+	<i class="demoText" style="margin-left:2em">if code-block</i><br/>
+	<code>} </code>
+</p>
+
+<h3>Conditions</h3>
+
+<p>
+That last example used a new condition. Here is a list of all of the conditions that Karel knows of:
+</p>
+
+<p>
+<table class="table table-condensed">
+  <tr><th>Test</th><th>Opposite</th><th>What it checks</th></tr>
+  <tr>
+  	<td><code>frontIsClear()</code></td>
+  	<td><code>frontIsBlocked()</code></td>
+  	<td>Is there a wall in front of Karel?</td>
+  </tr>
+  <tr>
+  	<td><code>beepersPresent()</code></td>
+  	<td><code>noBeepersPresent()</code></td>
+  	<td>Are there beepers on this corner?</td>
+  </tr>
+  <tr>
+  	<td><code>leftIsClear()</code></td>
+  	<td><code>leftIsBlocked()</code></td>
+  	<td>Is there a wall to Karel’s left?</td>
+  </tr>
+  <tr>
+  	<td><code>rightIsClear()</code></td>
+  	<td><code>rightIsBlocked()</code></td>
+  	<td>Is there a wall to Karel’s right?</td>
+  </tr>
+  <tr>
+  	<td><code>beepersInBag()</code></td>
+  	<td><code>noBeepersInBag()</code></td>
+  	<td>Any there beepers in Karel’s bag?</td>
+  </tr>
+  <!-- dirs -->
+  <tr>
+  	<td><code>facingNorth()</code></td>
+  	<td><code>notFacingNorth()</code></td>
+  	<td>Is Karel facing north?</td>
+  </tr>
+  <tr>
+  	<td><code>facingSouth()</code></td>
+  	<td><code>notFacingSouth()</code></td>
+  	<td>Is Karel facing south?</td>
+  </tr>
+  <tr>
+  	<td><code>facingEast()</code></td>
+  	<td><code>notFacingEast()</code></td>
+  	<td>Is Karel facing east?</td>
+  </tr>
+  <tr>
+  	<td><code>facingWest()</code></td>
+  	<td><code>notFacingWest()</code></td>
+  	<td>Is Karel facing west?</td>
+  </tr>
+</table>
+</p>
+
+<h3>Putting it all together</h3>
+<p>
+	Congrats! You now know all of the core programming control-flow blocks. While you learned them with Karel, methods, while loops, for loops, if/else statements work in the same way in almost all major languages, including Java.
+</p>
+<p>
+	Now that you have the building blocks you can put them together to build solutions to ever more complex problems.
+	To a large extent, programming is the science of solving problems by computer. Because problems are often difficult, solutions—and the programs that implement those solutions—can be difficult as well. In order to make it easier for you to develop those solutions, you need to adopt a methodology and discipline that reduces the level of that complexity to a manageable scale.
+</p>
+
+<hr/>
+<center>
+  <a class="btn btn-primary btn-lg" href="chapter8.html" role="button">Next Chapter</a>
+</center>
+</p>
+
+
+
+<div style="height:60px"></div>        </div>
+      </div>
+
+      </div>
+      <!-- right gutter -->
+      <div style="flex-grow:4"></div>
+    </div>
+  </div>
+</body> 
+</html>
+

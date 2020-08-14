@@ -1,0 +1,446 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/cs/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter1.html">1 - Seznamte se s Karlem</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter2.html">2 - Programování</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter3.html">3 - Nové metody</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter4.html">4 - Rozklad</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter5.html">5 - Pro smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter6.html">6 - Zatímco smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter7.html">7 - Podmíněné podmínky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter8.html">8 - Zpřesnění</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/reference.html">10 - Odkaz</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/ide.html">11 - Kód</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Další informace</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Kapitola 8: Postupné zjemňování</h1>
+<hr/>
+<p>Programování je do značné míry věda o řešení problémů pomocí počítače. Protože problémy jsou často obtížné, řešení - a programy, které tato řešení implementují - mohou být také obtížné. Abychom vám usnadnili vývoj těchto řešení, musíte přijmout metodiku a disciplínu, která sníží úroveň této složitosti na zvládnutelnou míru.</p>
+<p>V počátcích programování byl koncept výpočetní techniky jako vědy víceméně experimentem zbožného přání. V té době nikdo o programování moc nevěděl a jen málokdo ho považoval za inženýrskou disciplínu v konvenčním smyslu. Jak programování dozrálo, taková disciplína se začala objevovat. Základním kamenem této disciplíny je pochopení, že programování se provádí v sociálním prostředí, ve kterém musí programátoři spolupracovat. Pokud jdete do průmyslu, budete téměř jistě jedním z mnoha programátorů, kteří pracují na vývoji velkého programu. Tento program je navíc téměř jistě schopen žít a vyžadovat údržbu nad rámec původně zamýšleného použití. Někdo bude chtít, aby program zahrnoval nějakou novou funkci nebo pracoval jiným způsobem. Když k tomu dojde, musí nový tým programátorů jít dovnitř a provést nezbytné změny v programech. Jsou-li programy napsány v individuálním stylu s malou nebo žádnou společností, je velmi obtížné, aby všichni spolupracovali produktivně.</p>
+<p>V boji proti tomuto problému začali programátoři vyvíjet sadu metodik programování, které jsou souhrnně nazývány <b>softwarové inženýrství</b> . Používání dobrých dovedností softwarového inženýrství nejen usnadňuje ostatním programátorům číst a porozumět vašim programům, ale také usnadňuje psaní těchto programů na prvním místě. Jedním z nejdůležitějších metodických postupů, které vyplynuly ze softwarového inženýrství, je strategie <b>design shora dolů</b> nebo <b>postupné zušlechťování</b> , který spočívá v řešení problémů tím, že začíná problém jako celek. Celý problém rozbijete na kousky a pak každý kus vyřešíte, pokud je to nutné, rozbijete je. Tato strategie shora dolů je doplněna <b>iterativní testování</b> tam, kde se ujistíte, že menší části řešení fungují, než se vydáte dál.</p>
+<h3>Cvičení v postupném zdokonalování</h3>
+<p>Abychom ilustrovali koncept postupného zdokonalování, naučme Karla vyřešit nový problém. Představte si, že Karel nyní žije ve světě, který vypadá takto:</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'cs',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>Na každém ze sloupů je věž o kuzel s neznámé výšky, i když některé sloupce (například 7. a 9. ve vzorku) mohou být prázdné. kuzel prací je shromáždit všech kuzel s v každé z těchto věží, vrátit je zpět na nejvýchodnější roh 1. řady a pak se vrátit do výchozí pozice. Když tedy Karel dokončí svou práci ve výše uvedeném příkladu, všech 25 kuzel s, které jsou v současné době ve věžích, by mělo být naskládáno na rohu 9. sloupce a 1. řádku takto:</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'cs',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>Důležité je, že Karel počáteční<i>začíná</i>s nulou kuzel s ve svém sáčku. Každý kuzel zvednutý je přidán do jeho sáčku. Když je v rohu kuzel s, může karel použít <code>beepersInBag()</code> test.</p>
+<p>Klíčem k vyřešení tohoto problému je rozložit program správným způsobem, přičemž je stále možné testovat. Tento úkol je složitější než ostatní, které jste viděli, což je pro výběr úspěšného řešení důležitější.</p>
+<h3>Princip konstrukce shora dolů</h3>
+<p>Klíčovou myšlenkou v postupném zdokonalování je, že byste měli začít navrhovat svůj program z vrcholu, který odkazuje na úroveň programu, která je koncepčně nejvyšší a nejvíce abstraktní. Na této úrovni je problém věže kuzel jasně rozdělen do tří nezávislých fází. Nejprve musí Karel vyzvednout všech kuzel s. Za druhé, Karel je musí uložit na poslední křižovatce. Za třetí, Karel se musí vrátit do své domovské pozice. Tento konceptuální rozklad problému naznačuje, že metoda run pro tento program bude mít následující strukturu:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      sbíratVšechnyKuzelS();</code> <br/>
+ <code>      poklesVšechKuzelS();</code> <br/>
+ <code>      vrátitSeDomů();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Na této úrovni je problém snadno pochopitelný. Samozřejmě ještě zbývá ještě několik detailů ve formě metod, které jste ještě nenapsali. Přesto je důležité se podívat na každou úroveň rozkladu a přesvědčit se, že pokud se domníváte, že metody, které se chystáte napsat, vyřeší problémy správně, pak budete mít řešení problému jako celku. .</p>
+<h3>Iterativní testování, jak jdete</h3>
+<p>Nyní, když jste definovali strukturu programu jako celku, je čas na move na první subproblem, který spočívá ve shromažďování všech kuzel s. Tento úkol je sám o sobě složitější než jednoduché problémy z předchozích kapitol. kuzel všechny kuzel s znamená, že musíte vyzvednout kuzel s v každé věži, dokud se nedostanete do posledního rohu. Skutečnost, že musíte opakovat operaci pro každou věž, naznačuje, že zde potřebujete smyčku. Cyklus while bude opakovat proces <code>sbíratJednuVěž</code> a pak se pohybuje.</p>
+<p> <b>Pozor:</b> Je nebezpečné pokusit se napsat celý program bez <b>testování</b> jak to půjde. Pokud uděláte chybu, bude těžké najít chybu. Víme, že budeme opakovat proces sběru jedné věže. Napište a <b>test</b> sbírat jednu věž před tím, než dáme <code>SbíratJednuVěž</code> procesu ve smyčce. Tím pádem<i>temporariliy</i>můžeme začít s následující definicí sbíratVšechnyKuzelS:<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> sbíratVšechnyKuzelS() {</code> <br/>
+ <code class="comment">      /* dočasné provádění pro účely testování */</code> <br/>
+ <code>      sbíratJednuVěž();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Jako hlavní princip, pokud máte komplexní smyčku, otestujte<i>tělo</i>smyčky před zápisem celé smyčky.</p>
+<h3>Zjemnění sběrné věže</h3>
+<p>Když se říká sbíratJednuVěž, Karel stojí buď na základně věže kuzel s nebo stojí na prázdném rohu. V prvním případě musíte sbírat kuzel s ve věži. V druhé, můžete jednoduše move na. Tato situace zní jako aplikace pro příkaz if, ve kterém byste napsali něco takového:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(beepersPresent()){</code> <br/>
+ <code>      sbíratSkutečnouVěž();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Než přidáte takový kód do kódu, měli byste přemýšlet o tom, zda potřebujete provést tento test. Často mohou být programy mnohem jednodušší tím, že si všimneme, že případy, které se zpočátku jeví jako zvláštní, mohou být zpracovány přesně stejným způsobem jako obecnější situace. V současném problému, co se stane, když se rozhodnete, že na každé třídě je věž o kuzel s, ale že některé z těchto věží jsou nulové kuzel s vysoké? Využití tohoto přehledu zjednodušuje program, protože již nemusíte testovat, zda je na určité třídě věž.</p>
+<p>Metoda sbíratJednuVěž je stále natolik komplexní, že další stupeň rozkladu je v pořádku. Aby bylo možné shromáždit všech kuzel s ve věži, musí Karel provést následující kroky:</p>
+<ol>
+<li>Odbočit vlevo k kuzel s ve věži.<li>Shromáždit všechny kuzel s ve věži, zastavení, když žádné další kuzel s jsou nalezeny.<li>Otočte se směrem k dolní části světa.<li>Vraťte se na zeď, která představuje zem.<li>Odbočit doleva být připraven na move do dalšího rohu.</li></li></li></li></li></ol>
+<p>Tento přehled opět poskytuje model metody sbíratJednuVěž, která vypadá takto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sbíratJednuVěž(){</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>      kuzelLinkaKuzelS();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      moveKeZdi();</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>Metodické předpoklady a podmínky</h3>
+<p>Příkazy odbočitVlevo na začátku a na konci metody sbíratJednuVěž jsou pro správnost tohoto programu kritické. Když se říká sbíratJednuVěž, Karel je vždy někde na 1. řadě směrem na východ. Po dokončení operace bude program jako celek fungovat správně pouze v případě, že Karel bude na stejném rohu opět na východ. Podmínky, které musí být před voláním metody pravdivé, se označují jako <b>předpoklady</b> ; podmínky, které musí platit po dokončení metody jsou známy jako <b>podmínky</b> .</p>
+<p>Když definujete metodu, dostanete se do mnohem menších potíží, pokud si zapíšete přesně to, co jsou před a postconditions. Poté, co jste tak učinili, musíte se ujistit, že kód, který píšete, vždy zanechává splněné podmínky, za předpokladu, že byly splněny předpoklady. Přemýšlejte například o tom, co se stane, když zavoláte sbíratJednuVěž, když je Karel na 1. řadě směrem na východ. První povel odbočitVlevo opustil Karla směrem na sever, což znamená, že Karel je řádně vyrovnán se sloupem kuzel s představujícím věží. Metoda kuzelLinkaKuzelS - která ještě musí být napsána, ale přesto plní úkol, kterému rozumíte koncepčně - jednoduše move s bez otáčení. Na konci výzvy kuzelLinkaKuzelS bude Karel stále na sever. Volání turnAround proto opustí Karla směrem na jih. Stejně jako kuzelLinkaKuzelS, metoda move KeZdi nezahrnuje žádné zatáčky, ale místo toho prostě move s, dokud nenarazí na okrajovou zeď. Vzhledem k tomu, že Karel stojí na jih, bude tato hraniční stěna v dolní části obrazovky, hned pod 1. řadou. Závěrečný příkaz odbočitVlevo proto zanechává Karla na 1. řadě směrem na východ, což splňuje postcondition.</p>
+<h3>Opakování procesu</h3>
+<p>Vy jste run váš program a to úspěšně vymaže jednu věž a opustí Karla v slíbené postcondition. Wahoo! Právě jste narazili na milník při řešení tohoto tvrdého úkolu! Nyní musíme opakovat proces čištění jedné věže pomocí smyčky while.</p>
+<p>Ale jak to vypadá, když smyčka vypadá? Především byste měli přemýšlet o podmíněném testu. Chcete, aby se Karel zastavil, když narazí na zeď na konci řady. Chcete tedy, aby Karel pokračoval, dokud je prostor vpředu jasný. Takže víte, že metoda sbíratVšechnyKuzelS bude obsahovat smyčku, která používá test frontIsClear . Na každé pozici, chcete, aby Karel shromáždil všech kuzel s ve věži začínající v tom rohu. Pokud dáte této operaci jméno, které by mohlo být něco jako sbíratJednuVěž, můžete pokračovat a napsat definici metody sbíratVšechnyKuzelS, i když jste ještě neuvedli podrobnosti.</p>
+<p>Musíte však být opatrní. Kód pro sbíratVšechnyKuzelS nevypadá takto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sbíratVšechnyKuzelS(){</code> <br/>
+ <code class="comment">      /* buggy smyčka! */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         sbíratJednuVěž();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Tato implementace je buggy z naprosto stejného důvodu, že první verze obecného PlaceKuzelŘádek z kapitoly 6 nedokázala svou práci. V této verzi kódu je chyba fencepost, protože Karel musí testovat přítomnost věže kuzel na poslední třídě. Správná implementace je:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sbíratVšechnyKuzelS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         sbíratJednuVěž();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      sbíratJednuVěž();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Všimněte si, že tato metoda má přesně stejnou strukturu jako hlavní program z programu PlaceKuzelŘádek uvedený v kapitole 6. Jediný rozdíl je v tom, že tento program volá sbíratJednuVěž, kde druhý volal putBeeper . Tyto dva programy jsou příklady obecné strategie, která vypadá takto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>sbíratVšechnyKuzelS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">provést nějakou operaci.</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">provést stejnou operaci pro poslední roh.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Tuto strategii můžete použít, kdykoliv budete potřebovat provést operaci na každém rohu, jak jste move podél cesty, která končí u zdi. Pokud si vzpomenete na obecnou strukturu této strategie, můžete ji použít vždy, když narazíte na problém, který vyžaduje takovou operaci. Opakovaně použitelné strategie tohoto druhu se často objevují v programování a jsou označovány jako <b>programovací idiomy</b> nebo <b>vzory</b> . Čím více vzorů znáte, tím jednodušší bude najít ten, který vyhovuje určitému typu problému.</p>
+<h3>Dokončení</h3>
+<p>Ačkoli byla vykonána tvrdá práce, stále existuje několik volných konců, které je třeba vyřešit. Hlavní program volá dvě metody - poklesVšechKuzelS a vrátitSeDomů - které jsou dosud nepsané. Podobně sbíratJednuVěž volá kuzelLinkaKuzelS a move KeZdi. Všechny tyto čtyři metody jsou naštěstí dostatečně jednoduché na kódování bez dalšího rozkladu, zejména pokud používáte move KeZdi v definici vrátitSeDomů. Zde je kompletní implementace:</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1667.25px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * Soubor: KuzelSbíráníKarel.java
+ * -----------------------------
+ * Třída KuzelSbíráníKarel shromažďuje všech kuzel s
+ * v řadě vertikálních věží a ukládá je na nejvýchodn
+ * ějším rohu 1. řady.
+ */
+import stanford.karel.*;
+public class KuzelSbíráníKarel extends Karel {
+
+   /**
+    * Určuje vstupní bod programu.
+    */
+   public void run() {
+      sbíratVšechnyKuzelS();
+      poklesVšechKuzelS();
+      vrátitSeDomů();
+   }
+
+   /**
+    * Sbírá kuzel s z každé věže pohybem po první řadě,
+    * volá sbíratJednuVěž na každém rohu. Podmínkou této
+    * metody je, že Karel je v nejvýchodnějším rohu 1.
+    * řady směrem na východ.
+    */
+   private void sbíratVšechnyKuzelS() {
+      while (frontIsClear()) {
+         sbíratJednuVěž();
+         move(); 
+      }
+      sbíratJednuVěž();
+   }
+
+   /**
+    * Sbírá kuzel s v jediné věži. Když se říká sbíratJe
+    * dnuVěž, Karel musí být na 1. řadě směrem na východ
+    * . Podmínkou pro sbíratJednuVěž je, že Karel musí b
+    * ýt na stejném rohu opět na východ.
+    */
+   private void sbíratJednuVěž() {
+      turnLeft();
+      kuzelLinkaKuzelS();
+      turnAround();
+      moveKeZdi();
+      turnLeft();
+   }
+
+   /**
+    * Sbírá po sobě následující řádek kuzel s. Konec řád
+    * ku kuzel je označen rohem, který obsahuje ne kuzel
+    * s.
+    */
+   private void kuzelLinkaKuzelS() {
+      while (beepersPresent()) {
+         pickBeeper();
+         if (frontIsClear()) {
+            move(); 
+         }
+      } 
+   }
+
+   /**
+    * Kapky všech kuzel s na aktuálním rohu.
+    */
+   private void poklesVšechKuzelS() {
+      while (beepersInBag()) {
+         putBeeper();
+      }
+   }
+
+   /**
+    * Vrátí Karla do výchozí polohy na rohu 1. třídy a 1
+    * . řady směrem na východ. Předpokladem pro tuto met
+    * odu je, že Karel musí směřovat na východ někde v 1
+    * . řadě, což platí na závěr sbíratVšechnyKuzelS.
+    */
+   private void vrátitSeDomů() {
+      turnAround();
+      moveKeZdi();
+      turnAround();
+   }
+
+   /** Pohybuje Karlem dopředu, dokud není blokován zdí. */
+   private void moveKeZdi(){
+      while (frontIsClear()) {
+         move();
+      } 
+   }
+
+   /** Otočí Karla o 180 stupňů */
+   private void turnAround(){
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'cs', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1667.25;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">Další kapitola</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

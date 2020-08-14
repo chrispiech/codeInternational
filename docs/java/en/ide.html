@@ -1,0 +1,259 @@
+<html>
+
+<head>
+<title>Karel Reader</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="../../plugins/jquery.min.js"></script>
+
+<link rel="stylesheet"  href="../../plugins/bootstrap/css/bootstrap.min.css">
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../../style.css">
+
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script></head>
+
+<body>
+    <!-- container -->
+    <div class="bookContainer">
+<!-- side bar -->
+<div class="bookSideBar">
+  <div class="homeLink">
+    <a href="../../java/en/intro.html">
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      Karel
+    </a>
+  </div>
+  <hr/>
+  
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter1.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter1.html">
+      1 - Meet Karel
+    </a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter2.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter2.html">2 - Programming</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter3.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter3.html">3 - New Methods</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter4.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter4.html">4 - Decomposition</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter5.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter5.html">5 - For Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter6.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter6.html">6 - While Loops</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter7.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter7.html">7 - Conditionals</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter8.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter8.html">8 - Refinement</a>
+  </div>
+  <div class="chapterTab" onclick="location.href='../../java/en/chapter9.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/chapter9.html">9 - SuperKarel</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../java/en/reference.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/reference.html">10 - Reference</a>
+  </div>
+
+  <div class="chapterTab" onclick="location.href='../../java/en/ide.html'">
+    <a class="bookLink btn btn-link" href="../../java/en/ide.html">11 - Code</a>
+  </div>
+
+  <hr/>
+
+  <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/> Learn more</a> 
+
+  <!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/>
+    </center> -->
+</div>        <!-- content -->
+        <div class="bookContent" style="display: flex;">
+            <!-- right gutter -->
+            <div style="flex-grow:1;max-width:50px;"></div>
+            <!-- main stuff -->
+            <div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+
+<h1> Code </h1><hr/>
+
+
+<div class="section embeddedIde" id="ide">
+    <div id ='ideIde' class = "ide getStarted" style="height:334.40000000000003px">
+      <div id = 'ideIdeCenter' class = "ideCenter" >
+         <div id = 'ideEditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = 'ideCanvasDiv' class = 'ideCanvasDiv'>
+            <div class="worldDropdown">
+
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Change World
+                  <span class="caret"></span>
+                </button>
+                <ul id="ideWorlds" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a>1x1</a></li>
+                  <li><a>4x4</a></li>
+                  <li><a>3x6</a></li>
+                  <li><a>7x7</a></li>
+                  <li><a>8x8</a></li>
+                </ul>
+              </div>
+            </div>
+            <canvas id='ideCanvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="ideRunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function exampleide() {
+STARTER_CODE = `
+/*
+ * Write any code you want
+ */
+import stanford.karel.*;
+public class MyProgram extends SuperKarel {
+   public void run() {
+      // your code here...
+   } 
+}
+
+
+
+
+
+
+
+
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('ideEditor','ideEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('ideCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '8x8', 0.0, 'en');
+    $('#ideRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('ideWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#ideRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#ideRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#ide").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('ideIde');
+    var editorDiv = document.getElementById('ideEditorDiv');
+    var canvas = document.getElementById('ideCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+exampleide();
+    </script>
+</div>
+         <hr/>  
+                    </div>
+                </div>
+            </div>
+            <!-- right gutter -->
+            <div style="flex-grow:4"></div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<h1>Kapitel 3: Neue Methoden definieren</h1>
+<hr/>
+<p>Im letzten Kapitel haben wir ein Programm geschrieben, das Karel hilft, einen einfachen Felsvorsprung zu besteigen:</p>
+<h3>Beispiel: ErsterKarel</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>Obwohl die <code>ErsterKarel</code> Das obige Programm zeigt, dass es möglich ist, die <code>turnRight</code> Die Bedienung erfolgt nur mit den in Karel integrierten Befehlen. Das daraus resultierende Programm ist konzeptionell nicht besonders klar. In Ihrer mentalen Programmgestaltung dreht sich Karel nach rechts, wenn es die Spitze des Felsvorsprungs erreicht. Die Tatsache, dass Sie drei biegenSieLinksAb-Befehle verwenden müssen, ist ärgerlich. Es wäre viel einfacher, wenn Sie einfach sagen könnten <code>turnRight()</code> und lassen Sie Karel diesen Befehl verstehen. Das resultierende Programm wäre nicht nur kürzer und einfacher zu schreiben, sondern auch wesentlich einfacher zu lesen.</p>
+<h3>Neue Befehle definieren</h3>
+<p>Glücklicherweise ermöglicht die Programmiersprache Karel die Definition neuer Befehle, indem einfach neue Methodendefinitionen eingefügt werden. Immer wenn Sie eine Folge von Karel-Befehlen haben, die eine nützliche Aufgabe ausführen, wie z. B. nach rechts drehen, können Sie eine neue Methode definieren, die diese Folge von Befehlen ausführt. Das Format zum Definieren einer neuen Karel-Methode entspricht weitgehend der Definition von <code>run</code> in den vorhergehenden Beispielen ist dies eine eigene Methodendefinition. Eine typische Methodendefinition sieht folgendermaßen aus:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">Name</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">Befehle, die den Hauptteil der Methode ausmachen</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>In diesem Muster steht name für den Namen, den Sie für die neue Methode ausgewählt haben. Um die Definition zu vervollständigen, müssen Sie lediglich die Befehlsfolge in den Zeilen zwischen den geschweiften Klammern eingeben. Zum Beispiel können Sie definieren <code>turnRight</code> wie folgt:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Ebenso könnten Sie ein neues definieren <code>turnAround</code> Methode wie folgt:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Sie können den Namen einer neuen Methode genau wie die in Karel integrierten Befehle verwenden. Zum Beispiel, sobald Sie definiert haben <code>turnRight</code> könnten Sie die drei Befehle biegenSieLinksAb in der ersetzen <code>SteigAufKarel</code> Programm mit einem einzigen Aufruf an die <code>turnRight</code> Methode. Hier ist eine überarbeitete Implementierung des verwendeten Programms <code>turnRight</code> :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>Es gibt natürlich einen offensichtlichen Unterschied zwischen den Definitionen der <code>run</code> und <code>turnRight</code> Methoden im obigen Programm: die <code>run</code> Methode ist markiert als <code>public</code> im Kontrast zu <code>turnRight</code> , die markiert ist als <code>private</code> . Der Unterschied zwischen diesen beiden Bezeichnungen besteht darin, dass öffentliche Methoden von außerhalb des Programms aufgerufen werden können, während private Methoden dies nicht können. Die run Methode muss öffentlich sein, da die Karel-Umgebung in der Lage sein muss, einen run Befehl run , um die Dinge zum Laufen zu bringen. Es ist im Allgemeinen eine gute Programmierpraxis, Definitionen nach Möglichkeit geheim zu halten.</p>
+<h3>Methodencodeblöcke</h3>
+<p>Eine Befehlsgruppe zwischen zwei geschweiften Klammern <code translate="no">{ }</code> heißt a <b>Codeblock</b> . Der Hauptteil Ihres Programms ist ebenso wie der Hauptteil einer Methode ein Codeblock. Beachten Sie, wie der Inhalt eines Codeblocks alle um eine Registerkarte eingerückt ist. Dies ist stilistisch wichtig, da der Mensch leicht erkennen kann, welche Codezeilen sich in einem bestimmten Block befinden.</p>
+<p>Sie können beliebig viele Methoden definieren. Sie sollten alle nacheinander in Ihren Programmcode-Block geschrieben werden. Sie können keine Methode innerhalb einer anderen Methode definieren.</p>

@@ -1,0 +1,87 @@
+<h1>Bab 7: Jika Penyata</h1>
+<hr/>
+<p>Pengaliran aliran pengaturcaraan akhir yang terakhir untuk belajar adalah pernyataan bersyarat ( <code>if</code> dan <code>if/else</code> ).</p>
+<h3>Keadaan asas</h3>
+<p>An <code>if/else</code> pernyataan melaksanakan "jika" kod-blok jika dan hanya jika yang disediakan<i class="demoText">ujian</i>adalah benar untuk keadaan dunia pada masa program mencapai kenyataan. Jika tidak, program itu akan melaksanakan kod-blok "yang lain".</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">ujian</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">jika kod-blok</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">lain blok kod</i><br/>
+ <code>}</code> 
+</p>
+<p>Untuk mendapatkan rasa di mana kenyataan bersyarat mungkin berguna, mari kita tulis sebuah program yang mempunyai Karel membalikkan garis beeper s. Jika sebuah persegi sebelum ini mempunyai beeper , Karel harus mengambilnya. Sekiranya persegi tidak mempunyai beeper , Karel perlu meletakkan satu ke bawah.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>Perhatikan bahawa <code>if</code> pernyataan tidak perlu mempunyai <code>else</code> blok - dalam kes itu pernyataan menyerang seperti a <code>while</code> gelung yang hanya melaksanakan satu masa:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">ujian</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">jika kod-blok</i><br/>
+ <code>} </code> 
+</p>
+<h3>Syarat-syarat</h3>
+<p>Contoh terakhir itu menggunakan keadaan baru. Berikut adalah senarai semua syarat yang diketahui Karel:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Uji</th><th>Sebaliknya</th><th>Apa yang dia cek</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>Adakah dinding di hadapan Karel?</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>Adakah terdapat beeper s di sudut ini?</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>Adakah terdapat tembok ke kiri Karel?</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>Adakah terdapat dinding untuk hak Karel?</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>Mana ada beeper s dalam beg Karel?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>Adakah Karel menghadap ke utara?</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>Adakah Karel menghadap ke selatan?</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>Adakah Karel menghadap ke timur?</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>Adakah Karel menghadap ke barat?</td>
+</tr>
+</table>
+</p>
+<h3>Meletakkannya bersama-sama</h3>
+<p>Tahniah! Anda kini tahu semua blok aliran kawalan pengaturcaraan teras. Semasa anda belajar dengan Karel, kaedah, sementara gelung, untuk gelung, jika / kenyataan lain berfungsi dengan cara yang sama dalam hampir semua bahasa utama, termasuk Jawa.</p>
+<p>Sekarang bahawa anda mempunyai blok bangunan, anda boleh meletakkannya bersama-sama untuk membina penyelesaian untuk masalah yang lebih rumit. Untuk sebahagian besar, pengaturcaraan adalah ilmu menyelesaikan masalah dengan komputer. Kerana masalah sering sukar, penyelesaian-dan program-program yang melaksanakan penyelesaian-boleh menjadi sukar juga. Untuk memudahkan anda mengembangkan penyelesaian itu, anda perlu mengamalkan metodologi dan disiplin yang dapat mengurangkan tahap kerumitan itu kepada skala yang boleh diurus.</p>

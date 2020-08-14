@@ -1,0 +1,55 @@
+<h1>第4章：分解</h1>
+<hr/>
+<p>为了说明能够定义新功能所带来的更多功能，让Karel从一个地方到另一个地方做一些比move和锥体更实用的move用。道路通常似乎需要维修，看卡雷尔（Karel）是否可以填补其抽象世界的坑洼可能会很有趣。例如，假设卡雷尔（Karel）站在左侧图所示的“道路”上，即道路坑洼左侧的一个角。卡雷尔（Karel）的工作是用锥体填充孔，然后转到下一个角。右图说明了程序执行后的世界状况。</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>如果限于四个预定义命令，则 <code>main()</code> 解决此问题的功能如下所示：</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+ <code style="margin-left:2em">放锥体()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">turn_left()</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+</p>
+<p>定义 <code>turn_right()</code> 功能是要重复三遍很麻烦 <code>turn_left()</code> 命令以完成右转弯。定义新功能还有一个重要的目的，那就是让您避免每次想要执行特定任务时都重复相同的命令序列。定义函数的能力可以解锁编程中最重要的策略，即将大问题分解为更容易解决的小问题的过程。将程序分解为较小的部分的过程称为 <b>分解</b> ，而大问题的组成部分称为 <b>子问题</b> 。</p>
+<p>例如，填补道路上的洞的问题可以分解为以下子问题：</p>
+<ol>
+<li>向上移动到洞口<li>将锥体放入孔中<li>转到下一个角落</li></li></li></ol>
+<p>如果以这种方式考虑问题，则可以使用函数定义来创建一个反映您对程序结构概念的程序。 main函数如下所示：</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+ <code style="margin-left:2em">填充坑洼()</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+</p>
+<p>与轮廓的对应关系一目了然，只要让Karel理解您的意思，一切都会很棒。 <code>填充坑洼()</code> 。拥有定义功能的权力，实施 <code>填充坑洼()</code> 非常简单。您要做的就是定义一个 <code>填充坑洼()</code> 该函数的主体由您已经编写的用于执行此工作的命令组成，如下所示：</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> 填充坑洼():</code> <br/>
+ <code style="margin-left:2em">turn_right()</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+ <code style="margin-left:2em">放锥体()</code> <br/>
+ <code style="margin-left:2em">turn_around()</code> <br/>
+ <code style="margin-left:2em">move()</code> <br/>
+ <code style="margin-left:2em">turn_right()</code> <br/>
+</p>
+<p>这是完整的程序。请注意，仅通过阅读以下内容，您便可以了解程序员的意图 <code>main()</code> 功能。当您使用run程序时，突出显示的行将逐步显示计算机将如何执行该程序。但是，由于该程序已被很好地分解，因此我们可以在人类的思想层面上理解它：</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>
+

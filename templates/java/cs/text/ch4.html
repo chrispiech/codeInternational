@@ -1,0 +1,57 @@
+<h1>Kapitola 4: Rozklad</h1>
+<hr/>
+<p>Jako způsob, jak ilustrovat více síly, která přichází s možností definovat nové metody, je užitečné, aby Karel udělal něco o něco praktičtějšího než move a kuzel z jednoho místa na druhé. Zdá se, že vozovky často potřebují opravu a může být zábavné zjistit, zda Karel může zaplnit výmoly ve svém abstraktním světě. Představte si například, že Karel stojí na „silnici“ zobrazené na levém obrázku, jeden roh vlevo od výmoly na silnici. kuzel prací je zaplnit díru kuzel a přejít k dalšímu rohu. Diagram vpravo ukazuje, jak by se měl svět starat o provádění programu.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Pokud jste omezeni na čtyři předdefinované příkazy, metoda run k vyřešení tohoto problému bude vypadat takto:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Počáteční motivací pro definování metody odbočitVpravo bylo, že bylo těžkopádné opakovat tři příkazy odbočitVlevo k dosažení správného obratu. Definování nových metod má další důležitý účel, kromě toho, abyste se vyhnuli opakování stejných příkazových sekvencí pokaždé, když chcete provést určitý úkol. Síla definovat metody odemkne nejdůležitější strategii v programování - proces rozbití velkého problému na menší kousky, které se snadněji řeší. Proces rozbití programu na menší kousky se nazývá rozklad a součásti velkého problému se nazývají subproblémy.</p>
+<p>Jako příklad lze uvést, že problém vyplnění díry v vozovce lze rozložit na následující podústavy:</p>
+<ol>
+<li>Přesuňte se nahoru k díře<li>Naplňte díru tím, že do ní kuzel<li>Přejděte na další roh</li></li></li></ol>
+<p>Pokud o tomto problému přemýšlíte tímto způsobem, můžete použít definice metod k vytvoření programu, který bude odrážet vaši koncepci struktury programu. Metoda run by vypadala takto:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">výplň();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Korespondence s obrysem je okamžitě jasná a všechno by bylo skvělé, kdybyste Karla dokázala pochopit, co znamená výplň. Vzhledem k moci definovat metody je implementace výplň velmi jednoduchá. Jediné, co musíte udělat, je definovat výplňovou metodu, jejíž tělo se skládá z příkazů, které jste již napsali, abyste tuto práci provedli:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> výplň() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Zde je kompletní program. Všimněte si, jak můžete pochopit, že programátoři run jednoduše číst metodu run . Když program run , zvýraznění řádku ukazuje, jak počítač provede, krok za krokem. Protože je však program pěkně členěn, můžeme ho chápat na úrovni lidského myšlení:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

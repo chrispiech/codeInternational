@@ -1,0 +1,41 @@
+<h1>第1章：介绍机器人卡雷尔</h1>
+<hr/>
+<p>在20世纪70年代，一位名叫Rich Pattis的斯坦福大学研究生决定，如果学生能够在一个简单的环境中学习基本思想，而不受大多数编程语言特有的复杂性的影响，那么教授编程的基础将会更容易。 Rich设计了一个入门编程环境，学生可以在其中教授机器人来解决简单的问题。这位机器人在捷克剧作家之后被命名为卡雷尔 <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">卡雷尔Čapek</a> ，他的1923年戏剧RUR（ <a href="https://en.wikipedia.org/wiki/R.U.R.">罗森的通用机器人</a> ）将机器人这个词用于英语。</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>机器人卡雷尔非常成功。 Karel已被用于世界各地的计算机科学入门课程，并已向数百万学生讲授。斯坦福大学的许多学生都学习了编程如何与Karel一起工作，而且它仍然是斯坦福大学使用的编码的温和介绍。</p>
+<h3>什么是卡雷尔？</h3>
+<p>卡雷尔是一个生活在一个非常简单的世界中的非常简单的机器人。通过为Karel提供一组命令，您可以指示它在其世界中执行某些任务。调用指定这些命令的过程 <b>程序设计</b> 。最初，Karel只了解极少数预定义命令，但编程过程的一个重要部分是教授Karel扩展其功能的新命令。</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>卡雷尔计划具有大致相同的结构，涉及相同的基本要素 <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java的</a> ， 一个主要的 <a href="https://en.wikipedia.org/wiki/Programming_language">编程语言</a> 。关键的区别在于Karel的编程语言非常小，因此细节很容易掌握。即便如此，您会发现解决问题可能具有挑战性。</p>
+<p>从卡雷尔开始，您可以从一开始就集中精力解决问题。解决问题是编程的本质。而且因为卡雷尔鼓励想象力和创造力，所以你可以在此过程中获得很多乐趣。</p>
+<h3>卡雷尔的世界</h3>
+<p>卡雷尔的世界由水平（东 - 西）行run和垂直（南北）列run 。行和列的交集称为角。卡雷尔只能位于角落，必须面向四个标准罗盘方向之一（北，南，东，西）。卡雷尔样本世界如下所示。卡雷尔位于第一排和第一列的角落，朝东。</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>在这个例子中可以看到卡雷尔世界的其他几个组成部分。卡雷尔面前的物体是锥体 。正如Rich Pattis的书中所述， 锥体是“塑料锥体，发出安静的哔哔声。”卡雷尔只能检测锥体如果它在同一个角落。图中的实线是墙。墙壁是卡雷尔世界的障碍。卡雷尔不能穿过墙壁而必须绕过它们。卡雷尔的世界总是被边缘的墙壁所包围，但世界可能有不同的维度，这取决于卡雷尔需要解决的具体问题。</p>
+<h3>卡雷尔的命令</h3>
+<p>当Karel从工厂发货时，它会响应一小组命令：<table class="table mt-10">
+<tr><th>命令</th><th>描述</th></tr>
+<tr><td> <code>move();</code> </td><td>要求卡雷尔向move前进一个街区。卡雷尔无法回应 <code>move()</code> 命令是否有阻挡它的方式的墙。</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>要求卡雷尔向左旋转90度（逆时针）。</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>要求Karel从一个角落拿起一个锥体并将锥体在锥体包中，该包可以容纳无限数量的锥体秒。卡雷尔无法回应 <code>pickBeeper()</code> 命令除非当前角落有锥体 。</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>问卡雷尔采取锥体从其锥体包，把它倒在当前的弯道。卡雷尔无法回应 <code>putBeeper()</code> 命令除非锥体包中有锥体 s。</td></tr>
+</table>
+</p>
+<p>让我们试试这些命令。使用下面的按钮获得“世界”以匹配“目标”：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/commands.html', name="cmd", world="commands", goalWorld="commandsGoal")
+%>
+
+
+<p>每个命令中出现的空对括号都是Karel和Java共享的通用语法的一部分，用于指定命令的调用。最终，您编写的程序将在括号之间的空格中包含附加信息，但这些信息不是Karel原始世界的一部分。因此，这些括号在标准卡雷尔程序中将为空，但您必须记住包括它们。</p>
+<p>如果卡雷尔试图做一些非法行为，例如穿墙或拾取不存在的锥体 ，则会出现错误情况。</p>
+<p>卡雷尔的命令不是自己执行的。相反，您需要将它们合并到Karel程序中。您将有机会在第2章中看到一些简单的Karel程序！</p>
+<p></p>

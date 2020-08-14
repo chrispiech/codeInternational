@@ -1,0 +1,120 @@
+<h1>参照</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>この付録では、1ページにKarelプログラミング言語の構造を定義します。</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Base Karelはこう主張している。</b> 
+<p class="refCode">
+ <code>move();</code> <br/>
+ <code>turnLeft();</code> <br/>
+ <code>putBeeper();</code> <br/>
+ <code>pickBeeper();</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>カレルプログラムの構造：</b> 
+<p class="refCode">
+ <code class="comment">/* コメントはどの部分にも含めることができます<br/>
+ * の a プログラム. 彼ら 開始 と a スラッシュ-星<br/>
+ * and end with a star-slash.<br/>
+ */<br/></code> 
+ <code><span class="keyword">public class</span> <i class="demoText">名</i> <span class="keyword">extends</span> スーパーカレル {</code> <br/>
+<br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      </code> <i class="demoText">実行するコード</i><br/>
+ <code>   }</code> <br/>
+<br/>
+ <code>   </code> <i class="demoText">プライベートメソッドの宣言</i><br/>
+ <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>条件の名前</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>frontIsClear()</code> <br/>
+ <code>beepersPresent()</code> <br/>
+ <code>beepersInBag()</code> <br/>
+ <code>leftIsClear()</code> <br/>
+ <code>rightIsClear()</code> <br/>
+ <code>facingNorth()</code> <br/>
+ <code>facingSouth()</code> <br/>
+ <code>facingEast()</code> <br/>
+ <code>facingWest()</code> <br/>
+</div>
+<div class="refCol">
+ <code>frontIsBlocked()</code> 
+ <code>noBeepersPresent()</code> <br/>
+ <code>noBeepersInBag()</code> <br/>
+ <code>leftIsBlocked()</code> <br/>
+ <code>rightIsBlocked()</code> <br/>
+ <code>notFacingNorth()</code> <br/>
+ <code>notFacingSouth()</code> <br/>
+ <code>notFacingEast()</code> <br/>
+ <code>notFacingWest()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>条件：</b> 
+<p class="refCode"> <code><span class="keyword">if</span>(</code> <i class="demoText">調子</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">条件がrun場合はコードrun</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span>(</code> <i class="demoText">調子</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">"yes"のコードブロック</i><br/> <code>} <span class="keyword">else</span> {</code> <br/><i class="demoText" style="margin-left:2em">"no"のコードブロック</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>ループ：</b> 
+<p class="refCode"> <code><span class="keyword">for</span>(int i = 0; i &lt;</code>  <i class="demoText">カウント</i> <code>; i++){</code> <br/><i class="demoText" style="margin-left:2em">繰り返すコード</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span>(</code> <i class="demoText">調子</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">繰り返すコード</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>メソッド宣言：</b> 
+<p class="refCode"> <code><span class="keyword">private void</span></code> <i class="demoText" style="margin-left:10px">名</i> <code>() {</code> <br/><i class="demoText" style="margin-left:2em">メソッドの本体にコードを記述します。</i><br/> <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>スーパーカレル追加コマンド：</b> 
+<p class="refCode">
+ <code>turnRight();</code> <br/>
+ <code>turnAround();</code> <br/>
+ <code>random(</code> <i class="demoText">p</i> <code>);</code> <br/>
+ <code>paintCorner(</code> <i class="demoText">色</i> <code>);</code> <br/>
+</p>
+</div>
+</div>
+</div>
+<!--
+-->

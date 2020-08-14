@@ -1,0 +1,57 @@
+<h1>Bab 4: Penguraian</h1>
+<hr/>
+<p>Sebagai cara menggambarkan lebih banyak kuasa yang datang dengan dapat mentakrifkan kaedah baru, berguna untuk membuat Karel melakukan sesuatu yang lebih praktikal daripada move beeper dari satu tempat ke tempat lain. Jalan raya sering sepertinya memerlukan pembaikan, dan ia mungkin menjadi keseronokan untuk melihat jika Karel dapat mengisi lubang di dunia abstraknya. Sebagai contoh, bayangkan bahawa Karel berdiri di "jalan" yang ditunjukkan dalam gambar sebelah kiri, satu sudut di sebelah kiri sebuah lubang di jalan. Tugas Karel adalah untuk mengisi lubang dengan beeper dan meneruskan ke sudut seterusnya. Rajah di sebelah kanan menggambarkan bagaimana dunia harus menjaga pelaksanaan program.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Sekiranya anda terhad kepada empat arahan yang telah ditetapkan, kaedah run untuk menyelesaikan masalah ini akan kelihatan seperti ini:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Motivasi awal untuk menentukan kaedah belokKanan adalah bahawa ia adalah rumit untuk terus mengulang tiga perintah belokKiri untuk mencapai giliran yang betul. Mendefinisikan kaedah baru mempunyai satu lagi tujuan penting di luar membolehkan anda untuk mengelakkan mengulang urutan perintah yang sama setiap kali anda ingin melaksanakan tugas tertentu. Kuasa untuk menentukan kaedah membuka kunci strategi yang paling penting dalam pengaturcaraan - proses memecahkan masalah besar ke dalam kepingan yang lebih kecil yang lebih mudah untuk dipecahkan. Proses memecah program ke dalam bahagian kecil dipanggil penguraian, dan bahagian komponen masalah besar dipanggil subproblem.</p>
+<p>Sebagai contoh, masalah mengisi lubang di jalan raya boleh diuraikan ke dalam subproblem berikut:</p>
+<ol>
+<li>Bergerak ke lubang<li>Isikan lubang dengan menjatuhkan beeper ke dalamnya<li>Pindah ke sudut seterusnya</li></li></li></ol>
+<p>Jika anda berfikir tentang masalah dengan cara ini, anda boleh menggunakan definisi kaedah untuk membuat program yang mencerminkan konsep anda tentang struktur program. Kaedah run akan kelihatan seperti ini:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">mengisiLubang();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Koresponden dengan garis besarnya segera jelas, dan segala-galanya akan menjadi hebat jika hanya anda yang boleh mendapatkan Karel untuk memahami apa yang anda maksud dengan mengisiLubang. Memandangkan kuasa untuk menentukan kaedah, pelaksanaan mengisiLubang sangat mudah. Apa yang anda perlu lakukan ialah menentukan kaedah mengisiLubang yang badannya terdiri daripada arahan yang telah anda tulis untuk melakukan kerja seperti ini:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> mengisiLubang() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Berikut adalah program lengkap. Perhatikan bagaimana anda boleh memahami maksud pengaturcara semata-mata dari membaca kaedah run . Apabila anda run program itu, penonjolan garis menunjukkan bagaimana komputer akan melaksanakannya, langkah demi langkah. Walau bagaimanapun, kerana program ini dipecahkan dengan baik, kita dapat memahaminya pada tahap pemikiran manusia:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

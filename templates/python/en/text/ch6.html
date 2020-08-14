@@ -1,0 +1,71 @@
+<h1>Chapter 6: While Loops</h1>
+<hr/>
+<p>
+The technique of defining new functions, and defining <code>for</code> loops—as useful as they are—does not actually enable Karel to solve any new problems. Every time you run a program it always does exactly the same thing. Programs become a lot more useful when they can respond differently to different inputs.
+</p>
+
+<p>
+	As an example, let's say you wanted to write a program to have Karel move to a wall. But you don't simply want this program to work on one world with a fixed size. You would like to write a single program that could work on any world.
+</p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+<p>
+	Try changing the world by clicking the "Change World" dropdown above the world. For any sized world, Karel will move until it hits a wall. Notice that this feat can not be acomplished using a <code class="keyword">for</code> loop. That would require us to know the size of the world at the time of programming.
+	</p>
+
+	<h3>Basic While Loop</h3>
+
+<p>In Karel, a <code class="keyword">while</code> loop is used to repeat a body of code <i>as long as</i> a given condition holds. The <code>while</code> loop has the following general form:</p>
+<p class="demoCode">
+<code><span class="keyword">while</span> </code><i class="demoText">test</i><code>:</code><br/>
+   <i class="demoText" style="margin-left:2em">statements to be repeated</i><br/>
+</p>
+
+
+
+<p>
+The control-flow of a <code>while</code> loop is as follows. When the program hits a <code>while</code> loop it starts repeating a process where it first <i>checks</i> if the test passes, and if so <i>runs</i> the code in the body.
+</p>
+	When the program <i>checks</i> if the test passes, it decides if the <i class="demoText">test</i> is true for the current state of the world. If so, the loop will run the code in the body. If the test fails, the loop is over and the program moves on.
+</p>
+<p>
+When the program <i>runs</i> the body of the loop, the program executes the lines in the body one at a time. When the program arrives at the end of the <code>while</code> loop, it jumps back to the top of the loop. It then rechecks the test, continuing to loop if it passes. The program does not exit the loop until it gets to a check, and the test fails.
+</p>
+<p>
+Karel has many <i class="demoText">test</i> statements, and we will go over all of them in the next chapter. For now we are going to use a single test statement: <code>front_is_clear()</code> which is true if there is no wall directly in front of Karel.
+</p>
+
+<h3>Fencepost Bug</h3>
+
+<p>Let's modify our program above to make it more interesting. Instead of just moving to a wall, have Karel place a line of beepers, one in each square. Again we want this program to work for a world of any size:
+</p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+<p>That looks great. Except for one problem. On every world Karel doesn't place a beeper on the last square of the line (look closely). When Karel is on the last square, the program does not execute the body of the loop because the test no longer passes -- Karel is facing a wall. You might be tempted to try switching the order of the body so that Karel moves before placing a beeper. The code is editable so go try it!
+</p>
+
+<p>
+There is a deeper problem that no rearrangement of the body can solve. For the world with 7 columns, Karel needs to put 7 beepers, but should only <code>move()</code> 6 times. Since the <code>while</code> loop executes both lines when a test passes, how can you get the program to execute one command one more time than the other?
+</p>
+
+<p>
+The bug in this program is an example of a programming problem called a <b>fencepost error</b>. The name comes from the fact that if you want to build a fence made of panels which have one fence post on either size, the number of fence posts is always one greater than the number of panels. How many fence posts, for example, do you need to build a fence with 10 panels? The answer is 11, as illustrated by the following diagram:
+</p>
+
+<center>
+<img style ="width:500px;margin-bottom:10px" src="{{pathToRoot}}images/ch6/fencepost.png"/>
+</center>
+
+<p>
+	Once you discover it, fixing this bug is actually quite easy. Before Karel stops at the end of the world, all that the program has to do is place a final beeper:
+</p>
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

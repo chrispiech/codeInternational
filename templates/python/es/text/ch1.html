@@ -1,0 +1,37 @@
+<h1>Capítulo 1: Presentación del robot Karel</h1>
+<hr/>
+<p>En la década de 1970, un estudiante graduado de Stanford llamado Rich Pattis decidió que sería más fácil enseñar los fundamentos de la programación si los estudiantes pudieran de alguna manera aprender las ideas básicas en un entorno simple libre de las complejidades que caracterizan a la mayoría de los lenguajes de programación. Rich diseñó un entorno de introducción a la programación en el que los estudiantes enseñan a un robot a resolver problemas simples. Ese robot se llamaba Karel , en honor al dramaturgo checo <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , cuyo 1923 juega RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Robots universales de Rossum</a> ) le dio la palabra robot al idioma inglés.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Karel el Robot fue todo un éxito. Karel se ha utilizado en cursos de introducción a la informática en todo el mundo y se ha enseñado a millones de estudiantes. Muchas generaciones de estudiantes de Stanford aprendieron cómo funciona la programación con Karel , y sigue siendo la suave introducción a la codificación que se usa en Stanford.</p>
+<h3>¿Qué es Karel ?</h3>
+<p>Karel es un robot muy simple que vive en un mundo muy simple. Al darle a Karel un conjunto de comandos, puede Karel que realice ciertas tareas dentro de su mundo. El proceso de especificar esos comandos se llama <b>programación</b> . Inicialmente, Karel comprende solo una cantidad muy pequeña de comandos predefinidos, pero una parte importante del proceso de programación es enseñar Karel nuevos comandos que amplían sus capacidades.</p>
+<p>Karel programas tienen la misma estructura e involucran los mismos elementos fundamentales que <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Pitón</a> , un alcalde <a href="https://en.wikipedia.org/wiki/Programming_language">lenguaje de programación</a> . La diferencia fundamental es que el lenguaje de programación de Karel es extremadamente pequeño y, como tal, los detalles son fáciles de dominar. Aun así, descubrirá que resolver un problema puede ser un desafío.</p>
+<p>Al comenzar con Karel , puede concentrarse en resolver problemas desde el principio. La resolución de problemas es la esencia de la programación. Y debido a que Karel fomenta la imaginación y la creatividad, puede divertirse bastante en el camino.</p>
+<h3>Karel el mundo</h3>
+<p>El mundo de Karel está definido por las filas ejecutando horizontalmente (este-oeste) y las columnas ejecutando verticalmente (norte-sur). La intersección de una fila y una columna se llama esquina. Karel solo se puede colocar en las esquinas y debe estar orientado hacia una de las cuatro direcciones estándar de la brújula (norte, sur, este, oeste). A continuación se muestra un ejemplo de Karel mundo. Aquí Karel se encuentra en la esquina de la 1ª fila y la 1ª columna, mirando al este.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>En este ejemplo se pueden ver varios otros componentes del Karel de Karel . El objeto frente a Karel es cono . Como se describe en el libro de Rich Pattis, conos son "conos de plástico que emiten un pitido silencioso". Karel solo puede detectar un cono si está en la misma esquina. Las líneas continuas del diagrama son paredes. Los muros sirven como barreras dentro del mundo de Karel . Karel no puede atravesar paredes y debe Karel . El mundo de Karel siempre está delimitado por paredes a lo largo de los bordes, pero el mundo puede tener diferentes dimensiones dependiendo del problema específico que Karel deba resolver.</p>
+<h3>Karel de Karel</h3>
+<p>Cuando el Karel sale de fábrica, responde a un conjunto muy pequeño de comandos. Probemos los comandos. Utilice los botones de abajo para hacer que el "mundo" coincida con el "objetivo":</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/commands.html', name="cmd", world="commands", goalWorld="commandsGoal")
+%>
+
+<p>Esto es lo que hace cada comando:<table class="table mt-10">
+<tr><th>Mando</th><th>Descripción</th></tr>
+<tr><td> <code>moverse()</code> </td><td>Pregunta Karel a moverse hacia adelante un bloque. Karel no puede responder a un <code>moverse()</code> Manda si hay un muro que bloquea su camino.</td></tr>
+<tr><td> <code>girar_izquierda()</code> </td><td>Pide a Karel que gire 90 grados a la izquierda (en sentido antihorario).</td></tr>
+<tr><td> <code>recoger_cono()</code> </td><td>Pide a Karel que recoja un cono de una esquina y almacena el cono en su bolsa cono , que puede contener un número infinito de conos . Karel no puede responder a un <code>recoger_cono()</code> comando a menos que haya un cono en la esquina actual.</td></tr>
+<tr><td> <code>poner_cono()</code> </td><td>Pide a Karel que saque un cono de su bolsa cono y lo deje en la esquina actual. Karel no puede responder a un <code>poner_cono()</code> comando a menos que haya conos en su bolsa cono .</td></tr>
+</table>
+</p>
+<p>El par vacío de paréntesis que aparece en cada uno de estos comandos es parte de la sintaxis común compartida por Karel y Python y se utiliza para especificar la invocación del comando. Eventualmente, los programas que escriba incluirán información adicional en el espacio entre paréntesis, pero dicha información no es parte del mundo primitivo de Karel . Por lo tanto, estos paréntesis estarán vacíos en los programas estándar Karel , pero debe recordar incluirlos de todos modos.</p>
+<p>Si Karel intenta hacer algo ilegal, como moverse a través de una pared o recoger un cono inexistente, se produce una condición de error.</p>
+<p>Karel comandos de Karel no se ejecutan por sí mismos. En su lugar, debe incorporarlos a un programa Karel . ¡Tendrá la oportunidad de ver algunos programas simples Karel en el Capítulo 2!</p>
+<p></p>

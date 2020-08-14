@@ -1,0 +1,450 @@
+
+<html>
+<head>
+
+<title>Lector Karel</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter1.html">1 - Cumplir Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter3.html">3 - Nuevos métodos</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/es/chapter9.html">9 - Super Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Aprende más</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Capítulo 8: Refinamiento paso a paso</h1>
+<hr/>
+<p>En gran medida, la programación es la ciencia de resolver problemas por computadora. Debido a que los problemas suelen ser difíciles, las soluciones y los programas que implementan esas soluciones también pueden ser difíciles. Para facilitar el desarrollo de esas soluciones, debe adoptar una metodología y disciplina que reduzca el nivel de esa complejidad a una escala manejable.</p>
+<p>En los primeros años de la programación, el concepto de la computación como ciencia era más o menos un experimento de ilusiones. Nadie sabía mucho acerca de la programación en esos días, y pocos pensaban en ello como una disciplina de ingeniería en el sentido convencional. Sin embargo, a medida que la programación maduraba, tal disciplina comenzó a emerger. La piedra angular de esa disciplina es comprender que la programación se realiza en un entorno social en el que los programadores deben trabajar juntos. Si ingresa en la industria, seguramente será uno de los muchos programadores que trabajan para desarrollar un gran programa. Además, es casi seguro que ese programa viva y requiera mantenimiento más allá de su aplicación original. Alguien querrá que el programa incluya alguna nueva característica o trabajo de alguna manera diferente. Cuando eso ocurre, un nuevo equipo de programadores debe ingresar y hacer los cambios necesarios en los programas. Si los programas están escritos en un estilo individual con poca o ninguna coincidencia, lograr que todos trabajen juntos de manera productiva es extremadamente difícil.</p>
+<p>Para combatir este problema, los programadores comenzaron a desarrollar un conjunto de metodologías de programación que se denominan colectivamente. <b>Ingeniería de software</b> . El uso de buenas habilidades de ingeniería de software no solo facilita la lectura y comprensión de sus programas por parte de otros programadores, sino que también facilita la escritura de dichos programas en primer lugar. Uno de los avances metodológicos más importantes de la ingeniería de software es la estrategia de <b>diseño de arriba hacia abajo</b> o <b>refinamiento por etapas</b> , que consiste en resolver problemas comenzando con el problema en su conjunto. Rompe todo el problema en partes y luego resuelve cada pieza, desglosándolas aún más si es necesario. Esta estrategia de arriba abajo se complementa con <b>prueba iterativa</b> donde se asegura de que las piezas más pequeñas de la solución estén funcionando antes de continuar.</p>
+<h3>Un ejercicio de refinamiento escalonado.</h3>
+<p>Para ilustrar el concepto de refinamiento por pasos, enseñemos Karel para resolver un problema nuevo. Imagina que Karel ahora vive en un mundo que se parece a esto:</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'es',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>En cada una de las columnas, hay una torre de conos de una altura desconocida, aunque algunas columnas (como la 7 y la 9 en el mundo de la muestra) pueden estar vacías. El trabajo de Karel es recolectar todos los conos en cada una de estas torres, colocarlas nuevamente en la esquina más oriental de la primera fila y luego regresar a su posición inicial. Por lo tanto, cuando Karel termina su trabajo en el ejemplo anterior, todos los 25 conos actualmente en las torres deben apilarse en la esquina de la 9ª columna y la 1ª fila, de la siguiente manera:</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'es',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>Es importante destacar que usted puede suponer que Karel inicial<i>empieza</i>Con cero conos en su bolsa. Cada cono recogidos se añaden a su bolsa. Al colocar conos en la esquina, karel puede usar el <code>bolsaConConos()</code> prueba.</p>
+<p>La clave para resolver este problema es descomponer el programa de la manera correcta, al mismo tiempo que se puede probar a medida que avanza. Esta tarea es más compleja que las otras que ha visto, lo que hace que la elección de los subproblemas apropiados sea más importante para obtener una solución exitosa.</p>
+<h3>El principio del diseño de arriba hacia abajo.</h3>
+<p>La idea clave en el refinamiento paso a paso es que debe comenzar el diseño de su programa desde la parte superior, que se refiere al nivel del programa que es conceptualmente más alto y más abstracto. En este nivel, el problema de la torre cono se divide claramente en tres fases independientes. Primero, Karel tiene que recoger todos los conos . Segundo, Karel tiene que depositarlos en la última intersección. En tercer lugar, Karel tiene que volver a su posición Karel . Esta descomposición conceptual del problema sugiere que el método run para este programa tendrá la siguiente estructura:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      recogerTodosLosConos();</code> <br/>
+ <code>      soltarTodoConos();</code> <br/>
+ <code>      volverACasa();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>En este nivel, el problema es fácil de entender. Por supuesto, hay algunos detalles que quedan en la forma de métodos que aún no ha escrito. Aun así, es importante mirar cada nivel de la descomposición y convencerse de que, mientras crea que los métodos que está a punto de escribir resolverán los subproblemas correctamente, tendrá una solución al problema en su totalidad. .</p>
+<h3>Pruebas iterativas sobre la marcha</h3>
+<p>Ahora que ha definido la estructura del programa como un todo, es hora de moverse en el primer subproblema, que consiste en recopilar todos los conos . Esta tarea es en sí misma más complicada que los problemas simples de los capítulos anteriores. Recolectar todos los conos significa que debes recoger los conos en cada torre hasta llegar a la esquina final. El hecho de que necesite repetir una operación para cada torre sugiere que necesita un ciclo while aquí. El ciclo while repetirá el proceso de <code>recogerUnaTorre</code> y luego en movimiento.</p>
+<p> <b>Precaución:</b> Es peligroso tratar de escribir todo el programa sin <b>pruebas</b> a medida que avanza Si comete un error será difícil encontrar el error. Sabemos que vamos a repetir el proceso de recogida de una torre. Escribamos y <b>prueba</b> recogiendo una sola torre antes de que pongamos el <code>RecogerUnaTorre</code> ciclo for en un ciclo for . Así<i>temporalmente</i>Podemos comenzar con la siguiente definición de recogerTodosLosConos:<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> recogerTodosLosConos() {</code> <br/>
+ <code class="comment">      /* Implementación temporal para propósitos de prueba. */</code> <br/>
+ <code>      recogerUnaTorre();</code> <br/>
+ <code>      moverse();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Como principio guía, si tiene un complejo ciclo , pruebe el<i>cuerpo</i>de la ciclo antes de escribir la ciclo completa.</p>
+<h3>Torre de recogida de refinamiento</h3>
+<p>Cuando se llama Karel , Karel se encuentra en la base de una torre de conos o en una esquina vacía. En el primer caso, debe recoger el conos en la torre. En este último, simplemente puede moverse en. Esta situación suena como una aplicación para la sentencia if, en la que escribirías algo como esto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(conosPresentes()){</code> <br/>
+ <code>      recogerLaTorreReal();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Antes de agregar dicha declaración al código, debe pensar si necesita realizar esta prueba. A menudo, los programas pueden hacerse mucho más simples observando que los casos que al principio parecen ser especiales pueden tratarse exactamente de la misma manera que la situación más general. En el problema actual, ¿qué sucede si decide que hay una torre de conos en cada avenida pero que algunas de esas torres tienen una altura de conos ? Hacer uso de esta información simplifica el programa porque ya no tiene que probar si hay una torre en una avenida particular.</p>
+<p>El método recogerUnaTorre todavía es lo suficientemente complejo como para que un nivel adicional de descomposición esté en orden. Para recolectar todos los conos en una torre, Karel debe realizar los siguientes pasos:</p>
+<ol>
+<li>Gira a la izquierda para enfrentar el conos en la torre.<li>Recoge todos los conos en la torre, deteniéndote cuando ya no se encuentren más conos .<li>Date la vuelta para mirar hacia la parte inferior del mundo.<li>Regresa a la pared que representa el suelo.<li>Gire a la izquierda para estar listo para moverse a la siguiente esquina.</li></li></li></li></li></ol>
+<p>Una vez más, este esquema proporciona un modelo para el método recogerUnaTorre, que se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>recogerUnaTorre(){</code> <br/>
+ <code>      girarIzquierda();</code> <br/>
+ <code>      líneaDeConosDeConos();</code> <br/>
+ <code>      mediaVeulta();</code> <br/>
+ <code>      moverseAPared();</code> <br/>
+ <code>      girarIzquierda();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>Método precondiciones y postcondiciones.</h3>
+<p>Los comandos girarIzquierda al principio y al final del método recogerUnaTorre son críticos para la corrección de este programa. Cuando se llama Karel , Karel siempre está en algún lugar de la 1ª fila mirando hacia el este. Cuando complete su operación, el programa en su totalidad funcionará correctamente solo si Karel está nuevamente orientado al este en esa misma esquina. Las condiciones que deben cumplirse antes de llamar a un método se conocen como <b>condiciones previas</b> ; Las condiciones que deben aplicarse una vez finalizado el método se conocen como <b>postcondiciones</b> .</p>
+<p>Cuando defina un método, tendrá muchos menos problemas si anota exactamente cuáles son las condiciones previas y posteriores. Una vez que lo haya hecho, debe asegurarse de que el código que escribe siempre deje las condiciones posteriores satisfechas, asumiendo que las condiciones previas se cumplieron para comenzar. Por ejemplo, piense en lo que sucede si llama a recogerUnaTorre cuando Karel está en la primera fila mirando hacia el este. El primer comando girarIzquierda deja Karel mirando hacia el norte, lo que significa que Karel está correctamente alineado con la columna de conos representa la torre. El método líneaDeConosDeConos, que aún no se ha escrito, pero aún así realiza una tarea que usted comprende conceptualmente, simplemente moverse s sin girar. Por lo tanto, al final de la llamada a líneaDeConosDeConos, Karel todavía estará orientada al norte. La convocatoria mediaVeulta por lo tanto, deja Karel hacia el sur. Al igual que la líneaDeConosDeConos, el método moverse moverse no implica giros, sino simplemente moverse s hasta que llega al muro del límite. Debido a que Karel está orientado hacia el sur, este muro delimitador será el que se encuentra en la parte inferior de la pantalla, justo debajo de la primera fila. El comando final girarIzquierda por lo tanto, deja Karel en la 1ª fila mirando hacia el este, lo que satisface la postcondición.</p>
+<h3>Repitiendo el proceso</h3>
+<p>Usted run su programa y borra con éxito una torre y deja Karel en el postcondition prometido. ¡Wahoo! ¡Acabas de alcanzar un hito en la resolución de esta difícil tarea! Ahora tenemos que repetir el proceso de limpiar una torre con un ciclo while .</p>
+<p>Pero, ¿ ciclo while aspecto tiene este ciclo while ? En primer lugar, debes pensar en la prueba condicional. Desea que Karel detenga cuando toque la pared al final de la fila. Por lo tanto, usted desea que Karel siga funcionando mientras el espacio en el frente esté libre. Por lo tanto, sabes que el método recogerTodosLosConos incluirá un ciclo while que usa la prueba frenteDespejado . En cada posición, quieres que Karel recolecte todos los conos en la torre que comienza en esa esquina. Si le da a esa operación un nombre, que podría ser algo como recogerUnaTorre, puede seguir adelante y escribir una definición para el método recogerTodosLosConos aunque todavía no haya completado los detalles.</p>
+<p>Usted, sin embargo, tiene que tener cuidado. El código para recogerTodosLosConos no se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>recogerTodosLosConos(){</code> <br/>
+ <code class="comment">      /* buggy ciclo ! */</code> <br/>
+ <code>      <span class="keyword">while</span>(frenteDespejado()) {</code> <br/>
+ <code>         recogerUnaTorre();</code> <br/>
+ <code>         moverse();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Esta implementación está defectuosa por la misma razón por la que la primera versión del PlaceConoLinea general del capítulo 6 no pudo hacer su trabajo. Hay un error de poste en esta versión del código, porque Karel necesita probar la presencia de una torre cono en la última avenida. La implementación correcta es:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>recogerTodosLosConos(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frenteDespejado()) {</code> <br/>
+ <code>         recogerUnaTorre();</code> <br/>
+ <code>         moverse();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      recogerUnaTorre();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Tenga en cuenta que este método tiene precisamente la misma estructura que el programa principal del programa PlaceConoLinea presentado en el capítulo 6. La única diferencia es que este programa llama a recogerUnaTorre donde el otro llamado ponerCono . Estos dos programas son ejemplos de una estrategia general que se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>recogerTodosLosConos(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frenteDespejado()) {</code> <br/>
+ <code>         </code> <i class="demoText">realizar alguna operacion</i><br/>
+ <code>         moverse();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">Realiza la misma operación para la esquina final.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Puede usar esta estrategia siempre que necesite realizar una operación en cada esquina a medida que moverse por un camino que termina en una pared. Si recuerda la estructura general de esta estrategia, puede usarla siempre que encuentre un problema que requiera dicha operación. Las estrategias reutilizables de este tipo aparecen frecuentemente en la programación y se conocen como <b>lenguajes de programación</b> o <b>patrones</b> . Cuantos más patrones sepa, más fácil le resultará encontrar uno que se adapte a un tipo particular de problema.</p>
+<h3>Terminando</h3>
+<p>A pesar de que el trabajo duro se ha realizado, todavía hay varios cabos sueltos que deben resolverse. El programa principal llama a dos métodos, soltarTodoConos y volverACasa, que aún no están escritos. Del mismo modo, recogerUnaTorre llama a líneaDeConosDeConos y moverse rseAPared. Afortunadamente, los cuatro de estos métodos son lo suficientemente simples como para codificarlos sin más descomposición, especialmente si utiliza moverse rseAPared en la definición de volverACasa. Aquí está la implementación completa:</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1737.45px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * Archivo: ConoRecogida Karel .java
+ * --------------------------------
+ * La clase ConoRecogida Karel recoge todos los conos
+ * en una serie de torres verticales y las deposita
+ * en la esquina este de la primera fila.
+ */
+import stanford.karel.*;
+public class ConoRecogidaKarel extends Karel {
+
+   /**
+    * Especifica el punto de entrada del programa.
+    */
+   public void run() {
+      recogerTodosLosConos();
+      soltarTodoConos();
+      volverACasa();
+   }
+
+   /**
+    * Colecciona el conos de cada torre moviéndose a lo
+    * largo de la primera fila, llamando a recogerUnaTor
+    * re en cada esquina. La Karel para este método es q
+    * ue Karel encuentra en la esquina más oriental de l
+    * a primera fila, mirando hacia el este.
+    */
+   private void recogerTodosLosConos() {
+      while (frenteDespejado()) {
+         recogerUnaTorre();
+         moverse(); 
+      }
+      recogerUnaTorre();
+   }
+
+   /**
+    * Recoge el conos en una sola torre. Cuando se llama
+    * Karel , Karel debe estar en la 1ra fila mirando h
+    * acia el este. La postcondición para recogerUnaTorr
+    * e es que Karel debe estar nuevamente orientada al
+    * este en esa misma esquina.
+    */
+   private void recogerUnaTorre() {
+      girarIzquierda();
+      líneaDeConosDeConos();
+      mediaVeulta();
+      moverseAPared();
+      girarIzquierda();
+   }
+
+   /**
+    * Recoge una línea consecutiva de conos . El final d
+    * e la línea cono se indica mediante una esquina que
+    * no contiene conos .
+    */
+   private void líneaDeConosDeConos() {
+      while (conosPresentes()) {
+         recogerCono();
+         if (frenteDespejado()) {
+            moverse(); 
+         }
+      } 
+   }
+
+   /**
+    * Deja conos todos los conos en la esquina actual.
+    */
+   private void soltarTodoConos() {
+      while (bolsaConConos()) {
+         ponerCono();
+      }
+   }
+
+   /**
+    * Regresa Karel a su posición inicial en la esquina
+    * de 1st Avenue y 1st row, mirando hacia el este. La
+    * condición previa para este método es que Karel de
+    * be estar orientado hacia el este en algún lugar de
+    * la 1ª fila, lo cual es cierto al final de recoger
+    * TodosLosConos.
+    */
+   private void volverACasa() {
+      mediaVeulta();
+      moverseAPared();
+      mediaVeulta();
+   }
+
+   /** Mueve Karel hacia adelante hasta que es bloqueado por una pared. */
+   private void moverseAPared(){
+      while (frenteDespejado()) {
+         moverse();
+      } 
+   }
+
+   /** Gira Karel 180 grados alrededor */
+   private void mediaVeulta(){
+      girarIzquierda();
+      girarIzquierda();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'es', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1737.45;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">Siguiente capítulo</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

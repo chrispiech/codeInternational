@@ -1,0 +1,80 @@
+<h1>Chapter 4: Decomposition</h1>
+<hr/>
+<p>
+  As a way of illustrating more of the power that comes with being able to define new methods, it’s useful to have Karel do something a little more practical than move a beeper from one place to another. The roadways often seem to be in need of repair, and it might be fun to see if Karel can fill potholes in its abstract world. For example, imagine that Karel is standing on the “road” shown in the left-hand figure, one corner to the left of a pothole in the road. Karel’s job is to fill the hole with a beeper and proceed to the next corner. The diagram on the right illustrates how the world should look after the program execution.
+</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+<p>
+  If you are limited to the four predefined commands, the run method to solve this problem would look like this:
+</p>
+
+<p style="margin-left:2em">
+  <code><span class="keyword">private void</span> run() {</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+    <code style="margin-left:2em">putBeeper();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">turnLeft();</code><br/>
+    <code style="margin-left:2em">move();</code><br/>
+  <code>}</code>
+</p>
+
+<p>
+  The initial motivation for defining the turnRight method was that it was cumbersome to keep repeating three turnLeft commands to accomplish a right turn. Defining new methods has another important purpose beyond allowing you to avoid repeating the same command sequences every time you want to perform a particular task. The power to define methods unlocks the most important strategy in programming—the process of breaking a large problem down into smaller pieces that are easier to solve. The process of breaking a program down into smaller pieces is called decomposition, and the component parts of a large problem are called subproblems.
+</p>
+
+<p>
+  As an example, the problem of filling the hole in the roadway can be decomposed into the following subproblems:
+</p>
+
+<ol>
+<li> Move up to the hole
+<li> Fill the hole by dropping a beeper into it
+<li> Move on to the next corner
+</ol>
+
+<p>
+  If you think about the problem in this way, you can use method definitions to create a program that reflects your conception of the program structure. The run method would look like this:
+  </p>
+
+<p style="margin-left:2em">
+<code><span class="keyword">private void</span> run() {</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+   <code style="margin-left:2em">fillPothole();</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+<code>}</code>
+</p>
+
+<p>
+  The correspondence with the outline is immediately clear, and everything would be great if only you could get Karel to understand what you mean by fillPothole. Given the power to define methods, implementing fillPothole is extremely simple. All you have to do is define a fillPothole method whose body consists of the commands you have already written to do the job, like this:
+</p>
+
+<p style="margin-left:2em">
+<code><span class="keyword">private void</span> fillPothole() {</code><br/>
+   <code style="margin-left:2em">turnRight();</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+   <code style="margin-left:2em">putBeeper();</code><br/>
+   <code style="margin-left:2em">turnAround();</code><br/>
+   <code style="margin-left:2em">move();</code><br/>
+   <code style="margin-left:2em">turnRight();</code><br/>
+<code>}</code>
+</p>
+
+<p>
+  Here is the complete program. Notice how you can understand the programmers intent simply from reading the run method. When you run the program, the line highlighting  shows how a computer will execute it, step by step. However, because the program is nicely broken down we can understand it on a human thought level:
+</p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

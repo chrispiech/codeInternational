@@ -1,0 +1,61 @@
+<h1>Chapitre 4: Décomposition</h1>
+<hr/>
+<p>Comme une façon d'illustrer plus de la puissance qui vient d'être en mesure de définir de nouvelles méthodes, il est utile d'avoir Karel faire quelque chose d' un peu plus pratique que avancer un jeton d'un endroit à l' autre. Les chaussées semblent souvent avoir besoin de réparations, et il pourrait être amusant de voir si Karel peut remplir les nids de poule de son monde abstrait. Par exemple, imaginons que Karel se trouve sur la «route» indiquée dans la figure de gauche, située à l'angle d'un nid-de-poule sur la route. Le travail de Karel consiste à combler le trou avec un jeton et à passer au prochain virage. Le diagramme de droite illustre comment le monde devrait se pencher sur l'exécution du programme.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Si vous êtes limité aux quatre commandes prédéfinies, la méthode run pour résoudre ce problème devrait ressembler à ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code style="margin-left:2em">laisserJeton();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">tournerGauche();</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code>}</code> 
+</p>
+<p>La motivation initiale pour définir la méthode tournerDroite était qu’il était fastidieux de répéter trois commandes tournerGauche pour effectuer un virage à droite. La définition de nouvelles méthodes a un autre objectif important: elle vous évite de répéter les mêmes séquences de commandes chaque fois que vous souhaitez exécuter une tâche particulière. Le pouvoir de définir des méthodes permet de définir la stratégie la plus importante en matière de programmation: décomposer un gros problème en plusieurs éléments plus simples et plus faciles à résoudre. Le processus de décomposition d'un programme en éléments plus petits est appelé décomposition et les éléments constitutifs d'un problème volumineux sont appelés sous-problèmes.</p>
+<p>
+  À titre d'exemple, le problème du remplissage du trou dans la chaussée peut être décomposé en les sous-problèmes suivants:
+</p>
+<ol>
+<li> Monter au trou
+<li>Remplissez le trou en y déposant un jeton<li> Passer au coin suivant
+</li></li></li></ol>
+<p>Si vous envisagez le problème de cette manière, vous pouvez utiliser des définitions de méthode pour créer un programme qui reflète votre conception de la structure du programme. La méthode run ressemblerait à ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code style="margin-left:2em">remplirLesNidsDePoule();</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code>}</code> 
+</p>
+<p>La correspondance avec le contour est immédiatement claire et tout serait formidable si vous pouviez faire comprendre à Karel ce que vous entendez par remplirLesNidsDePoule. Etant donné le pouvoir de définir des méthodes, implémenter remplirLesNidsDePoule est extrêmement simple. Il vous suffit de définir une méthode remplirLesNidsDePoule dont le corps est constitué des commandes que vous avez déjà écrites pour faire le travail, comme ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> remplirLesNidsDePoule() {</code> <br/>
+ <code style="margin-left:2em">tournerDroite();</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code style="margin-left:2em">laisserJeton();</code> <br/>
+ <code style="margin-left:2em">faireDemiTour();</code> <br/>
+ <code style="margin-left:2em">avancer();</code> <br/>
+ <code style="margin-left:2em">tournerDroite();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Voici le programme complet. Remarquez comment vous pouvez comprendre l’intention des programmeurs simplement en lisant la méthode run . Lorsque vous run le programme, la mise en évidence de la ligne montre comment un ordinateur exécute, étape par étape. Cependant, comme le programme est bien décomposé, nous pouvons le comprendre au niveau de la pensée humaine:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

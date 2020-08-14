@@ -1,0 +1,344 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/fr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 
+      Karel
+    </a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter1.html">
+      1 - Rencontrez Karel
+    </a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter2.html">2 - Programmation</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter3.html">3 - Nouvelles fonctions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter4.html">4 - Décomposition</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter5.html">5 - Boucles For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter6.html">6 - Boucles While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter7.html">7 - Conditions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter8.html">8 - Raffinement</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter9.html">9 - Fonctionnalités supplémentaires</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/reference.html">10 - Référence</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/ide.html">11 - Code</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Chapitre 7: Les déclarations if</h1>
+<hr/>
+<p> La dernière structure de flux de contrôle de programmation à apprendre est des instructions conditionnelles ( <code>if</code>  et <code>if/else</code> ).
+</p>
+<h3>Conditions de base</h3>
+<p>Une <code>if/else</code>  Cette instruction exécute un "si" code-block si et seulement si le<i class="demoText">tester</i>est vrai pour l'état du monde au moment où le programme atteint la déclaration. Sinon, le programme exécute le bloc de code "else".</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">tester</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+<span class="keyword">autre</span>:</p><br/>
+<i class="demoText" style="margin-left:2em">sinon code-block</i><br/>
+
+<p>Pour avoir une idée de l'endroit où les instructions conditionnelles pourraient être utiles, écrivons un programme dans lequel Karel inversera une ligne de jetons . Si une case avait auparavant un jeton , Karel devrait le prendre. Si une case n'a pas de jeton , Karel doit en poser une.</p>
+
+
+
+
+
+<div class="section embeddedIde" id="invertLine">
+<div class="ide getStarted" id="invertLineIde" style="height:316.8px">
+<div class="ideCenter" id="invertLineIdeCenter">
+<div class="ideEditorDiv" id="invertLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="invertLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Changer le monde<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="invertLineWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="invertLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="invertLineRunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function exampleinvertLine() {
+STARTER_CODE = `
+
+from karel.stanfordkarel import *
+
+# le début du programme
+def main():
+   while l'avant_est_clair(): 
+      inverser_jeton()
+      avancer()
+   # pour éviter un bug de clôture
+   inverser_jeton()
+
+# prend un jeton s'il y en a un
+# pose un jeton sinon
+def inverser_jeton():
+   # une instruction if / else
+   if jetons_présent():
+      ramasser_jeton()
+   else:
+      laisser_jeton()
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('invertLineEditor','invertLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('invertLineCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'invert', 0.0, 'fr');
+    $('#invertLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('invertLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#invertLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#invertLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 300
+    var parentWidth = $("#invertLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('invertLineIde');
+    var editorDiv = document.getElementById('invertLineEditorDiv');
+    var canvas = document.getElementById('invertLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+exampleinvertLine();
+    </script>
+</div>
+
+
+
+<p> Notez qu'un <code>if</code>  déclaration n'a pas besoin d'avoir un <code>else</code> bloc - auquel cas l'instruction fonctionne comme un <code>while</code>  boucle qui n’exécute qu’une fois:
+</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">tester</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+</p>
+<h3>Conditions</h3>
+<p>
+Ce dernier exemple utilisait une nouvelle condition. Voici une liste de toutes les conditions connues de Karel:
+</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Tester</th><th>Contraire</th><th>Qu'est-ce qu'il vérifie</th></tr>
+<tr>
+<td> <code>l'avant_est_clair()</code> </td>
+<td> <code>l'avant_est_bloqué()</code> </td>
+<td>Y a-t-il un mur devant Karel?</td>
+</tr>
+<tr>
+<td> <code>jetons_présent()</code> </td>
+<td> <code>no_jetons_présent()</code> </td>
+<td>Y a-t-il jetons dans ce coin?</td>
+</tr>
+<tr>
+<td> <code>la_gauche_est_claire()</code> </td>
+<td> <code>la_gauche_est_bloquée()</code> </td>
+<td>Y a-t-il un mur à gauche de Karel?</td>
+</tr>
+<tr>
+<td> <code>le_droit_est_clair()</code> </td>
+<td> <code>la_droite_est_bloquée()</code> </td>
+<td>Y a-t-il un mur à la droite de Karel?</td>
+</tr>
+<tr>
+<td> <code>jetons_en_sac()</code> </td>
+<td> <code>no_jetons_en_sac()</code> </td>
+<td>Karel a-t-il du jetons dans son sac?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>face_au_nord()</code> </td>
+<td> <code>pas_face_au_nord()</code> </td>
+<td>Karel fait-il face au nord?</td>
+</tr>
+<tr>
+<td> <code>face_au_sud()</code> </td>
+<td> <code>pas_face_au_sud()</code> </td>
+<td>Karel fait-il face au sud?</td>
+</tr>
+<tr>
+<td> <code>face_à_l'est()</code> </td>
+<td> <code>pas_face_à_l'est()</code> </td>
+<td>Karel fait-il face à l'est?</td>
+</tr>
+<tr>
+<td> <code>face_à_l'ouest()</code> </td>
+<td> <code>pas_face_à_l'ouest()</code> </td>
+<td>Karel fait-il face à l'ouest?</td>
+</tr>
+</table>
+</p>
+<h3>Mettre tous ensemble</h3>
+<p>Félicitations! Vous connaissez maintenant tous les blocs de flux de contrôle de programmation de base. Pendant que vous les avez appris avec Karel, les méthodes, les boucle while , les boucle while , les boucle for if / else fonctionnent de la même manière dans presque tous les principaux langages, y compris Python.</p>
+<p>
+Maintenant que vous avez les éléments de base, vous pouvez les assembler pour trouver des solutions à des problèmes de plus en plus complexes.
+Dans une large mesure, la programmation est la science de la résolution de problèmes par ordinateur. Parce que les problèmes sont souvent difficiles, les solutions - et les programmes qui les implémentent - peuvent l'être également. Afin de faciliter le développement de ces solutions, vous devez adopter une méthodologie et une discipline qui réduisent le niveau de cette complexité à une échelle raisonnable.
+</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter8.html" role="button">Chapitre suivant</a> 
+</center>
+
+
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

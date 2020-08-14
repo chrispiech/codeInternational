@@ -1,0 +1,200 @@
+
+<html>
+<head>
+
+<title>करेल पाठक</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/hi/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> कैरेल</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter1.html">1 - कैरेल से मिलते हैं</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter2.html">2 - प्रोग्रामिंग</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter3.html">3 - नए तरीके</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter4.html">4 - अपघटन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter5.html">5 - लूप्स के लिए</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter6.html">6 - जबकि लूप्स</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter7.html">7 - सशर्त</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter8.html">8 - शोधन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter9.html">9 - सुपरकारेल</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/reference.html">10 - संदर्भ</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/ide.html">11 - कोड</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> और अधिक जानें</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="width:740px; flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>अध्याय 1: करेल द रोबोट का परिचय</h1>
+<hr/>
+<p>1970 के दशक में, रिच पैटीस नाम के एक स्टैनफोर्ड स्नातक छात्र ने फैसला किया कि प्रोग्रामिंग की बुनियादी बातों को सिखाना आसान होगा, अगर छात्र किसी भी तरह से जटिल प्रोग्रामिंग से मुक्त सरल वातावरण में बुनियादी विचारों को सीख सकते हैं जो अधिकांश प्रोग्रामिंग भाषाओं की विशेषता है। रिच ने एक परिचयात्मक प्रोग्रामिंग वातावरण तैयार किया जिसमें छात्र सरल समस्याओं को हल करने के लिए एक रोबोट को सिखाते हैं। चेक नाटककार के बाद उस रोबोट का नाम कारेल था <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">कारेल Čapek</a> , जिसका 1923 नाटक RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">रोसुम के यूनिवर्सल रोबोट</a> ) ने अंग्रेजी भाषा को रोबोट शब्द दिया।</p>
+<center>
+<img src="../../images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>कारेल द रोबोट काफी सफल रहा। कारेल का उपयोग दुनिया भर में परिचयात्मक कंप्यूटर विज्ञान पाठ्यक्रमों में किया गया है और लाखों छात्रों को सिखाया गया है। स्टैनफोर्ड के छात्रों की कई पीढ़ियों ने सीखा कि कैसे कैरेल के साथ प्रोग्रामिंग काम करती है, और यह अभी भी स्टैनफोर्ड में प्रयुक्त कोडिंग के लिए सौम्य परिचय है।</p>
+<h3>कैरेल क्या है?</h3>
+<p>कैरेल बहुत ही साधारण दुनिया में रहने वाला एक बहुत ही सरल रोबोट है। कारेल को आदेशों का एक सेट देकर, आप इसे अपनी दुनिया के भीतर कुछ कार्य करने के लिए निर्देशित कर सकते हैं। उन आदेशों को निर्दिष्ट करने की प्रक्रिया को कहा जाता है <b>प्रोग्रामिंग</b> । प्रारंभ में, कैरेल पूर्वनिर्धारित आदेशों की केवल बहुत कम संख्या को समझता है, लेकिन प्रोग्रामिंग प्रक्रिया का एक महत्वपूर्ण हिस्सा कारेल को नई कमांड सिखा रहा है जो इसकी क्षमताओं का विस्तार करते हैं।</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>करेल कार्यक्रमों में समान संरचना होती है और इसमें मूलभूत तत्व शामिल होते हैं <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">जावा</a> , एक प्रमुख <a href="https://en.wikipedia.org/wiki/Programming_language">प्रोग्रामिंग भाषा</a> । महत्वपूर्ण अंतर यह है कि कारेल की प्रोग्रामिंग भाषा बहुत छोटी है और इस तरह के विवरणों को मास्टर करना आसान है। फिर भी, आप पाएंगे कि किसी समस्या को हल करना चुनौतीपूर्ण हो सकता है।</p>
+<p>कारेल के साथ शुरू करके, आप शुरू से ही समस्याओं को हल करने पर ध्यान केंद्रित कर सकते हैं। समस्या को हल करना प्रोग्रामिंग का सार है। और क्योंकि कारेल कल्पना और रचनात्मकता को प्रोत्साहित करते हैं, आप रास्ते में बहुत मज़ा कर सकते हैं।</p>
+<h3>कारेल की दुनिया</h3>
+<p>कैरेल की दुनिया पंक्तियों से परिभाषित किया गया है run निंग क्षैतिज (पूर्व-पश्चिम) और स्तंभों run निंग खड़ी (उत्तर-दक्षिण)। एक पंक्ति और एक स्तंभ के प्रतिच्छेदन को एक कोने कहा जाता है। कारेल को केवल कोनों पर तैनात किया जा सकता है और चार मानक कम्पास दिशाओं (उत्तर, दक्षिण, पूर्व, पश्चिम) में से एक का सामना करना पड़ रहा है। एक नमूना कारेल दुनिया के नीचे दिखाया गया है। यहाँ कारेल पहली पंक्ति के कोने पर स्थित है और 1 स्तंभ पूर्व की ओर है।</p>
+<center>
+<img src="../../images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>कारेल की दुनिया के कई अन्य घटकों को इस उदाहरण में देखा जा सकता है। कारेल के सामने की वस्तु beeper । जैसा कि रिच पैटीस की पुस्तक में वर्णित है, beeper s "प्लास्टिक शंकु है जो एक शांत beeper शोर का उत्सर्जन करता है।" कारेल केवल beeper पता लगा सकता है यदि यह उसी कोने पर है। आरेख में ठोस रेखाएं दीवारें हैं। कॉल कर्ल की दुनिया के भीतर बाधाओं के रूप में कार्य करते हैं। कैरेल दीवारों के माध्यम से नहीं चल सकता है और इसके बजाय उन्हें चारों ओर जाना चाहिए। करेल की दुनिया हमेशा किनारों के साथ दीवारों से बंधी होती है, लेकिन दुनिया के अलग-अलग आयाम हो सकते हैं जो किरेल की विशिष्ट समस्या के आधार पर हल करने की जरूरत है।</p>
+<h3>करेल की आज्ञा</h3>
+<p>जब कारेल को कारखाने से भेजा जाता है, तो यह बहुत छोटे आदेशों का जवाब देता है:<table class="table mt-10">
+<tr><th>आदेश</th><th>विवरण</th></tr>
+<tr><td> <code>move();</code> </td><td>एक ब्लॉक में move फॉरवर्ड move पूछता है। करेल जवाब नहीं दे सकता <code>move()</code> यदि कोई दीवार अपने रास्ते को अवरुद्ध कर रही है तो कमांड करें।</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>कारेल को बाईं ओर (वामावर्त) 90 डिग्री घुमाने के लिए पूछता है।</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>कारेल एक कोने से एक beeper को लेने के लिए और beeper को अपने beeper बैग में संग्रहीत करता है, जो beeper s की अनंत संख्या धारण कर सकता है। करेल जवाब नहीं दे सकता <code>pickBeeper()</code> जब तक वर्तमान कोने पर beeper नहीं है तब तक कमांड करें।</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>beeper अपने beeper बैग से beeper लेने के लिए कहते हैं और इसे वर्तमान कोने पर रख देते हैं। करेल जवाब नहीं दे सकता <code>putBeeper()</code> जब तक इसके beeper बैग में beeper s हैं तब तक कमांड करें।</td></tr>
+</table>
+</p>
+<p>आज्ञाओं को पूरा करने का प्रयास करें। "लक्ष्य" से मेल खाने के लिए "दुनिया" पाने के लिए बटन का उपयोग करें:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cmd">
+<div class="ide getStarted" id="cmdIde">
+<div class="commandCanvasDiv" id="cmdCanvasDiv">
+<div>
+<div class="commandCanvasTitle">विश्व:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvas" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">लक्ष्य:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvasGoal" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+</div>
+<div class="commandButtons">
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdMove"> <code>move();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdTurnLeft"> <code>turnLeft();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdPickBeeper"> <code>pickBeeper();</code> </button>
+<button class="btn btn-default btn-lg commandButton" id="cmdPutBeeper"> <code>putBeeper();</code> </button>
+</div>
+</div>
+</div>
+<script style="width:0px;height:0px;display:none">
+
+        
+
+function examplecmd() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('cmdCanvas');
+    karelIde = KarelIde('java',null, canvas, 'commands', 0.9, 'hi', 500, 500);
+    $('#cmdMove').click(function(){karelIde.stepMove()});
+    $('#cmdTurnLeft').click(function(){karelIde.stepTurnLeft()});
+    $('#cmdPickBeeper').click(function(){karelIde.stepPickBeeper()});
+    $('#cmdPutBeeper').click(function(){karelIde.stepPutBeeper()});
+
+    let canvasGoal = document.getElementById('cmdCanvasGoal');
+    let goalIde = KarelIde('java',null, canvasGoal, 'commandsGoal', 0.9, 'hi', 500, 500)
+ }
+
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cmdRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cmdRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ 
+ main()
+ 
+}
+examplecmd();
+    </script>
+
+<p>इन आदेशों में से प्रत्येक में दिखाई देने वाली कोष्ठक की खाली जोड़ी करेल और जावा द्वारा साझा किए गए सामान्य वाक्यविन्यास का हिस्सा है और इसका उपयोग कमांड के आह्वान को निर्दिष्ट करने के लिए किया जाता है। आखिरकार, आपके द्वारा लिखे गए कार्यक्रमों में कोष्ठक के बीच की जगह में अतिरिक्त जानकारी शामिल होगी, लेकिन ऐसी जानकारी कैरेल की आदिम दुनिया का हिस्सा नहीं है। इसलिए ये कोष्ठक मानक कारेल कार्यक्रमों में खाली हो जाएंगे, लेकिन फिर भी आपको इन्हें शामिल करना याद रखना चाहिए।</p>
+<p>यदि कारेल कुछ अवैध करने की कोशिश करता है, जैसे कि दीवार के माध्यम से आगे बढ़ना या कोई भी beeper , एक त्रुटि स्थिति उत्पन्न होती है।</p>
+<p>कारेल की आज्ञा, अपने दम पर निष्पादित नहीं की जाती है। इसके बजाय, आपको उन्हें कारेल कार्यक्रम में शामिल करने की आवश्यकता है। आपके पास अध्याय 2 में कुछ सरल कारेल कार्यक्रमों को देखने का मौका होगा!</p>
+<p></p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter2.html" role="button">अगला अध्याय</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

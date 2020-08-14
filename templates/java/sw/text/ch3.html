@@ -1,0 +1,46 @@
+<h1>Sura ya 3: Kuelezea Mbinu Mpya</h1>
+<hr/>
+<p>Katika sura ya mwisho tuliandika mpango wa kusaidia Karel kupanda kiwanja rahisi:</p>
+<h3>Mfano: KalamuYaKwanza</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>Hata ingawa <code>KalamuYaKwanza</code> mpango hapo juu unaonyesha kuwa inawezekana kufanya <code>geukaKulia</code> operesheni kwa kutumia amri za kujengwa za Karel tu, mpango huo haufanyike wazi kwa uwazi. Katika kubuni yako ya akili ya mpango huo, Karel anarudi sawa na kufikia kilele cha daraja. Ukweli kwamba unatakiwa kutumia amri tatu geukaKushoto kufanya hivyo ni hasira. Ingekuwa rahisi sana ikiwa unaweza kusema tu <code>geukaKulia()</code> na Karel aelewe amri hii. Mpango huo utakuwa si mfupi na rahisi kuandika, lakini pia ni rahisi kusoma.</p>
+<h3>Kufafanua Maagizo Mapya</h3>
+<p>Kwa bahati nzuri, lugha ya programu ya Karel inafanya uwezekano wa kufafanua amri mpya tu kwa kuingiza ufafanuzi wa mbinu mpya. Wakati wowote una mlolongo wa amri za Karel ambao hufanya kazi fulani muhimu - kama vile kugeuka kulia - unaweza kufafanua njia mpya inayofanya mlolongo wa amri. Fomu ya kufafanua njia mpya ya Karel ina sawa na ufafanuzi wa <code>run</code> katika mifano iliyotangulia, ambayo ni ufafanuzi wa mbinu kwa haki yake mwenyewe. Ufafanuzi wa njia ya kawaida inaonekana kama hii:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">jina</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">amri zinazounda mwili wa njia</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Kwa mfano huu, jina linamaanisha jina ulilochagua kwa njia mpya. Ili kukamilisha ufafanuzi, unachohitaji kufanya ni kutoa mlolongo wa amri katika mistari kati ya braces curly. Kwa mfano, unaweza kufafanua <code>geukaKulia</code> kama ifuatavyo:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> geukaKulia() {</code> <br/>
+ <code style="margin-left:3.5em">geukaKushoto();</code> <br/>
+ <code style="margin-left:3.5em">geukaKushoto();</code> <br/>
+ <code style="margin-left:3.5em">geukaKushoto();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Vivyo hivyo, unaweza kufafanua mpya <code>turnAround</code> njia kama hii:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">geukaKushoto();</code> <br/>
+ <code style="margin-left:3.5em">geukaKushoto();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Unaweza kutumia jina la njia mpya kama vile amri yoyote ya kujengwa ya Karel. Kwa mfano, mara moja umeelezea <code>geukaKulia</code> , unaweza kuchukua nafasi ya amri tatu geukaKushoto katika <code>OngezeaKarel</code> programu na simu moja kwa <code>geukaKulia</code> njia. Hapa ni utekelezaji wa upya wa mpango unaotumia <code>geukaKulia</code> :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>Kuna, bila shaka, tofauti moja dhahiri kati ya ufafanuzi wa <code>run</code> na <code>geukaKulia</code> mbinu katika mpango hapo juu: a <code>run</code> njia ni alama kama <code>public</code> kinyume na <code>geukaKulia</code> , ambayo imewekwa kama <code>private</code> . Tofauti kati ya majina haya mawili ni kwamba mbinu za umma zinaweza kuingizwa kutoka nje ya programu, wakati mbinu za kibinafsi haziwezi. Njia ya run inahitaji kuwa ya umma kwa sababu mazingira ya Karel inahitaji kuwa na uwezo wa kutoa amri ya run ili kupata vitu. Kwa ujumla ni mazoezi ya programu nzuri ya kuweka ufafanuzi binafsi wakati wowote iwezekanavyo.</p>
+<h3>Msimbo wa Kanuni za Njia</h3>
+<p>Kikundi cha amri kati ya mabano mawili ya curly <code translate="no">{ }</code> inaitwa a <b>kizuizi cha msimbo</b> . Mwili wa programu yako ni block code kama ni mwili wa njia. Angalia jinsi yaliyomo ya kizuizi cha kificho yote yameingizwa kwenye tabani moja. Hii ni muhimu kwa stylistically kwani inafanya kuwa rahisi kwa wanadamu kujua mstari wa msimbo ulipo katika kizuizi kilichopewa.</p>
+<p>Unaweza kufafanua njia nyingi kama unavyotaka. Wanapaswa kuandikwa kila mmoja ndani ya kuzuia msimbo wa mpango wako. Huwezi kufafanua mbinu ndani ya njia nyingine.</p>

@@ -1,0 +1,100 @@
+<h1>第2章：プログラミングカレル</h1>
+<hr/>
+<p>最も単純なスタイルのKarelプログラムはテキストを使用して、プログラムが実行されたときに実行される一連の組み込みコマンドを指定します。 <b>run</b> 。下記の簡単なKarelプログラムを考えてください。左側のテキストはプログラムです。カレルの世界の様子は右側に示されています。</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+
+<p>プログラムを実行するために "Run"ボタンを押してください。プログラムは通常、アプリケーションと呼ばれる特別なアプリケーションで書かれています。 <b>統合開発環境</b> （IDE）そしてほとんどのKarelプログラムはEclipseと呼ばれるIDEで書かれています。 IDEのように、このリーダーはあなたを助けるためにプログラムを実行する能力を持っています<i>見る</i>学んだとおりに物事がどのように機能するか。</p>
+<p>プログラムはいくつかの部分で構成されています。最初の部分は次の行で構成されています。</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * ファイル：最初のカレル.java
+ * ---------------
+ * 最初のカレルプログラムは、3つのコマンドで " r
+ * un "メソッドを定義しています。これらのコマンド
+ * により、Karelはmove 1ブロックbeepe
+ * r 、 beeper 、次にmoveを次のコーナー
+ * へmoveます。
+ */</pre>
+</p>
+<p>これらの行は、 <b>コメント</b> これは単にプログラムの動作を人間の読者に説明するためのテキストです。 KarelとJavaの両方でのコメントは文字で始まります <code class="comment">/*</code> そして文字で終わる <code class="comment">*/</code> 。ここでは、コメントは最初の行から始まり、数行後に終わります。コメントのテキストを構成する個々の行の星は必須ではありませんが、人間の読者がコメントの範囲を見やすくするためのものです。単純なプログラムでは、プログラムの効果が明白であるため、広範囲にわたるコメントは愚かに見えるかもしれませんが、それらはより大きくより複雑なプログラムの設計を文書化する手段として非常に重要です。プログラムの2番目の部分は次の行です。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.カレル.*;</code> 
+</p>
+<p>この行はからのすべての定義の包含を要求します <code>stanford.カレル</code> としょうかん。このライブラリには、標準操作の定義など、Karelプログラムを書くために必要な基本的な定義が含まれています。 <code>move()</code> そして <code>pickBeeper()</code> 。あなたはいつもこれらの操作にアクセスする必要があるので、あなたが書くすべてのKarelプログラムは実際のプログラムを書く前にこのimportコマンドを含みます。</p>
+<p>Karelプログラムの最後の部分は、次のプログラム定義で構成されています。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> 最初のカレル <span class="keyword">extends</span> カレル {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>この定義を理解するためには、その構造をもっと注意深く見ることが役に立ちます。最初のカレルプログラムの定義は、で始まる行で構成されています。 <code class="keyword">public class</code> そして、その行の終わりの中括弧とプログラムの最後の行の対応する右中括弧の間のすべてを含みます。新しいクラスを紹介する単一行は、 <b>ヘッダ</b> 定義の中括弧の間のコードは、 <b>体</b> 。</p>
+<p>プログラミングでは、特定の定義とその本体を分離可能なアイデアとして考えることは非常に便利です。この例では、最初のカレルの定義は次のような形式になっています。ここでは、定義の本体全体をしばらくの間、頭の中から外に出すことができます。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> 最初のカレル <span class="keyword">extends</span> カレル {</code> <br/>
+<i class="demoText" style="margin-left:2em">プログラム定義の本体</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>一番上のヘッダー行は、本体の内容を確認する前であっても、最初のカレルプログラムについてかなりよく説明しています。フレーズ <code class="keyword">public class</code> プログラムの定義を開始します。フレーズ <code><span class="keyword">extends</span> カレル</code> それを示すために使用されます <code>最初のカレル</code> カレルプログラムです。</p>
+<p>それでは、最初のカレルプログラムの本体を見てみましょう。その本体は以下の行で構成されています。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>これらの線は新しい <b>方法</b> これは、コマンドに応答するために必要な一連のステップを指定します。最初のカレルプログラム自体の場合と同様に、メソッド定義は2つの部分で構成されており、別々に検討できます。最初の行はメソッドヘッダーを構成し、中括弧の間のコードはメソッド本体です。今のところ本体を無視すると、メソッド定義は次のようになります。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">メソッド定義の本体</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>メソッドヘッダーの最初の2語 <code class="keyword">public</code> そして <code class="keyword">void</code> は、Javaの構文構造の一部であり、この時点でそれらを無視しても構いません。ヘッダー行の次の単語は、新しいメソッドの名前を指定します。この場合、それはメソッドです。 <b>run</b> 。メソッドを定義することは、Karelがその名前で新しいコマンドに応答できるようになることを意味します。の <code>run</code> commandはKarelプログラムで特別な役割を果たします。 Karelプログラムを起動すると、新しいKarelインスタンスを作成し、そのKarelを指定した世界に追加してから、 runコマンドを発行します。 runプログラムの効果は、 runメソッドの本体によって定義されます。これは、ロボットが順番に実行する一連のコマンドです。たとえば、 runのカレルプログラムのrunメソッドの本体は次のrunです。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>このように、世界の初期状態は、第1章で示した例と一致した場合、カレルは最初move含むコーナーに前方ねbeeper 、ことを拾っbeeper 、そして最終的にmoveに示すように、ちょうど壁の前にコーナーを楽しみによ次の前後の図</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>より興味深い問題を解決する</h2>
+<p>上で定義された最初のカレルプログラムはまだあまりしません。もう少し面白くしてみましょう。目標はピックアップするカレルを取得するだけではないことを仮定beeperこれにmove beeper棚の中央に2列目と1行目にその初期位置から。したがって、次の課題は、この図に示すタスクを実行する新しいKarelプログラムを定義することです。</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>新しいプログラムの最初の3つのコマンド（ move前方に送り、 beeper 、次にmoveを棚までmoveは、以前と同じです。</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>ここから、次のステップは棚を登り始めるために左に曲がることです。 Karelの標準レパートリーにturnLeftコマンドがあるので、その操作は簡単です。上記の一連のコマンドの最後にturnLeftコマンドを実行すると、Karelは1行3列目の角を北に向けます。その後、Karelがmoveコマンドを実行すると、北move次の位置に到着します。</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>ここから、あなたがする必要がある次の事はそれが再び東に向くようにKarelを右に曲がらせることです。この操作は概念的にはKarelを左に曲がらせるのと同じくらい簡単ですが、わずかな問題があります。 <code>turnLeft</code> コマンド、しかしいいえ <code>turnRight</code> コマンド。あたかも経済モデルを購入したところ、重要な機能がいくつか欠けていることがわかったようです。</p>
+<p>この時点で、あなたはプログラマーのように考えることを始めるあなたの最初の機会を持っています。あなたは1セットのコマンドを持っています、しかしあなたが必要とするセットを正確に持っていません。あなたは何ができますか？あなたが持っている能力だけを使ってturnRightコマンドの効果を達成することができますか？答えは、もちろん、そうです。左に3回回すと右に曲がる効果があります。 3回左折すると、カレルは望みの方向を向くようになります。ここから、あなたがする必要があるのは、棚の中心までmove Karelをプログラムすることです、そして、 beeperを落として、そしてmoveを最後のポジションに進めてください。これはの完全な実装です。 <code>ステップアップ</code> タスク全体を実行するプログラム</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>

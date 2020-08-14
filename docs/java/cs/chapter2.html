@@ -1,0 +1,538 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/cs/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter1.html">1 - Seznamte se s Karlem</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter2.html">2 - Programování</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter3.html">3 - Nové metody</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter4.html">4 - Rozklad</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter5.html">5 - Pro smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter6.html">6 - Zatímco smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter7.html">7 - Podmíněné podmínky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter8.html">8 - Zpřesnění</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/reference.html">10 - Odkaz</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/ide.html">11 - Kód</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Další informace</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Kapitola 2: Programování Karel</h1>
+<hr/>
+<p>Nejjednodušší styl programu Karel používá text k určení posloupnosti vestavěných příkazů, které by měly být provedeny při programu <b>run</b> . Zvažte jednoduchý program Karla níže. Text vlevo je program. Stav Karlova světa je zobrazen vpravo:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPicking">
+<div class="ide getStarted" id="beeperPickingIde" style="height:299.20000000000005px">
+<div class="ideCenter" id="beeperPickingIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingRunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPicking() {
+STARTER_CODE = `
+
+/*
+ * Soubor: PrvníKarel.java
+ * ----------------------
+ * Program PrvníKarel definuje metodu " run " se třem
+ * i příkazy. Tyto příkazy způsobí, že Karel na move
+ * vpřed o jeden blok, zvedne kuzel a pak move dopřed
+ * u do dalšího rohu.
+ */
+import stanford.karel.*;
+public class PrvníKarel extends Karel {
+   /* program začíná zde provádění */
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingEditor','beeperPickingEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'cs');
+    $('#beeperPickingRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 299.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPicking").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingIde');
+    var editorDiv = document.getElementById('beeperPickingEditorDiv');
+    var canvas = document.getElementById('beeperPickingCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPicking();
+    </script>
+</div>
+
+<p>Stisknutím tlačítka "Spustit" spustíte program. Programy jsou obvykle napsány ve speciální aplikaci nazvané <b>Integrované vývojové prostředí</b> (IDE) a většina programů Karla je napsána v IDE nazvaném Eclipse. Stejně jako IDE má i tato čtečka možnost provádět programy, aby vám pomohla<i>vidět</i>jak věci fungují, jak se naučíte.</p>
+<p>Program se skládá z několika částí. První část obsahuje následující řádky:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Soubor: PrvníKarel.java
+ * ----------------------
+ * Program PrvníKarel definuje metodu " run " se třem
+ * i příkazy. Tyto příkazy způsobí, že Karel na move
+ * vpřed o jeden blok, zvedne kuzel a pak move dopřed
+ * u do dalšího rohu.
+ */</pre>
+</p>
+<p>Tyto řádky jsou příkladem a <b>komentář</b> , což je jednoduše text, který má vysvětlit fungování programu lidským čtenářům. Komentáře v Karlu i v Javě začínají znaky <code class="comment">/*</code> a končí znaky <code class="comment">*/</code> . Zde začíná komentář na prvním řádku a končí několik řádků později. Hvězdy na jednotlivých řádcích, které tvoří text komentáře, se nevyžadují, ale lidským čtenářům usnadňují vidět rozsah komentáře. V jednoduchém programu se rozsáhlé komentáře mohou zdát hloupé, protože účinek programu je zřejmý, ale jsou nesmírně důležité jako prostředek pro dokumentování návrhu větších, složitějších programů. Druhou částí programu je řádek:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>Tento řádek vyžaduje zahrnutí všech definic z <code>stanford.karel</code> knihovna. Tato knihovna obsahuje základní definice nezbytné pro psaní Karlových programů, jako jsou definice standardních operací <code>move()</code> a <code>pickBeeper()</code> . Protože vždy potřebujete přístup k těmto operacím, každý program Karel, který píšete, bude obsahovat tento importní příkaz před zápisem aktuálního programu.</p>
+<p>Poslední část programu Karel se skládá z následující definice programu:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> PrvníKarel <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Pro pochopení této definice je užitečné se na její strukturu podívat opatrněji. Definici programu PrvníKarel tvoří řádek začínající na <code class="keyword">public class</code> a zahrnuje vše mezi složenou závorkou na konci tohoto řádku a odpovídající uzavírací závorkou na posledním řádku programu. Jediný řádek, který zavádí novou třídu, se nazývá <b>záhlaví</b> definice; kód mezi závorkami se nazývá <b>tělo</b> .</p>
+<p>V programování je často velmi užitečné uvažovat o určité definici a jejím těle jako oddělitelných myšlenkách. V tomto příkladu má definice PrvníKarel následující podobu, kde celé tělo definice může být momentálně vyřazeno z vaší mysli:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> PrvníKarel <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">definici programu</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>Řádek záhlaví nahoře vám poví o programu PrvníKarel dost, a to ještě předtím, než jste se podívali na to, co tělo obsahuje. Fráze <code class="keyword">public class</code> začíná definovat program. Fráze <code><span class="keyword">extends</span> Karel</code> označuje to <code>PrvníKarel</code> je program Karla.</p>
+<p>Nyní se podívejme na tělo programu PrvníKarel. Tento orgán se skládá z těchto řádků:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Tyto řádky představují definici nového <b>metoda</b> , který specifikuje posloupnost kroků nezbytných k reakci na příkaz. Stejně jako v případě samotného programu PrvníKarel se definice metody skládá ze dvou částí, které lze brát v úvahu samostatně: První řádek představuje záhlaví metody a kód mezi složenými závorkami je tělo metody. Pokud toto tělo prozatím ignorujete, definice metody vypadá takto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">definici metody</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>První dvě slova v záhlaví metody, <code class="keyword">public</code> a <code class="keyword">void</code> , jsou součástí syntaktické struktury jazyka Java a v tomto okamžiku byste je měli ignorovat. Další slovo v řádku záhlaví určuje název nové metody, která je v tomto případě metoda <b>run</b> . Definování metody znamená, že Karel nyní může odpovědět na nový příkaz s tímto názvem. <code>run</code> zvláštní roli v programu Karel. Když spustíte program Karel, vytvoří novou instanci Karel, přidá, že Karel do světa, který zadáte, a pak vydá příkaz run . Účinek provádění je definován tělem metody run , což je posloupnost příkazů, které robot provede v pořadí. Například tělo metody run pro program PrvníKarel je:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Pokud tedy počáteční stav světa odpovídá příkladu uvedenému v Kapitole 1, Karel nejprve move s dopředu do rohu obsahujícího kuzel , zvedne kuzel a nakonec move s dopředu do rohu těsně před zdí, jak je ukázáno na obrázku. následující schéma před a po:</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Před:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Po:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'cs',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpM1',0.0, 'cs',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>Řešení zajímavějšího problému</h2>
+<p>Výše uvedený program PrvníKarel zatím příliš nečiní. Zkusme to trochu zajímavější. Předpokládejme, že cílem není pouze přimět Karla, aby vyzvedl kuzel ale move kuzel ze své počáteční pozice na 2. sloupci a 1. řádku do středu římsy. Dalším úkolem je tedy definování nového programu Karel, který splní úkol znázorněný v tomto diagramu:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">Před:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Po:</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'cs',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpGoal',0.0, 'cs',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>První tři příkazy v novém programu - ty, které move kuzel , kuzel a pak move až po římsu - jsou stejné jako dříve:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Odtud je dalším krokem odbočení doleva, aby se šplhalo po římse. Tato operace je snadná, protože Karel má odbočitVlevo příkaz ve svém standardním repertoáru. Provedení příkazu odbočitVlevo na konci předchozího pořadí příkazů opustí Karla směrem k severu na rohu 1. řádku a 3. sloupce. Pokud Karel provede příkaz move , bude move sever, aby dosáhl následující pozice:</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('java',null, canvas, 'stepUpM2', 0, 'cs',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>Další věc, kterou musíte udělat, je dostat Karla, aby se otočil doprava, aby byl opět obrácen směrem na východ. Zatímco tato operace je koncepčně stejně jednoduchá, jako když se Karel otočí doleva, je zde malý problém: Karelův jazyk obsahuje a <code>turnLeft</code> příkaz, ale ne <code>turnRight</code> příkaz. Je to, jako byste si koupili ekonomický model a zjistili jste, že chybí některé důležité funkce.</p>
+<p>V tomto okamžiku máte svou první příležitost začít myslet jako programátor. Máte jednu sadu příkazů, ale ne přesně sadu, kterou potřebujete. Co můžeš udělat? Dokážete dosáhnout účinku příkazu odbočitVpravo pouze pomocí schopností, které máte? Odpověď je samozřejmě ano. Otáčením doleva můžete třikrát otočit doleva. Po třech zatáčkách vlevo bude Karel v požadovaném směru. Odtud vše, co musíte udělat, je naprogramovat Karla na move do středu římsy, upustit kuzel a pak move dopředu do konečné pozice. Zde je kompletní implementace <code>KrokNahoru</code> program, který splní celý úkol:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:422.40000000000003px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+/*
+ * Soubor: KuzelSběrKarel.java
+ * --------------------------
+ * Program KuzelSběrKarel definuje metodu " run " s p
+ * říkazy, které způsobí, že Karel vyzvedne kuzel a u
+ * místí jej na římsu.
+ */
+import stanford.karel.*;
+public class KuzelSběrKarel extends Karel {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnLeft();
+      turnLeft();
+      turnLeft();
+      move();
+      move();
+      putBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.5, 'cs');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 422.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">Další kapitola</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

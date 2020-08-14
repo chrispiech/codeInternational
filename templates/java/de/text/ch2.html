@@ -1,0 +1,99 @@
+<h1>Kapitel 2: Programmierung von Karel</h1>
+<hr/>
+<p>Der einfachste Stil des Karel-Programms verwendet Text, um eine Folge von eingebauten Befehlen anzugeben, die ausgeführt werden sollen, wenn das Programm ausgeführt wird <b>run</b> . Betrachten Sie das folgende einfache Karel-Programm. Der Text links ist das Programm. Der Zustand von Karels Welt ist auf der rechten Seite dargestellt:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+
+<p>Klicken Sie auf die Schaltfläche "Ausführen", um das Programm auszuführen. Programme werden in der Regel in einer speziellen Anwendung namens geschrieben <b>Integrierte Entwicklungsumgebung</b> (IDE) und die meisten Karel-Programme sind in einer IDE namens Eclipse geschrieben. Wie eine IDE kann dieser Reader Programme ausführen, um Ihnen zu helfen<i>sehen</i>wie die Dinge funktionieren, wenn Sie lernen.</p>
+<p>Das Programm besteht aus mehreren Teilen. Der erste Teil besteht aus folgenden Zeilen:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Datei: ErsterKarel.java
+ * ----------------------
+ * Das Programm ErsterKarel definiert eine " run " -M
+ * ethode mit drei Befehlen. Diese Befehle bewirken,
+ * dass Karel move einen Block weiterleitet, beeper u
+ * nd dann move vor der nächsten Ecke.
+ */</pre>
+</p>
+<p>Diese Zeilen sind ein Beispiel für a <b>Kommentar</b> Dies ist lediglich ein Text, der den menschlichen Lesern die Funktionsweise des Programms erklärt. Kommentare in Karel und Java beginnen mit den Zeichen <code class="comment">/*</code> und ende mit den zeichen <code class="comment">*/</code> . Hier beginnt der Kommentar in der ersten Zeile und endet einige Zeilen später. Die Sterne in den einzelnen Zeilen, aus denen sich der Kommentartext zusammensetzt, sind nicht erforderlich, erleichtern dem menschlichen Leser jedoch die Sicht auf den Umfang des Kommentars. In einem einfachen Programm mögen umfangreiche Kommentare albern erscheinen, da die Wirkung des Programms offensichtlich ist, aber sie sind äußerst wichtig, um den Entwurf größerer, komplexerer Programme zu dokumentieren. Der zweite Teil des Programms ist die Zeile:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>Diese Zeile fordert die Einbeziehung aller Definitionen aus dem <code>stanford.karel</code> Bibliothek. Diese Bibliothek enthält die grundlegenden Definitionen, die zum Schreiben von Karel-Programmen erforderlich sind, z. B. die Definitionen der Standardoperationen <code>move()</code> und <code>pickBeeper()</code> . Da Sie immer Zugriff auf diese Vorgänge benötigen, enthält jedes Karel-Programm, das Sie schreiben, diesen Importbefehl, bevor Sie das eigentliche Programm schreiben.</p>
+<p>Der letzte Teil des Karel-Programms besteht aus der folgenden Programmdefinition:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> ErsterKarel <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Um diese Definition zu verstehen, ist es hilfreich, die Struktur genauer zu betrachten. Die Definition des Programms ErsterKarel besteht aus der Zeile, die mit beginnt <code class="keyword">public class</code> und umfasst alles zwischen der geschweiften Klammer am Ende dieser Zeile und der entsprechenden schließenden Klammer in der letzten Zeile des Programms. Die einzelne Zeile, die die neue Klasse einführt, heißt <b>Header</b> der Definition; der Code zwischen den Klammern heißt <b>Karosserie</b> .</p>
+<p>Bei der Programmierung ist es oft sehr nützlich, sich eine bestimmte Definition und ihren Körper als trennbare Ideen vorzustellen. In diesem Beispiel hat die Definition von ErsterKarel folgende Form:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> ErsterKarel <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">Hauptteil der Programmdefinition</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>In der Kopfzeile oben erfahren Sie einiges über das Programm ErsterKarel, noch bevor Sie nachgesehen haben, was der Körper enthält. Der Satz <code class="keyword">public class</code> Startet die Definition eines Programms. Der Satz <code><span class="keyword">extends</span> Karel</code> wird verwendet, um dies anzuzeigen <code>ErsterKarel</code> ist ein Karel-Programm.</p>
+<p>Betrachten wir nun den Hauptteil des Programms ErsterKarel. Dieser Körper besteht aus den folgenden Zeilen:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Diese Linien repräsentieren die Definition eines neuen <b>Methode</b> Gibt die Reihenfolge der Schritte an, die zum Antworten auf einen Befehl erforderlich sind. Wie beim ErstenKarel-Programm selbst besteht die Methodendefinition aus zwei Teilen, die getrennt betrachtet werden können: Die erste Zeile bildet den Methodenkopf und der Code zwischen den geschweiften Klammern ist der Methodenkörper. Wenn Sie den Body vorerst ignorieren, sieht die Methodendefinition folgendermaßen aus:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">Hauptteil der Methodendefinition</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Die ersten beiden Wörter im Methodenkopf <code class="keyword">public</code> und <code class="keyword">void</code> , sind Teil von Javas syntaktischer Struktur, und Sie sollten sich frei fühlen, sie an dieser Stelle zu ignorieren. Das nächste Wort in der Kopfzeile gibt den Namen der neuen Methode an, die in diesem Fall die Methode ist <b>run</b> . Das Definieren einer Methode bedeutet, dass Karel nun auf einen neuen Befehl mit diesem Namen antworten kann. Das <code>run</code> Befehl spielt eine besondere Rolle in einem Karel-Programm. Wenn Sie ein Karel-Programm starten, erstellt es eine neue Karel-Instanz, fügt diese Karel zu einer von Ihnen angegebenen Welt hinzu und gibt dann den Befehl run . Die Auswirkung des run das Programm wird durch den Hauptteil der run Methode definiert, bei der es sich um eine Folge von Befehlen handelt, die der Roboter in der angegebenen Reihenfolge ausführt. Der Body der run Methode für das ErsteKarel-Programm lautet beispielsweise:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Wenn also der Ausgangszustand der Welt mit dem in Kapitel 1 angegebenen Beispiel beeper , nimmt Karel zuerst move s vorwärts in die Ecke mit dem beeper , dann beeper und schließlich move s vorwärts in die Ecke kurz vor der Wand, wie in gezeigt das folgende Vorher-Nachher-Diagramm:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>Ein interessanteres Problem lösen</h2>
+<p>Das oben definierte ErsterKarel-Programm macht noch nicht viel. Versuchen wir es etwas interessanter zu machen. Angenommen, das Ziel ist nicht, Karel dazu zu move die beeper beeper sondern die beeper von ihrer ursprünglichen Position in der 2. Spalte und in der 1. Reihe bis zur Mitte eines Simses. Ihre nächste Aufgabe ist es daher, ein neues Karel-Programm zu definieren, das die in diesem Diagramm dargestellte Aufgabe erfüllt:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>Die ersten drei Befehle in dem neuen Programm-Die, die move vorwärts, die Abholung beeper und dann move bis zu dem Sims-sind die gleichen wie zuvor:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Von hier aus müssen Sie nach links abbiegen, um den Sims zu besteigen. Diese Operation ist einfach, da Karel einen Befehl biegenSieLinksAb in seinem Standardrepertoire hat. Durch Ausführen des Befehls biegenSieLinksAb am Ende der vorherigen Befehlssequenz wird Karel an der Ecke der ersten Zeile und der dritten Spalte nach Norden ausgerichtet. Wenn Karel dann einen move Befehl ausführt, wird er move Norden, um die folgende Position zu erreichen:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>Von hier aus müssen Sie Karel als Nächstes dazu bringen, nach rechts abzubiegen, damit er wieder nach Osten zeigt. Während dieser Vorgang konzeptionell genauso einfach ist wie das Abbiegen von Karel nach links, gibt es ein kleines Problem: Karels Sprache enthält a <code>turnLeft</code> Befehl, aber nein <code>turnRight</code> Befehl. Es ist, als hätten Sie das Economy-Modell gekauft und nun festgestellt, dass einige wichtige Funktionen fehlen.</p>
+<p>An diesem Punkt haben Sie Ihre erste Gelegenheit, wie ein Programmierer zu denken. Sie haben einen Befehlssatz, aber nicht genau den, den Sie benötigen. Was kannst du tun? Können Sie die Wirkung eines Befehls biegenSieRechtsAb nur mit den von Ihnen bereitgestellten Funktionen erzielen? Die Antwort lautet natürlich ja. Sie können den Effekt des Rechts Abbiegens erzielen, indem Sie dreimal nach links abbiegen. Nach drei Linkskurven zeigt Karel in die gewünschte Richtung. Von hier aus müssen Sie Karel move auf move programmieren, bis zur Mitte des Simses, die beeper und dann move vorwärts bis zur Endposition. Hier ist eine vollständige Implementierung von a <code>Verstärken</code> Programm, das die gesamte Aufgabe erfüllt:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>

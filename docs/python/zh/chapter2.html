@@ -1,0 +1,512 @@
+
+<html>
+<head>
+
+<title>卡雷尔读者</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/zh/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 卡雷尔</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter1.html">1  - 遇见卡雷尔</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter2.html">2  - 编程</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter3.html">3-新功能</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter5.html">5  - 对于循环</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter6.html">6  - 循环时</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter7.html">7  - 条件</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter8.html">8  - 细化</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/chapter9.html">9-额外功能</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/reference.html">10  - 参考</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/zh/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/zh/ide.html">11  - 代码</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第2章：Karel编程</h1>
+<hr/>
+<p>最简单的Karel程序使用文本来指定应该在程序执行时执行的一系列内置命令 <b>run</b> 。考虑下面的简单卡雷尔计划。左边的文字是程序。卡雷尔的世界状态如右图所示：</p>
+
+
+
+
+
+<div class="section embeddedIde" id="firstKarel">
+<div class="ide getStarted" id="firstKarelIde" style="height:249.20000000000002px">
+<div class="ideCenter" id="firstKarelIdeCenter">
+<div class="ideEditorDiv" id="firstKarelEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="firstKarelCanvasDiv">
+<canvas class="ideCanvas" id="firstKarelCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="firstKarelRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplefirstKarel() {
+STARTER_CODE = `
+
+＃文件：FirstKarel.py
+＃-----------------------------
+＃FirstKarel程序定义了“ main ”
+＃函数带有三个命令。这些命令导致
+＃卡雷尔（Karel）以move前进一个方块，拿起锥体
+＃，然后在下一个拐角处move 。
+from 卡雷尔.stanford import *
+
+def main():
+   move()
+   选择锥体()
+   move()
+   
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('firstKarelEditor','firstKarelEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('firstKarelCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'stepUp', 0.0, 'zh');
+    $('#firstKarelRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#firstKarelRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#firstKarelRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 249.20000000000002;
+    var canvasWidth = 300
+    var parentWidth = $("#firstKarel").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('firstKarelIde');
+    var editorDiv = document.getElementById('firstKarelEditorDiv');
+    var canvas = document.getElementById('firstKarelCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplefirstKarel();
+    </script>
+</div>
+
+<p>按“运行”按钮执行程序。程序通常写在一个名为的特殊应用程序中 <b>综合发展环境</b> （IDE）和大多数Karel程序都是在称为PyCharm的IDE中编写的。像IDE一样，该阅读器也具有执行程序的能力，以帮助您<i>看到</i>你学习的东西是如何工作的。</p>
+<p>该计划由几个部分组成。第一部分包括以下几行：</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">＃文件：FirstKarel.py
+＃-----------------------------
+＃FirstKarel程序定义了“ main ”
+＃函数带有三个命令。这些命令导致
+＃卡雷尔（Karel）以move前进一个方块，拿起锥体
+＃，然后在下一个拐角处move 。</pre>
+</p>
+<p>这些行是一个例子 <b>评论</b> ，它是简单的文本，旨在向读者解释程序的操作。 Karel和Python中的注释均以字符开头 <code class="comment">＃</code> 并包括该行的其余部分。在一个简单的程序中，由于程序的效果显而易见，因此广泛的注释似乎很愚蠢，但作为记录更大，更复杂程序的设计的一种手段，它们极为重要。该程序的第二部分是该行：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">from</span> 卡雷尔.stanford<span class="keyword">import</span> *</code> 
+</p>
+<p>该行要求包含来自的所有定义 <code> 卡雷尔.stanford</code> 图书馆。该库包含编写Karel程序所需的基本定义，例如标准操作的定义 <code>move()</code> 和 <code>选择锥体()</code> 。因为您总是需要访问这些操作，所以您编写的每个Karel程序都会在您编写实际程序之前包含此导入命令。</p>
+<p>Karel程序的最后部分包含以下函数定义：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+ <code>      move()</code> <br/>
+ <code>      选择锥体()</code> <br/>
+ <code>      move()</code> <br/>
+</p>
+<p>这些行代表新的定义 <b>功能</b> ，它指定了响应命令所必需的步骤顺序。就像在 <code>第一个卡雷尔</code> 在程序本身中，函数定义包括两个部分，可以分别考虑：第一行构成函数头，紧随其后的缩进代码是函数体。如果您现在忽略主体，则函数定义如下所示：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+<i class="demoText" style="margin-left:3.5em">函数定义的主体</i><br/>
+</p>
+<p>函数标题中的第一个单词， <code class="keyword">def</code> ，是Python语法结构的一部分。它表示您正在创建一个新功能。标题行上的下一个单词指定新函数的名称，在这种情况下为 <b>main</b> 。定义函数意味着Karel现在可以使用该名称响应新命令。的 <code>main()</code> 命令在Karel程序中起特殊作用。当您启动一个Karel程序时，它将创建一个新的Karel实例，将该Karel添加到您指定的世界中，然后发布 <code>main()</code> 命令。程序的主体定义了run的效果。 <code>main()</code> 功能，这是机器人将按顺序执行的一系列命令。例如， <code>main()</code> 的功能 <code>第一个卡雷尔</code> 程序是：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move()</code> <br/>
+ <code>   选择锥体()</code> <br/>
+ <code>   move()</code> <br/>
+</p>
+<p>因此，如果世界的初始状态与第1章中给出的示例匹配，则Karel首先将move向前移入包含锥体的角，拾取该锥体 ，最后将move向前移至墙之前的角，如图所示。以下的前后图：</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">之前：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">后：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'stepUp', 0.0, 'zh',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'stepUpM1',0.0, 'zh',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>解决一个更有趣的问题</h2>
+<p>的 <code>第一个卡雷尔</code> 上面定义的程序到目前为止还没有做很多事情。让我们尝试使其更加有趣。假设目标不是简单地让卡雷尔拿起锥体而是move的锥体从其在第2列和第1行的初始位置到窗台的中心。因此，您的下一个任务是定义一个新的Karel程序，该程序可以完成下图中所示的任务：</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">之前：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">后：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'stepUp', 0.0, 'zh',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'stepUpGoal',0.0, 'zh',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>新程序中的前三个命令（即move转发，拾取锥体 ，然后move到达窗台的命令）与以前相同：</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move()</code> <br/>
+ <code>   选择锥体()</code> <br/>
+ <code>   move()</code> <br/>
+</p>
+<p>从这里开始，下一步是到turn left开始爬壁架。该操作很容易，因为Karel有一个 <code>turn_left()</code> 在其标准曲目中命令。执行一个 <code>turn_left()</code> 在上述命令序列的末尾，该命令使Karel在第1行和第3列的角处朝北。如果Karel然后执行 <code>move()</code> 命令，它将向北move到达以下位置：</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('python',null, canvas, 'stepUpM2', 0, 'zh',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>从这里开始，接下来要做的是将Karel turn right ，使其再次朝东。从概念上讲，此操作就像将Karel升级到turn left一样容易，但存在一个小问题：Karel的语言包括 <code>turn_left()</code> 命令，但没有 <code>turn_right()</code> 命令。这就像你买了经济模型，现在发现它缺少一些重要的功能。</p>
+<p>此时，您将有第一个机会像程序员一样开始思考。您只有一组命令，但并不完全是您需要的一组命令。你能做什么？你能达到一个效果吗 <code>turn_right()</code> 命令仅使用您拥有的功能？答案是肯定的。您可以通过向左转3次来实现向右转的效果。左转三圈后，Karel将朝着所需方向。从这里开始，您需要做的就是将Karel编程到move到窗台中央，放下锥体 ，然后move到最终位置。这是完成整个任务的程序的完整实现：</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:356.0px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+＃文件：FirstKarel.py
+＃-----------------------------
+＃FirstKarel程序定义了“ main ”
+＃函数与导致Karel接管的命令
+锥体并将其放在壁架上。
+from 卡雷尔.stanford import *
+
+def main():
+   move()
+   选择锥体()
+   move()
+   turn_left()
+   move()
+   turn_left()
+   turn_left()
+   turn_left()
+   move()
+   move()
+   放锥体()
+   move()
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'stepUp', 0.5, 'zh');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 356.0;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">下一章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

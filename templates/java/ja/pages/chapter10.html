@@ -1,0 +1,46 @@
+
+<html>
+<head>
+
+  %include('templates/'+progLang+'/'+ lang+'/parts/head.html')
+
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+    %include('templates/'+progLang+'/'+ lang+'/parts/sideBar.html')
+
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<%
+  include('templates/'+progLang+'/'+ lang+'/text/ch10.html')
+%>
+
+
+<hr/>
+<center>
+<h2>それは今のところすべてです！</h2>
+</center>
+
+
+
+%include('templates/'+progLang+'/'+ lang+'/parts/footer.html')
+
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

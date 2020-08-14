@@ -1,0 +1,45 @@
+<h1>Kapitola 5: Pro smyčky</h1>
+<hr/>
+<p>Jednou z věcí, na které jsou počítače obzvláště dobré, je opakování. Jak můžeme přesvědčit Karla, aby několikrát provedl blok kódu? Chcete-li vidět, jak opakování mohou být použity, za úkol umístit 42 kuzel ů:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+
+<h3>Základní pro smyčku</h3>
+<p>Vzhledem k tomu, že víte, že na místě je přesně 42 kuzel s, je kontrolní příkaz, který potřebujete <b>pro smyčku</b> , který specifikuje, že chcete některou operaci zopakovat. Struktura příkazu for se jeví jako komplikovaná především proto, že je vlastně mnohem silnější než cokoliv, co Karel potřebuje. Jediná verze syntaxe, kterou Karel používá, je:</p>
+<p class="demoCode">
+ <code>for(int i = 0; i &lt; </code> <i class="demoText">spočítat</i> <code>; i++){</code> <br/>
+<i style="margin-left:2em">prohlášení, která se mají opakovat</i><br/>
+ <code>}</code> 
+</p>
+<p class="mb-20">Budeme procházet všechny podrobnosti o smyčky později ve třídě. Prozatím byste si měli přečíst tento řádek jako způsob vyjádření, "opakujte příkazy mezi složenými závorkami<i class="demoText">spočítat</i>„Můžeme použít tento nový <b>pro smyčku</b> na místo 42 kuzel s nahrazením<i class="demoText">spočítat</i>s 42 a zadáním příkazu <code>putBeeper()</code> uvnitř bloku pro kód smyčky. Voláme příkazy v bloku kódu <b>tělo</b> :</p>
+<p>
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+
+<p>Výše uvedený kód je upravitelný. Snažte se to změnit tak, aby to bylo jen 15 kuzel s.</p>
+<h3>Odpovídající podmínky s podmínkami</h3>
+<p>Předchozí příklad vyvolává dojem, že smyčka for opakuje jeden řádek kódu. Tělo smyčky for (příkazy, které se opakují) však může být více řádků. Zde je příklad programu, který umístí kuzel do každého rohu světa:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Věnujte velkou pozornost způsobu, jakým program protéká těmito kontrolními příkazy. Program run s přes sadu příkazů v těle pro smyčku po jednom. Tělo se opakuje čtyřikrát.</p>
+<p>Snad nejsložitější částí psaní smyčky je, že na konci smyčky potřebujete stav světa <b>postcondition</b> ) být platným stavem světa pro začátek smyčky <b>předpoklad</b> ). Ve výše uvedeném příkladu odpovídají předpoklady. Dobré časy. Na začátku smyčky je Karel vždy na náměstí s kuzel s obráceným k dalšímu prázdnému rohu. Co když jste odstranili odbočitVlevo na konci smyčky? Postcondition na konci první iterace by již nesplňoval předpoklady o tom, že Karel stojí před dalším prázdným rohem. Kód je upravitelný. Zkuste smazat <code>turnLeft();</code> příkaz vidět, co se stane!</p>
+<h3>Vnořené smyčky</h3>
+<p>Těleso smyčky for může také obsahovat jakýkoliv kód řízení, dokonce i jiné smyčky. Zde je příklad smyčky for, která opakuje volání metody, která má také smyčku for. Říkáme tomu "vnořená" smyčka. Zkuste si přečíst program a pochopit, co dělá, před provádění :
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+
+</p>
+</p>

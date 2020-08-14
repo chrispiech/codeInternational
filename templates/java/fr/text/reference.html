@@ -1,0 +1,122 @@
+<h1> Référence</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>
+Cette annexe définit la structure du langage de programmation Karel sur une seule page.
+</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Base Karel:</b> 
+<p class="refCode">
+ <code>avancer();</code> <br/>
+ <code>tournerGauche();</code> <br/>
+ <code>laisserJeton();</code> <br/>
+ <code>ramasserJeton();</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>Structures du programme Karel:</b> 
+<p class="refCode">
+ <code class="comment">/* Les commentaires peuvent être inclus dans n'importe quelle partie<br/>
+ * de a programme. Ils début avec a sabrer-étoile<br/>
+ * and end with a star-slash.<br/>
+ */<br/></code> 
+ <code><span class="keyword">public class</span> <i class="demoText">prénom</i> <span class="keyword">extends</span> SuperKarel {</code> <br/>
+<br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      </code> <i class="demoText">code à exécuter</i><br/>
+ <code>   }</code> <br/>
+<br/>
+ <code>   </code> <i class="demoText">déclarations de méthodes privées</i><br/>
+ <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Noms des conditions:</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>devantDegage()</code> <br/>
+ <code>jetonsPresents()</code> <br/>
+ <code>jetonsEnPoche()</code> <br/>
+ <code>gaucheDegagee()</code> <br/>
+ <code>droiteDegagee()</code> <br/>
+ <code>faceAuNord()</code> <br/>
+ <code>faceAuSud()</code> <br/>
+ <code>faceAlEst()</code> <br/>
+ <code>faceAlOuest()</code> <br/>
+</div>
+<div class="refCol">
+ <code>devantBloque()</code> 
+ <code>jetonsAbsents()</code> <br/>
+ <code>sansJetonsEnPoche()</code> <br/>
+ <code>gaucheBloquee()</code> <br/>
+ <code>droiteBloquee()</code> <br/>
+ <code>pasFaceAuNord()</code> <br/>
+ <code>pasFaceAuSud()</code> <br/>
+ <code>pasFaceAlEst()</code> <br/>
+ <code>pasFaceAlOuest()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Conditions:</b> 
+<p class="refCode"> <code><span class="keyword">if</span>(</code> <i class="demoText">état</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">code run si la condition passe</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span>(</code> <i class="demoText">état</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">bloc de code pour "oui"</i><br/> <code>} <span class="keyword">else</span> {</code> <br/><i class="demoText" style="margin-left:2em">bloc de code pour "non"</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Boucles:</b> 
+<p class="refCode"> <code><span class="keyword">for</span>(int i = 0; i &lt;</code>  <i class="demoText">compter</i> <code>; i++){</code> <br/><i class="demoText" style="margin-left:2em">code à répéter</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span>(</code> <i class="demoText">état</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">code à répéter</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Déclaration de méthode:</b> 
+<p class="refCode"> <code><span class="keyword">private void</span></code> <i class="demoText" style="margin-left:10px">prénom</i> <code>() {</code> <br/><i class="demoText" style="margin-left:2em">code dans le corps de la méthode.</i><br/> <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>SuperKarel commandes supplémentaires:</b> 
+<p class="refCode">
+ <code>tournerDroite();</code> <br/>
+ <code>faireDemiTour();</code> <br/>
+ <code>aleatoire(</code> <i class="demoText">p</i> <code>);</code> <br/>
+ <code>peindreCoin(</code> <i class="demoText">Couleur</i> <code>);</code> <br/>
+</p>
+</div>
+</div>
+</div>
+<!--
+-->

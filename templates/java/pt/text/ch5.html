@@ -1,0 +1,22 @@
+<h1> Capítulo 5: For Loops </h1><hr/><p> Uma das coisas em que os computadores são especialmente bons é a repetição. Como podemos convencer Karel a executar um bloco de código várias vezes? Para ver como a repetição pode ser usada, considere a tarefa de colocar 42 sinais sonoros: </p>
+
+<%
+  include('templates/'+lang+'/programs/beforeAfter.html', name="ba", before="99beepersStart", after="99beepersGoal", ratio="1.0", canvasWidth="200")
+%>
+
+<h3> Basic For Loop </h3><p> Como você sabe que existem exatamente 42 sinais sonoros para colocar, a instrução de controle necessária é um <b>loop for</b>, que especifica que você deseja repetir algumas operações por um número fixo de vezes. A estrutura da declaração for parece complicada principalmente porque é realmente muito mais poderosa do que qualquer coisa que Karel precisa. A única versão da sintaxe for que Karel usa é: </p><p class="demoCode"><code>for(int i = 0; i &lt;</code><i class="demoText">contagem</i><code>; i++){</code><br/><i style="margin-left:2em">declarações a serem repetidas</i><br/><code>}</code></p><p class="mb-20"> Analisaremos todos os detalhes do loop for mais adiante na classe. Por enquanto você deve ler esta linha como uma maneira de expressar, &quot;repita as declarações entre os tempos de <i class="demoText">contagem das</i> chaves.&quot; Podemos usar este novo <b>loop</b> para colocar 42 <code>colocarBeeper()</code> substituindo a <i class="demoText">contagem</i> por 42 e colocando o comando <code>colocarBeeper()</code> dentro do bloco de código for loop. Nós chamamos comandos no bloco de código do <b>corpo</b>: </p><p>
+<%
+  include('templates/'+lang+'/programs/runnable.html', name="99beepers", world="99beepersStart", canvasWidth=200, ideSpeed=0.8, isEditable='true')
+%>
+<p> O código acima é editável. Tente mudá-lo para que coloque apenas 15 apitos. </p><h3> Pós-condições de correspondência com condições prévias </h3><p> O exemplo anterior dá a impressão de que um loop for repete uma única linha de código. No entanto, o corpo do loop for (as instruções que são repetidas) podem ser múltiplas linhas. Aqui está um exemplo de um programa que coloca um bip em cada canto de um mundo: </p>
+
+<%
+  include('templates/'+lang+'/programs/runnable.html', name="cornerBeepers", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.0, isEditable="true")
+%>
+
+<p> Preste muita atenção à maneira como o programa flui por meio dessas instruções de controle. O programa percorre o conjunto de comandos no corpo do loop for, um de cada vez. Repete o corpo quatro vezes. </p><p> Talvez a única parte mais complicada de escrever um loop seja que você precisa que o estado do mundo no final do loop (a <b>pós</b>- <b>condição</b>) seja um estado válido do mundo para o início do loop (a <b>pré</b>- <b>condição</b>). No exemplo acima, as suposições correspondem. Bons tempos. No início do loop, Karel está sempre em um quadrado sem beepers voltados para o próximo canto vazio. E se você excluísse o vireAEsquerda no final do loop? A pós-condição no final da primeira iteração não satisfaria mais as suposições feitas sobre Karel voltado para o próximo canto vazio. O código é editável. Tente excluir o <code>vireAEsquerda();</code> comando para ver o que acontece! </p><h3> Loops aninhados </h3><p> Tecnicamente, o corpo de um loop for pode conter qualquer código de fluxo de controle, até mesmo outros loops. Aqui está um exemplo de um loop for que repete uma chamada para um método que também possui um loop for. Nós chamamos isso de loop &quot;aninhado&quot;. Tente ler o programa e entenda o que ele faz antes de executá-lo: 
+
+<%
+  include('templates/'+lang+'/programs/runnable.html', name="cornerBeepers10", world="cornerBeepersStart", canvasWidth=200, ideSpeed=0.7)
+%>
+</p></p>

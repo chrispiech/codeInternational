@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html> 
+<head> 
+   <title>Karel IDE</title> 
+   <script src="./js/html/websiteImports.js"></script>
+	<script>importCss();</script>
+	<script>importJs();</script>
+   <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25118186-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head> 
+
+<body> 
+
+   <script>importWebsiteHeader('program.html');</script>
+   <p id="programTitle">Loading</p>
+   <div id="programButtonBar">
+   <div id="programButtonBarInner">
+   </div>
+   </div>
+   <div id ='content'>
+   </div>
+   <script>
+      function init() {
+         var PROGRAM_PROPORTION = 0.95
+         var plate = null;
+         var programElement = null;
+         var buttonBar = null;
+
+         function loadProgram(url) {
+         }
+
+         function updateTitle(programObject){
+            var newTitle = programObject.title + ' by ' + programObject.author;
+            $('#programTitle').html(newTitle);
+         }
+
+         function extend() {
+            var url = 'http://'+ document.location.hostname + '/ide.html#/' + Server.getProgramKey();
+            window.location = url;
+         }
+
+         function programLoaded(data){
+            //alert(data);
+            var programObject = JSON.parse(data);
+            updateTitle(programObject);
+            var programDim = {
+               left : (1-PROGRAM_PROPORTION)/2,
+               top: 0,
+               width:PROGRAM_PROPORTION,
+               height:PROGRAM_PROPORTION + (1-PROGRAM_PROPORTION)/2
+            }
+            var startWorld = programObject.world;
+            var code = programObject.code;
+            
+            programElement = ProgramElement(programDim, 'content', startWorld, code);
+            createButtonBar(startWorld);
+            $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+            window.onresize();
+         }
+
+         function createButtonBar(startWorld) {
+            buttonBar = document.getElementById('programButtonBarInner');
+            var playButton = createImageButton(buttonBar, 'images/playButton.png', 'playButton', 'Run', 'programButton');
+            var stopButton = createImageButton(buttonBar, 'images/stopButton.png', 'stopButton', 'Reset', 'programButton');
+            
+            var extendButton = createImageButton(buttonBar, 'images/fast.png', 'extendButton', 'Extend', 'programButton');
+            worldSelector = addWorldDropDown(buttonBar, 'programWorldDrop');
+            playButton.onclick = function() {
+               if(programElement)programElement.run();
+            }
+            stopButton.onclick = function() {
+               if(programElement)programElement.getIde().stopButton();
+            }
+            extendButton.onclick = extend;
+            $('#worldSelector').change(
+               function() {
+                  var worldName = $("#worldSelector option:selected").text();
+		            programElement.getIde().changeWorld(worldName);
+		         }
+            );
+            for(var i = 0; i < worldSelector.length; i++) {
+               if(worldSelector[i].text == startWorld) {
+                  worldSelector.selectedIndex = i;
+               }
+            }
+            
+         }
+
+         function centerButtonBar() {
+            if (!buttonBar) return;
+            var windowWidth = $(window).width() - 1;
+            windowWidth = Math.max(windowWidth, Const.MIN_IDE_WIDTH + Const.PADDING * 2);
+            var buttonBarWidth = $('#programButtonBarInner').width();
+            buttonBar.style.left = (windowWidth - buttonBarWidth)/2 + 'px'
+         }
+
+         window.onload = function() {
+            initTabs();
+            plate = document.getElementById('content');
+            window.onresize();
+            Server.loadProgramFromHash(programLoaded);
+            $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+         }  
+
+         window.onhashchange = function() {
+            Server.loadProgramFromHash(programLoaded);
+         }  
+
+         window.onresize = function(){
+            var windowHeight = $(window).height() - 1;
+            var windowWidth = $(window).width() - 1;
+            var programHeight = windowHeight - Const.PROGRAM_HEADER_HEIGHT;
+            if (plate){
+               plate.style.height = (programHeight)+ 'px';
+               plate.style.width = (windowWidth)+ 'px';
+            }
+            if (programElement) {
+               programElement.resize();
+            }
+            ReferenceDialog.resize();
+            centerButtonBar();
+         } 
+                
+      }
+      init();
+   </script>
+
+</body> 
+</html>

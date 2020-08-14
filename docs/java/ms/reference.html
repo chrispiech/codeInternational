@@ -1,0 +1,191 @@
+<html><head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head><body><!-- container --><div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ms/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter1.html">1 - Bertemu Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter2.html">2 - Pengaturcaraan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter3.html">3 - Kaedah Baru</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter4.html">4 - Penguraian</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter5.html">5 - Untuk Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter6.html">6 - Semasa Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter7.html">7 - Keadaan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter8.html">8 - Penghalusan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/reference.html">10 - Rujukan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Ketahui lebih lanjut</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content --><div class="bookContent" style="display: flex;"><!-- right gutter --><div style="flex-grow:1;max-width:50px;"></div><!-- main stuff --><div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px"><div class="row"><div class="col-md-12 col-xs-12">
+
+
+<h1>Rujukan</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>Lampiran ini mentakrifkan struktur bahasa pengaturcaraan Karel pada satu halaman.</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Asal Karel mengemukakan:</b> 
+<p class="refCode">
+ <code>move();</code> <br/>
+ <code>turnLeft();</code> <br/>
+ <code>putBeeper();</code> <br/>
+ <code>pickBeeper();</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>Struktur program Karel:</b> 
+<p class="refCode">
+ <code class="comment">/* Komen boleh dimasukkan di mana-mana bahagian<br/>
+ * daripada a program. Mereka mulakan dengan a slash-bintang<br/>
+ * and end with a star-slash.<br/>
+ */<br/></code> 
+ <code><span class="keyword">public class</span> <i class="demoText">nama</i> <span class="keyword">extends</span> SuperKarel {</code> <br/>
+<br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      </code> <i class="demoText">kod untuk dilaksanakan</i><br/>
+ <code>   }</code> <br/>
+<br/>
+ <code>   </code> <i class="demoText">pengisytiharan kaedah swasta</i><br/>
+ <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Nama-syarat keadaan:</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>frontIsClear()</code> <br/>
+ <code>beepersPresent()</code> <br/>
+ <code>beepersInBag()</code> <br/>
+ <code>leftIsClear()</code> <br/>
+ <code>rightIsClear()</code> <br/>
+ <code>facingNorth()</code> <br/>
+ <code>facingSouth()</code> <br/>
+ <code>facingEast()</code> <br/>
+ <code>facingWest()</code> <br/>
+</div>
+<div class="refCol">
+ <code>frontIsBlocked()</code> 
+ <code>noBeepersPresent()</code> <br/>
+ <code>noBeepersInBag()</code> <br/>
+ <code>leftIsBlocked()</code> <br/>
+ <code>rightIsBlocked()</code> <br/>
+ <code>notFacingNorth()</code> <br/>
+ <code>notFacingSouth()</code> <br/>
+ <code>notFacingEast()</code> <br/>
+ <code>notFacingWest()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>Syarat:</b> 
+<p class="refCode"> <code><span class="keyword">if</span>(</code> <i class="demoText">keadaan</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">kod run jika keadaan berlalu</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span>(</code> <i class="demoText">keadaan</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">blok kod untuk "ya"</i><br/> <code>} <span class="keyword">else</span> {</code> <br/><i class="demoText" style="margin-left:2em">blok kod untuk "tidak"</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Gelung:</b> 
+<p class="refCode"> <code><span class="keyword">for</span>(int i = 0; i &lt;</code>  <i class="demoText">kiraan</i> <code>; i++){</code> <br/><i class="demoText" style="margin-left:2em">kod untuk mengulangi</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span>(</code> <i class="demoText">keadaan</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">kod untuk mengulangi</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>Kaedah Perisytiharan:</b> 
+<p class="refCode"> <code><span class="keyword">private void</span></code> <i class="demoText" style="margin-left:10px">nama</i> <code>() {</code> <br/><i class="demoText" style="margin-left:2em">kod dalam badan kaedah.</i><br/> <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>Perintah tambahan SuperKarel:</b> 
+<p class="refCode">
+ <code>turnRight();</code> <br/>
+ <code>turnAround();</code> <br/>
+ <code>random(</code> <i class="demoText">p</i> <code>);</code> <br/>
+ <code>paintCorner(</code> <i class="demoText">warna</i> <code>);</code> <br/>
+</p>
+</div>
+</div>
+</div>
+<!--
+-->
+
+<hr/>
+
+
+
+
+
+<div style="height:60px"></div>
+</div></div></div><!-- right gutter --><div style="flex-grow:4"></div></div></div></body></html>

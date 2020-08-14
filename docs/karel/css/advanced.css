@@ -1,0 +1,13 @@
+div.CodeMirror-wrapping {
+	float:left;
+	width:275px;
+	height:303px;
+	border-width:2px;
+	border-style:solid;
+	background:#fff;
+}
+
+#canvas {
+	width:470px;
+	height:303px;
+}

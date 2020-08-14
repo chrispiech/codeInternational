@@ -1,0 +1,387 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ms/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter1.html">1 - Bertemu Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter2.html">2 - Pengaturcaraan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter3.html">3 - Kaedah Baru</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter4.html">4 - Penguraian</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter5.html">5 - Untuk Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter6.html">6 - Semasa Gelung</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter7.html">7 - Keadaan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter8.html">8 - Penghalusan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/reference.html">10 - Rujukan</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ms/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ms/ide.html">11 - Kod</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Ketahui lebih lanjut</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Bab 3: Menentukan Kaedah Baru</h1>
+<hr/>
+<p>Dalam bab terakhir kami menulis sebuah program untuk membantu Karel memanjat tebing sederhana:</p>
+<h3>Contoh: KarelPertama</h3>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPickingRedux">
+<div class="ide getStarted" id="beeperPickingReduxIde" style="height:404.8px">
+<div class="ideCenter" id="beeperPickingReduxIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingReduxEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingReduxCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingReduxCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingReduxRunButton"><span class="glyphicon glyphicon-play"></span>Jalankan Program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPickingRedux() {
+STARTER_CODE = `
+
+/*
+ * Fail: KarelPertama.java
+ * ----------------------
+ * Karel mengambil beeper dan meletakkannya di atas t
+ * ebing.
+ */
+import stanford.karel.*;
+public class KarelPertama extends Karel {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnLeft();
+      turnLeft();
+      turnLeft();
+      move();
+      move();
+      putBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingReduxEditor','beeperPickingReduxEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingReduxCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.8, 'ms');
+    $('#beeperPickingReduxRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingReduxRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingReduxRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 404.8;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPickingRedux").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingReduxIde');
+    var editorDiv = document.getElementById('beeperPickingReduxEditorDiv');
+    var canvas = document.getElementById('beeperPickingReduxCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPickingRedux();
+    </script>
+</div>
+
+<p>Walaupun <code>KarelPertama</code> program di atas menunjukkan bahawa ia boleh dilakukan <code>turnRight</code> operasi menggunakan hanya perintah terbina dalam Karel, program yang dihasilkan tidak begitu jelas secara konseptual. Dalam reka bentuk mental anda program, Karel bertukar betul apabila ia mencapai bahagian atas tebing. Fakta bahawa anda perlu menggunakan tiga perintah belokKiri untuk berbuat demikian adalah menjengkelkan. Ia akan lebih mudah jika anda hanya boleh berkata <code>turnRight()</code> dan mempunyai Karel memahami arahan ini. Program yang dihasilkan tidak hanya akan menjadi lebih pendek dan lebih mudah untuk ditulis, tetapi juga lebih mudah dibaca.</p>
+<h3>Menentukan Perintah Baru</h3>
+<p>Mujurlah, bahasa pengaturcaraan Karel memungkinkan untuk mentakrifkan arahan baru hanya dengan memasukkan definisi kaedah baru. Setiap kali anda mempunyai urutan perintah Karel yang melakukan beberapa tugas yang berguna - seperti membelok ke kanan - anda boleh menentukan kaedah baru yang melaksanakan urutan perintah itu. Format untuk mendefinisikan kaedah Karel baru mempunyai sama seperti takrifan <code>run</code> dalam contoh terdahulu, yang merupakan definisi kaedah dalam haknya sendiri. Takrifan kaedah tipikal seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">nama</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">arahan yang membentuk badan kaedah</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Dalam corak ini, nama mewakili nama yang anda pilih untuk kaedah baru. Untuk melengkapkan takrif, yang perlu anda lakukan adalah menyediakan urutan perintah dalam garisan antara pendakap kerinting. Sebagai contoh, anda boleh menentukan <code>turnRight</code> seperti berikut:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Begitu juga, anda boleh menentukan yang baru <code>turnAround</code> kaedah seperti ini:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Anda boleh menggunakan nama kaedah baru seperti mana-mana perintah terbina dalam Karel. Contohnya, sebaik sahaja anda telah menentukan <code>turnRight</code> , anda boleh menggantikan tiga perintah belokKiri di dalam <code>NaikKarel</code> program dengan satu panggilan ke <code>turnRight</code> kaedah. Berikut adalah pelaksanaan program yang digunakan untuk menyemak semula <code>turnRight</code> :</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp2">
+<div class="ide getStarted" id="stepUp2Ide" style="height:563.2px">
+<div class="ideCenter" id="stepUp2IdeCenter">
+<div class="ideEditorDiv" id="stepUp2EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUp2CanvasDiv">
+<canvas class="ideCanvas" id="stepUp2Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUp2RunButton"><span class="glyphicon glyphicon-play"></span>Jalankan Program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp2() {
+STARTER_CODE = `
+
+/*
+ * Fail: ConoMemilihKarel.java
+ * --------------------------
+ * Program ConoMemilihKarel mentakrifkan kaedah " run
+ * " dengan tiga arahan. Perintah ini menyebabkan Ka
+ * rel ke move ke depan satu blok, mengambil beeper ,
+ * dan kemudian move ke depan ke sudut seterusnya.
+ */
+import stanford.karel.*;
+public class ConoMemilihKarel extends Karel {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnRight();
+      move();
+      move();
+      putBeeper();
+      move();
+   }
+
+   /**
+    * Menghidupkan Karel 90 darjah ke kanan.
+    */
+   private void turnRight() {
+      turnLeft();
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUp2Editor','stepUp2EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUp2Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'ms');
+    $('#stepUp2RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUp2RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUp2RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 563.2;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp2").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUp2Ide');
+    var editorDiv = document.getElementById('stepUp2EditorDiv');
+    var canvas = document.getElementById('stepUp2CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp2();
+    </script>
+</div>
+
+<p>Sudah tentu ada satu perbezaan jelas antara definisi <code>run</code> dan <code>turnRight</code> kaedah dalam program di atas: <code>run</code> kaedah ditandakan sebagai <code>public</code> Berbeza dengan <code>turnRight</code> , yang ditandakan sebagai <code>private</code> . Perbezaan antara kedua-dua jawatan ini ialah kaedah awam boleh digunakan dari luar program, sementara kaedah swasta tidak boleh. Kaedah run perlu menjadi umum kerana persekitaran Karel perlu mengeluarkan arahan run untuk mendapatkan perkara yang berlaku. Ia biasanya amalan pengaturcaraan yang baik untuk mengekalkan definisi peribadi apabila mungkin.</p>
+<h3>Blok Kod Kaedah</h3>
+<p>Sekumpulan perintah antara dua kurungan keriting <code translate="no">{ }</code> dipanggil a <b>blok kod</b> . Tubuh program anda adalah blok kode seperti tubuh suatu metode. Perhatikan bagaimana kandungan blok kod adalah satu tab yang diindentifikasi. Ini adalah gaya yang penting kerana memudahkan orang mengetahui kod baris apa yang ada dalam blok yang diberikan.</p>
+<p>Anda boleh menentukan seberapa banyak kaedah yang anda mahu. Mereka semua harus ditulis satu demi satu di dalam blok kod program anda. Anda tidak boleh menentukan kaedah dalam kaedah lain.</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter4.html" role="button">Bab seterusnya</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

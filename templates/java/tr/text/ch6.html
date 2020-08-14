@@ -1,0 +1,43 @@
+<h1>Bölüm 6: Döngülerken</h1>
+<hr/>
+<p>Yeni metotları tanımlama ve döngüler için tanımlama - olduğu kadar faydalı - aslında Karel'in herhangi bir yeni problemi çözmesini sağlamıyor. Her zaman run bir program her zaman aynı şeyi yapar. Programlar, farklı girdilere farklı tepki verebildiklerinde çok daha kullanışlı hale gelir.</p>
+<p>Örnek olarak. Diyelim ki Karel move duvara move için bir program yazmak move . Ancak bu programın tek bir dünyada sabit boyutta çalışmasını istemiyorsunuz. Herhangi bir dünyada çalışabilecek tek bir program yazmak istersiniz.</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>Dünyadaki "Dünyayı Değiştir" açılır menüsünü tıklayarak dünyayı değiştirmeyi deneyin. Herhangi bir boyuttaki dünya için Karel, bir duvara move kadar move olacaktır. Bu feat bir bir kullanılarak gerçekleştirilemez dikkat edin <code class="keyword">for</code> döngü. Bu programlama sırasında dünyanın boyutunu bilmemizi gerektiriyor.</p>
+<h3>Dönerken Temel</h3>
+<p>Karel’de <code class="keyword">while</code> döngü bir kod gövdesini tekrarlamak için kullanılır<i>olduğu sürece</i>verilen bir koşul tutar. While döngüsü aşağıdaki genel forma sahiptir:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">Ölçek</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">tekrarlanacak ifadeler</i><br/>
+ <code>}</code> 
+</p>
+<p>Bir süre döngüsünün kontrol akışı aşağıdaki gibidir. Program bir süre döngüsüne çarptığında, ilk önce olduğu yerde bir işlemi tekrarlamaya başlar.<i>çekler</i>eğer test geçerse ve öyleyse<i>run s</i>vücuttaki kod.</p>Program ne zaman<i>çekler</i>eğer test başarılı olursa,<i class="demoText">Ölçek</i>dünyanın şu anki durumu için geçerlidir. Eğer öyleyse, döngü run kodu run olacaktır. Test başarısız olursa, döngü sona move ve program move .
+<p>Program ne zaman<i>run s</i>Döngünün gövdesi, program vücuttaki çizgileri birer birer yürütür. Program while döngüsünün sonuna geldiğinde, döngünün tepesine atlar. Daha sonra testi tekrar kontrol eder, geçerse tekrar etmeye devam eder. Program kontrole gelinceye kadar döngüden çıkmaz ve test başarısız olur.</p>
+<p>Karel birçok var<i class="demoText">Ölçek</i>ifadeler, ve bir sonraki bölümde hepsini gözden geçireceğiz. Şimdilik tek bir test ifadesi kullanacağız: <code>frontIsClear()</code> Bu, doğrudan Karel’in ön cephesinde bir duvar yoksa doğrudur.</p>
+<h3>Fencepost Bug</h3>
+<p>Daha ilginç hale getirmek için yukarıdaki programımızı değiştirelim. Sadece bir duvara hareket etmek yerine, beeper her biri birer tane olmak üzere beeper s'lik bir çizgi yerleştirmesini beeper . Yine bu programın her büyüklükteki dünya için çalışmasını istiyoruz:</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Bu harika görünüyor. Bir problem hariç. Her dünyada Karel, beeper son karesine beeper yerleştirmez (yakından bakın). Karel son karedeyken, program döngünün gövdesini yürütmez çünkü test artık geçmez - Karel bir duvara bakar. Vücudun sırasını değiştirmeyi denemek için cazip olabilirsiniz, böylece bir move koymadan önce Karel move s. Kod düzenlenebilir, öyleyse deneyin!</p>
+<p>Vücudun yeniden düzenlenmesinin çözemediği daha derin bir sorun var. 7 sütunlu dünya için beeper 7 beeper s koyacağı, ancak move 6 katı olması gerektiği. While döngüsü bir test geçtiğinde her iki satırı da yürüttüğünden, bir komutu diğerinden bir kez daha yürütmek için programı nasıl elde edebilirsiniz?</p>
+<p>Bu programdaki hata denilen bir programlama probleminin bir örneğidir. <b>geçici hata hatası</b> . Adı, her iki boyutta bir çit direğine sahip olan panellerden yapılmış bir çit oluşturmak istiyorsanız, çit direği sayısının her zaman panel sayısından daha büyük olmasıdır. Örneğin kaç tane çit direği 10 panelli bir çit inşa etmeniz gerekir? Cevap, aşağıdaki diyagramda gösterildiği gibi 11'dir:</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>Bunu bir kez keşfettikten sonra bu hatayı düzeltmek aslında oldukça kolaydır. Karel dünyanın sonunda durmadan önce, programın tek yapması gereken son beeper</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

@@ -1,0 +1,606 @@
+
+<html>
+<head>
+
+<title>カレルリーダー</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ja/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> カレル</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter1.html">1  - カレルに会う</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter2.html">2  - プログラミング</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter3.html">3  - 新しい方法</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter5.html">5  - ループ用</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter6.html">6  - ループ中</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter7.html">7  - 条件付き</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter8.html">8  - 洗練</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter9.html">9  - スーパーカレル</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/reference.html">10  - 参照</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/ide.html">11  - コード</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> もっと詳しく知る</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第6章ループ中</h1>
+<hr/>
+<p>新しいメソッドを定義し、forループを定義するというテクニックは、実際のところ有用ですが、実際にはKarelが新しい問題を解決することはできません。あなたがプログラムを実行するrun 、常に同じことが行われます。プログラムは、異なる入力に対して異なる応答をすることができる場合には、はるかに便利になります。</p>
+<p>例として。あなたが壁にKarel moveを持っているためにプログラムを書きたかったとしましょう。しかし、あなたはこのプログラムが単に一つの世界で固定サイズで動くことを望まないのです。あなたはどんな世界でも動くことができる単一のプログラムを書きたいと思います。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="moveToWall">
+<div class="ide getStarted" id="moveToWallIde" style="height:316.8px">
+<div class="ideCenter" id="moveToWallIdeCenter">
+<div class="ideEditorDiv" id="moveToWallEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="moveToWallCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">世界を変える<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="moveToWallWorlds">
+<li><a>1×1</a> </li>
+<li><a>4×4</a> </li>
+<li><a>3×6</a> </li>
+<li><a>7×7</a> </li>
+<li><a>8×8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="moveToWallCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="moveToWallRunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplemoveToWall() {
+STARTER_CODE = `
+
+/*
+ * ファイル：壁にMove.java
+ * ---------------
+ * 壁に当たるまでmoveカレルへの「while」ループを使用します。あらゆる規模の世界で動作します。
+ */
+import stanford.カレル.*;
+public class 壁にMove extends カレル {
+   public void run() {
+      壁にMove();
+   }
+
+   /* これはとても便利な方法です */
+   private void 壁にMove() {
+      while(frontIsClear()) {
+         move();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('moveToWallEditor','moveToWallEditorDiv', STARTER_CODE, false);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('moveToWallCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'ja');
+    $('#moveToWallRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('moveToWallWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#moveToWallRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#moveToWallRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 300
+    var parentWidth = $("#moveToWall").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('moveToWallIde');
+    var editorDiv = document.getElementById('moveToWallEditorDiv');
+    var canvas = document.getElementById('moveToWallCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplemoveToWall();
+    </script>
+</div>
+
+<p>世界の上にある[ワールドの変更]ドロップダウンをクリックして、ワールドを変更してみてください。それが壁にmoveまで、どんなサイズの世界でも、カレルはmoveするでしょう。この偉業はaを使って完成することはできないことに注意してください。 <code class="keyword">for</code> ループ。それは私達がプログラミングの時に世界の大きさを知ることを必要とするでしょう。</p>
+<h3>基本的なWhileループ</h3>
+<p>カレルでは、 <code class="keyword">while</code> ループはコード本体を繰り返すために使用されます<i>限り</i>与えられた条件が成り立ちます。 whileループの一般的な形式は次のとおりです。</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">テスト</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">繰り返す文</i><br/>
+ <code>}</code> 
+</p>
+<p>whileループの制御フローは以下の通りです。プログラムがwhileループにぶつかると、最初のプロセスから繰り返し処理を開始します。<i>小切手</i>テストに合格した場合、そして合格した場合<i>run秒</i>本体内のコード</p>プログラムが<i>小切手</i>テストに合格した場合は、合格かどうかを判断します。<i class="demoText">テスト</i>世界の現在の状態に当てはまります。もしそうなら、ループはrunのコードをrunします。テストが失敗すると、ループは終了し、プログラムmoveがオンになります。
+<p>プログラムが<i>run秒</i>ループの本体では、プログラムは本体の行を1つずつ実行します。プログラムがwhileループの最後に到達すると、ループの先頭に戻ります。テストを再チェックし、合格した場合はループを続けます。プログラムは、チェックが行われるまでループを終了せず、テストは失敗します。</p>
+<p>カレルにはたくさんあります<i class="demoText">テスト</i>次の章でそれらすべてについて説明します。今のところ、単一のテストステートメントを使用します。 <code>frontIsClear()</code> カレルの真向かいに壁がない場合はこれが当てはまります。</p>
+<h3>フェンスポストバグ</h3>
+<p>上記のプログラムをもっと面白くなるように修正しましょう。壁に移動するのではなく、カレルにbeeper秒の線を各正方形に1つずつ配置させます。繰り返しになりますが、このプログラムはあらゆる規模の世界で機能します。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLineBug1">
+<div class="ide getStarted" id="beeperLineBug1Ide" style="height:299.20000000000005px">
+<div class="ideCenter" id="beeperLineBug1IdeCenter">
+<div class="ideEditorDiv" id="beeperLineBug1EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineBug1CanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">世界を変える<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineBug1Worlds">
+<li><a>1×1</a> </li>
+<li><a>4×4</a> </li>
+<li><a>3×6</a> </li>
+<li><a>7×7</a> </li>
+<li><a>8×8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineBug1Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineBug1RunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLineBug1() {
+STARTER_CODE = `
+
+/*
+ * File：Beeper行のバグ.java
+ * -------------------
+ * whileループを使用してbeeper秒の行をbeeperます。このプログラムは、あらゆる規模の世界で機能します。それぞれの世界が1つの少なく必要とするためしかし、 moveよりS putBeeper秒それは常にミスbeeper 。
+ */
+import stanford.カレル.*;
+public class Beeper行のバグ extends カレル {
+   public void run() {
+   	  /* カレルが壁に面するまで繰り返す */
+      while(frontIsClear()) {
+      	 /* 現在の広場にbeeperを配置する */ 
+         putBeeper();
+      	 /* 次の広場へmove */
+         move();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineBug1Editor','beeperLineBug1EditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineBug1Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'ja');
+    $('#beeperLineBug1RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineBug1Worlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineBug1RunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineBug1RunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 299.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLineBug1").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineBug1Ide');
+    var editorDiv = document.getElementById('beeperLineBug1EditorDiv');
+    var canvas = document.getElementById('beeperLineBug1CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLineBug1();
+    </script>
+</div>
+
+<p>それは素晴らしいですね。一つの問題を除いて。どの世界でもKarelはラインの最後のマスにbeeperを配置していません（よく見てください）。カレルが最後の正方形にあるとき、テストはもう合格しないので、プログラムはループの本体を実行しません - カレルは壁に面しています。あなたは、ビールを入れる前にKarel move sになるように体の順番をmoveうとしたくなるかもしれません。コードは編集可能なので、試してみてください。</p>
+<p>体の再配置では解決できないという、より深い問題があります。 7列の世界では、Karelは7 beeper秒を置く必要がありますが、 move 6回だけでなければなりません。テストに合格すると、whileループが両方の行を実行するので、プログラムが1つのコマンドを他のコマンドよりも1回実行する方法を教えてください。</p>
+<p>このプログラムのバグは、プログラムの問題の一例です。 <b>フェンスポストエラー</b> 。その名前は、どちらのサイズにもフェンスポストが1つあるパネルでできたフェンスを構築したい場合、フェンスポストの数は常にペインネルの数より1つ多いという事実に由来します。たとえば、10個のパネルでフェンスを建てるのに必要なフェンスポストはいくつありますか。次の図に示すように、答えは11です。</p>
+<center>
+<img src="../../images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>それを発見したら、このバグを修正するのは実はとても簡単です。カレルが世界の終わりでやめる前に、プログラムがしなければならないのは、最後のbeeperです。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLine">
+<div class="ide getStarted" id="beeperLineIde" style="height:334.40000000000003px">
+<div class="ideCenter" id="beeperLineIdeCenter">
+<div class="ideEditorDiv" id="beeperLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">世界を変える<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineWorlds">
+<li><a>1×1</a> </li>
+<li><a>4×4</a> </li>
+<li><a>3×6</a> </li>
+<li><a>7×7</a> </li>
+<li><a>8×8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineRunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLine() {
+STARTER_CODE = `
+
+/*
+ * ファイル：Beeper行.java
+ * ----------------
+ * "while"ループを使用してbeeper秒の行をbeeperます。このプログラムは、あらゆる規模の世界で機能します。
+ */
+import stanford.カレル.*;
+public class Beeper行 extends カレル {
+   public void run() {
+      /* カレルが壁に面するまで繰り返す */
+      while(frontIsClear()) {
+         /* 現在の広場にbeeperを配置する */ 
+         putBeeper();
+         /* 次の広場へmove */
+         move();
+      }
+      /* フェンスポストのバグを解決 */
+      putBeeper();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineEditor','beeperLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.8, 'ja');
+    $('#beeperLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineIde');
+    var editorDiv = document.getElementById('beeperLineEditorDiv');
+    var canvas = document.getElementById('beeperLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLine();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter7.html" role="button">次の章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+	"move":"move",
+	"putBeeper":"putBeeper",
+	"pickBeeper":"pickBeeper",
+	"turnLeft":"turnLeft",
+	"turnRight":"turnRight",
+	"frontIsClear":"frontIsClear",
+	"frontIsBlocked":"frontIsBlocked",
+	"beepersPresent":"beepersPresent"
+}

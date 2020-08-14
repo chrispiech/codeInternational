@@ -1,0 +1,41 @@
+<h1>Bölüm 1: Robot Karel'e Giriş</h1>
+<hr/>
+<p>1970'lerde, Rich Pattis adlı bir Stanford lisansüstü öğrencisi, öğrencilerin temel programlama fikirlerini, çoğu programlama dilini karakterize eden karmaşıklıklardan arındırılmış basit bir ortamda öğrenmeleri halinde programlamanın temellerini öğretmenin daha kolay olacağına karar verdi. Rich, öğrencilerin basit problemleri çözmek için bir robota ders verdikleri tanıtım amaçlı bir programlama ortamı tasarladı. Bu robot Çek oyun yazarı sonrası Karel seçildi. <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , 1923'te RUR oynuyor ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Rossum'un Evrensel Robotları</a> ) robot kelimesini ingilizceye verdi.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Robot Karel oldukça başarılı geçti. Karel, tüm dünyadaki bilgisayar bilimleri derslerinde ve milyonlarca öğrenciye öğretildi. Pek çok Stanford öğrencisi, programlamanın Karel ile nasıl çalıştığını öğrendi ve hala Stanford'da kullanılan kodlamaya nazik bir giriş oldu.</p>
+<h3>Karel Nedir?</h3>
+<p>Karel, çok basit bir dünyada yaşayan çok basit bir robot. Karel'e bir dizi komut vererek, dünyasında belirli görevleri yerine getirmesi için onu yönlendirebilirsiniz. Bu komutları belirleme sürecine denir. <b>programlama</b> . Başlangıçta, Karel yalnızca çok az sayıda önceden tanımlanmış komuttan anlar, ancak programlama sürecinin önemli bir kısmı Karel'e yeteneklerini artıran yeni komutlar öğretmektir.</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>Karel programları aynı yapıya sahiptir ve aynı temel unsurları içerir. <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> , büyük bir <a href="https://en.wikipedia.org/wiki/Programming_language">Programlama dili</a> . Kritik fark, Karel'in programlama dilinin son derece küçük olması ve bu nedenle detayların ustalaşması kolay olmasıdır. Yine de, bir problem çözmenin zor olabileceğini keşfedeceksiniz.</p>
+<p>Karel ile başlayarak, en başından itibaren problem çözmeye yoğunlaşabilirsiniz. Problem çözme, programlamanın özüdür. Karel, hayal gücünü ve yaratıcılığı teşvik ettiğinden, yol boyunca oldukça eğlenebilirsiniz.</p>
+<h3>Karel'in dünyası</h3>
+<p>run yatay (doğu-batı) ning run sıra ve dikey (kuzey-güney) ning run sütunlarla run . Bir satır ve bir sütunun kesişimine köşe denir. Karel yalnızca köşelere yerleştirilebilir ve dört standart pusula yönünden (kuzey, güney, doğu, batı) birine dönük olmalıdır. Örnek bir Karel dünyası aşağıda gösterilmiştir. Burada Karel, doğuya bakacak şekilde 1. sıra ve 1. sütunun köşesinde bulunmaktadır.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>Karel dünyasının diğer bazı bileşenleri bu örnekte görülebilir. beeper önündeki nesne beeper . Rich beeper kitabında açıklandığı gibi, beeper s “sessiz bir bip sesi çıkaran plastik koniler” dir. Karel sadece aynı köşede ise beeper tespit edebilir. Diyagramdaki düz çizgiler duvarlar. Duvarlar Karel'in dünyasında bariyer görevi görür. Karel duvarlardan geçemez ve onların etrafından dolanmak zorundadır. Karel'in dünyası her zaman kenarlardaki duvarlarla sınırlıdır, ancak dünya Karel'in çözmesi gereken belirli bir soruna bağlı olarak farklı boyutlara sahip olabilir.</p>
+<h3>Karel'in emirleri</h3>
+<p>Karel fabrikadan sevk edildiğinde, çok küçük komutlara cevap verir:<table class="table mt-10">
+<tr><th>komuta</th><th>Açıklama</th></tr>
+<tr><td> <code>move();</code> </td><td>move bir blok ileri move ister. Karel cevap veremez. <code>move()</code> yolunu tıkayan bir duvar varsa komutunu verin.</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>Karel'den sola 90 derece dönmesini ister (saat yönünün tersine).</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>beeper bir köşeden beeper ve beeper sonsuz sayıda beeper s tutabilen beeper çantasında beeper . Karel cevap veremez. <code>pickBeeper()</code> Geçerli köşede bir beeper olmadığı sürece komut.</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>beeper beeper çantasından beeper ve mevcut köşeye koymasını ister. Karel cevap veremez. <code>putBeeper()</code> beeper torbasında beeper s olmadığı sürece komut.</td></tr>
+</table>
+</p>
+<p>Komutları deneyelim. "Hedef" e ulaşmak için "dünyayı" almak için aşağıdaki düğmeleri kullanın:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/commands.html', name="cmd", world="commands", goalWorld="commandsGoal")
+%>
+
+
+<p>Bu komutların her birinde görünen boş parantez çifti, Karel ve Java tarafından paylaşılan ortak sözdiziminin bir parçasıdır ve komutun başlatılmasını belirtmek için kullanılır. Sonunda, yazdığınız programlar parantez arasındaki boşluğa ek bilgiler içerecektir ancak bu bilgiler Karel'in ilkel dünyasının bir parçası değildir. Bu nedenle bu parantezler standart Karel programlarında boş olacaktır, ancak yine de bunları eklemeyi unutmayın.</p>
+<p>Karel, duvardan geçmek ya da olmayan bir beeper gibi yasadışı bir şey yapmaya çalışırsa, bir hata durumu ortaya çıkar.</p>
+<p>Karel'in emirleri kendi başlarına yerine getirilmez. Bunun yerine, onları bir Karel programına dahil etmeniz gerekir. Bölüm 2'deki basit Karel programlarını görme şansına sahip olacaksınız!</p>
+<p></p>

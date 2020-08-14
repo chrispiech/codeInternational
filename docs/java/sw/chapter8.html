@@ -1,0 +1,450 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/sw/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter1.html">1 - kukutana na Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter2.html">2 - Programu</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter3.html">3 - Mbinu mpya</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter4.html">4 - kuacha</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter5.html">5 - Mizunguko For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter6.html">6 - Mizunguko While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter7.html">7 - Masharti</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter8.html">8 - Ufadhili</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/reference.html">10 - Rejea</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/sw/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/sw/ide.html">11 - Programu</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Jifunze zaidi</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Sura ya 8: Kufungua upya kwa hatua ya hatua</h1>
+<hr/>
+<p>Kwa kiasi kikubwa, programu ni sayansi ya kutatua matatizo kwa kompyuta. Sababu matatizo mara nyingi ni magumu, ufumbuzi-na mipango ambayo hutekeleza ufumbuzi huo-inaweza kuwa vigumu pia. Ili iwe rahisi iwe kukuza ufumbuzi huo, unahitaji kupitisha mbinu na nidhamu ambayo inapunguza kiwango cha utata huo kwa kiwango kikubwa.</p>
+<p>Katika miaka ya mwanzo ya programu, dhana ya kompyuta kama sayansi ilikuwa zaidi au chini ya jaribio la kufikiri unataka. Hakuna mtu aliyejua mengi kuhusu programu katika siku hizo, na walidhani wachache kama nidhamu ya uhandisi kwa maana ya kawaida. Kama programu ilikua, hata hivyo, nidhamu hiyo ilianza kuibuka. Msingi wa msingi wa nidhamu hiyo ni ufahamu kwamba programu hufanyika katika mazingira ya kijamii ambayo waendeshaji wanapaswa kufanya kazi pamoja. Ikiwa utaingia kwenye sekta, hakika utakuwa mojawapo ya programu nyingi zinazofanya kazi ili kuendeleza programu kubwa. Mpango huo, zaidi ya hayo, ni karibu kuishi na unahitaji matengenezo zaidi ya matumizi yake ya awali. Mtu atakayependa mpango wa kuingiza kipengele kipya au kazi kwa njia tofauti. Wakati huo unatokea, timu mpya ya waandaaji lazima iingie na kufanya mabadiliko muhimu katika programu. Ikiwa mipango imeandikwa kwa mtindo wa kibinafsi na kawaida au hakuna kawaida, kupata kila mtu kufanya kazi pamoja kwa ufanisi ni ngumu sana.</p>
+<p>Ili kupambana na tatizo hili, waandaaji walianza kukuza seti ya mbinu za programu zinazoitwa kwa pamoja <b>uhandisi wa programu</b> . Kutumia ujuzi bora wa uhandisi wa programu sio rahisi iwe rahisi kwa waandishi wengine kusoma na kuelewa mipango yako, lakini pia inakuwezesha wewe kuandika mipango hiyo mahali pa kwanza. Mojawapo ya maendeleo muhimu ya mbinu ya kuja nje ya uhandisi wa programu ni mkakati wa <b>kubuni-juu chini</b> au <b>uboreshaji wa stepwise</b> , ambayo inajumuisha matatizo kwa kuanzia na shida kwa ujumla. Ukivunja tatizo lote chini, na kisha kutatua kila kipande, ukivunja wale chini ikiwa ni lazima. Mkakati huu wa juu chini unafungwa na <b>kupima iterative</b> ambapo unahakikisha kwamba vipande vidogo vya ufumbuzi hufanya kazi kabla ya kuendelea.</p>
+<h3>Zoezi katika kuboresha hatua kwa hatua</h3>
+<p>Kuelezea dhana ya kuboresha hatua kwa hatua, hebu tufundishe Karel kutatua tatizo jipya. Fikiria kwamba Karel sasa anaishi katika ulimwengu unaoonekana kama hii:</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'sw',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>Katika kila nguzo, kuna mnara wa koni s wa urefu usiojulikana, ingawa baadhi ya nguzo (kama vile 7, na 9 katika ulimwengu wa sampuli) zinaweza kuwa tupu. Kazi ya Karel ni kukusanya koni katika kila moja ya minara hii, koni chini kwenye kona ya kusini ya mstari wa 1, halafu kurudi kwenye nafasi yake ya kuanzia. Hivyo, wakati Karel alipomaliza kazi yake katika mfano hapo juu, wote 25 koni s sasa katika minara wanapaswa kuwekwa kwenye kona ya safu ya 9 na mstari wa 1, kama ifuatavyo:</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'sw',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>Muhimu, unaweza kudhani kuwa Karel awali<i>kuanza</i>na sifuri koni s katika mfuko wake. Kila koni ilichukua imeongezwa kwenye mfuko wake. Wakati wa kuweka koni s kwenye kona, karel anaweza kutumia <code>beepersInBag()</code> mtihani.</p>
+<p>Funguo la kutatua tatizo hili ni kuharibu programu kwa njia sahihi, huku bado unaweza kujaribu wakati unapoenda. Kazi hii ni ngumu zaidi kuliko wengine uliyoyaona, ambayo inafanya uchaguzi wa subproblems zinazofaa zaidi ili kupata suluhisho la mafanikio.</p>
+<h3>Kanuni ya kubuni ya juu-chini</h3>
+<p>Wazo muhimu katika uboreshaji wa hatua kwa hatua ni kwamba unapaswa kuanza mpango wa programu yako kutoka juu, ambayo inahusu kiwango cha programu ambayo ni ya juu na ya kufikiri zaidi. Katika ngazi hii, tatizo la mnara koni wazi katika awamu tatu za kujitegemea. Kwanza, Karel anatakiwa kukusanya wote koni s. Pili, Karel atawaweka kwenye makutano ya mwisho. Tatu, Karel ana kurudi nyumbani kwake. Uharibifu huu wa dhana ya tatizo unaonyesha kuwa njia ya run ya programu hii itakuwa na muundo wafuatayo:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      kukusanyaWoteKoniS();</code> <br/>
+ <code>      toneYoteKoniS();</code> <br/>
+ <code>      kurudiNyumbani();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Katika ngazi hii, tatizo ni rahisi kuelewa. Bila shaka, kuna maelezo machache yameachwa kwa namna ya njia ambazo bado haujaandikwa. Hata hivyo, ni muhimu kuangalia kila ngazi ya kuharibika na kujihakikishia kuwa, kwa muda mrefu tu kama unaamini kuwa njia ambazo unakaribia kuandika zitatatua vifungu vyenye usahihi, basi utakuwa na suluhisho kwa shida kwa ujumla .</p>
+<h3>Upimaji wa upimaji unapoenda</h3>
+<p>Sasa kwa kuwa umefafanua muundo wa programu kwa ujumla, ni wakati wa move kwenye subproblem ya kwanza, ambayo inajumuisha kukusanya wote koni s. Kazi hii ni yenye ngumu zaidi kuliko matatizo rahisi kutoka kwa sura zilizopita. Kukusanya njia zote koni kwamba unapaswa kuchukua koni s kila mnara hadi koni kona ya mwisho. Ukweli kwamba unahitaji kurudia operesheni kwa kila mnara unaonyesha kwamba unahitaji mzunguko while hapa. mzunguko while mchakato wa <code>kukusanyaMnaraMmoja</code> na kisha kusonga.</p>
+<p> <b>Tahadhari:</b> Ni hatari kujaribu kuandika mpango mzima bila <b>kupima</b> ni unapoenda. Ukitenda kosa itakuwa vigumu kupata kosa. Tunajua kwamba tutarudia mchakato wa kukusanya mnara mmoja. Hebu tuandike na <b>mtihani</b> kukusanya mnara mmoja kabla ya kuweka <code>KukusanyaMnaraMmoja</code> mchakato katika mzunguko for . Hivyo<i>temporariliy</i>tunaweza kuanza na ufafanuzi wafuatayo wa kukusanyaKoniS:<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> kukusanyaWoteKoniS() {</code> <br/>
+ <code class="comment">      /* utekelezaji wa muda kwa madhumuni ya kupima */</code> <br/>
+ <code>      kukusanyaMnaraMmoja();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Kama kanuni ya kuongoza, ikiwa una kitanzi tata, jaribu<i>mwili</i>ya kitanzi kabla ya kuandika kitanzi kote.</p>
+<h3>Kuboresha mnara wa kukusanya</h3>
+<p>Wakati kukusanyaMnaraMmoja inaitwa, Karel amesimama chini ya mnara wa koni au amesimama kona tupu. Katika kesi ya zamani, unahitaji kukusanya koni s katika mnara. Katika mwisho, unaweza tu move juu. Hali hii inaonekana kama programu ya test si , ambayo unaweza kuandika kitu kama hiki:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(koniIko()){</code> <br/>
+ <code>      kukusanyaMnaraHalisi();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Kabla ya kuongeza maelezo kama hiyo kwa kificho, unapaswa kufikiria kama unahitaji kufanya mtihani huu. Mara nyingi, mipango inaweza kufanywa rahisi sana kwa kuchunguza kesi ambazo kwa mara ya kwanza zinaonekana kuwa za pekee zinaweza kutibiwa kwa njia sawa na hali ya kawaida zaidi. Katika tatizo la sasa, ni nini kinachotokea ikiwa unaamua kuwa kuna mnara wa koni s kila mahali lakini kwamba baadhi ya minara hiyo ni zero koni s juu? Kutumia ufahamu huu kunapunguza programu kwa sababu huna tena kupima ikiwa kuna mnara juu ya avenue fulani.</p>
+<p>Njia ya kukusanyaMnaraMmoja bado ni ngumu ya kutosha kuwa kiwango cha ziada cha utengano ni kwa utaratibu. Kukusanya wote koni s katika mnara, Karel anahitaji kufanya hatua zifuatazo:</p>
+<ol>
+<li>Pinduka kushoto ili uso na koni s katika mnara.<li>Kukusanya wote koni s katika mnara, kuacha wakati hakuna zaidi koni s hupatikana.<li>Pinduka kuzunguka nyuma kuelekea chini ya dunia.<li>Rudi kwenye ukuta unaowakilisha ardhi.<li>Pinduka kushoto ili uwe tayari hadi move kwenye kona inayofuata.</li></li></li></li></li></ol>
+<p>Mara nyingine tena, muhtasari huu hutoa mfano wa njia ya kukusanyaMnaraMmoja, ambayo inaonekana kama hii:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>kukusanyaMnaraMmoja(){</code> <br/>
+ <code>      geukaKushoto();</code> <br/>
+ <code>      kukusanyaMstariWaKoniS();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      moveKwaUkuta();</code> <br/>
+ <code>      geukaKushoto();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>Njia za utaratibu na postconditions</h3>
+<p>Amri geukaKushoto mwanzo na mwisho wa njia ya kukusanyaMnaraMmoja ni muhimu sana kwa usahihi wa programu hii. Wakati kukusanyaMnaraMmoja inaitwa, Karel daima ni mahali fulani kwenye safu ya kwanza inakabiliwa mashariki. Baada ya kukamilisha kazi yake, mpango kwa ujumla utafanya kazi kwa usahihi tu kama Karel anakabiliwa tena mashariki kwenye kona hiyo hiyo. Masharti lazima iwe ya kweli kabla ya njia inayoitwa inajulikana kama <b>masharti</b> ; hali ambazo zinapaswa kutumika baada ya kumaliza njia hujulikana kama <b>postconditions</b> .</p>
+<p>Unapofafanua utaratibu, utaingia shida kubwa sana ikiwa unaandika hasa nini kabla na baada ya maandishi. Mara baada ya kufanya hivyo, basi unahitaji kuhakikisha kwamba kanuni unazoandika daima hutoshea amri ya postconditions, na kuzingatia kwamba masharti yalikubalika kuanza. Kwa mfano, fikiria juu ya kile kinachotokea ikiwa unaita kukusanyaMnaraMmoja wakati Karel yuko kwenye mstari wa kwanza akitazama mashariki. Amri geukaKushoto kwanza geukaKushoto Karel akielekea kaskazini, ambayo inamaanisha kuwa Karel koni vizuri na safu ya koni s inayowakilisha mnara. Njia ya kukusanyaMaKoniS-ambayo bado haijaandikwa lakini hata hivyo hufanya kazi ambayo move conceptually - tu move s bila kugeuka. Hivyo, mwishoni mwa wito wa kukusanyaMarariWaKoniS, Karel bado atakabiliwa na kaskazini. Kwa hiyo wito turnAround huondoka Karel akielekea kusini. Kama kukusanyaMstariWaKoniS, njia ya move KwaUkuta haihusisha zamu yoyote bali badala ya move tu mpaka inapiga ukuta wa mpaka. Kwa sababu Karel anaelekea kusini, ukuta huu wa mipaka utakuwa moja chini ya skrini, chini ya mstari wa 1. Kwa hiyo amri ya geukaKushoto mwisho geukaKushoto Karel kwenye mstari wa kwanza inakabiliwa na mashariki, ambayo inatimiza postcondition.</p>
+<h3>Kurudia mchakato</h3>
+<p>Wewe run programu yako na hufanikiwa kufuta mnara mmoja na kuondoka Karel katika postcondition iliyoahidiwa. Wahoo! Umegonga tu hatua muhimu katika kutatua kazi hii ngumu! Sasa tunapaswa kurudia mchakato wa kusafisha mnara mmoja kwa kutumia mzunguko while .</p>
+<p>Lakini hii mzunguko while inaonekana kama nini? Kwanza kabisa, unapaswa kufikiri juu ya mtihani wa masharti. Unataka Karel kuacha wakati inapiga ukuta mwishoni mwa mstari. Kwa hiyo, unataka Karel kuendelea kama muda mrefu mbele. Kwa hiyo, unajua kuwa njia ya kukusanyaWoteKoniS itajumuisha mzunguko while ambayo inatumia mtihani wa frontIsClear . Kwa kila nafasi, unataka Karel kukusanya wote koni s katika mnara koni na kona hiyo. Ikiwa unatoa jina hilo, jina ambalo linaweza kuwa kitu kama kukusanyaMnaraMmoja, unaweza kwenda mbele na kuandika ufafanuzi kwa njia ya kukusanyaWoteKoniS hata kama bado haujajaza maelezo.</p>
+<p>Hata hivyo, unapaswa kuwa makini. Msimbo wa kukusanyaKoteKoniS haionekani kama hii:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>kukusanyaWoteKoniS(){</code> <br/>
+ <code class="comment">      /* buggy kitanzi! */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         kukusanyaMnaraMmoja();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Utekelezaji huu ni buggy kwa sababu sawa sawa kwamba toleo la kwanza la PlaceKoniLine kwa ujumla kutoka sura ya 6 lilishindwa kufanya kazi yake. Kuna kosa la fence katika toleo hili la msimbo, kwa sababu Karel anahitaji kupima uwepo wa mnara wa koni kwenye avenue ya mwisho. Utekelezaji sahihi ni:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>kukusanyaWoteKoniS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         kukusanyaMnaraMmoja();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      kukusanyaMnaraMmoja();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Kumbuka kuwa njia hii ina muundo sawa na programu kuu kutoka kwenye mpango wa PlaceKoniLine iliyotolewa katika sura ya 6. Tofauti pekee ni kwamba programu hii inaita kukusanyaMnaraMmoja ambapo nyingine inayoitwa wekaKoni . Programu hizi mbili ni kila aina ya mkakati wa jumla unaoonekana kama hii:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>kukusanyaWoteKoniS(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">kufanya kazi fulani.</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">kufanya operesheni sawa kwa kona ya mwisho.</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Unaweza kutumia mkakati huu kila wakati unahitaji kufanya operesheni kila kona kama wewe move kando ya njia move ukuta. Ikiwa unakumbuka muundo wa jumla wa mkakati huu, unaweza kuitumia wakati wowote unakabiliwa na tatizo ambalo inahitaji uendeshaji huo. Mikakati ya kurejeshwa ya aina hii huja mara kwa mara katika programu na inajulikana kama <b>Idioms ya programu</b> au <b>chati</b> . Mwelekeo zaidi unaowajua, itakuwa rahisi kwako kupata moja ambayo yanafaa aina fulani ya tatizo.</p>
+<h3>Kumaliza</h3>
+<p>Ijapokuwa kazi ngumu imefanywa, bado kuna sehemu kadhaa za kutosha zinahitaji kutatuliwa. Programu kuu inaita njia mbili za sautiNoteKoniS na kurudiNyumbani- ambazo bado hazijaandikwa. Vile vile, kukusanyaMnaraMmoja inaita kukusanyaMarariWaKoniS na move KwaUkuta. Kwa bahati nzuri, njia zote nne hizi ni rahisi kutosha kanuni bila kuharibika zaidi, hasa ikiwa unatumia move KwaUkuta katika ufafanuzi wa kurudiNyumbani. Hapa ni utekelezaji kamili:</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1737.45px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>Panga Programu</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * Fungua: KoniKukusanyaKarel.java
+ * ------------------------------
+ * Darasa la KoniKukusanyaKarel linakusanya koni s ka
+ * tika mfululizo wa minara ya wima na kuiweka kwenye
+ * kona ya mashariki kwenye mstari wa 1.
+ */
+import stanford.karel.*;
+public class KoniKukusanyaKarel extends Karel {
+
+   /**
+    * Inabainisha hatua ya kuingilia programu.
+    */
+   public void run() {
+      kukusanyaWoteKoniS();
+      toneYoteKoniS();
+      kurudiNyumbani();
+   }
+
+   /**
+    * koni s kutoka kila mnara kwa kusonga mstari wa kwa
+    * nza, wito kukusanyaMnaraMmoja kwenye kila kona. Po
+    * stcondition kwa njia hii ni kwamba Karel yuko kati
+    * ka kona ya kusini ya mstari wa kwanza inakabiliwa
+    * mashariki.
+    */
+   private void kukusanyaWoteKoniS() {
+      while (frontIsClear()) {
+         kukusanyaMnaraMmoja();
+         move(); 
+      }
+      kukusanyaMnaraMmoja();
+   }
+
+   /**
+    * Hukusanya koni s kwenye mnara mmoja. Wakati kukusa
+    * nyaMnaraMmoja inaitwa, Karel lazima awe mstari wa
+    * kwanza akielekea mashariki. Postcondition ya kukus
+    * anyaMnaraMmoja ni kwamba Karel lazima awe tena kuk
+    * abili mashariki kwenye kona hiyo hiyo.
+    */
+   private void kukusanyaMnaraMmoja() {
+      geukaKushoto();
+      kukusanyaMstariWaKoniS();
+      turnAround();
+      moveKwaUkuta();
+      geukaKushoto();
+   }
+
+   /**
+    * Hukusanya mstari mfululizo wa koni s. Mwisho wa ms
+    * tari wa koni unaonyeshwa na kona ambayo haina koni
+    * s.
+    */
+   private void kukusanyaMstariWaKoniS() {
+      while (koniIko()) {
+         chukuaKoni();
+         if (frontIsClear()) {
+            move(); 
+         }
+      } 
+   }
+
+   /**
+    * koni kila koni s kwenye kona ya sasa.
+    */
+   private void toneYoteKoniS() {
+      while (beepersInBag()) {
+         wekaKoni();
+      }
+   }
+
+   /**
+    * Anarudi Karel kwenye nafasi yake ya kwanza kwenye
+    * kona ya 1 Avenue na mstari wa kwanza, wakipata mas
+    * hariki. Msingi wa njia hii ni kwamba Karel lazima
+    * atakabiliwa na mashariki mahali fulani kwenye msta
+    * ri wa 1, ambayo ni kweli wakati wa kumalizaKoniS k
+    * ukusanya.
+    */
+   private void kurudiNyumbani() {
+      turnAround();
+      moveKwaUkuta();
+      turnAround();
+   }
+
+   /** Anasababisha Karel mbele mpaka imefungwa na ukuta. */
+   private void moveKwaUkuta(){
+      while (frontIsClear()) {
+         move();
+      } 
+   }
+
+   /** Inachukua Karel 180 digrii karibu */
+   private void turnAround(){
+      geukaKushoto();
+      geukaKushoto();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'sw', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1737.45;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">Sura inayofuata</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

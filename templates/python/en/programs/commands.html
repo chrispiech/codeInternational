@@ -1,0 +1,74 @@
+<%
+  canvasSize = 175
+%>
+
+<div class="section embeddedIde" id="{{name}}">
+    <div id ='{{name}}Ide' class = "ide getStarted">
+         <div id = '{{name}}CanvasDiv' class = 'commandCanvasDiv'>
+          <div>
+            <div class="commandCanvasTitle">World:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='{{name}}Canvas' style="width:{{canvasSize}}px;height:{{canvasSize}}px"></canvas>
+            </div>
+          </div>
+          <div style="width:50px"></div>
+          <div>
+            <div class="commandCanvasTitle">Goal:</div>
+            <div class="commandCanvasOuter">
+              <canvas id='{{name}}CanvasGoal' style="width:{{canvasSize}}px;height:{{canvasSize}}px"></canvas>
+            </div>
+          </div>
+         </div> 
+         <div class="commandButtons">
+          <button id="{{name}}Move" class="btn btn-default btn-lg mr-10 commandButton"><code>move()</code></button>
+          <button id="{{name}}TurnLeft" class="btn btn-default btn-lg mr-10 commandButton"><code>turn_left()</code></button>
+          <button id="{{name}}PickBeeper" class="btn btn-default btn-lg mr-10 commandButton"><code>pick_beeper()</code></button>
+          <button id="{{name}}PutBeeper" class="btn btn-default btn-lg commandButton"><code>put_beeper()</code></button>
+         </div>
+    </div>
+</div>
+    
+<script style="width:0px;height:0px;display:none">
+
+        
+
+function example{{name}}() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('{{name}}Canvas');
+    karelIde = KarelIde('java',null, canvas, '{{world}}', 0.9, '{{lang}}', 500, 500);
+    $('#{{name}}Move').click(function(){karelIde.stepMove()});
+    $('#{{name}}TurnLeft').click(function(){karelIde.stepTurnLeft()});
+    $('#{{name}}PickBeeper').click(function(){karelIde.stepPickBeeper()});
+    $('#{{name}}PutBeeper').click(function(){karelIde.stepPutBeeper()});
+
+    let canvasGoal = document.getElementById('{{name}}CanvasGoal');
+    let goalIde = KarelIde('java',null, canvasGoal, '{{goalWorld}}', 0.9, '{{lang}}', 500, 500)
+ }
+
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#{{name}}RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#{{name}}RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ 
+ main()
+ 
+}
+example{{name}}();
+    </script>

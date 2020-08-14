@@ -1,0 +1,164 @@
+body {
+    overflow: auto;
+    font-size:15px;
+}
+
+p {
+  text-align: justify;
+}
+
+.buttonBar {
+  clear:left;
+  padding-top: 5px;
+  height:50px;
+}
+
+.comment {
+  color:#729683;
+  font-family: monospace;
+  font-weight:400;
+  font-size:13px;
+}
+
+.worldDropdown {
+  justify-content:center;
+   display: flex;
+   margin-bottom:5px;
+}
+
+.embeddedIde{
+  margin-bottom:20px !important;
+  margin-top:10px;
+}
+
+.commandCanvasDiv {
+   justify-content:center;
+   display: flex;
+}
+
+.commandCanvasTitle {
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+}
+
+.commandCanvasOuter {
+  margin:20px;
+  margin-top:5px;
+}
+
+.centerChildren {
+  justify-content:center;
+   display: flex;
+}
+
+.commandButtons{
+  justify-content:center;
+   display: flex;
+}
+
+.commandButton {
+  min-width:100px;
+}
+
+.demoText{
+  color:blue;
+}
+
+.keyword {
+  color:#7e0855;
+}
+
+.demoCode {
+  margin:20px;
+  margin-left:3em
+}
+
+.mr-10 {
+  margin-right:10px;
+}
+
+.mt-10 {
+  margin-top:10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.bookContainer {
+  height:100%;
+  display: flex; 
+  box-sizing: border-box;
+}
+
+.bookContent {
+  flex-grow: 2;  
+  overflow-y: auto;  /*adds scroll to this container*/
+}
+
+.bookSideBar {
+  width: 230px;
+  min-width:230px; 
+  /*background-color:#DDDDDD; */
+  color:#646464;
+  padding:20px; 
+  border-right: 1px solid black;
+}
+
+.bookLink {
+  padding: 0px !important; 
+  line-height: 40px !important;
+  font-size:15px !important;
+    /* font-size: 14px; */
+    /* line-height: 1.42857143; */
+}
+
+.chapterTab {
+  flex-shrink: 0;
+  line-height: 40px;
+  height:40px;
+  margin-top:5px;
+  margin-bottom:5px;
+  font-size:15px;
+  cursor:pointer;
+  padding-left:10px;
+}
+
+.chapterTab:hover{
+background: #f1f1f1;
+ /* make this whatever you want */
+}
+
+.sideBarTitle {
+  /*color:#CCCCCC;*/
+  color:black;
+  margin-bottom:30px;
+  font-size:26px;
+  text-align: center;
+}
+
+.homeLink {
+  /*color:#CCCCCC;*/
+  color:black;
+  font-size:26px;
+  text-align: left;
+  padding-left:10px;
+}
+
+.sideBarSelected {
+  background-color:#EEEEEE; 
+  color:black;
+}
+
+pre {
+  background-color: white;
+}
+
+code {
+  padding: 0px;
+	font-family: monospace;
+  font-weight:400;
+	color:black;
+	background-color: inherit !important;
+}

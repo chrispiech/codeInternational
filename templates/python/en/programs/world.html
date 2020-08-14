@@ -1,0 +1,37 @@
+<%
+  setdefault('canvasWidth', 300)
+  setdefault('canvasRatio', 0.7)
+%>
+
+<div class="section" id="{{name}}">
+    <div id ='{{name}}Ide' class = "ide getStarted">
+         <div id = '{{name}}CanvasDiv' class = 'commandCanvasDiv'>
+          <div>
+            <div class="commandCanvasOuter">
+              <canvas id='{{name}}Canvas' style="width:{{canvasWidth}}px;"></canvas>
+            </div>
+          </div>
+         </div> 
+    </div>
+    
+<script>
+
+        
+
+function example{{name}}() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('{{name}}Canvas');
+    karelIde = KarelIde('{{progLang}}',null, canvas, '{{world}}', 0, '{{lang}}',1000, {{canvasRatio}} * 1000);
+ }
+
+ 
+ main()
+ 
+}
+example{{name}}();
+    </script>
+</div>

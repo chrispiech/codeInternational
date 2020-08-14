@@ -1,0 +1,61 @@
+<h1>Chapitre 3: Définition de nouvelles méthodes</h1>
+<hr/>
+<p>
+  Dans le dernier chapitre, nous avons écrit un programme pour aider Karel à gravir un rebord simple:
+</p>
+<h3>Exemple: PremierKarel</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>
+  Même si le <code>PremierKarel</code>  programme ci-dessus montre qu’il est possible d’effectuer le <code>tournerDroite</code> opération utilisant uniquement les commandes intégrées de Karel, le programme résultant n’est pas particulièrement clair sur le plan conceptuel. Dans votre conception mentale du programme, Karel tourne à droite quand il atteint le sommet du rebord. Le fait que vous deviez utiliser trois commandes tournerGauche pour le faire est ennuyeux. Ce serait beaucoup plus simple si vous pouviez simplement dire <code>tournerDroite()</code>  et demandez à Karel de comprendre cette commande. Le programme résultant serait non seulement plus court et plus facile à écrire, mais aussi beaucoup plus facile à lire.
+</p>
+<h3>Définir de nouvelles commandes</h3>
+<p>
+  Heureusement, le langage de programmation Karel permet de définir de nouvelles commandes simplement en incluant de nouvelles définitions de méthodes. Chaque fois que vous avez une séquence de commandes Karel qui effectue une tâche utile - telle que tourner à droite - vous pouvez définir une nouvelle méthode qui exécute cette séquence de commandes. Le format utilisé pour définir une nouvelle méthode de Karel ressemble beaucoup à celui de <code>run</code>  dans les exemples précédents, qui est une définition de méthode à part entière. Une définition de méthode typique ressemble à ceci:
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">prénom</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">commandes qui constituent le corps de la méthode</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>
+  Dans ce modèle, nom représente le nom que vous avez choisi pour la nouvelle méthode. Pour compléter la définition, il suffit de fournir la séquence de commandes dans les lignes entre les accolades. Par exemple, vous pouvez définir <code>tournerDroite</code>  comme suit:
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> tournerDroite() {</code> <br/>
+ <code style="margin-left:3.5em">tournerGauche();</code> <br/>
+ <code style="margin-left:3.5em">tournerGauche();</code> <br/>
+ <code style="margin-left:3.5em">tournerGauche();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>
+  De même, vous pouvez définir un nouveau <code>faireDemiTour</code>  méthode comme ceci:
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> faireDemiTour() {</code> <br/>
+ <code style="margin-left:3.5em">tournerGauche();</code> <br/>
+ <code style="margin-left:3.5em">tournerGauche();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>
+  Vous pouvez utiliser le nom d’une nouvelle méthode, comme pour n’importe quelle commande intégrée de Karel. Par exemple, une fois que vous avez défini <code>tournerDroite</code> , vous pouvez remplacer les trois commandes tournerGauche dans le <code>IntensifierKarel</code>  programme avec un seul appel à la <code>tournerDroite</code>  méthode. Voici une mise en œuvre révisée du programme qui utilise <code>tournerDroite</code> :
+</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>
+  Il y a bien sûr une différence évidente entre les définitions de la <code>run</code>  et <code>tournerDroite</code>  méthodes dans le programme ci-dessus: la <code>run</code>  la méthode est marquée comme <code>public</code>  contrairement à <code>tournerDroite</code> , qui est marqué comme <code>private</code> . La différence entre ces deux désignations est que les méthodes publiques peuvent être appelées de l'extérieur du programme, contrairement aux méthodes privées. La méthode run doit être publique, car l'environnement Karel doit pouvoir émettre une commande run pour que les choses se déroulent bien. Il est généralement bon de garder les définitions privées lorsque cela est possible.</p>
+<h3>Méthode Code Blocks</h3>
+<p>
+  Un groupe de commandes entre deux accolades <code translate="no">{ }</code>  est appelé un <b>bloc de code</b> . Le corps de votre programme est un bloc de code, de même que le corps d'une méthode. Notez que le contenu d'un bloc de code est mis en retrait dans un onglet. Ceci est important du point de vue stylistique, car il est facile pour les utilisateurs de savoir quelles lignes de code sont contenues dans un bloc donné.
+</p>
+<p>Vous pouvez définir autant de méthodes que vous le souhaitez. Ils doivent tous être écrits les uns après les autres dans le bloc de code de votre programme. Vous ne pouvez pas définir une méthode dans une autre méthode.</p>

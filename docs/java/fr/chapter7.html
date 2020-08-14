@@ -1,0 +1,353 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/fr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 
+      Karel
+    </a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter1.html">
+      1 - Rencontrez Karel
+    </a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter2.html">2 - Programmation</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter3.html">3 - Nouvelles méthodes</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter4.html">4 - Décomposition</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter5.html">5 - Boucles For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter6.html">6 - Boucles While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter7.html">7 - Conditions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter8.html">8 - Raffinement</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/reference.html">10 - Référence</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/fr/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/fr/ide.html">11 - Code</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Apprendre encore plus</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Chapitre 7: Les déclarations if</h1>
+<hr/>
+<p> La dernière structure de flux de contrôle de programmation à apprendre est des instructions conditionnelles ( <code>if</code>  et <code>if/else</code> ).
+</p>
+<h3>Conditions de base</h3>
+<p>
+Un <code>if/else</code>  Cette instruction exécute un "si" code-block si et seulement si le<i class="demoText">tester</i> est vrai pour l'état du monde au moment où le programme atteint la déclaration. Sinon, le programme exécute le bloc de code "else".
+</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">tester</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">sinon code-block</i><br/>
+ <code>}</code> 
+</p>
+<p>Pour avoir une idée de l'endroit où les instructions conditionnelles peuvent jetons utiles, écrivons un programme dans lequel Karel inversera une ligne de jetons . Si un carré avait précédemment un jeton , Karel devrait le ramasser. Si un carré n'a pas jeton , Karel devrait en poser un.</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="ide">
+<div class="ide getStarted" id="ideIde" style="height:334.40000000000003px">
+<div class="ideCenter" id="ideIdeCenter">
+<div class="ideEditorDiv" id="ideEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="ideCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Changer le monde<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="ideWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="ideCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="ideRunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function exampleide() {
+STARTER_CODE = `
+
+/*
+ * Écrivez le code que vous voulez
+ */
+import stanford.karel.*;
+public class MonProgramme extends SuperKarel {
+   public void run() {
+      // votre code ici ...
+   } 
+}
+
+
+
+
+
+
+
+
+
+
+
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('ideEditor','ideEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('ideCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '8x8', 0.0, 'fr');
+    $('#ideRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('ideWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#ideRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#ideRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#ide").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('ideIde');
+    var editorDiv = document.getElementById('ideEditorDiv');
+    var canvas = document.getElementById('ideCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+exampleide();
+    </script>
+</div>
+
+
+
+
+
+<p> Notez qu'un <code>if</code>  déclaration n'a pas besoin d'avoir un <code>else</code>  bloquer - auquel cas la déclaration opère comme un <code>while</code>  boucle qui n’exécute qu’une fois:
+</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">tester</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">si code-block</i><br/>
+ <code>} </code> 
+</p>
+<h3>Conditions</h3>
+<p>
+Ce dernier exemple utilisait une nouvelle condition. Voici une liste de toutes les conditions connues de Karel:
+</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Tester</th><th>Contraire</th><th>Qu'est-ce qu'il vérifie</th></tr>
+<tr>
+<td> <code>devantDegage()</code> </td>
+<td> <code>devantBloque()</code> </td>
+<td>Y a-t-il un mur devant Karel?</td>
+</tr>
+<tr>
+<td> <code>jetonsPresents()</code> </td>
+<td> <code>jetonsAbsents()</code> </td>
+<td>Y a-t-il jetons sur ce coin?</td>
+</tr>
+<tr>
+<td> <code>gaucheDegagee()</code> </td>
+<td> <code>gaucheBloquee()</code> </td>
+<td>Y a-t-il un mur à gauche de Karel?</td>
+</tr>
+<tr>
+<td> <code>droiteDegagee()</code> </td>
+<td> <code>droiteBloquee()</code> </td>
+<td>Y a-t-il un mur à la droite de Karel?</td>
+</tr>
+<tr>
+<td> <code>jetonsEnPoche()</code> </td>
+<td> <code>sansJetonsEnPoche()</code> </td>
+<td>Y jetons il jetons dans le sac de Karel?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>faceAuNord()</code> </td>
+<td> <code>pasFaceAuNord()</code> </td>
+<td>Karel fait-il face au nord?</td>
+</tr>
+<tr>
+<td> <code>faceAuSud()</code> </td>
+<td> <code>pasFaceAuSud()</code> </td>
+<td>Karel fait-il face au sud?</td>
+</tr>
+<tr>
+<td> <code>faceAlEst()</code> </td>
+<td> <code>pasFaceAlEst()</code> </td>
+<td>Karel fait-il face à l'est?</td>
+</tr>
+<tr>
+<td> <code>faceAlOuest()</code> </td>
+<td> <code>pasFaceAlOuest()</code> </td>
+<td>Karel fait-il face à l'ouest?</td>
+</tr>
+</table>
+</p>
+<h3>Mettre tous ensemble</h3>
+<p>Félicitations! Vous connaissez maintenant tous les blocs principaux de flux de contrôle de programmation. Pendant que vous les avez apprises avec Karel, les boucle while , boucle while s, boucle for s, if / else fonctionnent de la même manière dans la plupart des langages principaux, y compris Java.</p>
+<p>
+Maintenant que vous avez les éléments de base, vous pouvez les assembler pour trouver des solutions à des problèmes de plus en plus complexes.
+Dans une large mesure, la programmation est la science de la résolution de problèmes par ordinateur. Parce que les problèmes sont souvent difficiles, les solutions - et les programmes qui les implémentent - peuvent l'être également. Afin de faciliter le développement de ces solutions, vous devez adopter une méthodologie et une discipline qui réduisent le niveau de cette complexité à une échelle raisonnable.
+</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter8.html" role="button">Chapitre suivant</a> 
+</center>
+
+
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

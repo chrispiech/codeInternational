@@ -1,0 +1,27 @@
+
+<%
+%>
+
+<div class="section" id="{{name}}" style=";text-align:right;direction:rtl"><div class="ide getStarted" id="{{name}}Ide" style=";text-align:right;direction:rtl"><div class="commandCanvasDiv" id="{{name}}CanvasDiv" style=";text-align:right;direction:rtl"><div style=";text-align:right;direction:rtl"><div class="commandCanvasTitle" style=";text-align:right;direction:rtl"> לפני: </div><div class="commandCanvasOuter" style=";text-align:right;direction:rtl"><canvas id="{{name}}CanvasBefore" style="width:{{canvasWidth}}px;"></canvas></div></div><div style="width:50px;text-align:right;direction:rtl"></div><div style=";text-align:right;direction:rtl"><div class="commandCanvasTitle" style=";text-align:right;direction:rtl"> לאחר: </div><div class="commandCanvasOuter" style=";text-align:right;direction:rtl"><canvas id="{{name}}CanvasAfter" style="width:{{canvasWidth}}px;"></canvas></div></div></div></div><script>
+
+        
+
+function example{{name}}() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('{{name}}CanvasBefore');
+    karelIde = KarelIde(null, canvas, '{{before}}', 0.0, 1000, {{ratio}} * 1000);
+
+    let canvasGoal = document.getElementById('{{name}}CanvasAfter');
+    let goalIde = KarelIde(null, canvasGoal, '{{after}}',0.0,  1000, {{ratio}} * 1000)
+ }
+
+ 
+ main()
+ 
+}
+example{{name}}();
+    </script></div>

@@ -1,0 +1,43 @@
+<h1>第6章：循环</h1>
+<hr/>
+<p>定义新功能并定义的技术 <code>for</code> 循环（尽管非常有用）实际上并不能使Karel解决任何新问题。每当您使用run程序时，它始终会执行完全相同的操作。当程序可以对不同的输入做出不同的响应时，它们将变得更加有用。</p>
+<p>例如，假设您要编写一个程序以将Karel move固定在墙上。但是，您不只是希望该程序在一个固定大小的世界上运行。您想编写一个可以在任何世界上运行的程序。</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>单击世界上方的“更改世界”下拉菜单，尝试更改世界。对于任何大小的世界，Karel都会在move之前撞墙。请注意，使用以下命令无法完成此壮举 <code class="keyword">for</code> 环。这需要我们在编程时了解世界的大小。</p>
+<h3>基本的循环</h3>
+<p>在卡雷尔，一个 <code class="keyword">while</code> 循环用于重复代码体<i>只要</i>给定条件成立。的 <code>while</code> 循环具有以下一般形式：</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span> </code> <i class="demoText">测试</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">要重复的陈述</i><br/>
+</p>
+<p>一个的控制流 <code>while</code> 循环如下。当程序点击 <code>while</code> 循环开始它首先重复一个过程<i>检查</i>如果测试通过，如果是，<i>run秒</i>体内的代码。</p>当程序<i>检查</i>如果测试通过，它决定是否通过<i class="demoText">测试</i>对于当前的世界情况是正确的。如果是这样，循环将在正文中run代码。如果测试失败，则循环结束，程序move开启。
+<p>当程序<i>run秒</i>在循环的主体中，程序一次执行主体中的行。当程序到达末尾时 <code>while</code> 循环，它跳回到循环的顶部。然后，它重新检查测试，如果通过则继续循环。程序在进行检查之前不会退出循环，并且测试失败。</p>
+<p>卡雷尔（Karel）有很多<i class="demoText">测试</i>声明，我们将在下一章中讨论所有这些。现在我们将使用一个测试语句： <code>front_is_clear()</code> 如果在卡雷尔（Karel）的正前方没有墙，这是正确的。</p>
+<h3>Fencepost Bug</h3>
+<p>让我们修改上面的程序以使其更有趣。让Karel放置一条锥体 s的线，而不是仅移到墙上，每平方一个。同样，我们希望该程序可以在任何规模的环境中工作：</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>看起来很棒。除了一个问题。在每个世界上，Karel都不会锥体的最后一个锥体上放置锥体 （仔细观察）。当Karel在最后一个正方形上时，该程序将不执行循环的主体，因为测试不再通过-Karel面向墙壁。您可能很想尝试在设置锥体之前切换主体的顺序，以使Karel move成为锥体 。该代码是可编辑的，因此请尝试一下！</p>
+<p>还有一个更深层次的问题，身体的重新排列无法解决。对于有7列的世界，Karel需要放置7 锥体秒，但仅应 <code>move()</code> 6次自从 <code>while</code> 循环在测试通过时同时执行两行，如何使程序执行一个命令的时间比另一个执行时间大？</p>
+<p>该程序中的错误是一个称为a的编程问题的示例。 <b>fencepost错误</b> 。该名称来自以下事实：如果您要构建由面板制成的围栏，而围栏的任一尺寸都具有一个围栏，则围栏的数量总是比面板的数量大一个。例如，您需要用10个面板建造几个栅栏？答案是11，如下图所示：</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>一旦发现它，修复此错误实际上非常容易。在Karel站到世界尽头之前，该程序要做的就是放置最后的锥体 ：</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>
+

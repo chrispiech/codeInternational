@@ -1,0 +1,43 @@
+<h1>Sura ya 6: Mizunguko While</h1>
+<hr/>
+<p>Mbinu ya kufafanua mbinu mpya, na kufafanua mzunguko for s-kama muhimu kama wao-haifai Karel kutatua matatizo yoyote mapya. Kila wakati run mpango unafanya kila kitu jambo sawa. Programu zinafaa sana wakati zinaweza kujibu tofauti kwa pembejeo tofauti.</p>
+<p>Kwa mfano. Hebu sema unataka kuandika mpango wa kuwa na Karel move kwenye ukuta. Lakini hutaki tu programu hii kufanya kazi kwenye ulimwengu mmoja na ukubwa uliowekwa. Ungependa kuandika mpango mmoja ambao unaweza kufanya kazi kwenye ulimwengu wowote.</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>Jaribu kubadilisha ulimwengu kwa kubonyeza kushuka kwa "Mabadiliko ya Dunia" juu ya dunia. Kwa ulimwengu wowote wa ukubwa, Karel atakuwa move mpaka move ukuta. Ona kwamba hii feat haiwezi kubatilishwa kwa kutumia <code class="keyword">for</code> kitanzi. Hiyo ingehitaji sisi kujua ukubwa wa ulimwengu wakati wa programu.</p>
+<h3>Msingi wakati wa kitanzi</h3>
+<p>Katika Karel, a <code class="keyword">while</code> kitanzi hutumiwa kurudia mwili wa kanuni<i>ili mradi</i>hali fulani imechukua. mzunguko while ina aina yafuatayo ya jumla:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">mtihani</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">maelezo ya kurudiwa</i><br/>
+ <code>}</code>
+</p>
+<p>Udhibiti wa mtiririko wa mzunguko while ni kama ifuatavyo. Mpango huo mzunguko while huanza kurudia mchakato ambapo kwanza<i>hundi</i>ikiwa mtihani hupita, na kama ni hivyo<i>run s</i>kanuni katika mwili.</p>Wakati programu<i>hundi</i>ikiwa mtihani unapita, huamua kama<i class="demoText">mtihani</i>ni kweli kwa hali ya sasa ya ulimwengu. Ikiwa ndivyo, kitanzi hicho kitakuwa run kificho katika mwili. Ikiwa mtihani unashindwa, kitanzi move na mpango move juu.
+<p>Wakati programu<i>run s</i>mwili wa kitanzi, mpango unafanya mistari katika mwili mmoja kwa wakati. Mpango huo unapofika mwishoni mwa mzunguko while , unaruka tena juu ya kitanzi. Halafu inachunguza mtihani, kuendelea kugeuka ikiwa inapita. Mpango hauondoki kitanzi hadi ukiangalia, na mtihani haufanikiwa.</p>
+<p>Karel ana nyingi<i class="demoText">mtihani</i>taarifa, na tutaenda juu ya wote katika sura inayofuata. Kwa sasa tutatumia taarifa moja ya mtihani: <code>frontIsClear()</code> ambayo ni kweli ikiwa hakuna ukuta wowote unaohusika na Karel.</p>
+<h3>Bug Fencepost</h3>
+<p>Hebu tubadilishe mpango wetu hapo juu ili kuifanya kuwa ya kuvutia zaidi. Badala ya kuhamia kwenye ukuta, Karel koni mstari wa koni s, moja kwa kila mraba. Tena tunataka programu hii kufanya kazi kwa ulimwengu wa ukubwa wowote:</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Hiyo inaonekana kuwa nzuri. Isipokuwa kwa tatizo moja. Katika kila ulimwengu Karel haifai koni kwenye mraba wa mwisho wa mstari (angalia kwa karibu). Wakati Karel akiwa kwenye mraba wa mwisho, programu haina kutekeleza mwili wa kitanzi kwa sababu mtihani hauwezi kupita - Karel anakabiliwa na ukuta. Unaweza kujaribiwa kujaribu kugeuza utaratibu wa mwili ili Karel move s kabla ya kuweka koni. Nambari ni editable hivyo kwenda kujaribu!</p>
+<p>Kuna tatizo kubwa ambalo hakuna rearrangement ya mwili inayoweza kutatua. Kwa ulimwengu koni nguzo 7, Karel anahitaji kuweka 7 koni s, lakini lazima tu move mara 6 tu. Tangu mzunguko while inachukua mistari yote wakati mtihani unapopita, unawezaje kupata mpango wa kutekeleza amri moja mara moja zaidi kuliko nyingine?</p>
+<p>Mdudu katika programu hii ni mfano wa tatizo la programu inayoitwa <b>kosa la fencepost</b> . Jina linatokana na ukweli kwamba ikiwa unataka kujenga uzio uliofanywa na paneli ambazo zina posta ya uzio moja kwa ukubwa wowote, idadi ya posts ya uzio daima ni kubwa kuliko idadi ya paneli. Je! Ni posts ngapi za uzio, kwa mfano, unahitaji kujenga uzio na paneli 10? Jibu ni 11, kama ilivyoonyeshwa na mchoro uliofuata:</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/>
+</center>
+<p>Ukigundua, kurekebisha mdudu huu kwa kweli ni rahisi kabisa. Kabla ya Karel ataacha mwishoni mwa dunia, yote ambayo mpango huo koni kufanya ni kuweka mwisho koni :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

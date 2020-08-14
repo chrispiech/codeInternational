@@ -1,0 +1,386 @@
+
+<html>
+<head>
+
+<title>करेल पाठक</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/hi/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> कैरेल</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter1.html">1 - कैरेल से मिलते हैं</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter2.html">2 - प्रोग्रामिंग</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter3.html">3 - नए तरीके</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter4.html">4 - अपघटन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter5.html">5 - लूप्स के लिए</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter6.html">6 - जबकि लूप्स</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter7.html">7 - सशर्त</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter8.html">8 - शोधन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter9.html">9 - सुपरकारेल</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/reference.html">10 - संदर्भ</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/ide.html">11 - कोड</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> और अधिक जानें</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>अध्याय 3: नए तरीकों को परिभाषित करना</h1>
+<hr/>
+<p>पिछले अध्याय में हमने कर्ल को एक सरल कगार पर चढ़ने में मदद करने के लिए एक कार्यक्रम लिखा था:</p>
+<h3>उदाहरण: फर्स्टकारेल</h3>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPickingRedux">
+<div class="ide getStarted" id="beeperPickingReduxIde" style="height:387.20000000000005px">
+<div class="ideCenter" id="beeperPickingReduxIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingReduxEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingReduxCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingReduxCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingReduxRunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPickingRedux() {
+STARTER_CODE = `
+
+/*
+ * फाइल: फर्स्टकारेल। जावा
+ * ----------------------
+ * कारेल ने beeper और इसे आगे beeper ।
+ */
+import stanford.कैरेल.*;
+public class पहलाकारेल extends कैरेल {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnLeft();
+      turnLeft();
+      turnLeft();
+      move();
+      move();
+      putBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingReduxEditor','beeperPickingReduxEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingReduxCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.8, 'hi');
+    $('#beeperPickingReduxRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingReduxRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingReduxRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 387.20000000000005;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPickingRedux").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingReduxIde');
+    var editorDiv = document.getElementById('beeperPickingReduxEditorDiv');
+    var canvas = document.getElementById('beeperPickingReduxCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPickingRedux();
+    </script>
+</div>
+
+<p>यहां तक कि भले ही <code>पहलाकारेल</code> उपरोक्त कार्यक्रम दर्शाता है कि प्रदर्शन करना संभव है <code>turnRight</code> केवल कारेल के अंतर्निहित कमांड का उपयोग करके ऑपरेशन, परिणामस्वरूप प्रोग्राम विशेष रूप से वैचारिक रूप से स्पष्ट नहीं है। कार्यक्रम के अपने मानसिक डिजाइन में, कैरेल सही हो जाता है जब यह कगार के शीर्ष पर पहुंच जाता है। तथ्य यह है कि ऐसा करने के लिए आपको तीन बैंडमैडिएक कमांड का उपयोग करना होगा। यह बहुत सरल होगा यदि आप बस कह सकते हैं <code>turnRight()</code> और करेल ने इस आदेश को समझ लिया है। परिणामी कार्यक्रम न केवल लिखने के लिए छोटा और आसान होगा, बल्कि पढ़ने में भी काफी आसान होगा।</p>
+<h3>नई कमानों को परिभाषित करना</h3>
+<p>सौभाग्य से, कारेल प्रोग्रामिंग भाषा नई कमांड को नई विधि परिभाषाओं को शामिल करके परिभाषित करना संभव बनाती है। जब भी आपके पास कर्ल कमांड का एक अनुक्रम होता है जो कुछ उपयोगी कार्य करता है - जैसे कि दाएं मुड़ना - आप एक नई विधि को परिभाषित कर सकते हैं जो कमांड के उस क्रम को निष्पादित करता है। नई कारेल पद्धति को परिभाषित करने का प्रारूप बहुत हद तक समान है <code>run</code> पूर्ववर्ती उदाहरणों में, जो अपने आप में एक विधि परिभाषा है। एक विशिष्ट विधि परिभाषा इस प्रकार दिखती है:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">नाम</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">आदेश है कि विधि का शरीर बनाते हैं</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>इस पैटर्न में, नाम उस नाम का प्रतिनिधित्व करता है जिसे आपने नई विधि के लिए चुना है। परिभाषा को पूरा करने के लिए, आपको बस इतना करना है कि घुंघराले ब्रेसिज़ के बीच की पंक्तियों में कमांड का क्रम प्रदान करें। उदाहरण के लिए, आप परिभाषित कर सकते हैं <code>turnRight</code> निम्नलिखित नुसार:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>इसी तरह, आप एक नया परिभाषित कर सकते हैं <code>turnAround</code> इस तरह की विधि:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>आप करेल की किसी भी अंतर्निहित कमांड की तरह ही एक नई विधि के नाम का उपयोग कर सकते हैं। उदाहरण के लिए, एक बार जब आप परिभाषित कर लेते हैं <code>turnRight</code> , आप तीन BandAmourIVE कमांड को बदल सकते हैं <code>कदमऊपरकरो</code> के लिए एक कॉल के साथ कार्यक्रम <code>turnRight</code> तरीका। यहां कार्यक्रम का एक संशोधित कार्यान्वयन है जो उपयोग करता है <code>turnRight</code> :</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp2">
+<div class="ide getStarted" id="stepUp2Ide" style="height:563.2px">
+<div class="ideCenter" id="stepUp2IdeCenter">
+<div class="ideEditorDiv" id="stepUp2EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUp2CanvasDiv">
+<canvas class="ideCanvas" id="stepUp2Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUp2RunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp2() {
+STARTER_CODE = `
+
+/*
+ * फ़ाइल: कॉनो लिफ्टकरकरेल। जावा
+ * ----------------------------
+ * कोनो पिककरकारेल कार्यक्रम तीन कमांड के साथ एक " ru
+ * n " विधि को परिभाषित करता है। इन आदेशों के कारण का
+ * रेल move फॉरवर्ड एक ब्लॉक, एक beeper , और फिर move
+ * आगे के कोने पर move जाता है।
+ */
+import stanford.कैरेल.*;
+public class Conoउठाकरकरेल extends कैरेल {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnRight();
+      move();
+      move();
+      putBeeper();
+      move();
+   }
+
+   /**
+    * करेल को 90 डिग्री दाईं ओर मोड़ता है।
+    */
+   private void turnRight() {
+      turnLeft();
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUp2Editor','stepUp2EditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUp2Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'hi');
+    $('#stepUp2RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUp2RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUp2RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 563.2;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp2").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUp2Ide');
+    var editorDiv = document.getElementById('stepUp2EditorDiv');
+    var canvas = document.getElementById('stepUp2CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp2();
+    </script>
+</div>
+
+<p>बेशक, की परिभाषाओं के बीच एक स्पष्ट अंतर है <code>run</code> तथा <code>turnRight</code> ऊपर कार्यक्रम में तरीके: ए <code>run</code> विधि के रूप में चिह्नित है <code>public</code> के विपरीत <code>turnRight</code> , जो के रूप में चिह्नित है <code>private</code> । इन दो पदनामों के बीच अंतर यह है कि सार्वजनिक तरीकों को कार्यक्रम के बाहर से लागू किया जा सकता है, जबकि निजी तरीके नहीं हो सकते। run विधि को सार्वजनिक करने की आवश्यकता है क्योंकि कारेल पर्यावरण को चीजों को प्राप्त करने के लिए run आदेश जारी करने में सक्षम होना चाहिए। जब भी संभव हो, परिभाषाओं को निजी रखने के लिए आम तौर पर अच्छा प्रोग्रामिंग अभ्यास होता है।</p>
+<h3>विधि कोड ब्लॉक</h3>
+<p>दो घुंघराले कोष्ठक के बीच का समूह <code translate="no">{ }</code> कहा जाता है <b>कोड ब्लॉक</b> । आपके प्रोग्राम का शरीर एक कोड ब्लॉक है जैसा कि एक विधि का शरीर है। ध्यान दें कि कैसे एक कोड ब्लॉक की सामग्री सभी एक टैब में इंडेंट होती है। यह महत्वपूर्ण रूप से महत्वपूर्ण है क्योंकि यह मनुष्यों के लिए यह जानना आसान बनाता है कि किसी दिए गए ब्लॉक में कोड की क्या लाइनें हैं।</p>
+<p>आप जितने चाहें उतने तरीके परिभाषित कर सकते हैं। वे सभी आपके प्रोग्राम कोड ब्लॉक के अंदर एक के बाद एक लिखे जाने चाहिए। आप किसी अन्य विधि के अंदर एक विधि को परिभाषित नहीं कर सकते।</p>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter4.html" role="button">अगला अध्याय</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

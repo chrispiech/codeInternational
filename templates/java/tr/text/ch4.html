@@ -1,0 +1,57 @@
+<h1>Bölüm 4: Ayrıştırma</h1>
+<hr/>
+<p>Yeni yöntemleri tanımlayabilen gücün daha fazlasını göstermenin bir yolu olarak, move , beeper bir yerden diğerine biraz daha pratik bir şeyler yapması faydalıdır. Yollar genellikle tamir edilmeye ihtiyaç duyar gibi görünmektedir ve Karel'in soyut dünyadaki çukurları doldurup doldurmadığını görmek eğlenceli olabilir. Örneğin, Karel'in soldaki şekilde gösterilen “yol” üzerinde, yoldaki bir çukurun solunda bir köşede durduğunu hayal edin. beeper deliği beeper ile doldurmak ve bir sonraki köşeye geçmek. Sağdaki diyagram, programın yürütülmesinden sonra dünyanın nasıl görünmesi gerektiğini göstermektedir.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Önceden tanımlanmış dört komutla sınırlıysanız, bu sorunu çözmek için run yöntemi şöyle görünür:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>turnRight yöntemini tanımlamak için ilk motivasyon, sağa dönüşü gerçekleştirmek için üç turnLeft komutunu tekrar etmeyi sürdürmenin hantal turnLeft . Yeni yöntemler tanımlamanın, belirli bir görevi gerçekleştirmek istediğiniz her seferde aynı komut dizilerini tekrar etmekten kaçınmanıza izin vermekten başka önemli bir amacı vardır. Yöntem tanımlama gücü, programlamadaki en önemli stratejiyi, büyük bir problemi çözülmesi daha kolay olan küçük parçalara bölme sürecini açar. Bir programı daha küçük parçalara ayırma işlemine ayrıştırma, büyük bir problemin bileşen parçalarına alt problemler denir.</p>
+<p>Örnek olarak, yoldaki deliği doldurma sorunu aşağıdaki alt sorunlara ayrılabilir:</p>
+<ol>
+<li>Deliğe kadar hareket<li>Bir beeper bırakarak deliği doldurun<li>Bir sonraki köşeye geç</li></li></li></ol>
+<p>Sorunu bu şekilde düşünürseniz, program yapısını anlamanızı yansıtan bir program oluşturmak için yöntem tanımlarını kullanabilirsiniz. run yöntemi şöyle görünür:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">çukuruDoldur();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Anahatla yazışmalar hemen anlaşılır ve Çelinin çukuruDoldur ile ne demek istediğini anlayabilmesi için her şeyin mükemmel olacağını söyleyebiliriz. Yöntem tanımlama gücü verildiğinde, çukuruDoldur'u uygulamak son derece basittir. Yapmanız gereken tek şey, bedeni işi yapmak için zaten yazdığınız komutlardan oluşan bir çukuruDoldur yöntemi tanımlamaktır.</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> çukuruDoldur() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>İşte tam program. Programcıların niyetini sadece run yöntemini okumaktan nasıl anlayabildiğine dikkat edin. Program run , vurgulanan satır, bilgisayarın nasıl yürüteceğini adım adım gösterir. Ancak, program güzel bir şekilde bozulduğundan, onu insan düşünce düzeyinde anlayabiliriz:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

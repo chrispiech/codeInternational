@@ -1,0 +1,41 @@
+<h1>Capítulo 1: Introduciendo Karel el Robot</h1>
+<hr/>
+<p>En la década de 1970, un estudiante graduado de Stanford llamado Rich Pattis decidió que sería más fácil enseñar los fundamentos de la programación si los estudiantes pudieran de alguna manera aprender las ideas básicas en un entorno simple, sin las complejidades que caracterizan a la mayoría de los lenguajes de programación. Rich diseñó un entorno de programación introductorio en el que los estudiantes enseñan a un robot a resolver problemas simples. Ese robot fue nombrado Karel , en honor al dramaturgo checo. <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">Karel Čapek</a> , cuyo 1923 juega RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">Robots universales de Rossum</a> ) le dio la palabra robot al idioma inglés.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>Karel el robot fue todo un éxito. Karel se ha utilizado en cursos introductorios de informática en todo el mundo y se ha impartido a millones de estudiantes. Muchas generaciones de estudiantes de Stanford aprendieron cómo funciona la programación con Karel , y sigue siendo la suave introducción a la codificación utilizada en Stanford.</p>
+<h3>¿Qué es Karel ?</h3>
+<p>Karel es un robot muy simple que vive en un mundo muy simple. Al dar a Karel un conjunto de comandos, puede dirigirlo para realizar ciertas tareas dentro de su mundo. El proceso de especificar esos comandos se llama <b>programación</b> . Inicialmente, Karel comprende solo un número muy pequeño de comandos predefinidos, pero una parte importante del proceso de programación es la enseñanza de Karel nuevos comandos que amplían sus capacidades.</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>Karel programas Karel tienen una estructura muy similar e incluyen los mismos elementos fundamentales que <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a> , un alcalde <a href="https://en.wikipedia.org/wiki/Programming_language">lenguaje de programación</a> . La diferencia fundamental es que el lenguaje de programación de Karel es extremadamente pequeño y, como tal, los detalles son fáciles de dominar. Aun así, descubrirá que resolver un problema puede ser un desafío.</p>
+<p>Al comenzar con Karel , puede concentrarse en resolver problemas desde el principio. La resolución de problemas es la esencia de la programación. Y como Karel fomenta la imaginación y la creatividad, puedes divertirte bastante en el camino.</p>
+<h3>El mundo de Karel</h3>
+<p>El mundo de Karel se define por las filas ejecutando horizontalmente (este-oeste) y las columnas ejecutando verticalmente (norte-sur). La intersección de una fila y una columna se llama esquina. Karel solo se puede colocar en las esquinas y debe estar orientado hacia una de las cuatro direcciones de la brújula estándar (norte, sur, este, oeste). A continuación se muestra una muestra del mundo Karel . Aquí, Karel se encuentra en la esquina de la primera fila y la primera columna, mirando hacia el este.</p>
+<center>
+<img src="{{pathToRoot}}images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>Varios otros componentes del Karel de Karel se pueden ver en este ejemplo. El objeto en frente de Karel es un cono . Como se describe en el libro de Rich Pattis, conos son "conos de plástico que emiten un pitido silencioso". Karel solo puede detectar un cono si está en la misma esquina. Las líneas continuas en el diagrama son paredes. Las paredes sirven como barreras dentro del mundo de Karel . Karel no puede caminar a través de las paredes y debe ir alrededor de ellas. El mundo de Karel siempre está limitado por muros a lo largo de los bordes, pero el mundo puede tener diferentes dimensiones dependiendo del problema específico que Karel debe resolver.</p>
+<h3>Karel de Karel</h3>
+<p>Cuando se envía Karel de fábrica, responde a un conjunto muy pequeño de comandos:<table class="table mt-10">
+<tr><th>Mando</th><th>Descripción</th></tr>
+<tr><td> <code>moverse();</code> </td><td>Pregunta Karel a moverse adelante un bloque. Karel no puede responder a una <code>moverse()</code> Manda si hay un muro que bloquea su camino.</td></tr>
+<tr><td> <code>girarIzquierda();</code> </td><td>Pregunta Karel para girar 90 grados hacia la izquierda (en sentido contrario a las agujas del reloj).</td></tr>
+<tr><td> <code>recogerCono();</code> </td><td>Pide Karel para recoger un cono de una esquina y almacena el cono en su bolsa cono , que puede contener un número infinito de conos . Karel no puede responder a una <code>recogerCono()</code> comando a menos que haya un cono en la esquina actual.</td></tr>
+<tr><td> <code>ponerCono();</code> </td><td>Pide Karel que saque un cono de su bolsa cono y lo cono en la esquina actual. Karel no puede responder a una <code>ponerCono()</code> comando a menos que haya conos en su bolsa cono .</td></tr>
+</table>
+</p>
+<p>Vamos a probar los comandos. Use los botones de abajo para obtener el "mundo" para que coincida con el "objetivo":</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/commands.html', name="cmd", world="commands", goalWorld="commandsGoal")
+%>
+
+
+<p>El par de paréntesis vacío que aparece en cada uno de estos comandos es parte de la sintaxis común compartida por Karel y Java y se usa para especificar la invocación del comando. Eventualmente, los programas que escriba incluirán información adicional en el espacio entre los paréntesis, pero dicha información no es parte del mundo primitivo del Karel . Por lo tanto, estos paréntesis estarán vacíos en los programas estándar Karel , pero debe recordar incluirlos de todos modos.</p>
+<p>Si Karel intenta hacer algo ilegal, como moverse a través de una pared o recoger un cono inexistente, se produce una condición de error.</p>
+<p>Karel comandos de Karel , no se ejecutan solos. En su lugar, necesita incorporarlos en un programa Karel . ¡Tendrá la oportunidad de ver algunos programas simples Karel en el Capítulo 2!</p>
+<p></p>

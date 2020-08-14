@@ -1,0 +1,109 @@
+<%
+  codePath = 'templates/'+progLang+'/'+lang+'/text/code/'+name+'.py'
+  nLines = sum(1 for line in open(codePath))
+  editorHeight = 17.8 * nLines
+  setdefault('canvasWidth', 300)
+  setdefault('ideSpeed', 0.0)
+  setdefault('isEditable', 'false')
+%>
+
+<div class="section embeddedIde" id="{{name}}">
+    <div id ='{{name}}Ide' class = "ide getStarted" style="height:{{editorHeight}}px">
+      <div id = '{{name}}IdeCenter' class = "ideCenter" >
+         <div id = '{{name}}EditorDiv' class = 'ideEditorDiv' style="width:200px"></div>
+         <div id = '{{name}}CanvasDiv' class = 'ideCanvasDiv'>
+            <canvas id='{{name}}Canvas' class = 'ideCanvas'></canvas>
+         </div>
+      </div>
+    </div>
+    <div style="width:100%;">
+        <div class="buttonBar">
+           <button class="btn btn-default" id="{{name}}RunButton"><span class="glyphicon glyphicon-play"></span> Run Program</button>
+        </div> 
+    </div>
+<script>
+
+        
+
+function example{{name}}() {
+STARTER_CODE = `
+<%
+  include(codePath)
+%>
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('{{name}}Editor','{{name}}EditorDiv', STARTER_CODE, {{isEditable}});
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('{{name}}Canvas');
+    karelIde = KarelIde('{{progLang}}',karelEditor, canvas, '{{world}}', {{ideSpeed}}, '{{lang}}');
+    $('#{{name}}RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#{{name}}RunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#{{name}}RunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = {{editorHeight}};
+    var canvasWidth = {{canvasWidth}}
+    var parentWidth = $("#{{name}}").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('{{name}}Ide');
+    var editorDiv = document.getElementById('{{name}}EditorDiv');
+    var canvas = document.getElementById('{{name}}CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+example{{name}}();
+    </script>
+</div>

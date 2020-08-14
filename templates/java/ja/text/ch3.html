@@ -1,0 +1,46 @@
+<h1>第3章：新しいメソッドを定義する</h1>
+<hr/>
+<p>最後の章で、Karelが簡単な棚を登るのを手助けするプログラムを書きました。</p>
+<h3>例：最初のカレル</h3>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPickingRedux", world="stepUp", ideSpeed=0.8)
+%>
+
+
+<p>にもかかわらず <code>最初のカレル</code> 上記のプログラムは、実行することが可能であることを示しています <code>turnRight</code> Karelの組み込みコマンドのみを使用して操作した場合、結果として得られるプログラムは概念的には特に明確ではありません。プログラムのあなたの精神的なデザインでは、カレルはそれが棚の頂上に達すると右に曲がります。 3つのturnLeftコマンドを使用しなければならないという事実は厄介です。あなたが単純に言うことができればそれははるかに簡単になります <code>turnRight()</code> そしてカレルにこの命令を理解させなさい。結果として得られるプログラムは、短くて書くのが簡単になるだけでなく、読むのもかなり簡単になります。</p>
+<h3>新しいコマンドの定義</h3>
+<p>幸いなことに、Karelプログラミング言語は新しいメソッド定義を含めることによって新しいコマンドを定義することを可能にします。右に曲がるなど、便利なタスクを実行する一連のKarelコマンドがあるときはいつでも、その一連のコマンドを実行する新しいメソッドを定義できます。新しいKarelメソッドを定義するためのフォーマットは、の定義とほとんど同じです。 <code>run</code> 上記の例では、それ自体がメソッド定義です。一般的なメソッド定義は次のようになります。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> </code> <i class="demoText">名</i> <code>() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">メソッドの本体を構成するコマンド</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>このパターンでは、nameは新しいメソッドに選択した名前を表します。定義を完成させるために、あなたがしなければならないのは中括弧の間の行にコマンドのシーケンスを提供することだけです。たとえば、次のように定義できます。 <code>turnRight</code> 次のように：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnRight() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>同様に、新しいものを定義できます。 <code>turnAround</code> このような方法：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> turnAround() {</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code style="margin-left:3.5em">turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Karelの組み込みコマンドのように新しいメソッドの名前を使うことができます。たとえば、一度定義したら <code>turnRight</code> では、3つのturnLeftコマンドを <code>ステップアップカレル</code> 1回の呼び出しでプログラム <code>turnRight</code> 方法。これを使用するプログラムの修正された実装はここにあります <code>turnRight</code> ：</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp2", world="stepUp")
+%>
+
+
+<p>もちろん、の定義には明らかな違いが1つあります。 <code>run</code> そして <code>turnRight</code> 上記のプログラムのメソッド： <code>run</code> メソッドはとしてマークされています <code>public</code> とは対照的に <code>turnRight</code> としてマークされている <code>private</code> 。これら2つの指定の違いは、パブリックメソッドはプログラムの外部から呼び出せるのに対し、プライベートメソッドは呼び出せないことです。 runメソッドはrunする必要があります。これは、Karel環境が、問題を解決するためにrunコマンドを発行できる必要があるためです。可能な限り定義を非公開にしておくのが一般的に良いプログラミング方法です。</p>
+<h3>メソッドコードブロック</h3>
+<p>2つの中括弧の間のコマンドのグループ <code translate="no">{ }</code> と呼ばれる <b>コードブロック</b> 。プログラム本体は、メソッド本体と同じコードブロックです。コードブロックの内容がすべて1タブ内でインデントされていることに注意してください。これは、特定のブロック内にコードのどの行があるかを人間が簡単に認識できるため、スタイル上重要です。</p>
+<p>必要なだけメソッドを定義できます。それらはすべてあなたのプログラムコードブロックの中に次々に書かれるべきです。他のメソッドの中にメソッドを定義することはできません。</p>

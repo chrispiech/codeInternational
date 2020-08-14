@@ -1,0 +1,323 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/fr/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 
+      Karel
+    </a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter1.html">
+      1 - Rencontrez Karel
+    </a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter2.html">2 - Programmation</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter3.html">3 - Nouvelles fonctions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter4.html">4 - Décomposition</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter5.html">5 - Boucles For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter6.html">6 - Boucles While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter7.html">7 - Conditions</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter8.html">8 - Raffinement</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/chapter9.html">9 - Fonctionnalités supplémentaires</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/reference.html">10 - Référence</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/fr/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/fr/ide.html">11 - Code</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Chapitre 4: Décomposition</h1>
+<hr/>
+<p>Afin d'illustrer davantage la puissance qui vient avec la possibilité de définir de nouvelles fonctions, il est utile de demander à Karel de faire quelque chose d'un peu plus pratique que avancer un jeton d'un endroit à un autre. Les routes semblent souvent avoir besoin de réparations et il pourrait être amusant de voir si Karel peut combler les nids-de-poule dans son monde abstrait. Par exemple, imaginez que Karel se tient sur la «route» représentée sur la figure de gauche, un coin à gauche d'un nid-de-poule sur la route. Le travail de Karel est de remplir le trou avec un jeton et de passer au coin suivant. Le diagramme de droite illustre la manière dont le monde devrait se comporter après l'exécution du programme.</p>
+
+
+
+
+
+<div class="section" id="ba">
+<div class="ide getStarted" id="baIde">
+<div class="commandCanvasDiv" id="baCanvasDiv">
+<div>
+<div class="commandCanvasTitle">Avant:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">Après:</div>
+<div class="commandCanvasOuter">
+<canvas id="baCanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('baCanvasBefore');
+    karelIde = KarelIde('python',null, canvas, 'pothole', 0.0, 'fr',1000, 0.82 * 1000);
+
+    let canvasGoal = document.getElementById('baCanvasAfter');
+    let goalIde = KarelIde('python',null, canvasGoal, 'potholeGoal',0.0, 'fr',  1000, 0.82 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba();
+    </script>
+</div>
+
+<p>Si vous êtes limité aux quatre commandes prédéfinies, le <code>main()</code> La fonction pour résoudre ce problème ressemblerait à ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">laisser_jeton()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+</p>
+<p>La motivation initiale pour définir le <code>tourner_droite()</code> fonction était qu'il était difficile de répéter trois <code>tourner_gauche()</code> commandes pour effectuer un virage à droite. La définition de nouvelles fonctions a un autre objectif important au-delà de vous permettre d'éviter de répéter les mêmes séquences de commandes chaque fois que vous souhaitez effectuer une tâche particulière. Le pouvoir de définir des fonctions déverrouille la stratégie la plus importante de la programmation: le processus de décomposition d'un gros problème en plus petits morceaux plus faciles à résoudre. Le processus de décomposition d'un programme en plus petits morceaux s'appelle <b>décomposition</b> , et les composants d'un gros problème sont appelés <b>sous-problèmes</b> .
+</p>
+<p>
+  À titre d'exemple, le problème du remplissage du trou dans la chaussée peut être décomposé en les sous-problèmes suivants:
+</p>
+<ol>
+<li> Monter au trou
+<li>Remplissez le trou en y déposant un jeton<li> Passer au coin suivant
+</li></li></li></ol>
+<p>Si vous pensez au problème de cette manière, vous pouvez utiliser des définitions de fonction pour créer un programme qui reflète votre conception de la structure du programme. La fonction main ressemblerait à ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">remplir_les_nids_de_poule()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+</p>
+<p>La correspondance avec le plan est immédiatement claire, et tout serait parfait si seulement vous pouviez faire comprendre à Karel ce que vous entendez par <code>remplir_les_nids_de_poule()</code> . Étant donné le pouvoir de définir des fonctions, la mise en œuvre <code>remplir_les_nids_de_poule()</code> est extrêmement simple. Tout ce que vous avez à faire est de définir un <code>remplir_les_nids_de_poule()</code> fonction dont le corps se compose des commandes que vous avez déjà écrites pour faire le travail, comme ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> remplir_les_nids_de_poule():</code> <br/>
+ <code style="margin-left:2em">tourner_droite()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">laisser_jeton()</code> <br/>
+ <code style="margin-left:2em">tourner_autour()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">tourner_droite()</code> <br/>
+</p>
+<p>Voici le programme complet. Remarquez comment vous pouvez comprendre l'intention du programmeur simplement en lisant le <code>main()</code> fonction. Lorsque vous run le programme, la mise en évidence de la ligne montre comment un ordinateur l'exécutera, étape par étape. Cependant, parce que le programme est bien décomposé, nous pouvons le comprendre au niveau de la pensée humaine:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="pothole">
+<div class="ide getStarted" id="potholeIde" style="height:516.2px">
+<div class="ideCenter" id="potholeIdeCenter">
+<div class="ideEditorDiv" id="potholeEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="potholeCanvasDiv">
+<canvas class="ideCanvas" id="potholeCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="potholeRunButton"><span class="glyphicon glyphicon-play"></span>Exécuter de programme</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplepothole() {
+STARTER_CODE = `
+
+from karel.stanfordkarel import *
+def main():
+   avancer()
+   remplir_les_nids_de_poule()
+   avancer()
+
+# Remplit le nid-de-poule sous la position actuelle de Karel en
+# placer un jeton sur ce coin. Pour que cette fonction fonctionne
+# correctement, Karel doit être face à l'est immédiatement au-dessus du
+# nid de poule. Lorsque l'exécution est terminée, Karel aura
+# est revenu sur la même place et sera de nouveau face à l'est.
+def remplir_les_nids_de_poule():
+   tourner_droite()
+   avancer()
+   laisser_jeton()
+   tourner_autour()
+   avancer()
+   tourner_droite()
+
+# Tourne Karel de 90 degrés vers la droite.
+def tourner_droite():
+   tourner_gauche()
+   tourner_gauche()
+   tourner_gauche()
+
+# Fait tourner Karel d'environ 180 degrés.
+def tourner_autour():
+   tourner_gauche()
+   tourner_gauche()
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('potholeEditor','potholeEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('potholeCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'pothole', 0.0, 'fr');
+    $('#potholeRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#potholeRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#potholeRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 516.2;
+    var canvasWidth = 200
+    var parentWidth = $("#pothole").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('potholeIde');
+    var editorDiv = document.getElementById('potholeEditorDiv');
+    var canvas = document.getElementById('potholeCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplepothole();
+    </script>
+</div>
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter5.html" role="button">Chapitre suivant</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

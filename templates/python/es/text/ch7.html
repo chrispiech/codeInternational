@@ -1,0 +1,82 @@
+<h1>Capítulo 7: Si las declaraciones</h1>
+<hr/>
+<p>La construcción de flujo de control de programación final para aprender son sentencias condicionales ( <code>if</code> y <code>if/else</code> ).</p>
+<h3>Condicionales básicos</h3>
+<p>Un <code>if/else</code> La instrucción ejecuta un bloque de código "if" si, y solo si, el proporcionado<i class="demoText">prueba</i>es cierto para el estado del mundo en el momento en que el programa llega a la declaración. De lo contrario, el programa ejecuta el bloque de código "else".</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">prueba</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">si el código de bloqueo</i><br/>
+<span class="keyword">más</span>:</p><br/>
+<i class="demoText" style="margin-left:2em">otro bloque de código</i><br/>
+
+<p>Para tener una idea de dónde pueden resultar útiles las declaraciones condicionales, escribamos un programa que tenga Karel invertido una línea de conos . Si un cuadrado anteriormente tenía un cono , Karel debería recogerlo. Si un cuadrado no tiene cono , Karel debería poner uno.</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnableWorldChoice.html', name="invertLine", world="invert", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+
+
+<p>Tenga en cuenta que un <code>if</code> declaración no necesita tener una <code>else</code> bloque - en cuyo caso la declaración funciona como un <code>while</code> ciclo que solo se ejecuta una vez:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span> </code> <i class="demoText">prueba</i> <code>:</code> <br/>
+<i class="demoText" style="margin-left:2em">si el código de bloqueo</i><br/>
+</p>
+<h3>Condiciones</h3>
+<p>Ese último ejemplo utilizó una nueva condición. Aquí hay una lista de todas las condiciones que conoce Karel :</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Prueba</th><th>Opuesto</th><th>Lo que verifica</th></tr>
+<tr>
+<td> <code>frente_despejado()</code> </td>
+<td> <code>frente_bloqueado()</code> </td>
+<td>¿Hay una pared frente a Karel ?</td>
+</tr>
+<tr>
+<td> <code>conos_presente()</code> </td>
+<td> <code>no_conos_presente()</code> </td>
+<td>¿Hay conos en esta esquina?</td>
+</tr>
+<tr>
+<td> <code>izquierda_despejado()</code> </td>
+<td> <code>izquierda_bloqueada()</code> </td>
+<td>¿Hay un muro a la izquierda de Karel ?</td>
+</tr>
+<tr>
+<td> <code>la_derecha_es_clara()</code> </td>
+<td> <code>la_derecha_está_bloqueada()</code> </td>
+<td>¿Hay una pared a la derecha de Karel ?</td>
+</tr>
+<tr>
+<td> <code>conos_en_bolsa()</code> </td>
+<td> <code>no_conos_en_bolsa()</code> </td>
+<td>¿ Karel tiene conos en su bolsa?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>mirando_al_norte()</code> </td>
+<td> <code>no_mirando_al_norte()</code> </td>
+<td>¿ Karel está orientado al norte?</td>
+</tr>
+<tr>
+<td> <code>orientado_al_sur()</code> </td>
+<td> <code>no_orientado_al_sur()</code> </td>
+<td>¿ Karel está orientado al sur?</td>
+</tr>
+<tr>
+<td> <code>mirando_al_este()</code> </td>
+<td> <code>no_mirando_al_este()</code> </td>
+<td>¿ Karel está Karel hacia el este?</td>
+</tr>
+<tr>
+<td> <code>mirando_al_oeste()</code> </td>
+<td> <code>no_mirando_al_oeste()</code> </td>
+<td>¿Está Karel mirando al oeste?</td>
+</tr>
+</table>
+</p>
+<h3>Poniendolo todo junto</h3>
+<p>Felicidades! Ahora conoce todos los bloques de flujo de control de programación básicos. Aunque los aprendió con Karel , métodos, ciclo while s, ciclos for , las declaraciones if / else funcionan de la misma manera en casi todos los lenguajes principales, incluido Python.</p>
+<p>Ahora que tiene los componentes básicos, puede juntarlos para crear soluciones a problemas cada vez más complejos. En gran medida, la programación es la ciencia de resolver problemas por computadora. Debido a que los problemas suelen ser difíciles, las soluciones y los programas que implementan esas soluciones también pueden ser difíciles. Para facilitar el desarrollo de esas soluciones, debe adoptar una metodología y disciplina que reduzca el nivel de esa complejidad a una escala manejable.</p>

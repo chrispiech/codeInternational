@@ -1,0 +1,437 @@
+
+<html>
+<head>
+
+<title>卡雷尔读者</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/zh/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> 卡雷尔</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter1.html">1  - 遇见卡雷尔</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter2.html">2  - 编程</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter3.html">3  - 新方法</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter5.html">5  - 对于循环</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter6.html">6  - 循环时</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter7.html">7  - 条件</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter8.html">8  - 细化</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/chapter9.html">9  - 超级卡雷尔</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/reference.html">10  - 参考</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/zh/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/zh/ide.html">11  - 代码</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> 学到更多</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第8章：逐步细化</h1>
+<hr/>
+<p>在很大程度上，编程是通过计算机解决问题的科学。由于问题通常很困难，因此解决方案以及实施这些解决方案的程序也很困难。为了使您更容易开发这些解决方案，您需要采用一种方法和规程，将复杂程度降低到可管理的规模。</p>
+<p>在编程的早期阶段，计算作为一门科学的概念或多或少是一厢情愿的实验。当时没有人对编程有太多了解，很少有人认为它是传统意义上的工程学科。然而，随着编程的成熟，这种学科开始出现。该学科的基石是理解编程是在程序员必须一起工作的社交环境中完成的。如果你进入行业，你几乎肯定会成为许多致力于开发大型程序的程序员之一。此外，该程序几乎肯定会继续存在并且需要超出其最初预期应用程序的维护。有人会希望程序包含一些新功能或以某种不同的方式工作。当发生这种情况时，新的程序员团队必须进入并对程序进行必要的更改。如果程序是以个人风格编写的，几乎没有共同点，那么让每个人高效地合作是非常困难的。</p>
+<p>为了解决这个问题，程序员开始开发一组统称为的编程方法 <b>软件工程</b> 。使用良好的软件工程技能不仅使其他程序员更容易阅读和理解您的程序，而且还使您更容易编写这些程序。软件工程中最重要的方法学进步之一就是策略 <b>自上而下的设计</b> 要么 <b>逐步细化</b> ，包括从整体问题入手解决问题。你将整个问题分解成碎片，然后解决每一块，必要时将它们进一步分解。这种自上而下的策略是补充 <b>迭代测试</b> 在继续之前确保解决方案的较小部分正常工作。</p>
+<h3>逐步细化的练习</h3>
+<p>为了说明逐步细化的概念，让我们教Karel解决一个新问题。想象一下卡雷尔现在生活在一个看起来像这样的世界：</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowers', 0, 'zh',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>在每个列上，有一个锥体 s高度未知的塔，尽管有些列（例如样本世界中的第7和第9列）可能是空的。卡雷尔的工作是收集每座塔中的所有锥体 ，将它们放回第一排的最东端，然后返回其起始位置。因此，当卡雷尔在上面的例子中完成其工作时，目前在塔中的所有25个锥体应该堆叠在第9列和第1行的角落，如下所示：</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('java',null, canvas, 'beeperTowersGoal', 0, 'zh',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>重要的是，您可以假设卡雷尔最初<i>启动</i>零锥体秒。 锥体拾取的每个锥体添加到其包中。当把锥体放在角落时，卡雷尔可以使用 <code>beepersInBag()</code> 测试。</p>
+<p>解决这个问题的关键是以正确的方式分解程序，同时仍然可以随时测试。此任务比您看到的其他任务更复杂，这使得选择适当的子问题对于获得成功的解决方案更为重要。</p>
+<h3>自上而下的设计原则</h3>
+<p>逐步细化的关键思想是你应该从顶部开始设计你的程序，它指的是概念上最高和最抽象的程序级别。在这个层面上， 锥体塔问题显然分为三个独立的阶段。首先，卡雷尔必须收集所有的锥体 。其次，卡雷尔必须将它们存放在最后的十字路口。第三，卡雷尔必须回到原来的位置。这个问题的概念分解表明该程序的run方法将具有以下结构：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      收集所有锥体S();</code> <br/>
+ <code>      全部锥体秒();</code> <br/>
+ <code>      回家();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>在这个级别，问题很容易理解。当然，还有一些尚未编写的方法形式的细节。即便如此，重要的是要查看每个级别的分解，并说服自己，只要您相信您要编写的方法将正确解决子问题，您就可以找到问题的解决方案作为一个整体。</p>
+<h3>随你进行迭代测试</h3>
+<p>现在您已经为整个程序定义了结构，现在是第一个子问题move时间，它包括收集所有锥体 。这个任务本身比前面章节中的简单问题更复杂。收集所有锥体 s意味着你必须在每个塔中拿起锥体 ，直到你到达最后一个角落。你需要为每个塔重复一个操作的事实表明你需要一个while循环。 while循环将重复该过程 <code>收集一个塔</code> 然后移动。</p>
+<p> <b>警告：</b> 尝试编写整个程序是危险的 <b>测试</b> 随你而去如果你弄错了，就很难找到错误。我们知道我们将重复收集一座塔的过程。让我们写和 <b>测试</b> 在我们放入之前收集一个塔 <code>收集一个塔</code> 在for循环中处理。从而<i>temporariliy</i>我们可以从收集所有锥体S的以下定义开始：<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void</span> 收集所有锥体S() {</code> <br/>
+ <code class="comment">      /* 临时实施用于测试目的 */</code> <br/>
+ <code>      收集一个塔();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>作为一个指导原则，如果你有一个复杂的循环，测试<i>身体</i>在编写整个循环之前的循环。</p>
+<h3>精炼收集塔</h3>
+<p>当收集一个塔被叫时，卡雷尔要么站在锥体秒的塔底，要么站在一个空角落。在前一种情况下，您需要在塔中收集锥体 。在后者，你可以简单地move 。这种情况听起来像是if语句的一个应用程序，你可以在其中编写如下内容：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span>(beepersPresent()){</code> <br/>
+ <code>      收集实际的塔();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>在将这样的语句添加到代码之前，您应该考虑是否需要进行此测试。通常，通过观察最初似乎特殊的案例可以用与更一般情况完全相同的方式来处理，可以使程序变得更加简单。在当前的问题中，如果你确定每条大道上有一座锥体秒的塔楼，但其中一些塔楼的零点锥体高？会发生什么？利用这种洞察力简化了程序，因为您不再需要测试特定大道上是否有塔。</p>
+<p>收集一个塔方法仍然足够复杂，以便按顺序进行额外的分解。为了收集塔中的所有锥体 ，卡雷尔需要采取以下步骤：</p>
+<ol>
+<li>向左转，面向塔内的锥体 。<li>收集塔中的所有锥体 ，当不再找到锥体秒时停止。<li>转身面向世界的底部。<li>回到代表地面的墙上。<li>左转准备move到下一个角落。</li></li></li></li></li></ol>
+<p>再一次，这个大纲为收集一个塔方法提供了一个模型，如下所示：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>收集一个塔(){</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>      收集锥体的行();</code> <br/>
+ <code>      turnAround();</code> <br/>
+ <code>      move到墙();</code> <br/>
+ <code>      turnLeft();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<h3>方法前置条件和后置条件</h3>
+<p>收集一个塔方法开头和结尾的转左命令对于该程序的正确性都是至关重要的。当收集一个塔被召唤时，卡雷尔总是在第一排朝东的某个地方。当它完成其操作时，只有当Karel再次朝向同一角落的东方时，整个程序才能正常工作。在调用方法之前必须为true的条件称为 <b>先决条件</b> ;方法完成后必须应用的条件称为 <b>后置条件</b> 。</p>
+<p>定义方法时，如果准确记下前置条件和后置条件，将会遇到更少的麻烦。完成后，您需要确保您编写的代码始终满足后置条件，假设前提条件满足开始。例如，想想当Karel面向东方的第一排时，如果你打电话给收集一个塔会发生什么。第一个转左命令使卡雷尔朝北，这意味着卡雷尔与代表塔的锥体列正确对齐。收集锥体的行方法 - 尚未编写，但仍执行一项您在概念上理解的任务 - 只需move秒即可完成。因此，在对收集倍体行的召唤结束时，卡雷尔仍将面向北方。因此，回转电话让卡雷尔朝南。就像收集锥体的行一样， move到墙的方法不涉及任何转弯，而只是move秒，直到它撞到边界墙。因为Karel朝南，所以这个边界墙将是屏幕底部的一个，就在第一排的下方。因此，最后的转左命令使卡雷尔在第一排朝东，这满足了后置条件。</p>
+<h3>重复这个过程</h3>
+<p>你run你的程序，它成功地清除了一个塔，并在承诺的后置条件下离开卡雷尔。嗬！你刚刚解决了这个艰巨任务的里程碑！我们现在必须重复使用while循环清除一个塔的过程。</p>
+<p>但是这个while循环是什么样的呢？首先，你应该考虑条件测试。你希望Karel在行尾撞到墙壁时停下来。因此，只要前面的空间清晰，你就希望卡雷尔继续前进。因此，您知道收集所有锥体S方法将包含使用前面很清楚测试的while循环。在每个位置，您希望Karel从该角落开始收集塔中的所有锥体 。如果你给那个操作命名，这可能就像收集一个塔一样，你可以继续为收集所有锥体S方法写一个定义，即使你还没有填写详细信息。</p>
+<p>但是，你必须要小心。收集所有锥体S的代码看起来不像这样：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>收集所有锥体S(){</code> <br/>
+ <code class="comment">      /* 越野车循环！ */</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         收集一个塔();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>这个实现是错误的，原因与第6章的第一版Place Place体行未能完成其工作完全相同。此版本的代码中存在fencepost错误，因为Karel需要测试最后一个大道上是否存在锥体塔。正确的实施是：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>收集所有锥体S(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         收集一个塔();</code> <br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      收集一个塔();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>请注意，此方法与第6章中提供的放置锥体行程序的主程序具有完全相同的结构。唯一的区别是此程序调用收集一个塔，其中另一个称为把蜂鸣器。这两个程序都是一般策略的示例，如下所示：</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">private void </span>收集所有锥体S(){</code> <br/>
+ <code>      <span class="keyword">while</span>(frontIsClear()) {</code> <br/>
+ <code>         </code> <i class="demoText">执行一些操作。</i><br/>
+ <code>         move();</code> <br/>
+ <code>      }</code> <br/>
+ <code>      </code> <i class="demoText">对最后一个角落执行相同的操作。</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>无论何时需要在每个角上执行操作，您都可以使用此策略，如沿着路径终止于墙的move 。如果您还记得此策略的一般结构，则只要遇到需要执行此操作的问题，就可以使用它。这种可重复使用的策略在编程中经常出现，并被称为 <b>编程习语</b> 要么 <b>模式</b> 。您知道的模式越多，您就越容易找到适合特定类型问题的模式。</p>
+<h3>整理起来</h3>
+<p>虽然已经完成了艰苦的工作，但仍有一些需要解决的松散目标。主程序调用两个方法 - 全部锥体秒和回家 - 这些方法尚未成文。同样，收集一个塔调用收集锥体的行和move到墙。幸运的是，所有这四种方法都很简单，无需进一步分解即可编码，特别是如果在回家的定义中使用move到墙。这是完整的实现：</p>
+
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1509.3px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>运行程序</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+/*
+ * 文件：锥体收集锥体.java
+ * -------------
+ * 锥体收集锥体类在一系列垂直塔中收集所有锥体 ，并将
+ * 它们存放在第一排的最东端。
+ */
+import stanford.卡雷尔.*;
+public class 锥体收集锥体 extends 卡雷尔 {
+
+   /**
+    * 指定程序入口点。
+    */
+   public void run() {
+      收集所有锥体S();
+      全部锥体秒();
+      回家();
+   }
+
+   /**
+    * 通过沿着第一排移动从每个塔收集锥体 ，在每个角落呼
+    * 叫收集一个塔。这种方法的后置条件是卡雷尔位于第一排朝东的最东端。
+    */
+   private void 收集所有锥体S() {
+      while (frontIsClear()) {
+         收集一个塔();
+         move(); 
+      }
+      收集一个塔();
+   }
+
+   /**
+    * 在一个塔中收集锥体 。当收集一个塔被叫时，卡雷尔必
+    * 须在面向东的第一排。收集一个塔的后置条件是卡雷尔必须再次朝向同一角落的东方。
+    */
+   private void 收集一个塔() {
+      turnLeft();
+      收集锥体的行();
+      turnAround();
+      move到墙();
+      turnLeft();
+   }
+
+   /**
+    * 收集锥体秒的连续行。 锥体行的末尾由不包含锥体 s
+    * 的角指示。
+    */
+   private void 收集锥体的行() {
+      while (beepersPresent()) {
+         pickBeeper();
+         if (frontIsClear()) {
+            move(); 
+         }
+      } 
+   }
+
+   /**
+    * 锥体当前角落的所有锥体 。
+    */
+   private void 全部锥体秒() {
+      while (beepersInBag()) {
+         putBeeper();
+      }
+   }
+
+   /**
+    * 将卡雷尔返回到第一大道和第一排角落的初始位置，朝向东方。这种方法的前提条件是卡雷尔必须在第一排的某处朝东，这在收集所有锥体S的结尾是正确的。
+    */
+   private void 回家() {
+      turnAround();
+      move到墙();
+      turnAround();
+   }
+
+   /** 向前移动卡雷尔，直到被墙挡住。 */
+   private void move到墙(){
+      while (frontIsClear()) {
+         move();
+      } 
+   }
+
+   /** 将卡雷尔变成180度左右 */
+   private void turnAround(){
+      turnLeft();
+      turnLeft();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'beeperTowers', 0.9, 'zh', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1509.3;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+</p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">下一章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

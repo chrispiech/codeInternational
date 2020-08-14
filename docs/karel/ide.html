@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html> 
+<head> 
+   <title>Karel IDE</title> 
+   <script src="./js/html/websiteImports.js"></script>
+	<script>importCss();</script>
+	<script>importJs();</script>
+	<script src="./lib/analytics.js"></script>
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25118186-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head> 
+
+<body> 
+<!--<div id="demo">
+	<img src="images/karelNorth.jpg" title="The tooltip text #1"/>
+	<img src="images/karelNorth.jpg" title="The tooltip text #2"/>
+	<img src="images/karelNorth.jpg" title="The tooltip text #3"/>
+	<img src="images/karelNorth.jpg" title="The tooltip text #4"/>
+</div>-->
+   <script>importWebsiteHeader('ide.html');</script>
+   <div id ='mainIde' class = "inner">
+      <div id="buttonBar">
+         <div id = "buttonBarInner">
+            <script>importButtonBar();</script>
+         </div>
+      </div> 
+      <div id = "mainIdeCenter" >
+         <div id = 'mainIdeEditorDiv'>
+            <script>importEditor('mainIdeEditor','mainIdeEditorDiv');</script>
+         </div>
+         <div id = 'mainIdeCanvasDiv' class = 'orange'>
+            <canvas id = 'mainIdeCanvas' class = 'red'></canvas>
+         </div>
+      </div>
+   </div>
+   
+   <script>
+      function init() {
+         var karelIde = null;
+
+         var onReadyCalled = false;
+
+         document.onready = function() {
+            if (onReadyCalled) return;
+            onReadyCalled = true;
+            $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+            
+            initTabs();
+            var canvas = document.getElementById('mainIdeCanvas');
+            karelIde = KarelIde(window._editor, canvas, INITIAL_WORLD);
+            
+            $('#playButton').click(function(){karelIde.playButton()});
+            $('#stopButton').click(function(){karelIde.stopButton()});
+            $('#uploadButton').click(function(){deploy()});
+            $('#worldSelector').change(
+               function() {
+                  var worldName = $("#worldSelector option:selected").text();
+		            karelIde.changeWorld(worldName);
+		         }
+            );
+            window.onresize();
+            var programKey = Server.getProgramKey();
+            if (programKey) {
+               var loadingScreen = new Boxy("<p>Loading</p>", {title: "Loading", closeable: false, modal:true});
+               Server.loadProgramFromHash(function(data) {
+                  loadingScreen.hideAndUnload();
+                  programLoaded(data);
+               });
+            }
+         }
+
+         function deploy() {
+            DeployDialog.createDeployDialog(karelIde)
+         }
+
+         function programLoaded(data) {
+            var programObject = JSON.parse(data);
+            var startWorld = programObject.world;
+            var code = programObject.code;
+            karelIde.setCode(code);
+            karelIde.changeWorld(startWorld);
+            var worldSelector = document.getElementById('worldSelector');
+            for(var i = 0; i < worldSelector.length; i++) {
+               if(worldSelector[i].text == startWorld) {
+                  worldSelector.selectedIndex = i;
+               }
+            }
+         }
+
+         window.onhashchange = function() {
+            Server.loadProgramFromHash(programLoaded);
+         } 
+
+         window.onresize = function() { 
+            var windowHeight = $(window).height() - 1;
+            var windowWidth = $(window).width() - 1;
+            var ide = document.getElementById('mainIde');
+            var editorDiv = document.getElementById('mainIdeEditorDiv');
+            var canvas = document.getElementById('mainIdeCanvasDiv');
+            var center = document.getElementById('mainIdeCenter');
+            
+            var ideHeight = windowHeight - Const.HEADER_HEIGHT;
+            ide.style.height = (ideHeight -10)+ 'px';
+            
+            var centerHeight = ideHeight - Const.BUTTON_BAR_HEIGHT - Const.PADDING;
+            var centerTop = Const.HEADER_HEIGHT + Const.BUTTON_BAR_HEIGHT;
+            center.style.height = centerHeight + 'px';
+            center.style.top = centerTop + 'px';
+
+            var availibleWidth = windowWidth - 2 * Const.PADDING;
+            var elementSpacing = 12;
+            availibleWidth -= elementSpacing;
+            
+            var editorWidth = Math.max(Const.MIN_IDE_WIDTH, availibleWidth) / 2;
+            
+            editorDiv.style.width = editorWidth + 'px';
+            ide.style.width = availibleWidth + 'px';
+            center.style.width = availibleWidth - 10+ 'px';
+
+            var canvasWidth = editorWidth;
+            canvas.style.width = canvasWidth + 'px';
+            canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+            if (karelIde) {
+               karelIde.resizeCanvas(canvasWidth, centerHeight);
+            }
+            if (window._editor) {
+               window._editor.renderer.onResize();
+            }
+            ReferenceDialog.resize();
+            DeployDialog.resize();
+         }
+
+         
+      }
+      init();
+   </script>
+
+</body> 
+</html>

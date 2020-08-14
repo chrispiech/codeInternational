@@ -1,0 +1,200 @@
+
+<html>
+<head>
+
+<title>قارئ كاريل</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ar/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> كاريل</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter1.html">1 - تعرف على كاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter2.html">2 - البرمجة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter3.html">3 - طرق جديدة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter4.html">4 - التحلل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter5.html">5 - دورات For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter6.html">6 - دورات While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter7.html">7 - الشرطية</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter8.html">8 - الصقل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter9.html">9 - سوبركاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/reference.html">10 - المرجع</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/ide.html">11 - الرمز</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> أعرف أكثر</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="width:740px; flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>الفصل 1: تقديم كاريل الروبوت</h1>
+<hr/>
+<p>في سبعينيات القرن العشرين ، قرر طالب دراسات عليا في جامعة ستانفورد يدعى ريتش باتيس أن يكون من الأسهل تدريس أساسيات البرمجة إذا كان الطلاب يمكنهم بطريقة ما تعلم الأفكار الأساسية في بيئة بسيطة خالية من التعقيدات التي تميز معظم لغات البرمجة. صمم ريتش بيئة برمجة تمهيدية يقوم فيها الطلاب بتدريس الروبوت لحل المشكلات البسيطة. سمي هذا الروبوت كاريل ، بعد الكاتب المسرحي التشيكي <a href="https://en.wikipedia.org/wiki/Karel_%C4%8Capek">كاريل Čapek</a> ، الذي لعب عام 1923 RUR ( <a href="https://en.wikipedia.org/wiki/R.U.R.">الروبوتات روسوم العالمي</a> ) أعطى كلمة روبوت للغة الإنجليزية.</p>
+<center>
+<img src="../../images/ch1/karelLarge.png" style="width:200px;margin-bottom:10px"/> 
+</center>
+<p>كاريل روبوت نجاحا كبيرا. تم استخدام كاريل في دورات تمهيدية لعلوم الكمبيوتر في جميع أنحاء العالم وتم تدريسها لملايين الطلاب. تعلمت أجيال عديدة من طلاب جامعة ستانفورد كيف تعمل البرمجة مع كاريل ، وما زالت مقدمة لطيفة للترميز المستخدمة في جامعة ستانفورد.</p>
+<h3>ما هو كاريل ؟</h3>
+<p>كاريل هو روبوت بسيط للغاية يعيش في عالم بسيط للغاية. من خلال إعطاء كاريل مجموعة من الأوامر ، يمكنك توجيهها لأداء مهام معينة في عالمها. تسمى عملية تحديد تلك الأوامر <b>برمجة</b> . في البداية ، يفهم كاريل عددًا صغيرًا جدًا من الأوامر المحددة مسبقًا ، ولكن جزءًا مهمًا من عملية البرمجة هو تعليم كاريل أوامر جديدة تعمل على توسيع قدراتها.</p>
+<!-- <p>
+  When you program Karel to perform a task, you must write out the necessary commands in a very precise way so that the robot can correctly interpret what you have told it to do. In particular, the programs you write must obey a set of syntactic rules that define what commands and language forms are legal. The Karel programming language is designed to be as similar as possible to Java so as to ease the transition to a standard programming language.
+</p> -->
+<p>برامج كاريل لها نفس البنية وتتضمن نفس العناصر الأساسية <a href="https://en.wikipedia.org/wiki/Java_(programming_language)">جافا</a> ، أساسي <a href="https://en.wikipedia.org/wiki/Programming_language">لغة برمجة</a> . الفرق الحاسم هو أن لغة البرمجة في كاريل صغيرة للغاية ، وبالتالي فإن التفاصيل سهلة للإتقان. ومع ذلك ، سوف تكتشف أن حل مشكلة ما قد يكون تحديًا.</p>
+<p>من خلال البدء بـ كاريل ، يمكنك التركيز على حل المشكلات من البداية. حل المشكلات هو جوهر البرمجة. ولأن كاريل يشجع الخيال والإبداع ، يمكنك الاستمتاع بالكثير من المرح على طول الطريق.</p>
+<h3>كاريل</h3>
+<p>كاريل يعرف الصورة العالم من خلال الصفوف جري أفقيا (الشرق والغرب) والأعمدة جري عموديا (الشمال والجنوب). يسمى تقاطع الصف والعمود بالزاوية. يمكن وضع كاريل فقط على الزوايا ويجب أن يواجه أحد اتجاهات البوصلة الأربعة القياسية (الشمال والجنوب والشرق والغرب). عينة كاريل العالم هو مبين أدناه. هنا كاريل يقع في زاوية الصف الأول والعمود الأول ، باتجاه الشرق.</p>
+<center>
+<img src="../../images/ch1/world.png" style="width:350px; padding:10px"/> 
+</center>
+<p>يمكن رؤية العديد من المكونات الأخرى كاريل في هذا المثال. الكائن أمام كاريل هو مخروط . كما هو موضح في كتاب Rich Pattis ، فإن مخروط s عبارة عن "مخروط من البلاستيك ينبعث منه صوت كاريل هادئ." كاريل لا يمكن إلا اكتشاف مخروط إذا كان في نفس الزاوية. الخطوط الصلبة في المخطط هي الجدران. الجدران بمثابة حواجز داخل العالم كاريل . كاريل لا يستطيع المشي عبر الجدران ويجب أن يتجول فيها. كاريل محاط دائمًا بجدران بطول الحواف ، ولكن قد يكون للعالم أبعاد مختلفة وفقًا للمشكلة المحددة التي يحتاج كاريل إلى حلها.</p>
+<h3>أوامر كاريل</h3>
+<p>عندما يتم شحن كاريل من المصنع ، فإنه يستجيب لمجموعة صغيرة جدًا من الأوامر:<table class="table mt-10">
+<tr><th>أمر</th><th>وصف</th></tr>
+<tr><td> <code>move();</code> </td><td>يطلب كاريل إلى move كتلة واحدة إلى الأمام. كاريل لا يمكن الرد على <code>move()</code> أمر إذا كان هناك جدار حجب طريقها.</td></tr>
+<tr><td> <code>turnLeft();</code> </td><td>يطلب كاريل لتدوير 90 درجة إلى اليسار (عكس اتجاه عقارب الساعة).</td></tr>
+<tr><td> <code>pickBeeper();</code> </td><td>يطلب كاريل لالتقاط مخروط واحد من زاوية ويخزن مخروط في حقيبة مخروط ، والتي يمكن أن تحمل عدد لا حصر له من مخروط ثانية. كاريل لا يمكن الرد على <code>pickBeeper()</code> الأمر ما لم يكن هناك مخروط في الزاوية الحالية.</td></tr>
+<tr><td> <code>putBeeper();</code> </td><td>يطلب كاريل لأخذ مخروط من حقيبة مخروط ووضعها في الزاوية الحالية. كاريل لا يمكن الرد على <code>putBeeper()</code> الأمر ما لم يكن هناك مخروط ق في حقيبة مخروط .</td></tr>
+</table>
+</p>
+<p>لنجرب الأوامر. استخدم أزرار رفع الصوت عاليا للحصول على "العالم" لمطابقة "الهدف":</p>
+
+
+
+
+
+<div class="section embeddedIde" id="cmd">
+<div class="ide getStarted" id="cmdIde">
+<div class="commandCanvasDiv" id="cmdCanvasDiv">
+<div>
+<div class="commandCanvasTitle">العالمية:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvas" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">هدف:</div>
+<div class="commandCanvasOuter">
+<canvas id="cmdCanvasGoal" style="width:175px;height:175px"></canvas>
+</div>
+</div>
+</div>
+<div class="commandButtons">
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdMove"> <code>move();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdTurnLeft"> <code>turnLeft();</code> </button>
+<button class="btn btn-default btn-lg mr-10 commandButton" id="cmdPickBeeper"> <code>pickBeeper();</code> </button>
+<button class="btn btn-default btn-lg commandButton" id="cmdPutBeeper"> <code>putBeeper();</code> </button>
+</div>
+</div>
+</div>
+<script style="width:0px;height:0px;display:none">
+
+        
+
+function examplecmd() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('cmdCanvas');
+    karelIde = KarelIde('java',null, canvas, 'commands', 0.9, 'ar', 500, 500);
+    $('#cmdMove').click(function(){karelIde.stepMove()});
+    $('#cmdTurnLeft').click(function(){karelIde.stepTurnLeft()});
+    $('#cmdPickBeeper').click(function(){karelIde.stepPickBeeper()});
+    $('#cmdPutBeeper').click(function(){karelIde.stepPutBeeper()});
+
+    let canvasGoal = document.getElementById('cmdCanvasGoal');
+    let goalIde = KarelIde('java',null, canvasGoal, 'commandsGoal', 0.9, 'ar', 500, 500)
+ }
+
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#cmdRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#cmdRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ 
+ main()
+ 
+}
+examplecmd();
+    </script>
+
+<p>الزوج الفارغ من الأقواس الذي يظهر في كل من هذه الأوامر هو جزء من بناء الجملة المشترك بواسطة كاريل و Java ويستخدم لتحديد استدعاء الأمر. في النهاية ، ستشمل البرامج التي تكتبها معلومات إضافية في الفراغ بين الأقواس ، لكن هذه المعلومات ليست جزءًا من العالم البدائي كاريل . ستكون هذه الأقواس فارغة في برامج كاريل القياسية ، لكن يجب أن تتذكر تضمينها مع ذلك.</p>
+<p>إذا حاول كاريل القيام بشيء غير قانوني ، مثل التنقل عبر الحائط أو التقاط مخروط غير موجود ، تحدث حالة خطأ.</p>
+<p>أوامر كاريل ، لا تنفذ من تلقاء نفسها. بدلاً من ذلك ، تحتاج إلى دمجها في برنامج كاريل . سيكون لديك فرصة لرؤية بعض برامج كاريل البسيطة في الفصل 2!</p>
+<p></p><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter2.html" role="button">الفصل التالي</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

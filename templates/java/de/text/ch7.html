@@ -1,0 +1,87 @@
+<h1>Kapitel 7: If-Anweisungen</h1>
+<hr/>
+<p>Das letzte zu lernende Steuerungsfluss-Konstrukt für die Kernprogrammierung sind bedingte Anweisungen ( <code>if</code> und <code>if/else</code> ).</p>
+<h3>Grundlegende Bedingungen</h3>
+<p>Ein <code>if/else</code> Die Anweisung führt einen "if" -Code-Block genau dann aus, wenn der angegebene Code vorhanden ist<i class="demoText">Prüfung</i>Dies gilt für den Zustand der Welt zu dem Zeitpunkt, zu dem das Programm die Aussage erreicht. Ansonsten führt das Programm den Code-Block "else" aus.</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">Prüfung</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">wenn Code-Block</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">sonst Code-Block</i><br/>
+ <code>}</code> 
+</p>
+<p>Um ein Gefühl dafür zu bekommen, wo bedingte Anweisungen nützlich sein könnten, schreiben wir ein Programm, bei dem Karel eine Zeile von beeper s invertiert. Wenn ein Quadrat zuvor eine beeper , sollte Karel sie beeper . Wenn ein Quadrat keine beeper , sollte Karel eine ablegen.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>Beachten Sie, dass ein <code>if</code> Anweisung muss nicht ein <code>else</code> block - in diesem Fall wird die Anweisung wie ein <code>while</code> Schleife, die nur einmal ausgeführt wird:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">Prüfung</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">wenn Code-Block</i><br/>
+ <code>} </code> 
+</p>
+<h3>Bedingungen</h3>
+<p>Das letzte Beispiel verwendete eine neue Bedingung. Hier ist eine Liste aller Zustände, die Karel kennt:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Prüfung</th><th>Gegenteil</th><th>Was es prüft</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>Gibt es eine Mauer vor Karel?</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>beeper sich beeper s an dieser Ecke?</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>Gibt es eine Mauer neben Karel?</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>Ist rechts von Karel eine Mauer?</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>beeper es beeper s in Karels Tasche?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>Ist Karel nach Norden ausgerichtet?</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>Ist Karel nach Süden ausgerichtet?</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>Ist Karel nach Osten ausgerichtet?</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>Ist Karel nach Westen ausgerichtet?</td>
+</tr>
+</table>
+</p>
+<h3>Alles zusammen</h3>
+<p>Glückwunsch! Sie kennen jetzt alle zentralen Steuerungsflussblöcke für die Programmierung. Während Sie sie mit Karel gelernt haben, funktionieren Methoden, while-Schleifen und for-Schleifen, if / else-Anweisungen in fast allen wichtigen Sprachen, einschließlich Java, auf dieselbe Weise.</p>
+<p>Jetzt, da Sie die Bausteine haben, können Sie sie zusammenstellen, um Lösungen für immer komplexere Probleme zu erstellen. Programmierung ist in hohem Maße die Wissenschaft, Probleme mit dem Computer zu lösen. Da Probleme oft schwierig sind, können auch Lösungen - und die Programme, die diese Lösungen implementieren - schwierig sein. Um Ihnen die Entwicklung dieser Lösungen zu erleichtern, müssen Sie eine Methodik und Disziplin anwenden, die den Umfang dieser Komplexität auf ein handhabbares Maß reduziert.</p>

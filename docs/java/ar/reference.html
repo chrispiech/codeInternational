@@ -1,0 +1,191 @@
+<html><head>
+
+<title>قارئ كاريل</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head><body><!-- container --><div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ar/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> كاريل</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter1.html">1 - تعرف على كاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter2.html">2 - البرمجة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter3.html">3 - طرق جديدة</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter4.html">4 - التحلل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter5.html">5 - دورات For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter6.html">6 - دورات While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter7.html">7 - الشرطية</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter8.html">8 - الصقل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/chapter9.html">9 - سوبركاريل</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/reference.html">10 - المرجع</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ar/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ar/ide.html">11 - الرمز</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> أعرف أكثر</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content --><div class="bookContent" style="display: flex;"><!-- right gutter --><div style="flex-grow:1;max-width:50px;"></div><!-- main stuff --><div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px"><div class="row"><div class="col-md-12 col-xs-12">
+
+
+<h1>مرجع</h1><hr/>
+<style type="text/css">
+	.refCard {
+		display: flex;
+		align-items: stretch;
+		width:100%;
+	}
+
+	.refCol {
+		flex-grow:1;
+		width:370px;
+	}
+
+	.bordered {
+		border: 1px solid black
+	}
+
+	.refCel {
+		padding-left: 5px;
+	}
+
+	.refCode {
+		margin-left:5px;
+		margin-top:7px;
+	}
+
+	.refComment {
+		color:#729683;
+  font-family: monaco;
+  font-weight:400;
+  font-size:13px;
+	}
+
+</style>
+<p>يحدد هذا الملحق بنية لغة البرمجة كاريل على صفحة واحدة.</p>
+<div class="refCard bordered">
+<div class="refCol">
+<div class="refCel bordered">
+ <b>كاريل قاعدة كاريل:</b> 
+<p class="refCode">
+ <code>move();</code> <br/>
+ <code>turnLeft();</code> <br/>
+ <code>putBeeper();</code> <br/>
+ <code>pickBeeper();</code> <br/>
+</p>
+</div>
+<div class="refCel bordered">
+ <b>كاريل هياكل البرنامج:</b> 
+<p class="refCode">
+ <code class="comment">/* يمكن تضمين التعليقات في أي جزء<br/>
+ * من a برنامج. هم بداية مع a خفض-نجمة<br/>
+ * and end with a star-slash.<br/>
+ */<br/></code> 
+ <code><span class="keyword">public class</span> <i class="demoText">اسم</i> <span class="keyword">extends</span> سوبركاريل {</code> <br/>
+<br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      </code> <i class="demoText">رمز للتنفيذ</i><br/>
+ <code>   }</code> <br/>
+<br/>
+ <code>   </code> <i class="demoText">إعلانات الطرق الخاصة</i><br/>
+ <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>أسماء الشروط:</b> 
+<div class="refCard" style="margin-top:7px">
+<div class="refCol">
+ <code>frontIsClear()</code> <br/>
+ <code>beepersPresent()</code> <br/>
+ <code>beepersInBag()</code> <br/>
+ <code>leftIsClear()</code> <br/>
+ <code>rightIsClear()</code> <br/>
+ <code>facingNorth()</code> <br/>
+ <code>facingSouth()</code> <br/>
+ <code>facingEast()</code> <br/>
+ <code>facingWest()</code> <br/>
+</div>
+<div class="refCol">
+ <code>frontIsBlocked()</code> 
+ <code>noBeepersPresent()</code> <br/>
+ <code>noBeepersInBag()</code> <br/>
+ <code>leftIsBlocked()</code> <br/>
+ <code>rightIsBlocked()</code> <br/>
+ <code>notFacingNorth()</code> <br/>
+ <code>notFacingSouth()</code> <br/>
+ <code>notFacingEast()</code> <br/>
+ <code>notFacingWest()</code> <br/>
+</div>
+</div>
+<!-- for balance -->
+<div style="height:8px"> </div>
+</div>
+</div>
+<div class="refCol">
+<div class="refCel bordered">
+ <b>الظروف:</b> 
+<p class="refCode"> <code><span class="keyword">if</span>(</code> <i class="demoText">شرط</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">رمز run إذا مرت الحالة</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">if</span>(</code> <i class="demoText">شرط</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">كتلة التعليمات البرمجية لـ "نعم"</i><br/> <code>} <span class="keyword">else</span> {</code> <br/><i class="demoText" style="margin-left:2em">كتلة التعليمات البرمجية لـ "لا"</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>حلقات:</b> 
+<p class="refCode"> <code><span class="keyword">for</span>(int i = 0; i &lt;</code>  <i class="demoText">عد</i> <code>; i++){</code> <br/><i class="demoText" style="margin-left:2em">رمز لتكرار</i><br/> <code>}</code> </p>
+<p class="refCode" style="margin-top:15px"> <code><span class="keyword">while</span>(</code> <i class="demoText">شرط</i> <code>){</code> <br/><i class="demoText" style="margin-left:2em">رمز لتكرار</i><br/> <code>}</code> </p>
+</div>
+<div class="refCel bordered">
+ <b>إعلان الطريقة:</b> 
+<p class="refCode"> <code><span class="keyword">private void</span></code> <i class="demoText" style="margin-left:10px">اسم</i> <code>() {</code> <br/><i class="demoText" style="margin-left:2em">رمز في نص الأسلوب.</i><br/> <code>}</code> <br/></p>
+</div>
+<div class="refCel bordered">
+ <b>أوامر إضافية:</b> 
+<p class="refCode">
+ <code>turnRight();</code> <br/>
+ <code>turnAround();</code> <br/>
+ <code>random(</code> <i class="demoText">ص</i> <code>);</code> <br/>
+ <code>paintCorner(</code> <i class="demoText">اللون</i> <code>);</code> <br/>
+</p>
+</div>
+</div>
+</div>
+<!--
+-->
+
+<hr/>
+
+
+
+
+
+<div style="height:60px"></div>
+</div></div></div><!-- right gutter --><div style="flex-grow:4"></div></div></div></body></html>

@@ -1,0 +1,405 @@
+
+<html>
+<head>
+
+<title>Karel Lector</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../python/es/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter1.html">1 - Conoce Karel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter2.html">2 - Programación</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter3.html">3 - Nuevas funciones</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter4.html">4 - Descomposición</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter5.html">5 - Ciclos For</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter6.html">6 - Ciclos While</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter7.html">7 - Condicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter8.html">8 - Refinamiento</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../python/es/chapter9.html">9 - Funciones adicionales</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/reference.html'">
+<a class="bookLink btn btn-link" href="../../python/es/reference.html">10 - Referencia</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../python/es/ide.html'">
+<a class="bookLink btn btn-link" href="../../python/es/ide.html">11 - Código</a> 
+</div>
+<hr/>
+<!-- <a href="../../"><img style = "width:40px" src="../../images/unFlag.png"/>  Learn more</a>  -->
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Capítulo 8: Refinamiento paso a paso</h1>
+<hr/>
+<p>En gran medida, la programación es la ciencia de resolver problemas por computadora. Debido a que los problemas suelen ser difíciles, las soluciones y los programas que implementan esas soluciones también pueden ser difíciles. Para facilitar el desarrollo de esas soluciones, debe adoptar una metodología y disciplina que reduzca el nivel de esa complejidad a una escala manejable.</p>
+<p>En los primeros años de la programación, el concepto de informática como ciencia era más o menos un experimento de ilusiones. Nadie sabía mucho sobre programación en aquellos días y pocos la consideraban una disciplina de ingeniería en el sentido convencional. Sin embargo, a medida que la programación maduró, comenzó a surgir una disciplina de este tipo. La piedra angular de esa disciplina es el entendimiento de que la programación se realiza en un entorno social en el que los programadores deben trabajar juntos. Si ingresa a la industria, es casi seguro que será uno de los muchos programadores que trabajan para desarrollar un programa grande. Además, es casi seguro que ese programa main y requerirá main tenencia main más allá de su aplicación originalmente prevista. Alguien querrá que el programa incluya alguna característica nueva o funcione de alguna manera diferente. Cuando eso ocurre, un nuevo equipo de programadores debe entrar y realizar los cambios necesarios en los programas. Si los programas están escritos en un estilo individual con poca o ninguna similitud, lograr que todos trabajen juntos de manera productiva es extremadamente difícil.</p>
+<p>Para combatir este problema, los programadores comenzaron a desarrollar un conjunto de metodologías de programación que se denominan colectivamente. <b>Ingeniería de software</b> . El uso de buenas habilidades de ingeniería de software no solo facilita la lectura y comprensión de sus programas por parte de otros programadores, sino que también facilita la escritura de dichos programas en primer lugar. Uno de los avances metodológicos más importantes de la ingeniería de software es la estrategia de <b>diseño de arriba hacia abajo</b> o <b>refinamiento por etapas</b> , que consiste en resolver problemas partiendo del problema en su conjunto. Se divide todo el problema en pedazos y luego se resuelve cada uno, dividiéndolos aún más si es necesario. Esta estrategia de arriba hacia abajo se complementa con <b>prueba iterativa</b> donde se asegura de que las piezas más pequeñas de la solución estén funcionando antes de continuar.</p>
+<h3>Un ejercicio de refinamiento escalonado.</h3>
+<p>Para ilustrar el concepto de refinamiento paso a paso, enseñemos Karel a resolver un nuevo problema. Imagina que Karel ahora vive en un mundo que se parece a esto:</p>
+
+
+
+
+
+<div class="section" id="world1">
+<div class="ide getStarted" id="world1Ide">
+<div class="commandCanvasDiv" id="world1CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world1Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld1() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world1Canvas');
+    karelIde = KarelIde('python',null, canvas, 'beeperTowers', 0, 'es',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld1();
+    </script>
+</div>
+
+<p>En cada una de las columnas, hay una torre de conos de altura desconocida, aunque algunas columnas (como la 7ª y la 9ª en el mundo de muestra) pueden estar vacías. El trabajo de Karel es recolectar todos los conos en cada una de estas torres, volver a colocarlos en la esquina más al este de la primera fila y luego regresar a su posición inicial. Por lo tanto, cuando Karel termine su trabajo en el ejemplo anterior, los 25 conos actualmente en las torres deben apilarse en la esquina de la novena columna y la primera fila, de la siguiente manera:</p>
+
+
+
+
+
+<div class="section" id="world2">
+<div class="ide getStarted" id="world2Ide">
+<div class="commandCanvasDiv" id="world2CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="world2Canvas" style="width:400px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleworld2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('world2Canvas');
+    karelIde = KarelIde('python',null, canvas, 'beeperTowersGoal', 0, 'es',1000, 0.8 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleworld2();
+    </script>
+</div>
+
+<p>Es importante destacar que puede suponer que Karel inicialmente<i>empieza</i>con cero conos en su bolsa. Cada cono recogido se agrega a su bolsa. Al poner conos en la esquina, Karel puede usar el <code>conos_en_bolsa()</code> prueba. También podemos suponer que las columnas no llegan hasta el muro más al norte.</p>
+<p>La clave para resolver este problema es descomponer el programa de la manera correcta, sin dejar de poder probar sobre la marcha. Esta tarea es más compleja que las otras que ha visto, lo que hace que elegir los subproblemas adecuados sea más importante para obtener una solución exitosa.</p>
+<h3>El principio del diseño de arriba hacia abajo.</h3>
+<p>La idea clave en el refinamiento gradual es que debe comenzar el diseño de su programa desde arriba, que se refiere al nivel del programa que es conceptualmente más alto y más abstracto. En este nivel, el problema de la torre cono se divide claramente en tres fases independientes. Primero, Karel tiene que recolectar todos los conos . En segundo lugar, Karel tiene que depositarlos en la última intersección. En tercer lugar, Karel tiene que volver a su posición Karel . Esta descomposición conceptual del problema sugiere que la <code>main()</code> La función para este programa tendrá la siguiente estructura:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> main():</code> <br/>
+ <code>      recoger_todo_conos()</code> <br/>
+ <code>      soltar_todo_conos()</code> <br/>
+ <code>      volver_a_casa()</code> <br/>
+</p>
+<p>En este nivel, el problema es fácil de entender. Por supuesto, quedan algunos detalles en forma de funciones que aún no ha escrito. Aun así, es importante mirar cada nivel de la descomposición y convencerse de que, siempre que crea que las funciones que está a punto de escribir resolverán los subproblemas correctamente, entonces tendrá una solución al problema en su conjunto. .</p>
+<h3>Pruebas iterativas sobre la marcha</h3>
+<p>Ahora que ha definido la estructura del programa como un todo, es el momento de moverse en el primer subproblema, que consiste en recopilar todos los conos . Esta tarea es en sí misma más complicada que los simples problemas de los capítulos anteriores. Recoger todo el conos significa que tienes que recoger el conos en cada torre hasta llegar a la última esquina. El hecho de que necesite repetir una operación para cada torre sugiere que necesita un <code>while</code> ciclo aquí. los <code>while</code> ciclo repetirá el proceso de <code>recoger_una_torre()</code> y luego moviéndose.</p>
+<p> <b>Precaución:</b> Es peligroso tratar de escribir todo el programa sin <b>pruebas</b> a medida que avanza Si comete un error será difícil encontrar el error. Sabemos que vamos a repetir el proceso de recogida de una torre. Escribamos y <b>prueba</b> recogiendo una sola torre antes de que pongamos el <code>recoger_una_torre()</code> proceso en un ciclo for . Así<i>temporalmente</i>podemos comenzar con la siguiente definición de <code>recoger_todo_conos()</code> :</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span> recoger_todo_conos() :</code> <br/>
+ <code class="comment">      # implementación temporal con fines de prueba</code> <br/>
+ <code>      recoger_una_torre()</code> <br/>
+ <code>      moverse()</code> <br/>
+</p>
+<p>Como principio rector, si tiene un ciclo complejo, pruebe el<i>cuerpo</i>del ciclo antes de escribir el ciclo completo.</p>
+<h3>Torre de recogida de refinamiento</h3>
+<p>Cuando <code>recoger_una_torre()</code> se llama, Karel está parado en la base de una torre de conos o está parado en una esquina vacía. En el primer caso, debe recoger el conos en la torre. En este último, simplemente puede moverse en. Esta situación parece una aplicación para <code>if</code> declaración, en la que escribirías algo como esto:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">if</span> conos_presente():</code> <br/>
+ <code>      recoger_la_torre_real()</code> <br/>
+</p>
+<p>Antes de agregar dicha declaración al código, debe pensar si necesita realizar esta prueba. A menudo, los programas pueden simplificarse mucho observando que los casos que al principio parecen especiales pueden tratarse exactamente de la misma manera que la situación más general. En el problema actual, ¿qué sucede si decide que hay una torre conos en cada avenida, pero que algunas de esas torres tienen una altura de conos cero? Hacer uso de esta información simplifica el programa porque ya no tiene que probar si hay una torre en una avenida en particular.</p>
+<p>los <code>recoger_una_torre()</code> La función es todavía lo suficientemente compleja como para que exista un nivel adicional de descomposición. Para recopilar todos los cono s en una torre, Karel debe realizar los siguientes pasos:</p>
+<ol>
+<li>Gire a la izquierda para enfrentar el conos en la torre.<li>Recoge todos los conos de la torre y conos cuando no encuentres más conos .<li>Date la vuelta para mirar hacia la parte inferior del mundo.<li>Regresa a la pared que representa el suelo.<li>Gire a la izquierda para estar listo en moverse hasta la siguiente esquina.</li></li></li></li></li></ol>
+<p>Una vez más, este esquema proporciona un modelo para <code>recoger_una_torre()</code> función, que se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_una_torre():</code> <br/>
+ <code>      girar_izquierda()</code> <br/>
+ <code>      recoger_línea_de_conos()</code> <br/>
+ <code>      media_vuelta()</code> <br/>
+ <code>      moverse_a_la_pared()</code> <br/>
+ <code>      girar_izquierda()</code> <br/>
+</p>
+<h3>Condiciones previas y posteriores a la función</h3>
+<p>los <code>girar_izquierda()</code> comandos al principio y al final del <code>recoger_una_torre()</code> ambas funciones son fundamentales para la corrección de este programa. Cuando <code>recoger_una_torre()</code> se llama, Karel siempre está en algún lugar de la 1ª fila mirando al este. Cuando finalice su funcionamiento, el programa en su conjunto funcionará correctamente solo si Karel vuelve a mirar hacia el este en esa misma esquina. Las condiciones que deben ser verdaderas antes de que se llame a una función se denominan <b>condiciones previas</b> ; Las condiciones que deben aplicarse una vez finalizada la función se conocen como <b>postcondiciones</b> .</p>
+<p>Cuando defina una función, tendrá menos problemas si escribe exactamente cuáles son las condiciones previas y posteriores. Una vez que lo haya hecho, debe asegurarse de que el código que escribe siempre deje satisfechas las condiciones posteriores, asumiendo que las condiciones previas se cumplieron para empezar. Por ejemplo, piense en lo que sucede si llama <code>recoger_una_torre()</code> cuando Karel está en la 1ª fila mirando al este. El primero <code>girar_izquierda()</code> La función deja Karel mirando al norte, lo que significa que Karel está correctamente alineado con la columna de conos representa la torre. los <code>recoger_línea_de_conos()</code> función, que aún no se ha escrito pero que, sin embargo, realiza una tarea que usted comprende conceptualmente, simplemente moverse s sin girar. Así, al final de la llamada a <code>recoger_línea_de_conos()</code> , Karel seguirá mirando al norte. los <code>media_vuelta()</code> Llame por tanto sale Karel orientación sur. Me gusta <code>recoger_línea_de_conos()</code> , el <code>moverse_a_la_pared()</code> La función no implica ningún giro, sino simplemente moverse s hasta que golpea la pared límite. Dado que Karel está orientado al sur, este muro límite será el que se encuentra en la parte inferior de la pantalla, justo debajo de la primera fila. El final <code>girar_izquierda()</code> Por lo tanto, el comando deja Karel en la 1ª fila mirando al este, lo que satisface la Karel .</p>
+<h3>Repitiendo el proceso</h3>
+<p>Usted run su programa y borra con éxito una torre y deja Karel en la Karel prometida. ¡Wahoo! ¡Acaba de alcanzar un hito en la resolución de esta difícil tarea! Ahora tenemos que repetir el proceso de limpiar una torre usando un <code>while</code> ciclo .</p>
+<p>Pero que hace esto <code>while</code> ciclo parece? Primero que nada, debes pensar en la prueba condicional. Desea que Karel detenga cuando golpee la pared al final de la fila. Por lo tanto, desea que Karel continúe mientras el espacio en frente despejado . Por lo tanto, sabes que el <code>recoger_todo_conos()</code> La función incluirá un <code>while</code> ciclo que utiliza el <code>frente_despejado()</code> prueba. En cada posición, desea que Karel recolecte todos los conos en la torre que comienza en esa esquina. Si le da un nombre a esa operación, que podría ser algo como <code>recoger_una_torre()</code> , puede seguir adelante y escribir una definición para <code>recoger_todo_conos()</code> función aunque aún no haya completado los detalles.</p>
+<p>Sin embargo, debes tener cuidado. El código para <code>recoger_todo_conos()</code> no se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_todo_conos():</code> <br/>
+ <code class="comment">      # buggy ciclo !</code> <br/>
+ <code>      <span class="keyword">while</span> frente_despejado():</code> <br/>
+ <code>         recoger_una_torre()</code> <br/>
+ <code>         moverse()</code> <br/>
+</p>
+<p>Esta implementación tiene errores exactamente por la misma razón que la primera versión de la <code>ConoLínea</code> El programa del capítulo 6 falló en hacer su trabajo. Hay un error de poste de cerca en esta versión del código, porque Karel necesita probar la presencia de una torre cono en la última avenida. La implementación correcta es:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_todo_conos():</code> <br/>
+ <code>      <span class="keyword">while</span> frente_despejado():</code> <br/>
+ <code>         recoger_una_torre()</code> <br/>
+ <code>         moverse()</code> <br/>
+ <code>      recoger_una_torre()</code> <br/>
+</p>
+<p>Tenga en cuenta que esta función tiene exactamente la misma estructura que el programa main programa Place Cono Line presentado en el capítulo 6. La única diferencia es que este programa llama <code>recoger_una_torre()</code> donde el otro llamó <code>poner_cono()</code> . Estos dos programas son cada uno ejemplos de una estrategia general que se ve así:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">def</span>recoger_todo_conos():</code> <br/>
+ <code>      <span class="keyword">while</span> frente_despejado():</code> <br/>
+ <code>         </code> <i class="demoText">realizar alguna operacion</i><br/>
+ <code>         moverse()</code> <br/>
+ <code>      </code> <i class="demoText">Realiza la misma operación para la esquina final.</i><br/>
+</p>
+<p>Puede usar esta estrategia siempre que necesite realizar una operación en cada esquina mientras moverse un camino que termina en una pared. Si recuerda la estructura general de esta estrategia, puede usarla siempre que encuentre un problema que requiera dicha operación. Las estrategias reutilizables de este tipo surgen con frecuencia en la programación y se denominan <b>lenguajes de programación</b> o <b>patrones</b> . Cuantos más patrones sepa, más fácil le resultará encontrar uno que se adapte a un tipo particular de problema.</p>
+<h3>Terminando</h3>
+<p>Aunque se ha realizado un arduo trabajo, todavía quedan varios cabos sueltos que deben resolverse. El programa main llama a dos funciones: <code>soltar_todo_conos()</code> y <code>volver_a_casa()</code> - que aún no están escritos. Similar, <code>recoger_una_torre()</code> llamadas <code>recoger_línea_de_conos()</code> y <code>moverse_a_la_pared()</code> . Afortunadamente, estas cuatro funciones son lo suficientemente simples para codificar sin más descomposición, especialmente si usa <code>moverse_a_la_pared()</code> en la definición de <code>volver_a_casa()</code> . Aquí está la implementación completa:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperTowers">
+<div class="ide getStarted" id="beeperTowersIde" style="height:1123.2px">
+<div class="ideCenter" id="beeperTowersIdeCenter" style="height:inherit;">
+<div id="beeperTowersEditorDiv" style="width:600px;height:inherit;"></div>
+</div>
+</div>
+<div id="beeperTowersCanvasDiv" style="width:500px;height:360px">
+<canvas class="ideCanvas" id="beeperTowersCanvas"></canvas>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperTowersRunButton"><span class="glyphicon glyphicon-play"></span>Ejecute el programa</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperTowers() {
+STARTER_CODE = `
+
+# Archivo: Cono Recopilando Karel .py
+# --------------------------------
+# La clase Cono Collecting Karel recopila todos los conos
+# en una serie de torres verticales y las deposita en el
+# esquina más al este en la 1ra fila.
+from karel.stanfordkarel import *
+
+def main():
+   recoger_todo_conos()
+   soltar_todo_conos()
+   volver_a_casa()
+
+# Recoge el conos de cada torre moviéndose a lo largo de la primera
+# fila, llamando a recoger_una_torre en cada esquina. los
+# La Karel para esta función es que Karel esté en el
+# esquina más al este de la 1ra fila mirando al este.
+def recoger_todo_conos():
+   while frente_despejado():
+      recoger_una_torre()
+      moverse()
+   recoger_una_torre()
+
+# Recoge el conos en una sola torre. Cuando recoger_una_torre
+#, Karel debe estar en la 1ª fila mirando al este. los
+# La condición posterior para recoger_una_torre es que Karel debe volver a
+# estar mirando hacia el este en la misma esquina.
+def recoger_una_torre():
+   girar_izquierda()
+   recoger_línea_de_conos()
+   media_vuelta()
+   moverse_a_la_pared()
+   girar_izquierda()
+
+# Recopila una línea consecutiva de conos . El fin del cono
+La línea # está indicada por una esquina que no contiene conos .
+def recoger_línea_de_conos():
+   while conos_presente():
+      recoger_cono()
+      if frente_despejado():
+         moverse()
+
+# conos todo el conos en la esquina actual.
+def soltar_todo_conos() :
+   while conos_en_bolsa():
+      poner_cono()
+
+# Devuelve Karel a su posición inicial en la esquina de la 1ra.
+# Avenida y 1ª fila, orientada al este. La condición previa para esto
+# función es que Karel debe estar orientado hacia el este en algún lugar de la primera
+# fila, que es verdadera al final de recoger_todo_conos.
+def volver_a_casa():
+   media_vuelta()
+   moverse_a_la_pared()
+   media_vuelta()
+
+# Mueve Karel hacia adelante hasta que un muro lo bloquea.
+def moverse_a_la_pared():
+   while frente_despejado():
+      moverse()
+
+# Gira Karel 180 grados alrededor
+def media_vuelta():
+   girar_izquierda()
+   girar_izquierda()
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importPythonEditor('beeperTowersEditor','beeperTowersEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperTowersCanvas');
+    karelIde = KarelIde('python',karelEditor, canvas, 'beeperTowers', 0.9, 'es', 1000, 
+      0.8 * 1000);
+    $('#beeperTowersRunButton').click(function(){playClicked()});
+    onresize();
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperTowersRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperTowersRunButton').html(playText);
+      buttonState = 'play';
+     }
+    
+  }
+
+  function onresize() { 
+
+    // var parentHeight = 1123.2;
+    // var canvasWidth = 300
+    // var parentWidth = $("#beeperTowers").width();
+    // console.log('pw: ' + parentWidth);
+
+    // var editorDiv = document.getElementById('beeperTowersCanvasDiv');
+    // var canvas = document.getElementById('beeperTowersCanvas');
+    
+
+
+    // var availibleWidth = parentWidth;
+    // var elementSpacing = 12;
+
+    // var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    // canvas.style.width = canvasWidth + 'px';
+    // canvas.style.height = canvasWidth + 'px';
+    // canvas.style.left = (editorWidth + elementSpacing) + 'px';
+ }
+
+ 
+ main()
+ 
+}
+examplebeeperTowers();
+    </script>
+</div>
+
+<hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter9.html" role="button">Siguiente capítulo</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

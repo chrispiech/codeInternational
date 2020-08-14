@@ -1,0 +1,57 @@
+<h1>الفصل 4: التحلل</h1>
+<hr/>
+<p>كوسيلة لتوضيح المزيد من القوة التي تأتي مع القدرة على تحديد طرق جديدة ، من المفيد أن يكون هناك كاريل للقيام بشيء أكثر عملية من move إلى مخروط من مكان إلى آخر. غالبًا ما يبدو أن الطرق بحاجة إلى إصلاح ، وقد يكون من الممتع معرفة ما إذا كان كاريل يمكنه ملء الحفر في عالمه المجرد. على سبيل المثال ، تخيل أن كاريل يقف على "الطريق" الموضح في الشكل الأيسر ، من زاوية على يسار فتحة في الطريق. وظيفة كاريل هي ملء الحفرة بـ مخروط والمضي قدمًا إلى الزاوية التالية. يوضح الرسم على اليمين كيف ينبغي للعالم أن يهتم بتنفيذ البرنامج.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>إذا كنت مقيدًا بالأوامر الأربعة المحددة مسبقًا ، فإن الطريقة run لحل هذه المشكلة ستبدو كما يلي:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>كان الدافع الأولي لتحديد طريقة انعطفيمينا هو أنه كان مرهقًا الاستمرار في تكرار ثلاثة أوامر انعطفلليسار لإنجاز المنعطف الصحيح. يحتوي تعريف الأساليب الجديدة على غرض مهم آخر غير السماح لك بتجنب تكرار تسلسل الأوامر نفسه في كل مرة تريد فيها أداء مهمة معينة. تعمل القدرة على تحديد الأساليب على فتح أهم استراتيجية في البرمجة - عملية تقسيم مشكلة كبيرة إلى أجزاء أصغر يسهل حلها. تسمى عملية تقسيم البرنامج إلى أجزاء أصغر بالتحلل ، وتسمى الأجزاء المكونة لمشكلة كبيرة بالمشكلات الفرعية.</p>
+<p>على سبيل المثال ، يمكن أن تتحلل مشكلة ملء الثقب في الطريق في المشاكل الفرعية التالية:</p>
+<ol>
+<li>نقل ما يصل الى الحفرة<li>ملء الحفرة عن طريق إسقاط مخروط في ذلك<li>الانتقال إلى الزاوية التالية</li></li></li></ol>
+<p>إذا فكرت في المشكلة بهذه الطريقة ، يمكنك استخدام تعريفات الطريقة لإنشاء برنامج يعكس مفهومك لبنية البرنامج. الطريقة run ستبدو كما يلي:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">ملءالحفرة();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>المراسلات مع المخطط التفصيلي واضحة على الفور ، وسيكون كل شيء رائعًا إذا تمكنت فقط من الحصول على كاريل لفهم ما تعنيه بكسرحفرة. بالنظر إلى القدرة على تحديد الأساليب ، فإن تطبيق كسرالحفرة بسيط للغاية. كل ما عليك القيام به هو تحديد طريقة إلغاءالحفرة التي يتكون جسمها من الأوامر التي كتبت بالفعل للقيام بهذه المهمة ، مثل هذا:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> ملءالحفرة() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>هنا البرنامج الكامل. لاحظ كيف يمكنك فهم نوايا المبرمجين ببساطة من خلال قراءة طريقة run . عندما تقوم run بالبرنامج ، فإن تسليط الضوء على الخط يوضح كيفية تنفيذ الكمبيوتر له ، خطوة بخطوة. ومع ذلك ، لأنه تم تقسيم البرنامج بشكل جيد ، يمكننا فهمه على مستوى الفكر الإنساني:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

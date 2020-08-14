@@ -1,0 +1,87 @@
+<h1>Bölüm 7: Eğer İfadeler</h1>
+<hr/>
+<p>Öğrenmek için nihai çekirdek programlama kontrol akışı yapısı koşullu ifadelerdir ( <code>if</code> ve <code>if/else</code> ).</p>
+<h3>Temel Koşullamalar</h3>
+<p>bir <code>if/else</code> deyimi bir "if" kod bloğunu if if komutunu verir ve eğer sağlanan<i class="demoText">Ölçek</i>Programın ifadeye ulaştığı anda dünyanın durumu için geçerlidir. Aksi halde program "else" kod bloğunu çalıştırır.</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">Ölçek</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">eğer kod bloğu</i><br/>
+ <code>} <span class="keyword">else</span> {</code> <br/>
+<i class="demoText" style="margin-left:2em">başka bir kod bloğu</i><br/>
+ <code>}</code> 
+</p>
+<p>Koşullu ifadelerin nerede kullanışlı olacağı hakkında bir beeper , beeper s'lik bir satırı tersine beeper bir program beeper . Daha önce bir karenin beeper , Karel onu beeper . Bir karenin beeper , Karel bir tane indirmeli.</p>
+
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+
+<p>Bir not <code>if</code> deyim olması gerekmez <code>else</code> blok - bu durumda ifade bir gibi işlem görür <code>while</code> Sadece bir defa çalıştırılan döngü:</p>
+<p class="demoCode">
+ <code><span class="keyword">if</span>(</code> <i class="demoText">Ölçek</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">eğer kod bloğu</i><br/>
+ <code>} </code> 
+</p>
+<h3>Koşullar</h3>
+<p>Bu son örnek yeni bir koşul kullandı. Karel'in bildiği tüm koşulların bir listesi:</p>
+<p>
+<table class="table table-condensed">
+<tr><th>Ölçek</th><th>Karşısında</th><th>Ne kontrol ediyor</th></tr>
+<tr>
+<td> <code>frontIsClear()</code> </td>
+<td> <code>frontIsBlocked()</code> </td>
+<td>Karel'in önünde duvar var mı?</td>
+</tr>
+<tr>
+<td> <code>beepersPresent()</code> </td>
+<td> <code>noBeepersPresent()</code> </td>
+<td>Bu köşede beeper var mı?</td>
+</tr>
+<tr>
+<td> <code>leftIsClear()</code> </td>
+<td> <code>leftIsBlocked()</code> </td>
+<td>Karel'in solunda bir duvar var mı?</td>
+</tr>
+<tr>
+<td> <code>rightIsClear()</code> </td>
+<td> <code>rightIsBlocked()</code> </td>
+<td>Karel'in sağında bir duvar var mı?</td>
+</tr>
+<tr>
+<td> <code>beepersInBag()</code> </td>
+<td> <code>noBeepersInBag()</code> </td>
+<td>beeper çantasında beeper var mı?</td>
+</tr>
+<!-- dirs -->
+<tr>
+<td> <code>facingNorth()</code> </td>
+<td> <code>notFacingNorth()</code> </td>
+<td>Karel kuzeye mi bakıyor?</td>
+</tr>
+<tr>
+<td> <code>facingSouth()</code> </td>
+<td> <code>notFacingSouth()</code> </td>
+<td>Karel güneye bakıyor mu?</td>
+</tr>
+<tr>
+<td> <code>facingEast()</code> </td>
+<td> <code>notFacingEast()</code> </td>
+<td>Karel doğuya mı bakıyor?</td>
+</tr>
+<tr>
+<td> <code>facingWest()</code> </td>
+<td> <code>notFacingWest()</code> </td>
+<td>Karel batıya mı bakıyor?</td>
+</tr>
+</table>
+</p>
+<h3>Hepsini bir araya koy</h3>
+<p>Tebrikler! Artık tüm çekirdek programlama kontrol akış bloklarını biliyorsunuz. Bunları Karel ile öğrenirken, yöntemler, döngüler, döngüler için, eğer / else ifadeleri Java da dahil olmak üzere neredeyse tüm ana dillerde aynı şekilde çalışır.</p>
+<p>Artık yapı taşlarına sahip olduğunuza göre, daha karmaşık sorunlara çözümler üretmek için bunları bir araya getirebilirsiniz. Büyük ölçüde, programlama problemleri bilgisayarla çözme bilimidir. Sorunlar genellikle zor olduğu için, çözümler - ve bu çözümleri uygulayan programlar - da zor olabilir. Bu çözümleri geliştirmenizi kolaylaştırmak için, bu karmaşıklık seviyesini yönetilebilir bir ölçek seviyesine düşüren bir metodoloji ve disiplin kullanmanız gerekir.</p>

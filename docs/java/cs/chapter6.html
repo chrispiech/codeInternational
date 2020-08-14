@@ -1,0 +1,611 @@
+
+<html>
+<head>
+
+<title>Karel Reader</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/cs/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> Karel</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter1.html">1 - Seznamte se s Karlem</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter2.html">2 - Programování</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter3.html">3 - Nové metody</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter4.html">4 - Rozklad</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter5.html">5 - Pro smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter6.html">6 - Zatímco smyčky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter7.html">7 - Podmíněné podmínky</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter8.html">8 - Zpřesnění</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/chapter9.html">9 - SuperKarel</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/reference.html">10 - Odkaz</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/cs/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/cs/ide.html">11 - Kód</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> Další informace</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>Kapitola 6: Zatímco smyčky</h1>
+<hr/>
+<p>Technika definování nových metod a definování smyček - jak jsou užitečné - ve skutečnosti neumožňují Karlu vyřešit žádné nové problémy. Pokaždé, když program run vždy dělá přesně to samé. Programy se stávají mnohem užitečnějšími, když mohou reagovat odlišně na různé vstupy.</p>
+<p>Jako příklad. Řekněme, že jste chtěli napsat program, který má Karla move na zeď. Ale nechcete, aby tento program fungoval na jednom světě s pevnou velikostí. Chtěli byste napsat jeden program, který by mohl fungovat na jakémkoli světě.</p>
+
+
+
+
+
+<div class="section embeddedIde" id="moveToWall">
+<div class="ide getStarted" id="moveToWallIde" style="height:334.40000000000003px">
+<div class="ideCenter" id="moveToWallIdeCenter">
+<div class="ideEditorDiv" id="moveToWallEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="moveToWallCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Změnit svět<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="moveToWallWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="moveToWallCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="moveToWallRunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplemoveToWall() {
+STARTER_CODE = `
+
+/*
+ * Soubor: MoveKeZdi.java
+ * ---------------------
+ * Použije smyčku "while" na move Karel, dokud nenara
+ * zí na zeď. Pracuje na jakémkoliv velkém světě.
+ */
+import stanford.karel.*;
+public class MoveKeZdi extends Karel {
+   public void run() {
+      moveKeZdi();
+   }
+
+   /* je to velmi užitečná metoda */
+   private void moveKeZdi() {
+      while(frontIsClear()) {
+         move();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('moveToWallEditor','moveToWallEditorDiv', STARTER_CODE, false);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('moveToWallCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'cs');
+    $('#moveToWallRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('moveToWallWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#moveToWallRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#moveToWallRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 334.40000000000003;
+    var canvasWidth = 300
+    var parentWidth = $("#moveToWall").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('moveToWallIde');
+    var editorDiv = document.getElementById('moveToWallEditorDiv');
+    var canvas = document.getElementById('moveToWallCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplemoveToWall();
+    </script>
+</div>
+
+<p>Zkuste změnit svět kliknutím na rozevírací seznam "Změnit svět" nad světem. Pro všechny velikosti světa bude Karel move dokud nenarazí na zeď. Všimněte si, že tento výkon nelze dokončit pomocí <code class="keyword">for</code> smyčka. To by vyžadovalo, abychom v době programování znali velikost světa.</p>
+<h3>Základní, zatímco smyčka</h3>
+<p>V Karlu, a <code class="keyword">while</code> smyčka se používá k opakování těla kódu<i>tak dlouho jak</i>dané podmínky platí. Smyčka while má následující obecný formulář:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">test</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">prohlášení, která se mají opakovat</i><br/>
+ <code>}</code> 
+</p>
+<p>Řídicí tok smyčky while je následující. Když program udeří do smyčky, začne opakovat proces, kde je první<i>kontroly</i>pokud test proběhne, a pokud ano<i>run s</i>kód v těle.</p>Když program<i>kontroly</i>pokud test proběhne, rozhodne, zda<i class="demoText">test</i>platí pro současný stav světa. Pokud ano, smyčka bude run kód v těle. Pokud test selže, je smyčka ukončena a program move zapnut.
+<p>Když program<i>run s</i>tělo smyčky, program provede řádky v těle jeden po druhém. Když program dorazí na konec smyčky while, přeskočí zpět na začátek smyčky. Pak test znovu zkontroluje a pokračuje, pokud projde. Program ukončí smyčku, dokud se nedostane ke kontrole a test se nezdaří.</p>
+<p>Karel má mnoho<i class="demoText">test</i>a přejdeme všechny z nich v další kapitole. Prozatím použijeme jedno prohlášení o testu: <code>frontIsClear()</code> to je pravda, pokud není žádná zeď přímo před Karlem.</p>
+<h3>Fencepost Bug</h3>
+<p>Upravme náš program, aby byl zajímavější. Místo toho, aby se přesunul ke zdi, kuzel Karel umístit linku kuzel s, jednu na každé náměstí. Opět chceme, aby tento program pracoval pro svět jakékoli velikosti:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLineBug1">
+<div class="ide getStarted" id="beeperLineBug1Ide" style="height:352.0px">
+<div class="ideCenter" id="beeperLineBug1IdeCenter">
+<div class="ideEditorDiv" id="beeperLineBug1EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineBug1CanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Změnit svět<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineBug1Worlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineBug1Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineBug1RunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLineBug1() {
+STARTER_CODE = `
+
+/*
+ * Soubor: KuzelŘádekChyba.java
+ * ---------------------------
+ * Použije smyčku while k umístění řádku kuzel s. Ten
+ * to program funguje pro svět jakékoli velikosti. Ni
+ * cméně, protože každý svět vyžaduje jeden méně move
+ * ů než putBeeper sa vždy mine kuzel .
+ */
+import stanford.karel.*;
+public class KuzelŘádekChyba extends Karel {
+   public void run() {
+   	  /* opakuje se, dokud se karel nestane čelem ke zdi */
+      while(frontIsClear()) {
+      	 /* místo kuzel na aktuálním náměstí */ 
+         putBeeper();
+      	 /* move na další náměstí */
+         move();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineBug1Editor','beeperLineBug1EditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineBug1Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'cs');
+    $('#beeperLineBug1RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineBug1Worlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineBug1RunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineBug1RunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 352.0;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLineBug1").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineBug1Ide');
+    var editorDiv = document.getElementById('beeperLineBug1EditorDiv');
+    var canvas = document.getElementById('beeperLineBug1CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLineBug1();
+    </script>
+</div>
+
+<p>To vypadá skvěle. Až na jeden problém. Na každém světě Karel neumí umístit kuzel na poslední čtverec čáry (pozorně). Když je Karel na posledním náměstí, program neprovede tělo smyčky, protože test již neprochází - Karel stojí proti zdi. Můžete být v pokušení zkusit změnit pořadí těla tak, aby Karel move s před umístěním včelaře. Kód je editovatelný, takže to zkuste!</p>
+<p>Existuje hlubší problém, který nemůže vyřešit žádné přeskupení těla. Pro svět se 7 sloupci, Karel musí dát 7 kuzel s, ale měl by jen move 6 krát. Protože smyčka while provádí oba řádky, když test projde, jak můžete získat program, aby provedl jeden příkaz ještě jednou než ten druhý?</p>
+<p>Chyba v tomto programu je příkladem programovacího problému nazvaného a <b>chyba fencepost</b> . Název pochází ze skutečnosti, že pokud chcete postavit plot z panelů, které mají jeden plotový sloupek na obou velikostech, počet sloupků plotů je vždy o jeden větší než počet panelů. Kolik sloupů plotů potřebujete například pro stavbu plotu s 10 panely? Odpověď je 11, jak ukazuje následující diagram:</p>
+<center>
+<img src="../../images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>Jakmile to zjistíte, opravení této chyby je ve skutečnosti velmi snadné. Než se Karel zastaví na konci světa, vše, co musí program udělat, je umístit finále kuzel :</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLine">
+<div class="ide getStarted" id="beeperLineIde" style="height:352.0px">
+<div class="ideCenter" id="beeperLineIdeCenter">
+<div class="ideEditorDiv" id="beeperLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">Změnit svět<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineRunButton"><span class="glyphicon glyphicon-play"></span>Spustit program</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLine() {
+STARTER_CODE = `
+
+/*
+ * Soubor: KuzelŘádek.java
+ * ----------------------
+ * Použije smyčku "while" k umístění řádku kuzel s. T
+ * ento program funguje pro svět jakékoli velikosti.
+ */
+import stanford.karel.*;
+public class KuzelŘádek extends Karel {
+   public void run() {
+      /* opakuje se, dokud se karel nestane čelem ke zdi */
+      while(frontIsClear()) {
+         /* místo kuzel na aktuálním náměstí */ 
+         putBeeper();
+         /* move na další náměstí */
+         move();
+      }
+      /* řeší chybu plotu */
+      putBeeper();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineEditor','beeperLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.8, 'cs');
+    $('#beeperLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 352.0;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineIde');
+    var editorDiv = document.getElementById('beeperLineEditorDiv');
+    var canvas = document.getElementById('beeperLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLine();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter7.html" role="button">Další kapitola</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<h1>Capítulo 6: Ciclos While</h1>
+<hr/>
+<p>La técnica de definir nuevos métodos y definir ciclos for , por muy útiles que sean, no permite en realidad que Karel resuelva ningún problema nuevo. Cada vez que haces run un programa, siempre hace exactamente lo mismo. Los programas se vuelven mucho más útiles cuando pueden responder de manera diferente a diferentes entradas.</p>
+<p>Como ejemplo. Digamos que desea escribir un programa para tener Karel moverse en una pared. Pero no solo desea que este programa funcione en un mundo con un tamaño fijo. Te gustaría escribir un solo programa que podría funcionar en cualquier mundo.</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="moveToWall", world="7x7", canvasWidth=300, ideSpeed=0.0)
+%>
+
+
+<p>Intenta cambiar el mundo haciendo clic en el menú desplegable "Cambiar mundo" que se encuentra sobre el mundo. Para un mundo de cualquier tamaño, Karel será moverse hasta que toque una pared. Tenga en cuenta que esta hazaña no se puede lograr utilizando un <code class="keyword">for</code> ciclo . Eso nos obligaría a saber el tamaño del mundo en el momento de la programación.</p>
+<h3>Basic While Loop</h3>
+<p>En Karel , un <code class="keyword">while</code> ciclo se usa para repetir un cuerpo de código<i>Mientras</i>una condición dada se mantiene. El ciclo while tiene la siguiente forma general:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">prueba</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">declaraciones a repetir</i><br/>
+ <code>}</code>
+</p>
+<p>El flujo de control de un ciclo while es el siguiente. Cuando el programa llega a ciclo while comienza a repetir un proceso en el que primero<i>cheques</i>Si la prueba pasa, y si es así.<i>run s</i>El código en el cuerpo.</p>Cuando el programa<i>cheques</i>Si la prueba pasa, decide si el<i class="demoText">prueba</i>Es cierto para el estado actual del mundo. Si es así, el ciclo tendrá el código run en el cuerpo. Si la prueba falla, el ciclo ha terminado y el programa moverse s está moverse .
+<p>Cuando el programa<i>run s</i>El cuerpo del ciclo , el programa ejecuta las líneas en el cuerpo de una en una. Cuando el programa llega al final de la ciclo while , salta de nuevo a la parte superior de la ciclo . A continuación, vuelve a comprobar la prueba, continuando a ciclo si pasa. El programa no sale del ciclo hasta que llega a una verificación y la prueba falla.</p>
+<p>Karel tiene muchos<i class="demoText">prueba</i>declaraciones, y vamos a repasar todos ellos en el siguiente capítulo. Por ahora vamos a utilizar una sola declaración de prueba: <code>frenteDespejado()</code> lo cual es cierto si no hay una pared directamente Karel de Karel .</p>
+<h3>Fencepost Bug</h3>
+<p>Modifiquemos nuestro programa de arriba para hacerlo más interesante. En lugar de simplemente Karel a una pared, Karel que Karel coloque una línea de conos , una en cada casilla. Una vez más queremos que este programa funcione para un mundo de cualquier tamaño:</p>
+
+
+<%
+  include('templates/'+progLang+'/'+lang+'/programs/runnableWorldChoice.html', name="beeperLineBug1", world="7x7", canvasWidth=300, ideSpeed=0.0, isEditable="true")
+%>
+
+
+<p>Eso se ve genial. Excepto por un problema. En todos los mundos, Karel no coloca un cono en el último cuadrado de la línea (observe detenidamente). Cuando Karel está en el último cuadrado, el programa no ejecuta el cuerpo del ciclo porque la prueba ya no pasa, Karel se enfrenta a una pared. Puede tener la tentación de intentar cambiar el orden del cuerpo de modo que Karel moverse s antes de colocar un cono. El código es editable así que ¡pruébalo!</p>
+<p>Hay un problema más profundo que ninguna reorganización del cuerpo puede resolver. Para el mundo con 7 columnas, Karel necesita colocar 7 conos , pero solo debería moverse 6 veces. Dado que el ciclo while ejecuta ambas líneas cuando pasa una prueba, ¿cómo puede hacer que el programa ejecute un comando una vez más que el otro?</p>
+<p>El error en este programa es un ejemplo de un problema de programación llamado <b>error del poste</b> . El nombre proviene del hecho de que si desea construir una cerca hecha de paneles que tengan un poste de cerca en cualquiera de los tamaños, el número de mensajes de cerca siempre es uno mayor que el número de paneles. ¿Cuántos postes de la cerca, por ejemplo, necesitas construir una cerca con 10 paneles? La respuesta es 11, como se ilustra en el siguiente diagrama:</p>
+<center>
+<img src="{{pathToRoot}}images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/>
+</center>
+<p>Una vez que lo descubres, arreglar este error es bastante fácil. Antes de que Karel detenga en el fin del mundo, todo lo que el programa tiene que hacer es colocar un final cono :</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="beeperLine", world="7x7", canvasWidth=300, ideSpeed=0.8, isEditable="true")
+%>

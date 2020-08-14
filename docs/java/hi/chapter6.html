@@ -1,0 +1,614 @@
+
+<html>
+<head>
+
+<title>करेल पाठक</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/hi/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> कैरेल</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter1.html">1 - कैरेल से मिलते हैं</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter2.html">2 - प्रोग्रामिंग</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter3.html">3 - नए तरीके</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter4.html">4 - अपघटन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter5.html">5 - लूप्स के लिए</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter6.html">6 - जबकि लूप्स</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter7.html">7 - सशर्त</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter8.html">8 - शोधन</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/chapter9.html">9 - सुपरकारेल</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/reference.html">10 - संदर्भ</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/hi/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/hi/ide.html">11 - कोड</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> और अधिक जानें</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1;max-width:50px;"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>अध्याय 6: जबकि लूप्स</h1>
+<hr/>
+<p>नए तरीकों को परिभाषित करने और छोरों के लिए परिभाषित करने की तकनीक - वे जितनी उपयोगी हैं - वास्तव में कारेल को किसी भी नई समस्याओं को हल करने में सक्षम नहीं करता है। हर बार जब आप run एक प्रोग्राम करते हैं तो यह हमेशा एक ही काम करता है। जब वे अलग-अलग इनपुट के लिए अलग-अलग प्रतिक्रिया दे सकते हैं, तो कार्यक्रम बहुत अधिक उपयोगी हो जाते हैं।</p>
+<p>उदाहरण के तौर पे। मान लीजिए कि आप कैरेल move को एक दीवार पर एक कार्यक्रम लिखना चाहते थे। लेकिन आप नहीं चाहते कि यह कार्यक्रम निश्चित आकार के साथ एक दुनिया पर काम करे। आप एक भी प्रोग्राम लिखना चाहेंगे जो किसी भी दुनिया में काम कर सके।</p>
+
+
+
+
+
+<div class="section embeddedIde" id="moveToWall">
+<div class="ide getStarted" id="moveToWallIde" style="height:352.0px">
+<div class="ideCenter" id="moveToWallIdeCenter">
+<div class="ideEditorDiv" id="moveToWallEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="moveToWallCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">दुनिया को बदलो<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="moveToWallWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="moveToWallCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="moveToWallRunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplemoveToWall() {
+STARTER_CODE = `
+
+/*
+ * फ़ाइल: वाल्कवाइक को स्थानांतरित करें। जावा
+ * -----------------------------------------
+ * एक "जबकि" लूप का उपयोग move करेल तक करता है जब तक
+ * कि यह एक दीवार को हिट नहीं करता है। किसी भी आकार क
+ * ी दुनिया पर काम करता है।
+ */
+import stanford.कैरेल.*;
+public class Moveदीवारकेलिए extends कैरेल {
+   public void run() {
+      moveदीवारकेलिए();
+   }
+
+   /* यह एक बहुत ही उपयोगी विधि है */
+   private void moveदीवारकेलिए() {
+      while(frontIsClear()) {
+         move();
+      }
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('moveToWallEditor','moveToWallEditorDiv', STARTER_CODE, false);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('moveToWallCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'hi');
+    $('#moveToWallRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('moveToWallWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#moveToWallRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#moveToWallRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 352.0;
+    var canvasWidth = 300
+    var parentWidth = $("#moveToWall").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('moveToWallIde');
+    var editorDiv = document.getElementById('moveToWallEditorDiv');
+    var canvas = document.getElementById('moveToWallCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplemoveToWall();
+    </script>
+</div>
+
+<p>दुनिया के ऊपर "चेंज वर्ल्ड" ड्रॉपडाउन पर क्लिक करके दुनिया को बदलने की कोशिश करें। किसी भी आकार की दुनिया के लिए, करेल move जब तक कि यह एक दीवार से move नहीं है। ध्यान दें कि इस करतब का उपयोग करके अपूर्ण नहीं किया जा सकता है <code class="keyword">for</code> पाश। इससे हमें प्रोग्रामिंग के समय दुनिया के आकार को जानना होगा।</p>
+<h3>बेसिक जबकि लूप</h3>
+<p>कारेल में, ए <code class="keyword">while</code> लूप का उपयोग कोड के एक निकाय को दोहराने के लिए किया जाता है<i>जब तक</i>दी गई एक शर्त। जबकि लूप में निम्न सामान्य रूप है:</p>
+<p class="demoCode">
+ <code><span class="keyword">while</span>(</code> <i class="demoText">परीक्षा</i> <code>){</code> <br/>
+<i class="demoText" style="margin-left:2em">दोहराए जाने वाले बयान</i><br/>
+ <code>}</code> 
+</p>
+<p>थोड़ी देर के लूप का नियंत्रण-प्रवाह इस प्रकार है। जब प्रोग्राम थोड़ी देर के लूप से टकराता है तो यह एक प्रक्रिया को दोहराना शुरू करता है जहां यह पहले होता है<i>चेकों</i>यदि परीक्षा पास होती है, और यदि हां<i>run</i>शरीर में कोड।</p>जब कार्यक्रम<i>चेकों</i>यदि परीक्षण पास हो जाता है, तो यह निर्णय लेता है कि क्या<i class="demoText">परीक्षा</i>दुनिया की वर्तमान स्थिति के लिए सच है। यदि हां, तो लूप शरीर में run कोड होगा। यदि परीक्षण विफल हो जाता है, तो लूप खत्म हो जाता है और कार्यक्रम move चालू होता है।
+<p>जब कार्यक्रम<i>run</i>लूप के शरीर, कार्यक्रम शरीर में एक समय में लाइनों को निष्पादित करता है। जब कार्यक्रम लूप के अंत में आता है, तो यह लूप के शीर्ष पर वापस कूदता है। यह परीक्षण फिर से जाँचता है, अगर यह गुजरता है तो लूप को जारी रखता है। कार्यक्रम लूप से बाहर नहीं निकलता है जब तक कि वह एक चेक पर नहीं जाता है, और परीक्षण विफल हो जाता है।</p>
+<p>कारेल ने कई<i class="demoText">परीक्षा</i>बयान, और हम अगले अध्याय में उन सभी को खत्म कर देंगे। अभी के लिए हम एक परीक्षण कथन का उपयोग करने जा रहे हैं: <code>frontIsClear()</code> जो सच है अगर वहाँ कोई दीवार नहीं है सीधे कारेल के सामने।</p>
+<h3>फेन्सपोस्ट बग</h3>
+<p>इसे और अधिक रोचक बनाने के लिए ऊपर दिए गए हमारे कार्यक्रम को संशोधित करें। सिर्फ एक दीवार पर जाने के बजाय, कारेल को प्रत्येक वर्ग में beeper की एक पंक्ति में beeper । फिर से हम चाहते हैं कि यह कार्यक्रम किसी भी आकार की दुनिया के लिए काम करे:</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLineBug1">
+<div class="ide getStarted" id="beeperLineBug1Ide" style="height:369.6px">
+<div class="ideCenter" id="beeperLineBug1IdeCenter">
+<div class="ideEditorDiv" id="beeperLineBug1EditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineBug1CanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">दुनिया को बदलो<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineBug1Worlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineBug1Canvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineBug1RunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLineBug1() {
+STARTER_CODE = `
+
+/*
+ * फ़ाइल: कोनो लाइनबग। जावा
+ * -----------------------
+ * beeper एस की एक पंक्ति beeper लिए थोड़ी देर के लूप
+ * का उपयोग करता है। यह कार्यक्रम किसी भी आकार की दु
+ * निया के लिए काम करता है। हालांकि, क्योंकि प्रत्येक
+ * दुनिया एक कम की आवश्यकता है move से रों putBeeper
+ * रों यह हमेशा एक याद करते beeper ।
+ */
+import stanford.कैरेल.*;
+public class Conoलाइनबग extends कैरेल {
+   public void run() {
+   	  /* जब तक करेल एक दीवार का सामना करता है तब तक दोहराता है */
+      while(frontIsClear()) {
+      	 /* वर्तमान वर्ग पर beeper */ 
+         putBeeper();
+      	 /* move अगले वर्ग के लिए */
+         move();
+      }
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineBug1Editor','beeperLineBug1EditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineBug1Canvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.0, 'hi');
+    $('#beeperLineBug1RunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineBug1Worlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineBug1RunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineBug1RunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 369.6;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLineBug1").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineBug1Ide');
+    var editorDiv = document.getElementById('beeperLineBug1EditorDiv');
+    var canvas = document.getElementById('beeperLineBug1CanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLineBug1();
+    </script>
+</div>
+
+<p>यह अच्छा दिखता है। एक समस्या को छोड़कर। हर दुनिया में करेल लाइन के अंतिम वर्ग (बारीकी से देखो) पर beeper नहीं beeper । जब करेल अंतिम वर्ग पर होता है, तो कार्यक्रम लूप के शरीर को निष्पादित नहीं करता है क्योंकि परीक्षण अब नहीं गुजरता है - कारेल एक दीवार का सामना कर रहा है। आपको शरीर के क्रम को बदलने की कोशिश करने के लिए लुभाया जा सकता है ताकि move रखने से पहले कैरेल move एस। कोड संपादन योग्य है इसलिए इसे आज़माएं!</p>
+<p>एक गहरी समस्या है जिसे शरीर का कोई भी पुनर्निवेश हल नहीं कर सकता है। 7 कॉलम के साथ दुनिया के लिए, कारेल को 7 beeper एस लगाने की जरूरत है, लेकिन केवल move 6 बार चाहिए। जब से लूप दोनों लाइनों को निष्पादित करता है जब एक परीक्षण पास होता है, तो आप प्रोग्राम को एक कमांड को दूसरे से एक बार निष्पादित करने के लिए कैसे प्राप्त कर सकते हैं?</p>
+<p>इस कार्यक्रम में बग एक प्रोग्रामिंग समस्या का एक उदाहरण है जिसे a कहा जाता है <b>बाड़ त्रुटि</b> । नाम इस तथ्य से आता है कि यदि आप पैनलों से बने एक बाड़ का निर्माण करना चाहते हैं, जिसमें दोनों तरफ एक बाड़ पोस्ट है, तो बाड़ पोस्ट की संख्या हमेशा पैनसेल की संख्या से अधिक होती है। कितने बाड़ पोस्ट, उदाहरण के लिए, क्या आपको 10 पैनलों के साथ एक बाड़ बनाने की आवश्यकता है? उत्तर 11 है, जैसा कि निम्नलिखित चित्र द्वारा दर्शाया गया है:</p>
+<center>
+<img src="../../images/ch6/fencepost.png" style="width:500px;margin-bottom:10px"/> 
+</center>
+<p>एक बार जब आप इसे खोज लेते हैं, तो इस बग को ठीक करना वास्तव में काफी आसान है। इससे पहले कि करेल दुनिया के अंत में रुकता, सभी को जो कार्यक्रम करना होता है वह अंतिम beeper :</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperLine">
+<div class="ide getStarted" id="beeperLineIde" style="height:369.6px">
+<div class="ideCenter" id="beeperLineIdeCenter">
+<div class="ideEditorDiv" id="beeperLineEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperLineCanvasDiv">
+<div class="worldDropdown">
+<div class="dropdown">
+<button aria-expanded="true" aria-haspopup="true" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" type="button">दुनिया को बदलो<span class="caret"></span>
+</button>
+<ul aria-labelledby="dropdownMenu1" class="dropdown-menu" id="beeperLineWorlds">
+<li><a>1x1</a> </li>
+<li><a>4x4</a> </li>
+<li><a>3x6</a> </li>
+<li><a>7x7</a> </li>
+<li><a>8x8</a> </li>
+</ul>
+</div>
+</div>
+<canvas class="ideCanvas" id="beeperLineCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperLineRunButton"><span class="glyphicon glyphicon-play"></span>प्रोग्राम चलाओ</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperLine() {
+STARTER_CODE = `
+
+/*
+ * फ़ाइल: कोनो लाइन। जावा
+ * ---------------------
+ * beeper लाइन beeper लिए "जबकि" लूप का उपयोग करता है
+ * । यह कार्यक्रम किसी भी आकार की दुनिया के लिए काम क
+ * रता है।
+ */
+import stanford.कैरेल.*;
+public class Conoलाइन extends कैरेल {
+   public void run() {
+      /* जब तक करेल एक दीवार का सामना करता है तब तक दोहराता है */
+      while(frontIsClear()) {
+         /* वर्तमान वर्ग पर beeper */ 
+         putBeeper();
+         /* move अगले वर्ग के लिए */
+         move();
+      }
+      /* बाड़-पोस्ट बग को हल करता है */
+      putBeeper();
+   }
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperLineEditor','beeperLineEditorDiv', STARTER_CODE, true);
+    setupWorldDropdown();
+    
+    
+    var canvas = document.getElementById('beeperLineCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, '7x7', 0.8, 'hi');
+    $('#beeperLineRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function setupWorldDropdown() {
+    console.log('setup world dropdown')
+    let ul = document.getElementById('beeperLineWorlds')
+    
+    if (!ul.childNodes || ul.childNodes.length == 0) return;
+
+    // Iterate LIs
+    for (var itemi=0;itemi<ul.childNodes.length;itemi++) {
+        var li = ul.childNodes[itemi];
+        if(li.nodeName == "LI") {
+          var a = li.childNodes[0]
+          let worldName = a.innerHTML;
+          console.log(worldName)
+          a.onclick = () => setWorld(worldName);
+
+        }
+    }
+ }
+
+ function setWorld(worldName){
+    console.log('here we go', worldName)
+    karelIde.changeWorld(worldName)
+    changeToPlayButton()
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+    changeToResetButton();
+   } else if (buttonState == 'reset') {
+    karelIde.stopButton();
+    changeToPlayButton();
+   }
+  }
+
+  function changeToPlayButton() {
+    var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+    $('#beeperLineRunButton').html(playText);
+    buttonState = 'play';
+  }
+
+  function changeToResetButton() {
+    var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+    $('#beeperLineRunButton').html(resetText);
+    buttonState = 'reset';  
+  }
+
+ function onresize() { 
+    var parentHeight = 369.6;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperLine").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperLineIde');
+    var editorDiv = document.getElementById('beeperLineEditorDiv');
+    var canvas = document.getElementById('beeperLineCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperLine();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter7.html" role="button">अगला अध्याय</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

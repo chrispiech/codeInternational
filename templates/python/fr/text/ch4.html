@@ -1,0 +1,60 @@
+<h1>Chapitre 4: Décomposition</h1>
+<hr/>
+<p>Afin d'illustrer davantage la puissance qui vient avec la possibilité de définir de nouvelles fonctions, il est utile de demander à Karel de faire quelque chose d'un peu plus pratique que avancer un jeton d'un endroit à un autre. Les routes semblent souvent avoir besoin de réparations et il pourrait être amusant de voir si Karel peut combler les nids-de-poule dans son monde abstrait. Par exemple, imaginez que Karel se tient sur la «route» représentée sur la figure de gauche, un coin à gauche d'un nid-de-poule sur la route. Le travail de Karel est de remplir le trou avec un jeton et de passer au coin suivant. Le diagramme de droite illustre la manière dont le monde devrait se comporter après l'exécution du programme.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Si vous êtes limité aux quatre commandes prédéfinies, le <code>main()</code> La fonction pour résoudre ce problème ressemblerait à ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">laisser_jeton()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">tourner_gauche()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+</p>
+<p>La motivation initiale pour définir le <code>tourner_droite()</code> fonction était qu'il était difficile de répéter trois <code>tourner_gauche()</code> commandes pour effectuer un virage à droite. La définition de nouvelles fonctions a un autre objectif important au-delà de vous permettre d'éviter de répéter les mêmes séquences de commandes chaque fois que vous souhaitez effectuer une tâche particulière. Le pouvoir de définir des fonctions déverrouille la stratégie la plus importante de la programmation: le processus de décomposition d'un gros problème en plus petits morceaux plus faciles à résoudre. Le processus de décomposition d'un programme en plus petits morceaux s'appelle <b>décomposition</b> , et les composants d'un gros problème sont appelés <b>sous-problèmes</b> .
+</p>
+<p>
+  À titre d'exemple, le problème du remplissage du trou dans la chaussée peut être décomposé en les sous-problèmes suivants:
+</p>
+<ol>
+<li> Monter au trou
+<li>Remplissez le trou en y déposant un jeton<li> Passer au coin suivant
+</li></li></li></ol>
+<p>Si vous pensez au problème de cette manière, vous pouvez utiliser des définitions de fonction pour créer un programme qui reflète votre conception de la structure du programme. La fonction main ressemblerait à ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> main():</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">remplir_les_nids_de_poule()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+</p>
+<p>La correspondance avec le plan est immédiatement claire, et tout serait parfait si seulement vous pouviez faire comprendre à Karel ce que vous entendez par <code>remplir_les_nids_de_poule()</code> . Étant donné le pouvoir de définir des fonctions, la mise en œuvre <code>remplir_les_nids_de_poule()</code> est extrêmement simple. Tout ce que vous avez à faire est de définir un <code>remplir_les_nids_de_poule()</code> fonction dont le corps se compose des commandes que vous avez déjà écrites pour faire le travail, comme ceci:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">def</span> remplir_les_nids_de_poule():</code> <br/>
+ <code style="margin-left:2em">tourner_droite()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">laisser_jeton()</code> <br/>
+ <code style="margin-left:2em">tourner_autour()</code> <br/>
+ <code style="margin-left:2em">avancer()</code> <br/>
+ <code style="margin-left:2em">tourner_droite()</code> <br/>
+</p>
+<p>Voici le programme complet. Remarquez comment vous pouvez comprendre l'intention du programmeur simplement en lisant le <code>main()</code> fonction. Lorsque vous run le programme, la mise en évidence de la ligne montre comment un ordinateur l'exécutera, étape par étape. Cependant, parce que le programme est bien décomposé, nous pouvons le comprendre au niveau de la pensée humaine:</p>
+
+
+<%
+  include('templates/python/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>
+

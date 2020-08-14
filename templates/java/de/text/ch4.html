@@ -1,0 +1,57 @@
+<h1>Kapitel 4: Zersetzung</h1>
+<hr/>
+<p>move beeper wie move es ist, neue Methoden zu definieren, ist es nützlich, dass Karel von einem Ort zum anderen etwas Praktischeres move als move beeper . Die Straßen scheinen oft reparaturbedürftig zu sein, und es könnte Spaß machen zu sehen, ob Karel Schlaglöcher in seiner abstrakten Welt füllen kann. Stellen Sie sich zum Beispiel vor, Karel stehe auf der in der linken Abbildung gezeigten „Straße“, eine Ecke links von einem Schlagloch in der Straße. Karels Aufgabe ist es, das Loch mit einem beeper zu füllen und zur nächsten Ecke zu gelangen. Das Diagramm rechts zeigt, wie die Welt nach der Programmausführung aussehen soll.</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba", before="pothole", after="potholeGoal", ratio="0.82", canvasWidth="300")
+%>
+
+
+<p>Wenn Sie auf die vier vordefinierten Befehle beschränkt sind, run die run Methode zur Lösung dieses Problems folgendermaßen aus:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">turnLeft();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Die ursprüngliche Motivation für die Definition der biegenSieRechtsAb-Methode war, dass es umständlich war, drei biegenSieLinksAb-Befehle wiederholt auszuführen, um eine Rechtskurve zu erreichen. Das Definieren neuer Methoden hat einen anderen wichtigen Zweck, als zu vermeiden, dass Sie dieselben Befehlsfolgen jedes Mal wiederholen, wenn Sie eine bestimmte Aufgabe ausführen möchten. Die Fähigkeit, Methoden zu definieren, eröffnet die wichtigste Strategie in der Programmierung - das Aufteilen eines großen Problems in kleinere Teile, die leichter zu lösen sind. Der Vorgang des Zerlegens eines Programms in kleinere Teile wird Zerlegung genannt, und die Bestandteile eines großen Problems werden Unterprobleme genannt.</p>
+<p>Beispielsweise kann das Problem des Füllens des Lochs in der Fahrbahn in die folgenden Unterprobleme unterteilt werden:</p>
+<ol>
+<li>Gehe zum Loch<li>Füllen Sie das Loch, indem Sie eine beeper lassen<li>Fahren Sie mit der nächsten Ecke fort</li></li></li></ol>
+<p>Wenn Sie auf diese Weise über das Problem nachdenken, können Sie mithilfe von Methodendefinitionen ein Programm erstellen, das Ihre Vorstellung von der Programmstruktur widerspiegelt. Die run Methode würde folgendermaßen aussehen:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> run() {</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">schlaglochFüllen();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Die Übereinstimmung mit der Gliederung ist sofort klar, und alles wäre großartig, wenn Sie nur Karel dazu bringen könnten, zu verstehen, was Sie mit schlaglochFüllen meinen. Aufgrund der Fähigkeit, Methoden zu definieren, ist die Implementierung von schlaglochFüllen äußerst einfach. Alles was Sie tun müssen, ist eine schlaglochFüllen-Methode zu definieren, deren Hauptteil aus den Befehlen besteht, die Sie bereits geschrieben haben, um die Aufgabe zu erledigen:</p>
+<p style="margin-left:2em">
+ <code><span class="keyword">private void</span> schlaglochFüllen() {</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">putBeeper();</code> <br/>
+ <code style="margin-left:2em">turnAround();</code> <br/>
+ <code style="margin-left:2em">move();</code> <br/>
+ <code style="margin-left:2em">turnRight();</code> <br/>
+ <code>}</code> 
+</p>
+<p>Hier ist das komplette Programm. Beachten Sie, wie Sie die Absicht des Programmierers einfach durch Lesen der run Methode verstehen können. Wenn Sie das Programm run ausführen, zeigt die hervorgehobene Zeile Schritt für Schritt, wie es von einem Computer ausgeführt wird. Da das Programm jedoch gut aufgeschlüsselt ist, können wir es auf menschlicher Ebene verstehen:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="pothole", world="pothole", canvasWidth=200)
+%>

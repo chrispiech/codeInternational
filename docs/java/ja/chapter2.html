@@ -1,0 +1,539 @@
+
+<html>
+<head>
+
+<title>カレルリーダー</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/> 
+<script src="../../plugins/jquery.min.js"></script>
+<link href="../../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> 
+<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+<link href="../../style.css" rel="stylesheet"/> 
+<script src="../..//karel/js/html/websiteImports.js"></script>
+<script>importCss();</script>
+<script>importJs();</script>
+</head>
+<body>
+<!-- container -->
+<div class="bookContainer">
+
+<!-- side bar -->
+<div class="bookSideBar">
+<div class="homeLink">
+ <a href="../../java/ja/intro.html">
+<span aria-hidden="true" class="glyphicon glyphicon-home"></span> カレル</a> 
+</div>
+<hr/>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter1.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter1.html">1  - カレルに会う</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter2.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter2.html">2  - プログラミング</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter3.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter3.html">3  - 新しい方法</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter4.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter4.html">4  - 分解</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter5.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter5.html">5  - ループ用</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter6.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter6.html">6  - ループ中</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter7.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter7.html">7  - 条件付き</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter8.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter8.html">8  - 洗練</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/chapter9.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/chapter9.html">9  - スーパーカレル</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/reference.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/reference.html">10  - 参照</a> 
+</div>
+<div class="chapterTab" onclick="location.href='../../java/ja/ide.html'">
+<a class="bookLink btn btn-link" href="../../java/ja/ide.html">11  - コード</a> 
+</div>
+<hr/>
+ <a href="../../"><img src="../../images/unFlag.png" style="width:40px"/> もっと詳しく知る</a> 
+<!-- <center>
+    <img style ="width:75px;" src="../../images/stanford.png"/> 
+    </center> -->
+</div>
+<!-- content -->
+<div class="bookContent" style="display: flex;">
+<!-- right gutter -->
+<div style="flex-grow:1; flex-basis:50px; max-width:50px"></div>
+<!-- main stuff -->
+<div class="" style="flex-basis:740px; max-width:740px; margin-left:20px; margin-right:20px; ">
+<div class="row">
+<div class="col-md-12 col-xs-12">
+
+
+<h1>第2章：プログラミングカレル</h1>
+<hr/>
+<p>最も単純なスタイルのKarelプログラムはテキストを使用して、プログラムが実行されたときに実行される一連の組み込みコマンドを指定します。 <b>run</b> 。下記の簡単なKarelプログラムを考えてください。左側のテキストはプログラムです。カレルの世界の様子は右側に示されています。</p>
+
+
+
+
+
+<div class="section embeddedIde" id="beeperPicking">
+<div class="ide getStarted" id="beeperPickingIde" style="height:316.8px">
+<div class="ideCenter" id="beeperPickingIdeCenter">
+<div class="ideEditorDiv" id="beeperPickingEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="beeperPickingCanvasDiv">
+<canvas class="ideCanvas" id="beeperPickingCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="beeperPickingRunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplebeeperPicking() {
+STARTER_CODE = `
+
+/*
+ * ファイル：最初のカレル.java
+ * ---------------
+ * 最初のカレルプログラムは、3つのコマンドで " r
+ * un "メソッドを定義しています。これらのコマンド
+ * により、カレルはmove 1ブロックbeepe
+ * r 、 beeper 、次にmoveを次のコーナー
+ * へmoveます。
+ */
+import stanford.カレル.*;
+public class 最初のカレル extends カレル {
+   /* プログラムはここで開始run */
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('beeperPickingEditor','beeperPickingEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('beeperPickingCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.0, 'ja');
+    $('#beeperPickingRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#beeperPickingRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#beeperPickingRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 316.8;
+    var canvasWidth = 300
+    var parentWidth = $("#beeperPicking").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('beeperPickingIde');
+    var editorDiv = document.getElementById('beeperPickingEditorDiv');
+    var canvas = document.getElementById('beeperPickingCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplebeeperPicking();
+    </script>
+</div>
+
+<p>プログラムを実行するために "Run"ボタンを押してください。プログラムは通常、アプリケーションと呼ばれる特別なアプリケーションで書かれています。 <b>統合開発環境</b> （IDE）そしてほとんどのKarelプログラムはEclipseと呼ばれるIDEで書かれています。 IDEのように、このリーダーはあなたを助けるためにプログラムを実行する能力を持っています<i>見る</i>学んだとおりに物事がどのように機能するか。</p>
+<p>プログラムはいくつかの部分で構成されています。最初の部分は次の行で構成されています。</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * ファイル：最初のカレル.java
+ * ---------------
+ * 最初のカレルプログラムは、3つのコマンドで " r
+ * un "メソッドを定義しています。これらのコマンド
+ * により、Karelはmove 1ブロックbeepe
+ * r 、 beeper 、次にmoveを次のコーナー
+ * へmoveます。
+ */</pre>
+</p>
+<p>これらの行は、 <b>コメント</b> これは単にプログラムの動作を人間の読者に説明するためのテキストです。 KarelとJavaの両方でのコメントは文字で始まります <code class="comment">/*</code> そして文字で終わる <code class="comment">*/</code> 。ここでは、コメントは最初の行から始まり、数行後に終わります。コメントのテキストを構成する個々の行の星は必須ではありませんが、人間の読者がコメントの範囲を見やすくするためのものです。単純なプログラムでは、プログラムの効果が明白であるため、広範囲にわたるコメントは愚かに見えるかもしれませんが、それらはより大きくより複雑なプログラムの設計を文書化する手段として非常に重要です。プログラムの2番目の部分は次の行です。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.カレル.*;</code> 
+</p>
+<p>この行はからのすべての定義の包含を要求します <code>stanford.カレル</code> としょうかん。このライブラリには、標準操作の定義など、Karelプログラムを書くために必要な基本的な定義が含まれています。 <code>move()</code> そして <code>pickBeeper()</code> 。あなたはいつもこれらの操作にアクセスする必要があるので、あなたが書くすべてのKarelプログラムは実際のプログラムを書く前にこのimportコマンドを含みます。</p>
+<p>Karelプログラムの最後の部分は、次のプログラム定義で構成されています。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> 最初のカレル <span class="keyword">extends</span> カレル {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>この定義を理解するためには、その構造をもっと注意深く見ることが役に立ちます。最初のカレルプログラムの定義は、で始まる行で構成されています。 <code class="keyword">public class</code> そして、その行の終わりの中括弧とプログラムの最後の行の対応する右中括弧の間のすべてを含みます。新しいクラスを紹介する単一行は、 <b>ヘッダ</b> 定義の中括弧の間のコードは、 <b>体</b> 。</p>
+<p>プログラミングでは、特定の定義とその本体を分離可能なアイデアとして考えることは非常に便利です。この例では、最初のカレルの定義は次のような形式になっています。ここでは、定義の本体全体をしばらくの間、頭の中から外に出すことができます。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> 最初のカレル <span class="keyword">extends</span> カレル {</code> <br/>
+<i class="demoText" style="margin-left:2em">プログラム定義の本体</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>一番上のヘッダー行は、本体の内容を確認する前であっても、最初のカレルプログラムについてかなりよく説明しています。フレーズ <code class="keyword">public class</code> プログラムの定義を開始します。フレーズ <code><span class="keyword">extends</span> カレル</code> それを示すために使用されます <code>最初のカレル</code> カレルプログラムです。</p>
+<p>それでは、最初のカレルプログラムの本体を見てみましょう。その本体は以下の行で構成されています。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      pickBeeper();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>これらの線は新しい <b>方法</b> これは、コマンドに応答するために必要な一連のステップを指定します。最初のカレルプログラム自体の場合と同様に、メソッド定義は2つの部分で構成されており、別々に検討できます。最初の行はメソッドヘッダーを構成し、中括弧の間のコードはメソッド本体です。今のところ本体を無視すると、メソッド定義は次のようになります。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">メソッド定義の本体</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>メソッドヘッダーの最初の2語 <code class="keyword">public</code> そして <code class="keyword">void</code> は、Javaの構文構造の一部であり、この時点でそれらを無視しても構いません。ヘッダー行の次の単語は、新しいメソッドの名前を指定します。この場合、それはメソッドです。 <b>run</b> 。メソッドを定義することは、Karelがその名前で新しいコマンドに応答できるようになることを意味します。の <code>run</code> commandはKarelプログラムで特別な役割を果たします。 Karelプログラムを起動すると、新しいKarelインスタンスを作成し、そのKarelを指定した世界に追加してから、 runコマンドを発行します。 runプログラムの効果は、 runメソッドの本体によって定義されます。これは、ロボットが順番に実行する一連のコマンドです。たとえば、 runのカレルプログラムのrunメソッドの本体は次のrunです。</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>このように、世界の初期状態は、第1章で示した例と一致した場合、カレルは最初move含むコーナーに前方ねbeeper 、ことを拾っbeeper 、そして最終的にmoveに示すように、ちょうど壁の前にコーナーを楽しみによ次の前後の図</p>
+
+
+
+
+<div class="section" id="ba2">
+<div class="ide getStarted" id="ba2Ide">
+<div class="commandCanvasDiv" id="ba2CanvasDiv">
+<div>
+<div class="commandCanvasTitle">前：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">後：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba2CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba2() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba2CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'ja',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba2CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpM1',0.0, 'ja',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba2();
+    </script>
+</div>
+<h2>より興味深い問題を解決する</h2>
+<p>上で定義された最初のカレルプログラムはまだあまりしません。もう少し面白くしてみましょう。目標はピックアップするカレルを取得するだけではないことを仮定beeperこれにmove beeper棚の中央に2列目と1行目にその初期位置から。したがって、次の課題は、この図に示すタスクを実行する新しいKarelプログラムを定義することです。</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasTitle">前：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasBefore" style="width:300px;"></canvas>
+</div>
+</div>
+<div style="width:50px"></div>
+<div>
+<div class="commandCanvasTitle">後：</div>
+<div class="commandCanvasOuter">
+<canvas id="ba3CanvasAfter" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3CanvasBefore');
+    karelIde = KarelIde('java',null, canvas, 'stepUp', 0.0, 'ja',1000, 0.7 * 1000);
+
+    let canvasGoal = document.getElementById('ba3CanvasAfter');
+    let goalIde = KarelIde('java',null, canvasGoal, 'stepUpGoal',0.0, 'ja',  1000, 0.7 * 1000)
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>新しいプログラムの最初の3つのコマンド（ move前方に送り、 beeper 、次にmoveを棚までmoveは、以前と同じです。</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   pickBeeper();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>ここから、次のステップは棚を登り始めるために左に曲がることです。 Karelの標準レパートリーにturnLeftコマンドがあるので、その操作は簡単です。上記の一連のコマンドの最後にturnLeftコマンドを実行すると、Karelは1行3列目の角を北に向けます。その後、Karelがmoveコマンドを実行すると、北move次の位置に到着します。</p>
+
+
+
+
+<div class="section" id="ba3">
+<div class="ide getStarted" id="ba3Ide">
+<div class="commandCanvasDiv" id="ba3CanvasDiv">
+<div>
+<div class="commandCanvasOuter">
+<canvas id="ba3Canvas" style="width:300px;"></canvas>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+        
+
+function exampleba3() {
+ var karelIde = null;
+ var buttonState = 'play';
+ var canvas = null;
+
+ function main() {
+    canvas = document.getElementById('ba3Canvas');
+    karelIde = KarelIde('java',null, canvas, 'stepUpM2', 0, 'ja',1000, 0.7 * 1000);
+ }
+
+ 
+ main()
+ 
+}
+exampleba3();
+    </script>
+</div>
+<p>ここから、あなたがする必要がある次の事はそれが再び東に向くようにKarelを右に曲がらせることです。この操作は概念的にはKarelを左に曲がらせるのと同じくらい簡単ですが、わずかな問題があります。 <code>turnLeft</code> コマンド、しかしいいえ <code>turnRight</code> コマンド。あたかも経済モデルを購入したところ、重要な機能がいくつか欠けていることがわかったようです。</p>
+<p>この時点で、あなたはプログラマーのように考えることを始めるあなたの最初の機会を持っています。あなたは1セットのコマンドを持っています、しかしあなたが必要とするセットを正確に持っていません。あなたは何ができますか？あなたが持っている能力だけを使ってturnRightコマンドの効果を達成することができますか？答えは、もちろん、そうです。左に3回回すと右に曲がる効果があります。 3回左折すると、カレルは望みの方向を向くようになります。ここから、あなたがする必要があるのは、棚の中心までmove Karelをプログラムすることです、そして、 beeperを落として、そしてmoveを最後のポジションに進めてください。これはの完全な実装です。 <code>ステップアップ</code> タスク全体を実行するプログラム</p>
+
+
+
+
+
+<div class="section embeddedIde" id="stepUp">
+<div class="ide getStarted" id="stepUpIde" style="height:404.8px">
+<div class="ideCenter" id="stepUpIdeCenter">
+<div class="ideEditorDiv" id="stepUpEditorDiv" style="width:200px"></div>
+<div class="ideCanvasDiv" id="stepUpCanvasDiv">
+<canvas class="ideCanvas" id="stepUpCanvas"></canvas>
+</div>
+</div>
+</div>
+<div style="width:100%;">
+<div class="buttonBar">
+<button class="btn btn-default" id="stepUpRunButton"><span class="glyphicon glyphicon-play"></span>プログラムを実行</button>
+</div>
+</div>
+<script>
+
+        
+
+function examplestepUp() {
+STARTER_CODE = `
+
+/*
+ * File：Beeperピッキングカレル.java
+ * -----------------------
+ * Beeper runカレルプログラムは、カレル
+ * がbeeperをピックアップして棚の上に置くようにするコマンドで " run "メソッドを定義します。
+ */
+import stanford.カレル.*;
+public class Beeperピッキングカレル extends カレル {
+   public void run() {
+      move();
+      pickBeeper();
+      move();
+      turnLeft();
+      move();
+      turnLeft();
+      turnLeft();
+      turnLeft();
+      move();
+      move();
+      putBeeper();
+      move();
+   } 
+}
+`
+// because of that extra endline at the start of the string
+STARTER_CODE = STARTER_CODE.trim();
+
+ var karelIde = null;
+ var karelEditor = null;
+ var buttonState = 'play';
+
+ function main() {
+   karelEditor = importEditorCode('stepUpEditor','stepUpEditorDiv', STARTER_CODE, false);
+     //importRunButtonBar('example1ButtonBar');
+    
+    $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+    
+    initTabs();
+    var canvas = document.getElementById('stepUpCanvas');
+    karelIde = KarelIde('java',karelEditor, canvas, 'stepUp', 0.5, 'ja');
+    $('#stepUpRunButton').click(function(){playClicked()});
+    onresize();
+    
+ }
+
+ function playClicked() {
+  if(buttonState == 'play') {
+    karelIde.playButton();
+      
+      var resetText = '<span class="glyphicon glyphicon-repeat"></span> Reset Program';
+      $('#stepUpRunButton').html(resetText);
+      buttonState = 'reset';
+     } else if (buttonState == 'reset') {
+      karelIde.stopButton();
+      var playText = '<span class="glyphicon glyphicon-play"></span> Run Program';
+      $('#stepUpRunButton').html(playText);
+      buttonState = 'play';
+     }
+  
+  }
+
+ function onresize() { 
+    var parentHeight = 404.8;
+    var canvasWidth = 300
+    var parentWidth = $("#stepUp").width();
+    console.log('pw: ' + parentWidth);
+
+    var ide = document.getElementById('stepUpIde');
+    var editorDiv = document.getElementById('stepUpEditorDiv');
+    var canvas = document.getElementById('stepUpCanvasDiv');
+    
+    var ideHeight = parentHeight
+    var centerHeight = ideHeight;
+
+    var availibleWidth = parentWidth;
+    var elementSpacing = 12;
+
+    var editorWidth = availibleWidth - canvasWidth - elementSpacing; 
+
+    canvas.style.width = canvasWidth + 'px';
+    canvas.style.height = canvasWidth + 'px';
+    canvas.style.left = (editorWidth + elementSpacing) + 'px';
+
+
+
+    editorDiv.style.left = 0 + 'px'
+    editorDiv.style.width = editorWidth + 'px';
+    editorDiv.style.height = parentHeight + 'px';
+    console.log('editor width: ' + editorWidth)
+
+    if (karelEditor) {
+       karelEditor.renderer.onResize();
+    }
+ }
+ main()
+ 
+}
+examplestepUp();
+    </script>
+</div><hr/>
+<center>
+<a class="btn btn-primary btn-lg" href="chapter3.html" role="button">次の章</a> 
+</center>
+
+
+
+
+<div style="height:60px"></div>
+</div>
+</div>
+</div>
+<!-- right gutter -->
+<div style="flex-grow:4"></div>
+</div>
+</div>
+</body>
+</html>

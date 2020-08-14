@@ -1,0 +1,107 @@
+<h1>Chapter 7: If Statements</h1>
+<hr/>
+
+<p> The final core programming control-flow construct to learn are conditional statements (<code>if</code> and <code>if/else</code>).
+</p>
+
+<h3>Basic Conditionals</h3>
+
+<p>
+	An <code>if/else</code> statement executes an "if" code-block if and only if the provided <i class="demoText">test</i> is true for the state of the world at the time the program reaches the statement. Otherwise the program executes the "else" code-block. 
+</p>
+
+<p class="demoCode">
+	<code><span class="keyword">if</span>(</code><i class="demoText">test</i><code>){</code><br/>
+	<i class="demoText" style="margin-left:2em">if code-block</i><br/>
+	<code>} <span class="keyword">else</span> {</code><br/>
+	<i class="demoText" style="margin-left:2em">else code-block</i><br/>
+	<code>}</code>
+</p>
+<p>
+	To get a sense of where conditional statements might come in handy, let's write a program that has Karel invert a line of beepers. If a square previously had a beeper, Karel should pick it up. If a square has no beeper, Karel should put one down. 
+</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnableWorldChoice.html', name="ide", world="8x8", canvasWidth=300, ideSpeed=0.0, isEditable='true')
+%>
+
+
+
+
+
+<p> Note that an <code>if</code> statement does not need to have an <code>else</code> block -- in which case the statement opperates like a <code>while</code> loop that only executes one time:
+	</p>
+	<p class="demoCode">
+	<code><span class="keyword">if</span>(</code><i class="demoText">test</i><code>){</code><br/>
+	<i class="demoText" style="margin-left:2em">if code-block</i><br/>
+	<code>} </code>
+</p>
+
+<h3>Conditions</h3>
+
+<p>
+That last example used a new condition. Here is a list of all of the conditions that Karel knows of:
+</p>
+
+<p>
+<table class="table table-condensed">
+  <tr><th>Test</th><th>Opposite</th><th>What it checks</th></tr>
+  <tr>
+  	<td><code>frontIsClear()</code></td>
+  	<td><code>frontIsBlocked()</code></td>
+  	<td>Is there a wall in front of Karel?</td>
+  </tr>
+  <tr>
+  	<td><code>beepersPresent()</code></td>
+  	<td><code>noBeepersPresent()</code></td>
+  	<td>Are there beepers on this corner?</td>
+  </tr>
+  <tr>
+  	<td><code>leftIsClear()</code></td>
+  	<td><code>leftIsBlocked()</code></td>
+  	<td>Is there a wall to Karel’s left?</td>
+  </tr>
+  <tr>
+  	<td><code>rightIsClear()</code></td>
+  	<td><code>rightIsBlocked()</code></td>
+  	<td>Is there a wall to Karel’s right?</td>
+  </tr>
+  <tr>
+  	<td><code>beepersInBag()</code></td>
+  	<td><code>noBeepersInBag()</code></td>
+  	<td>Any there beepers in Karel’s bag?</td>
+  </tr>
+  <!-- dirs -->
+  <tr>
+  	<td><code>facingNorth()</code></td>
+  	<td><code>notFacingNorth()</code></td>
+  	<td>Is Karel facing north?</td>
+  </tr>
+  <tr>
+  	<td><code>facingSouth()</code></td>
+  	<td><code>notFacingSouth()</code></td>
+  	<td>Is Karel facing south?</td>
+  </tr>
+  <tr>
+  	<td><code>facingEast()</code></td>
+  	<td><code>notFacingEast()</code></td>
+  	<td>Is Karel facing east?</td>
+  </tr>
+  <tr>
+  	<td><code>facingWest()</code></td>
+  	<td><code>notFacingWest()</code></td>
+  	<td>Is Karel facing west?</td>
+  </tr>
+</table>
+</p>
+
+<h3>Putting it all together</h3>
+<p>
+	Congrats! You now know all of the core programming control-flow blocks. While you learned them with Karel, methods, while loops, for loops, if/else statements work in the same way in almost all major languages, including Java.
+</p>
+<p>
+	Now that you have the building blocks you can put them together to build solutions to ever more complex problems.
+	To a large extent, programming is the science of solving problems by computer. Because problems are often difficult, solutions—and the programs that implement those solutions—can be difficult as well. In order to make it easier for you to develop those solutions, you need to adopt a methodology and discipline that reduces the level of that complexity to a manageable scale.
+</p>
+

@@ -1,0 +1,99 @@
+<h1>Sura ya 2: Kuandaa Karel</h1>
+<hr/>
+<p>Mtindo rahisi wa programu ya Karel hutumia maandishi kutaja mlolongo wa amri zilizojengwa zinazopaswa kutekelezwa wakati programu <b>run</b> . Fikiria programu rahisi ya Karel hapa chini. Nakala upande wa kushoto ni programu. Hali ya dunia ya Karel imeonyeshwa upande wa kulia:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="beeperPicking", world="stepUp")
+%>
+
+
+<p>Bonyeza kitufe cha "Run" ili kutekeleza programu. Mipango ni kawaida imeandikwa katika programu maalum inayoitwa <b>Ubora wa Maendeleo ya Pamoja</b> (IDE) na programu nyingi za Karel zimeandikwa katika IDE inayoitwa Eclipse. Kama IDE, msomaji huyu ana uwezo wa kutekeleza programu ili kukusaidia<i>tazama</i>jinsi mambo yanavyofanya kazi kama unavyojifunza.</p>
+<p>Mpango huu linajumuisha sehemu kadhaa. Sehemu ya kwanza ina mistari ifuatayo:</p>
+<p>
+<p class="demoCode" style="margin-left:10px">
+<pre class="comment" translate="no">/*
+ * Faili: KalamuYaKwanza.java
+ * -------------------------
+ * Programu ya KalamuYaKwanza inafafanua njia " run "
+ * na amri tatu. Amri hizi husababisha Karel kwa mov
+ * e mbele moja block, kuchukua koni na kisha move mb
+ * ele ya kona ya pili.
+ */</pre>
+</p>
+<p>Mstari huu ni mfano wa <b>maoni</b> , ambayo ni maandiko tu yaliyopangwa kuelezea uendeshaji wa programu kwa wasomaji wa kibinadamu. Maoni katika wote Karel na Java huanza na wahusika <code class="comment">/*</code> na mwisho na wahusika <code class="comment">*/</code> . Hapa, maoni huanza kwenye mstari wa kwanza na inaisha mistari kadhaa baadaye. Nyota kwenye mistari ya kibinafsi ambayo hufanya maandishi ya maoni hayahitajiki, lakini iwe rahisi kwa wasomaji wa binadamu kuona kiwango cha maoni. Katika mpango rahisi, maoni ya kina yanaweza kuonekana kuwa ya udanganyifu kwa sababu matokeo ya programu ni dhahiri, lakini ni muhimu sana kama njia ya kuandika mpango wa programu kubwa, ngumu zaidi. Sehemu ya pili ya programu ni mstari:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">import</span> stanford.karel.*;</code> 
+</p>
+<p>Mstari huu unaomba kuingizwa kwa ufafanuzi wote kutoka kwa <code>stanford.karel</code> maktaba. Maktaba hii ina ufafanuzi wa msingi muhimu kwa kuandika programu za Karel, kama vile ufafanuzi wa shughuli za kawaida <code>move()</code> na <code>chukuaKoni()</code> . Kwa sababu daima unahitaji upatikanaji wa shughuli hizi, kila mpango wa Karel unayoandika utajumuisha amri hii ya kuagiza kabla ya kuandika mpango halisi.</p>
+<p>Sehemu ya mwisho ya mpango wa Karel ina ufafanuzi wa programu zifuatazo:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> KalamuYaKwanza <span class="keyword">extends</span> Karel {</code> <br/>
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      chukuaKoni();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+ <code>}</code> <br/>
+</p>
+<p>Ili kuelewa ufafanuzi huu, ni muhimu kuangalia kwa makini zaidi katika muundo wake. Ufafanuzi wa mpango wa KalamuYaKwanza una mwanzo wa mwanzo <code class="keyword">public class</code> na inahusisha kila kitu kati ya brace brace mwishoni mwa mstari huo na kushikamana kufunga kufunga kwenye mstari wa mwisho wa programu. Mstari mmoja unaoanzisha darasa jipya huitwa <b>kichwa</b> ya ufafanuzi; kanuni kati ya braces inaitwa <b>mwili</b> .</p>
+<p>Katika programu, mara nyingi ni muhimu sana kutafakari juu ya ufafanuzi fulani na mwili wake kama mawazo tofauti. Katika mfano huu, ufafanuzi wa KalamuYaKwanza una fomu ifuatayo, ambapo mwili wote wa ufafanuzi unaweza kufutwa kwa akili yako kwa muda:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code><span class="keyword">public class</span> KalamuYaKwanza <span class="keyword">extends</span> Karel {</code> <br/>
+<i class="demoText" style="margin-left:2em">mwili wa ufafanuzi wa mpango</i><br/>
+ <code>}</code> <br/>
+</p>
+<p>Mstari wa kichwa hapo juu unakuambia kidogo kuhusu mpango wa KalamuYaKwanza, hata kabla ukiangalia kuona mwili unao. Maneno <code class="keyword">public class</code> kuanza ufafanuzi wa programu. Maneno <code><span class="keyword">extends</span> Karel</code> hutumiwa kuonyesha hiyo <code>KalamuYaKwanza</code> ni mpango wa Karel.</p>
+<p>Sasa hebu tuangalie mwili wa programu ya KalamuYaKwanza. Mwili huo una mistari ifuatayo:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+ <code>      move();</code> <br/>
+ <code>      chukuaKoni();</code> <br/>
+ <code>      move();</code> <br/>
+ <code>   }</code> <br/>
+</p>
+<p>Mistari hii inawakilisha ufafanuzi wa mpya <b>njia</b> , ambayo inaelezea mlolongo wa hatua zinazohitajika kujibu amri. Kama ilivyo katika mpango wa KalamuYaKwanza yenyewe, ufafanuzi wa njia una sehemu mbili ambazo zinaweza kuzingatiwa tofauti: Mstari wa kwanza hufanya kichwa cha njia na kanuni kati ya braces curly ni mwili wa njia. Ikiwa unapuuza mwili kwa sasa, ufafanuzi wa mbinu inaonekana kama hii:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   <span class="keyword">public void</span> run() {</code> <br/>
+<i class="demoText" style="margin-left:3.5em">mwili wa ufafanuzi wa njia</i><br/>
+ <code>   }</code> <br/>
+</p>
+<p>Maneno mawili ya kwanza katika kichwa cha njia, <code class="keyword">public</code> na <code class="keyword">void</code> , ni sehemu ya muundo wa kisasa wa Java, na unapaswa kujisikia huru kuwapuuza kwa hatua hii. Neno linalofuata kwenye mstari wa kichwa linafafanua jina la njia mpya, ambayo katika kesi hii ni njia <b>run</b> . Kufafanua njia ina maana kuwa Karel anaweza sasa kujibu amri mpya kwa jina hilo. Ya <code>run</code> amri ina jukumu maalum katika mpango wa Karel. Unapoanza programu ya Karel inajenga mfano mpya wa Karel, anaongeza kuwa Karel kwa ulimwengu run , kisha hutoa amri ya run . Athari ya run wa run na mwili wa njia ya run , ambayo ni mlolongo wa amri ambazo robot itatekeleza. Kwa mfano, mwili wa run mbinu kwa ajili ya mpango KalamuYaKwanza ni:</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   chukuaKoni();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Hivyo, kama hali ya kwanza ya ulimwengu inafanana na mfano uliotolewa katika Sura ya 1, Karel kwanza move s move kwenye kona yenye koni , huchukua koni , na hatimaye move s mbele ya kona kabla ya ukuta, kama inavyoonekana katika yafuatayo kabla na baada ya mchoro:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba2", before="stepUp", after="stepUpM1", ratio="0.7", canvasWidth="300")
+%>
+
+<h2>Kutatua tatizo la kuvutia zaidi</h2>
+<p>Programu ya KalamuYaKwanza iliyoelezwa hapo juu haifanyi sana sana bado. Hebu jaribu kuifanya kuwa ya kuvutia zaidi. Tuseme kuwa lengo sio tu kupata Karel kuchukua koni lakini move koni kutoka nafasi yake ya kwanza kwenye safu ya 2 na mstari wa 1 katikati ya kiwanja. Hivyo, kazi yako inayofuata ni kufafanua mpango mpya wa Karel ambao unafanya kazi iliyoonyeshwa katika mchoro huu:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/beforeAfter.html', name="ba3", before="stepUp", after="stepUpGoal", ratio="0.7", canvasWidth="300")
+%>
+
+<p>Amri tatu za kwanza katika programu mpya-hizo ambazo move mbele, huchukua koni , na kisha move hadi kwenye kiwanja-ni sawa na kabla:</p>
+</p>
+<p class="demoCode" style="margin-left:10px">
+ <code>   move();</code> <br/>
+ <code>   chukuaKoni();</code> <br/>
+ <code>   move();</code> <br/>
+</p>
+<p>Kutoka hapa, hatua inayofuata ni kugeuka kushoto ili kuanza kupanda kiwanja. Operesheni hiyo ni rahisi, kwa sababu Karel ana amri geukaKushoto katika repertoire yake ya kawaida. Kutekeleza amri geukaKushoto mwishoni mwa amri ya mlolongo uliotangulia inatoka Karel akielekea kaskazini kwenye kona ya safu ya 1 na safu ya 3. Ikiwa Karel move amri ya move , itakuwa move kaskazini ili kufikia nafasi yafuatayo:</p>
+
+<%
+  include('templates/java/'+lang+'/programs/world.html', name="ba3", world="stepUpM2")
+%>
+
+<p>Kutoka hapa, kitu kingine unachohitaji kufanya ni kupata Karel kugeuka kulia ili tena inakabiliwa na mashariki. Wakati operesheni hii inafikiri kama rahisi kama kupata Karel kugeuka kushoto, kuna shida kidogo: lugha ya Karel inajumuisha <code>geukaKushoto</code> amri, lakini hapana <code>geukaKulia</code> amri. Ni kama ununuliwa mfano wa uchumi na umegundua sasa kwamba hauna sifa muhimu.</p>
+<p>Kwa sasa, una fursa yako ya kwanza kuanza kufikiria kama programu. Una amri moja ya amri, lakini sio hasa unayohitaji. Unaweza kufanya nini? Je! Unaweza kukamilisha athari za amri ya geukaKulia ukitumia tu uwezo unao? Jibu, bila shaka, ni ndiyo. Unaweza kufikia athari ya kugeuka kulia kwa kugeuka kushoto mara tatu. Baada ya zamu tatu za kushoto, Karel atakabiliwa na mwelekeo uliotaka. Kutoka hapa, unahitaji kufanya ni mpango Karel hadi move juu ya katikati ya daraja, tone koni na kisha move mbele nafasi ya mwisho. Hapa ni utekelezaji kamili wa <code>Ongeze</code> mpango ambao hutimiza kazi nzima:</p>
+
+
+<%
+  include('templates/java/'+lang+'/programs/runnable.html', name="stepUp", world="stepUp", ideSpeed=0.5)
+%>
