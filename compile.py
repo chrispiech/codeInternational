@@ -116,7 +116,7 @@ class Compiler(object):
             os.makedirs(dirPath)
         
     def getPathToRoot(self, relativePath):
-        return DOCS_ROOT
+        return URL_ROOT
         # return self.getRelPathToRoot(relativePath)
 
     def getRelPathToRoot(self, relativePath):
