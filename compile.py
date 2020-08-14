@@ -14,7 +14,7 @@ PROG_LANGUAGES = [
     'java',
     'python'
 ]
-URL_ROOT = '//compedu.stanford.edu/codeinternational'
+URL_ROOT = '//compedu.stanford.edu/codeinternational/docs'
 
 LANGUAGES = {
                 'en':'English',
