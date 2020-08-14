@@ -1,4 +1,7 @@
-This project includes both the codeInternational library as well as an example of its use: translation of an entire online text book (written in both Java and Python) into different human languages
+This project includes both the codeInternational library as well as an example of its use: translation of an entire online text book (written in both Java and Python) into different human languages. 
+
+For more details check out:
+https://compedu.stanford.edu/codeinternational.html
 
 Dependancies:
 python -m pip install google-cloud-translate

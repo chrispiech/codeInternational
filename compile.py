@@ -14,6 +14,7 @@ PROG_LANGUAGES = [
     'java',
     'python'
 ]
+URL_ROOT = '//compedu.stanford.edu/codeinternational'
 
 LANGUAGES = {
                 'en':'English',
@@ -84,7 +85,8 @@ class Compiler(object):
     def compileTemplate(self, page, fromPath, toPath, progLang, lang):
         # print(toPath)
         # note: all pages are in language/page
-        pathToRoot = '../../'
+        # pathToRoot = '../../'
+        pathToRoot = URL_ROOT
         templateText = open(fromPath).read()
         data = {
             'pathToRoot':pathToRoot,
